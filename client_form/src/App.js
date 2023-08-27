@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Home from "./views/home/home";
+import FormAlta from "./componentes/formAlta/formAlta";
+import FormBaja from "./componentes/formBaja/formBaja";
+import FormTransf from "./componentes/formTransf/formtransf";
+import Navbar from "./views/navbar/navbar";
+import Footer from "./views/footer/footer";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Navbar /> {/* Navbar fijo */}
+            
+            <div className="Content">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/formAlta" element={<FormAlta />} />
+                    <Route path="/formBaja" element={<FormBaja />} />
+                    <Route path="/formtransf" element={<FormTransf />} />
+                </Routes>
+            </div>
+
+            <Footer /> {/* Footer fijo */}
+        </div>
+    );
 }
 
 export default App;
