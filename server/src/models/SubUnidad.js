@@ -1,13 +1,13 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
-  sequelize.define("User", {
-    idUser: {
+  sequelize.define("SubUnit", {
+    idSubUnit: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       unique: true,
     },
-    name: {
+    nameSubUnit: {
       type: DataTypes.STRING,
       allowNull: false,
     },
