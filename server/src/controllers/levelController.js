@@ -27,7 +27,21 @@ const updateLevel = async (idCharges, nameLevel) => {
   throw Error(`El nivel: ${nameLevel}, no se pudo encontrar`);
 };
 
+const delLevel = async (idCharges) => {
+  const deleteLevel = await Charges.findOne({ where: { idCharges } });
+  if (!deleteLevel) {
+    throw Error(`El nivel no se encuentra registrado`);
+  }
+  await Charges.destroy({
+    where: {
+      idCharges,
+    },
+  });
+  return `El nivel, se elimino correctamente`;
+};
+
 module.exports = {
   createLevel,
   updateLevel,
+  delLevel,
 };

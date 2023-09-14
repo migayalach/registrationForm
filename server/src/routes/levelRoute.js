@@ -10,6 +10,6 @@ const levelRouter = Router();
 levelRouter.post("/", postLevel);
 levelRouter.get("/", getLevel);
 levelRouter.put("/", putLevel);
-levelRouter.delete("/", deleteLevel);
+levelRouter.delete("/:idCharges", deleteLevel);
 
 module.exports = levelRouter;
