@@ -3,6 +3,6 @@ const { sequelize } = require("./src/database/database");
 const PORT = 3001;
 
 app.listen(PORT, () => {
-  sequelize.sync({ alter: true });
+  sequelize.sync({ force: true });
   console.log(`Servidor levantado en el puerto: ${PORT}`);
 });
