@@ -1,4 +1,4 @@
-const { Sequelize, HasOne } = require("sequelize");
+const { Sequelize } = require("sequelize");
 require("dotenv").config();
 const unitModel = require("../models/Unit");
 const subUnitModel = require("../models/SubUnidad");
