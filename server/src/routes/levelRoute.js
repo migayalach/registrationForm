@@ -1,14 +1,16 @@
 const { Router } = require("express");
 const {
   postLevel,
-  getLevel,
+  getLevelId,
+  getLevelName,
   putLevel,
   deleteLevel,
 } = require("../handlers/levelHandler");
 const levelRouter = Router();
 
 levelRouter.post("/", postLevel);
-levelRouter.get("/", getLevel);
+levelRouter.get("/:idCharges", getLevelId);
+levelRouter.get("/", getLevelName);
 levelRouter.put("/", putLevel);
 levelRouter.delete("/:idCharges", deleteLevel);
 

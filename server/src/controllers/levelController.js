@@ -9,6 +9,10 @@ const createLevel = async ({ nameLevel }) => {
   throw Error(`El nivel: ${nameLevel}, ya existe`);
 };
 
+const getLevelSearchId = () => {};
+
+const getLevelSearchName = () => {};
+
 const updateLevel = async (idCharges, nameLevel) => {
   const infoResponse = await Charges.findOne({
     where: {
@@ -42,6 +46,8 @@ const delLevel = async (idCharges) => {
 
 module.exports = {
   createLevel,
+  getLevelSearchId,
+  getLevelSearchName,
   updateLevel,
   delLevel,
 };

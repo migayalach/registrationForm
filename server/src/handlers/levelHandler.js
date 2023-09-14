@@ -2,6 +2,8 @@ const SUCCESS = 200;
 const ERROR = 400;
 const {
   createLevel,
+  getLevelSearchId,
+  getLevelSearchName,
   updateLevel,
   delLevel,
 } = require("../controllers/levelController");
@@ -16,8 +18,12 @@ const postLevel = async (request, response) => {
   }
 };
 
-const getLevel = (request, response) => {
-  response.status(SUCCESS).send("consulta");
+const getLevelId = (request, response) => {
+  response.status(SUCCESS).send("consultapor id");
+};
+
+const getLevelName = (request, response) => {
+  response.status(SUCCESS).send("consultapor name");
 };
 
 const putLevel = async (request, response) => {
@@ -42,7 +48,8 @@ const deleteLevel = async (request, response) => {
 
 module.exports = {
   postLevel,
-  getLevel,
+  getLevelId,
+  getLevelName,
   putLevel,
   deleteLevel,
 };
