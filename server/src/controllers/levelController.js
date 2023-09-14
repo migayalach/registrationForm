@@ -21,7 +21,11 @@ const getLevelSearchId = async (idCharges) => {
   throw Error(`No se pudo encontrar el nivel buscado`);
 };
 
-const getLevelSearchName = () => {};
+const getLevelSearchName = () => {
+  return "nombre";
+};
+
+const getAllLevel = async () => await Charges.findAll();
 
 const updateLevel = async (idCharges, nameLevel) => {
   const infoResponse = await Charges.findOne({
@@ -58,6 +62,7 @@ module.exports = {
   createLevel,
   getLevelSearchId,
   getLevelSearchName,
+  getAllLevel,
   updateLevel,
   delLevel,
 };

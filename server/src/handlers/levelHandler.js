@@ -4,6 +4,7 @@ const {
   createLevel,
   getLevelSearchId,
   getLevelSearchName,
+  getAllLevel,
   updateLevel,
   delLevel,
 } = require("../controllers/levelController");
@@ -28,8 +29,16 @@ const getLevelId = async (request, response) => {
   }
 };
 
-const getLevelName = (request, response) => {
-  response.status(SUCCESS).send("consultapor name");
+const getLevelName = async (request, response) => {
+  const { nameLevel } = request.query;
+  try {
+    const resultLevel = nameLevel
+      ? await getLevelSearchName(nameLevel)
+      : await getAllLevel();
+    response.status(SUCCESS).json(resultLevel);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
 };
 
 const putLevel = async (request, response) => {
