@@ -21,8 +21,15 @@ const getLevelSearchId = async (idCharges) => {
   throw Error(`No se pudo encontrar el nivel buscado`);
 };
 
-const getLevelSearchName = () => {
-  return "nombre";
+const getLevelSearchName = async (name) => {
+  const nameSearch = await Charges.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      },
+    },
+  });
+  return nameSearch;
 };
 
 const getAllLevel = async () => await Charges.findAll();
