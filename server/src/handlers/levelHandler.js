@@ -18,8 +18,14 @@ const postLevel = async (request, response) => {
   }
 };
 
-const getLevelId = (request, response) => {
-  response.status(SUCCESS).send("consultapor id");
+const getLevelId = async (request, response) => {
+  const { idCharges } = request.params;
+  try {
+    const searchId = await getLevelSearchId(idCharges);
+    response.status(SUCCESS).json(searchId);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
 };
 
 const getLevelName = (request, response) => {

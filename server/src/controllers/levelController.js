@@ -9,7 +9,17 @@ const createLevel = async ({ nameLevel }) => {
   throw Error(`El nivel: ${nameLevel}, ya existe`);
 };
 
-const getLevelSearchId = () => {};
+const getLevelSearchId = async (idCharges) => {
+  const level = await Charges.findAll({
+    where: {
+      idCharges,
+    },
+  });
+  if (level.length > 0) {
+    return level;
+  }
+  throw Error(`No se pudo encontrar el nivel buscado`);
+};
 
 const getLevelSearchName = () => {};
 
