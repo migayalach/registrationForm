@@ -9,8 +9,22 @@ const createLevel = async ({ nameLevel }) => {
   throw Error(`El nivel: ${nameLevel}, ya existe`);
 };
 
-const updateLevel = (idCharges, nameLevel) => {
-  return { idCharges, nameLevel };
+const updateLevel = async (idCharges, nameLevel) => {
+  const infoResponse = await Charges.findOne({
+    where: {
+      idCharges,
+    },
+  });
+  if (infoResponse) {
+    const reponseInfo = await Charges.update(
+      { name: nameLevel },
+      { where: { idCharges } }
+    );
+    if (typeof reponseInfo === "object") {
+      return `Modificado con exito a nivel: ${nameLevel}`;
+    }
+  }
+  throw Error(`El nivel: ${nameLevel}, no se pudo encontrar`);
 };
 
 module.exports = {
