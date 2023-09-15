@@ -13,23 +13,23 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      nroIdentification: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        unique: true,
-      },
-      issued: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      phone: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
+      // nroIdentification: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   unique: true,
+      // },
+      // issued: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      // },
+      // phone: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: true,
+      // },
+      // email: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      // },
     },
     {
       timestamps: false,
