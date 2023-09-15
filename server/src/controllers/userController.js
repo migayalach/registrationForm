@@ -21,6 +21,31 @@ const createUser = async (name, ChargeIdCharges) => {
   throw Error(`El nivel de acceso no existe`);
 };
 
+const updateUser = async (idUser, name, ChargeIdCharges) => {
+  const existsUser = await User.findOne({
+    where: {
+      idUser,
+    },
+  });
+  if (!existsUser) {
+    throw Error(`El usuario: ${name} no se encuentra registrado`);
+  }
+  const existLevel = await Charges.findOne({
+    attributes: ["name"],
+    where: {
+      idCharges: ChargeIdCharges,
+    },
+  });
+  if (!existLevel) {
+    throw Error(
+      `El nivel de acceso es incorrecto por tanto no se pudo actualizar`
+    );
+  }
+  await User.update({ name, ChargeIdCharges }, { where: { idUser } });
+  return { name, charges: existLevel.name };
+};
+
 module.exports = {
   createUser,
+  updateUser,
 };
