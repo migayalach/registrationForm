@@ -1,7 +1,11 @@
 const SUCCESS = 200;
 const ERROR = 400;
 
-const { createUser, updateUser } = require("../controllers/userController");
+const {
+  createUser,
+  updateUser,
+  deleteDataUser,
+} = require("../controllers/userController");
 
 const postUser = async (request, response) => {
   const { name, ChargeIdCharges } = request.body;
@@ -17,13 +21,21 @@ const putUser = async (request, response) => {
   const { idUser, name, ChargeIdCharges } = request.body;
   try {
     const dataResponse = await updateUser(idUser, name, ChargeIdCharges);
-    response
-      .status(SUCCESS)
-      .json({
-        update: true,
-        name: dataResponse.name,
-        charges: dataResponse.charges,
-      });
+    response.status(SUCCESS).json({
+      update: true,
+      name: dataResponse.name,
+      charges: dataResponse.charges,
+    });
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const deleteUser = async (request, response) => {
+  const { idUser } = request.params;
+  try {
+    const deleteUser = await deleteDataUser(idUser);
+    response.status(SUCCESS).json(deleteUser);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -32,4 +44,5 @@ const putUser = async (request, response) => {
 module.exports = {
   postUser,
   putUser,
+  deleteUser,
 };

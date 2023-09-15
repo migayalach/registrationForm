@@ -45,7 +45,26 @@ const updateUser = async (idUser, name, ChargeIdCharges) => {
   return { name, charges: existLevel.name };
 };
 
+const deleteDataUser = async (idUser) => {
+  const { dataValues } = await User.findOne({
+    attributes: ["name"],
+    where: {
+      idUser,
+    },
+  });
+  const deleteUser = await User.destroy({
+    where: {
+      idUser,
+    },
+  });
+  if (deleteUser === 1) {
+    return `Se elimino el usuario: ${dataValues.name}, con exito`;
+  }
+  throw Error(`No se pudo eliminar el usuario ingresado`);
+};
+
 module.exports = {
   createUser,
   updateUser,
+  deleteDataUser,
 };
