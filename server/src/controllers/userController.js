@@ -8,7 +8,15 @@ const createUser = async (name, ChargeIdCharges) => {
     },
   });
   if (existsPosition) {
-    return await User.create({ name, ChargeIdCharges });
+    const level = await Charges.findOne({
+      attibutes: ["name"],
+      where: {
+        idCharges: ChargeIdCharges,
+      },
+    });
+    const nameLevel = level.dataValues.name;
+    await User.create({ name, ChargeIdCharges });
+    return { name, nameLevel };
   }
   throw Error(`El nivel de acceso no existe`);
 };
