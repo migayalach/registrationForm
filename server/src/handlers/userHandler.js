@@ -4,6 +4,8 @@ const ERROR = 400;
 const {
   createUser,
   getUserDataId,
+  getAllUser,
+  getNameUser,
   updateUser,
   deleteDataUser,
 } = require("../controllers/userController");
@@ -28,8 +30,11 @@ const getUserId = async (request, response) => {
   }
 };
 
-const getUserName = (request, response) => {
+const getUserName = async (request, response) => {
+  const { name } = request.query;
   try {
+    const resController = name ? await getNameUser(name) : await getAllUser();
+    response.status(SUCCESS).json(resController);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }

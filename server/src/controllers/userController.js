@@ -1,5 +1,6 @@
 const { User, Charges } = require("../database/database");
 const { Op } = require("sequelize");
+const { clearResponseOne } = require("../utils/userUtils");
 
 const createUser = async (name, ChargeIdCharges) => {
   const existsPosition = await Charges.findOne({
@@ -21,12 +22,6 @@ const createUser = async (name, ChargeIdCharges) => {
   throw Error(`El nivel de acceso no existe`);
 };
 
-const clearResponseOne = ({ idUser, name, Charge: { dataValues } }) => ({
-  idUser,
-  name,
-  levelUser: dataValues.name,
-});
-
 const getUserDataId = async (idUser) => {
   const userInfo = await User.findAll({
     where: {
@@ -43,8 +38,19 @@ const getUserDataId = async (idUser) => {
   return await getAll();
 };
 
-const getAll = async () => {
-  return "Traer todo";
+const getAllUser = async () =>
+  await User.findAll({ include: { model: Charges, attibutes: ["name"] } });
+
+const getNameUser = async (name) => {
+  const userData = await User.findOne({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      },
+    },
+    include: { model: Charges, attibutes: ["name"] },
+  });
+  return clearResponseOne(userData);
 };
 
 const updateUser = async (idUser, name, ChargeIdCharges) => {
@@ -94,6 +100,8 @@ const deleteDataUser = async (idUser) => {
 module.exports = {
   createUser,
   getUserDataId,
+  getAllUser,
+  getNameUser,
   updateUser,
   deleteDataUser,
 };
