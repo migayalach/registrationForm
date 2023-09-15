@@ -21,6 +21,32 @@ const createUser = async (name, ChargeIdCharges) => {
   throw Error(`El nivel de acceso no existe`);
 };
 
+const clearResponseOne = ({ idUser, name, Charge: { dataValues } }) => ({
+  idUser,
+  name,
+  levelUser: dataValues.name,
+});
+
+const getUserDataId = async (idUser) => {
+  const userInfo = await User.findAll({
+    where: {
+      idUser,
+    },
+    include: {
+      model: Charges,
+      attributes: ["name"],
+    },
+  });
+  if (userInfo.length > 0) {
+    return clearResponseOne(userInfo[0].dataValues);
+  }
+  return await getAll();
+};
+
+const getAll = async () => {
+  return "Traer todo";
+};
+
 const updateUser = async (idUser, name, ChargeIdCharges) => {
   const existsUser = await User.findOne({
     where: {
@@ -46,7 +72,9 @@ const updateUser = async (idUser, name, ChargeIdCharges) => {
 };
 
 const deleteDataUser = async (idUser) => {
-  const { dataValues } = await User.findOne({
+  const {
+    dataValues: { name },
+  } = await User.findOne({
     attributes: ["name"],
     where: {
       idUser,
@@ -58,13 +86,14 @@ const deleteDataUser = async (idUser) => {
     },
   });
   if (deleteUser === 1) {
-    return `Se elimino el usuario: ${dataValues.name}, con exito`;
+    return `Se elimino el usuario: ${name}, con exito`;
   }
   throw Error(`No se pudo eliminar el usuario ingresado`);
 };
 
 module.exports = {
   createUser,
+  getUserDataId,
   updateUser,
   deleteDataUser,
 };
