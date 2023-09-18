@@ -9,6 +9,18 @@ const createCategory = async (name) => {
   throw Error(`La categoria: ${name} no se pudo crear`);
 };
 
+const getSearchCategoryId = async (idCategory) => {
+  const category = await Category.findAll({
+    where: {
+      idCategory,
+    },
+  });
+  if (category.length > 0) {
+    return category;
+  }
+  throw Error(`No se pudo encontrar el nivel buscado`);
+};
+
 const updateCategory = async (idCategory, name) => {
   const editCategori = await Category.findOne({
     where: {
@@ -42,6 +54,7 @@ const delCategory = (idCategory) => {
 
 module.exports = {
   createCategory,
+  getSearchCategoryId,
   updateCategory,
   delCategory,
 };
