@@ -3,7 +3,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Category",
     {
-      idCharges: {
+      idCategory: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

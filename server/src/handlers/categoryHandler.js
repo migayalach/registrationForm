@@ -1,6 +1,9 @@
 const SUCCESS = 200;
 const ERROR = 400;
-const { createCategory } = require("../controllers/categoryControllers");
+const {
+  createCategory,
+  updateCategory,
+} = require("../controllers/categoryControllers");
 
 const postCategory = async (request, response) => {
   const { name } = request.body;
@@ -12,6 +15,17 @@ const postCategory = async (request, response) => {
   }
 };
 
+const putCategory = async (request, response) => {
+  const { idCategory, name } = request.body;
+  try {
+    const editCategory = await updateCategory(idCategory, name);
+    response.status(SUCCESS).json({ update: true, editCategory });
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postCategory,
+  putCategory,
 };
