@@ -17,14 +17,14 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      directionIp: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      controlLabel: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      // directionIp: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // controlLabel: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
     },
     {
       timestamps: false,
