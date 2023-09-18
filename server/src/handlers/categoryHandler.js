@@ -3,6 +3,8 @@ const ERROR = 400;
 const {
   createCategory,
   getSearchCategoryId,
+  getSearchCategoryName,
+  getAllCategory,
   updateCategory,
   delCategory,
 } = require("../controllers/categoryControllers");
@@ -22,6 +24,18 @@ const getCategoryId = async (request, response) => {
   try {
     const getIdCategory = await getSearchCategoryId(idCategory);
     response.status(SUCCESS).json(getIdCategory);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const getCategoryName = async (request, response) => {
+  const { name } = request.query;
+  try {
+    const getNameCategory = name
+      ? await getSearchCategoryName(name)
+      : await getAllCategory();
+    response.status(SUCCESS).json(getNameCategory);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -50,6 +64,7 @@ const deleteCategory = async (request, response) => {
 module.exports = {
   postCategory,
   getCategoryId,
+  getCategoryName,
   putCategory,
   deleteCategory,
 };

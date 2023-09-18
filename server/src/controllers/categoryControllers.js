@@ -21,6 +21,19 @@ const getSearchCategoryId = async (idCategory) => {
   throw Error(`No se pudo encontrar el nivel buscado`);
 };
 
+const getSearchCategoryName = async (name) => {
+  const nameSearch = await Category.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      },
+    },
+  });
+  return nameSearch;
+};
+
+const getAllCategory = async () => await Category.findAll();
+
 const updateCategory = async (idCategory, name) => {
   const editCategori = await Category.findOne({
     where: {
@@ -55,6 +68,8 @@ const delCategory = (idCategory) => {
 module.exports = {
   createCategory,
   getSearchCategoryId,
+  getSearchCategoryName,
+  getAllCategory,
   updateCategory,
   delCategory,
 };
