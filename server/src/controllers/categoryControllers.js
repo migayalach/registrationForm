@@ -27,7 +27,21 @@ const updateCategory = async (idCategory, name) => {
   throw Error(`La categoria: ${name}, no se pudo encontrar`);
 };
 
+const delCategory = (idCategory) => {
+  const deleteCategory = Category.findOne({ where: { idCategory } });
+  if (!deleteCategory) {
+    throw Error(`La categoria no se encuentra registrada`);
+  }
+  Category.destroy({
+    where: {
+      idCategory,
+    },
+  });
+  return `La categoria, se elimino correctamente`;
+};
+
 module.exports = {
   createCategory,
   updateCategory,
+  delCategory,
 };

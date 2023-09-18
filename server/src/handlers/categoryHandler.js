@@ -3,6 +3,7 @@ const ERROR = 400;
 const {
   createCategory,
   updateCategory,
+  delCategory,
 } = require("../controllers/categoryControllers");
 
 const postCategory = async (request, response) => {
@@ -25,7 +26,18 @@ const putCategory = async (request, response) => {
   }
 };
 
+const deleteCategory = async (request, response) => {
+  const { idCategory } = request.params;
+  try {
+    const deleteInfo = await delCategory(idCategory);
+    response.status(SUCCESS).json({ delete: true, deleteInfo });
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postCategory,
   putCategory,
+  deleteCategory,
 };
