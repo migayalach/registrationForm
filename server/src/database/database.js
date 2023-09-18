@@ -39,7 +39,7 @@ Credential.belongsToMany(Form, { through: "FormCredential" });
 Form.belongsToMany(Credential, { through: "FormCredential" });
 User.belongsToMany(Form, { through: "UserForm" });
 Form.belongsToMany(User, { through: "UserForm" });
-Form.hasMany(Category);
-Category.belongsTo(Form);
+// Form.hasMany(Category);
+// Category.belongsTo(Form);
 
 module.exports = { sequelize, ...sequelize.models };

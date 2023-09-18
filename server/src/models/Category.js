@@ -13,22 +13,22 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      host: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      directionIp: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      controlLabel: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      internalPhone: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
+      // host: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      // },
+      // directionIp: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      // },
+      // controlLabel: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      // },
+      // internalPhone: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: true,
+      // },
     },
     {
       timestamps: false,
