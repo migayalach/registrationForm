@@ -9,7 +9,7 @@ const {
 const equipmentRouter = Router();
 
 equipmentRouter.post("/", postEquipment);
-// equipmentRouter.get("/", getEquipmentName);
+equipmentRouter.get("/", getEquipmentName);
 equipmentRouter.get("/:idEquipment", getEquipmentId);
 equipmentRouter.put("/", putEquipment);
 equipmentRouter.delete("/:idEquipment", deleteEquipment);

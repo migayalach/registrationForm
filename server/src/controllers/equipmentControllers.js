@@ -38,6 +38,18 @@ const getEquipmentDataId = async (idEquipment) => {
   return await getAllEquipment();
 };
 
+const getNameEquipment = (name) => {
+  const equipmentData = Equipment.findOne({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      },
+    },
+    include: { model: Category, attibutes: ["name"] },
+  });
+  return equipmentData;
+};
+
 const getAllEquipment = async () =>
   await Equipment.findAll({
     include: { model: Category, attibutes: ["name"] },
@@ -91,6 +103,8 @@ const deleteDataEquipment = async (idEquipment) => {
 module.exports = {
   createEquipment,
   getEquipmentDataId,
+  getNameEquipment,
+  getAllEquipment,
   updateEquipment,
   deleteDataEquipment,
 };

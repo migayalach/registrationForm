@@ -4,6 +4,8 @@ const ERROR = 400;
 const {
   createEquipment,
   getEquipmentDataId,
+  getNameEquipment,
+  getAllEquipment,
   updateEquipment,
   deleteDataEquipment,
 } = require("../controllers/equipmentControllers");
@@ -28,7 +30,17 @@ const getEquipmentId = async (request, response) => {
   }
 };
 
-const getEquipmentName = (request, response) => {};
+const getEquipmentName = async (request, response) => {
+  const { name } = request.query;
+  try {
+    const resEquipment = name
+      ? await getNameEquipment(name)
+      : await getAllEquipment();
+    response.status(SUCCESS).json(resEquipment);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
 
 const putEquipment = async (request, response) => {
   const { idEquipment, name, host, CategoryIdCategory } = request.body;
