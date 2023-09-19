@@ -1,6 +1,6 @@
 const SUCCESS = 200;
 const ERROR = 400;
-const { createUnit } = require("../controllers/unitControllers");
+const { createUnit, updateUnit } = require("../controllers/unitControllers");
 const postUnit = async (request, response) => {
   const { nameUnit } = request.body;
   try {
@@ -11,6 +11,17 @@ const postUnit = async (request, response) => {
   }
 };
 
+const putUnit = async (request, response) => {
+  const { idUnit, nameUnit } = request.body;
+  try {
+    const updateData = await updateUnit(idUnit, nameUnit);
+    response.status(SUCCESS).json(updateData);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postUnit,
+  putUnit,
 };
