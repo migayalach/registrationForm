@@ -22,6 +22,27 @@ const createEquipment = async (name, host, CategoryIdCategory) => {
   return { name, host, nameCategory };
 };
 
+const getEquipmentDataId = async (idEquipment) => {
+  const equipmentInfo = await Equipment.findAll({
+    where: {
+      idEquipment,
+    },
+    include: {
+      model: Category,
+      attibutes: ["name"],
+    },
+  });
+  if (equipmentInfo.length > 0) {
+    return equipmentInfo;
+  }
+  return await getAllEquipment();
+};
+
+const getAllEquipment = async () =>
+  await Equipment.findAll({
+    include: { model: Category, attibutes: ["name"] },
+  });
+
 const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
   const existsEquipment = await Equipment.findOne({
     where: {
@@ -69,6 +90,7 @@ const deleteDataEquipment = async (idEquipment) => {
 
 module.exports = {
   createEquipment,
+  getEquipmentDataId,
   updateEquipment,
   deleteDataEquipment,
 };
