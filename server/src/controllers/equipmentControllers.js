@@ -1,5 +1,5 @@
 const { Category, Equipment } = require("../database/database");
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 
 const createEquipment = async (name, host, CategoryIdCategory) => {
   const existsCategory = await Category.findOne({
@@ -47,7 +47,28 @@ const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
   return { name, host, category: existCategory.name };
 };
 
+const deleteDataEquipment = async (idEquipment) => {
+  const {
+    dataValues: { name, host },
+  } = await Equipment.findOne({
+    attibutes: ["name"],
+    where: {
+      idEquipment,
+    },
+  });
+  const deleteEquipment = await Equipment.destroy({
+    where: {
+      idEquipment,
+    },
+  });
+  if (deleteEquipment === 1) {
+    return `Se elimino el equipo: ${name} con el host: ${host}, con exito`;
+  }
+  throw Error(`NO se pudo eliminar el equipo deseado`);
+};
+
 module.exports = {
   createEquipment,
   updateEquipment,
+  deleteDataEquipment,
 };

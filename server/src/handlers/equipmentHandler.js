@@ -4,6 +4,7 @@ const ERROR = 400;
 const {
   createEquipment,
   updateEquipment,
+  deleteDataEquipment,
 } = require("../controllers/equipmentControllers");
 
 const postEquipment = async (request, response) => {
@@ -36,7 +37,18 @@ const putEquipment = async (request, response) => {
   }
 };
 
+const deleteEquipment = async (request, response) => {
+  const { idEquipment } = request.params;
+  try {
+    const delEquipment = await deleteDataEquipment(idEquipment);
+    response.status(SUCCESS).json(delEquipment);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postEquipment,
   putEquipment,
+  deleteEquipment,
 };
