@@ -1,6 +1,11 @@
 const SUCCESS = 200;
 const ERROR = 400;
-const { createUnit, updateUnit } = require("../controllers/unitControllers");
+const {
+  createUnit,
+  updateUnit,
+  delUnit,
+} = require("../controllers/unitControllers");
+
 const postUnit = async (request, response) => {
   const { nameUnit } = request.body;
   try {
@@ -21,7 +26,18 @@ const putUnit = async (request, response) => {
   }
 };
 
+const deleteUnit = async (request, response) => {
+  const { idUnit } = request.params;
+  try {
+    const deleteData = await delUnit(idUnit);
+    response.status(SUCCESS).json(deleteData);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postUnit,
   putUnit,
+  deleteUnit,
 };

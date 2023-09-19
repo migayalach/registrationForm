@@ -28,7 +28,27 @@ const updateUnit = async (idUnit, nameUnit) => {
   throw Error(`La unidad: ${nameUnit}, no se pudo encontrar`);
 };
 
+const delUnit = async (idUnit) => {
+  const unitData = await Unit.findOne({
+    attributes: ["nameUnit"],
+    where: {
+      idUnit,
+    },
+  });
+  const deleteUnit = await Unit.destroy({
+    where: {
+      idUnit,
+    },
+  });
+  if (deleteUnit === 1) {
+    const { nameUnit } = unitData;
+    return `Se elimino la unidad: ${nameUnit}, correctamente`;
+  }
+  throw Error(`No se pudo eliminar la unidad ingresada`);
+};
+
 module.exports = {
   createUnit,
   updateUnit,
+  delUnit,
 };
