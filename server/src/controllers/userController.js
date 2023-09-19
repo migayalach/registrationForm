@@ -35,7 +35,7 @@ const getUserDataId = async (idUser) => {
   if (userInfo.length > 0) {
     return clearResponseOne(userInfo[0].dataValues);
   }
-  return await getAll();
+  return await getAllUser();
 };
 
 const getAllUser = async () =>
