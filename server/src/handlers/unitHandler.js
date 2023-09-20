@@ -2,6 +2,7 @@ const SUCCESS = 200;
 const ERROR = 400;
 const {
   createUnit,
+  getUnitSearchID,
   updateUnit,
   delUnit,
 } = require("../controllers/unitControllers");
@@ -16,8 +17,11 @@ const postUnit = async (request, response) => {
   }
 };
 
-const getUnitId = (request, response) => {
+const getUnitId = async (request, response) => {
+  const { idUnit } = request.params;
   try {
+    const searchUnitIdU = await getUnitSearchID(idUnit);
+    response.status(SUCCESS).json(searchUnitIdU);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }

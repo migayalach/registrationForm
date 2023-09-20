@@ -13,6 +13,18 @@ const createUnit = async ({ nameUnit }) => {
   throw Error(`La unidad: ${nameUnit}, existe`);
 };
 
+const getUnitSearchID = async (idUnit) => {
+  const unit = await Unit.findAll({
+    where: {
+      idUnit,
+    },
+  });
+  if (unit.length > 0) {
+    return unit;
+  }
+  throw Error(`No se pudo encontrar la unidad`);
+};
+
 const updateUnit = async (idUnit, nameUnit) => {
   const infoResponse = await Unit.findOne({
     where: {
@@ -49,6 +61,7 @@ const delUnit = async (idUnit) => {
 
 module.exports = {
   createUnit,
+  getUnitSearchID,
   updateUnit,
   delUnit,
 };
