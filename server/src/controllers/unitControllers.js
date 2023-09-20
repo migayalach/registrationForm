@@ -22,7 +22,7 @@ const getUnitSearchID = async (idUnit) => {
   if (unit.length > 0) {
     return unit;
   }
-  throw Error(`No se pudo encontrar la unidad`);
+  throw Error(`No se pudo encontrar la unidad buscada`);
 };
 
 const updateUnit = async (idUnit, nameUnit) => {
