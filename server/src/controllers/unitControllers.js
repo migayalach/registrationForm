@@ -25,7 +25,16 @@ const getUnitSearchID = async (idUnit) => {
   throw Error(`No se pudo encontrar la unidad buscada`);
 };
 
-const getUnitSearchName = () => {};
+const getUnitSearchName = async (nameUnit) => {
+  const nameSearch = await Unit.findAll({
+    where: {
+      nameUnit: {
+        [Op.iLike]: `%${nameUnit}%`,
+      },
+    },
+  });
+  return nameSearch;
+};
 
 const getAllUnit = async () => await Unit.findAll();
 
