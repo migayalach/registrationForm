@@ -5,7 +5,7 @@ const subUnitRouter = Router();
 subUnitRouter.post("/", postSubUnit);
 // subUnitRouter.get("/",);
 // subUnitRouter.get("/",);
-// subUnitRouter.put("/",);
-// subUnitRouter.delete("/",putSubUnit);
+subUnitRouter.put("/", putSubUnit);
+// subUnitRouter.delete("/",);
 
 module.exports = subUnitRouter;
