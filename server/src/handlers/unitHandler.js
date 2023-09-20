@@ -3,6 +3,8 @@ const ERROR = 400;
 const {
   createUnit,
   getUnitSearchID,
+  getUnitSearchName,
+  getAllUnit,
   updateUnit,
   delUnit,
 } = require("../controllers/unitControllers");
@@ -27,15 +29,13 @@ const getUnitId = async (request, response) => {
   }
 };
 
-const getUnitName = (request, response) => {
+const getUnitName = async (request, response) => {
+  const { nameUnit } = request.query;
   try {
-  } catch (error) {
-    response.status(ERROR).json({ error: error.message });
-  }
-};
-
-const getAllUnit = (request, response) => {
-  try {
+    const resultUnit = nameUnit
+      ? await getUnitSearchName(nameUnit)
+      : await getAllUnit();
+    response.status(SUCCESS).json(resultUnit);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }

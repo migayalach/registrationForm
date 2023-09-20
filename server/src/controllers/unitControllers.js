@@ -25,6 +25,10 @@ const getUnitSearchID = async (idUnit) => {
   throw Error(`No se pudo encontrar la unidad buscada`);
 };
 
+const getUnitSearchName = () => {};
+
+const getAllUnit = async () => await Unit.findAll();
+
 const updateUnit = async (idUnit, nameUnit) => {
   const infoResponse = await Unit.findOne({
     where: {
@@ -62,6 +66,8 @@ const delUnit = async (idUnit) => {
 module.exports = {
   createUnit,
   getUnitSearchID,
+  getUnitSearchName,
+  getAllUnit,
   updateUnit,
   delUnit,
 };
