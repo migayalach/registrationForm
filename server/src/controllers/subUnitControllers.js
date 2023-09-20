@@ -36,6 +36,18 @@ const getSubUnitDataId = async (idSubUnit) => {
   return await getAllSubUnit();
 };
 
+const getNameSubUnit = async (nameSubUnit) => {
+  const subUnit = await SubUnit.findOne({
+    where: {
+      nameSubUnit: {
+        [Op.iLike]: `%${nameSubUnit}%`,
+      },
+    },
+    include: { model: Unit, attibutes: ["nameUnit"] },
+  });
+  return subUnit;
+};
+
 const getAllSubUnit = async () =>
   await SubUnit.findAll({
     include: { model: Unit, attibutes: ["nameUnit"] },
@@ -86,6 +98,8 @@ const deleteDataSubUnit = async (idSubUnit) => {
 module.exports = {
   createSubUnit,
   getSubUnitDataId,
+  getNameSubUnit,
+  getAllSubUnit,
   updateSubUnit,
   deleteDataSubUnit,
 };
