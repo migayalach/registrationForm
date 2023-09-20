@@ -42,4 +42,24 @@ const updateSubUnit = async (idSubUnit, nameSubUnit, UnitIdUnit) => {
   return { name: nameSubUnit, subUnidad: existSubUnit.nameUnit };
 };
 
-module.exports = { createSubUnit, updateSubUnit };
+const deleteDataSubUnit = async (idSubUnit) => {
+  const response = await SubUnit.findOne({
+    attibutes: ["nameSubUnit"],
+    where: {
+      idSubUnit,
+    },
+  });
+
+  const deleteSubUnit = await SubUnit.destroy({
+    where: {
+      idSubUnit,
+    },
+  });
+
+  if (deleteSubUnit === 1) {
+    return `Se elimino la subUnidad: ${response.nameSubUnit}, con exito`;
+  }
+  throw Error(`No se pudo eliminar la subUnidad`);
+};
+
+module.exports = { createSubUnit, updateSubUnit, deleteDataSubUnit };
