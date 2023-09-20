@@ -2,6 +2,7 @@ const SUCCESS = 200;
 const ERROR = 400;
 const {
   createSubUnit,
+  getSubUnitDataId,
   updateSubUnit,
   deleteDataSubUnit,
 } = require("../controllers/subUnitControllers");
@@ -11,6 +12,16 @@ const postSubUnit = async (request, response) => {
   try {
     const responseInfo = await createSubUnit(nameSubUnit, UnitIdUnit);
     response.status(SUCCESS).json(responseInfo);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const getSubUnitId = async (request, response) => {
+  const { idSubUnit } = request.params;
+  try {
+    const getSubUnit = await getSubUnitDataId(idSubUnit);
+    response.status(SUCCESS).json(getSubUnit);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -42,6 +53,7 @@ const deleteSubUnit = async (request, response) => {
 
 module.exports = {
   postSubUnit,
+  getSubUnitId,
   putSubUnit,
   deleteSubUnit,
 };

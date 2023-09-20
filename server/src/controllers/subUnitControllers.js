@@ -20,6 +20,27 @@ const createSubUnit = async (nameSubUnit, UnitIdUnit) => {
   throw Error(`La SubUnidad no existe`);
 };
 
+const getSubUnitDataId = async (idSubUnit) => {
+  const subUnitInfo = await SubUnit.findAll({
+    where: {
+      idSubUnit,
+    },
+    include: {
+      model: Unit,
+      attibutes: ["nameUnit"],
+    },
+  });
+  if (subUnitInfo.length > 0) {
+    return subUnitInfo;
+  }
+  return await getAllSubUnit();
+};
+
+const getAllSubUnit = async () =>
+  await SubUnit.findAll({
+    include: { model: Unit, attibutes: ["nameUnit"] },
+  });
+
 const updateSubUnit = async (idSubUnit, nameSubUnit, UnitIdUnit) => {
   const existSubUnit = await SubUnit.findOne({
     where: {
@@ -62,4 +83,9 @@ const deleteDataSubUnit = async (idSubUnit) => {
   throw Error(`No se pudo eliminar la subUnidad`);
 };
 
-module.exports = { createSubUnit, updateSubUnit, deleteDataSubUnit };
+module.exports = {
+  createSubUnit,
+  getSubUnitDataId,
+  updateSubUnit,
+  deleteDataSubUnit,
+};
