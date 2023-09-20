@@ -16,6 +16,27 @@ const postUnit = async (request, response) => {
   }
 };
 
+const getUnitId = (request, response) => {
+  try {
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const getUnitName = (request, response) => {
+  try {
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const getAllUnit = (request, response) => {
+  try {
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 const putUnit = async (request, response) => {
   const { idUnit, nameUnit } = request.body;
   try {
@@ -38,6 +59,8 @@ const deleteUnit = async (request, response) => {
 
 module.exports = {
   postUnit,
+  getUnitId,
+  getUnitName,
   putUnit,
   deleteUnit,
 };
