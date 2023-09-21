@@ -3,7 +3,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Credential",
     {
-      idCredetial: {
+      idCredential: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

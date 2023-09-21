@@ -1,7 +1,10 @@
 const SUCCESS = 200;
 const ERROR = 400;
 
-const { createCredential } = require("../controllers/credentialControllers");
+const {
+  createCredential,
+  updateCredential,
+} = require("../controllers/credentialControllers");
 
 const postCredential = async (request, response) => {
   const { name } = request.body;
@@ -13,6 +16,17 @@ const postCredential = async (request, response) => {
   }
 };
 
+const putCredential = async (request, response) => {
+  const { idCredential, name } = request.body;
+  try {
+    const editCredential = await updateCredential(idCredential, name);
+    response.status(SUCCESS).json({ update: true, editCredential });
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postCredential,
+  putCredential,
 };
