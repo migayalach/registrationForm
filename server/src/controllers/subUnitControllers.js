@@ -7,14 +7,28 @@ const createSubUnit = async (nameSubUnit, UnitIdUnit) => {
       idUnit: UnitIdUnit,
     },
   });
+
   if (existSubUnit) {
+    const existUnit = await SubUnit.findOne({
+      where: {
+        nameSubUnit: {
+          [Op.iLike]: `%${nameSubUnit}%`,
+        },
+      },
+    });
+    if (existUnit) {
+      throw Error(
+        `La subUnidad ya se encuentra registrada, no se permiten duplicados`
+      );
+    }
+
     const subUnit = await Unit.findOne({
       attibutes: ["nameUnit"],
       where: {
         idUnit: UnitIdUnit,
       },
     });
-    const nameSubUnit = subUnit.dataValues.nameUnit;
+    const name = subUnit.dataValues.nameUnit;
     return await SubUnit.create({ nameSubUnit, UnitIdUnit });
   }
   throw Error(`La SubUnidad no existe`);
