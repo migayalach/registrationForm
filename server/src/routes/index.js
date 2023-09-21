@@ -8,6 +8,7 @@ const categoryRouter = require("./categoryRoute");
 const equipmentRouter = require("./equipmentRoute");
 const unitRouter = require("./unitRoute");
 const subUnitRouter = require("./subUnitRoute");
+const credentialRouter = require("./credentialRoute");
 
 // entry points
 mainRouter.use("/level", levelRouter);
@@ -16,5 +17,6 @@ mainRouter.use("/category", categoryRouter);
 mainRouter.use("/equipment", equipmentRouter);
 mainRouter.use("/unit", unitRouter);
 mainRouter.use("/subUnit", subUnitRouter);
+mainRouter.use("/credential", credentialRouter);
 
 module.exports = mainRouter;
