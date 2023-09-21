@@ -43,6 +43,19 @@ const getSearchCredentialId = async (idCredential) => {
   throw Error(`No se pudo encontrar la credencial buscada`);
 };
 
+const getSearchCategoryName = async (name) => {
+  const nameSearch = await Credential.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      },
+    },
+  });
+  return nameSearch;
+};
+
+const getAllCredential = async () => await Credential.findAll();
+
 const delCredential = async (idCredential) => {
   const deleteCredential = await Credential.findOne({
     where: { idCredential },
@@ -59,6 +72,8 @@ const delCredential = async (idCredential) => {
 module.exports = {
   createCredential,
   getSearchCredentialId,
+  getSearchCategoryName,
+  getAllCredential,
   updateCredential,
   delCredential,
 };

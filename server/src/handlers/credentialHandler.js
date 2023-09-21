@@ -4,6 +4,8 @@ const ERROR = 400;
 const {
   createCredential,
   getSearchCredentialId,
+  getSearchCategoryName,
+  getAllCredential,
   updateCredential,
   delCredential,
 } = require("../controllers/credentialControllers");
@@ -28,13 +30,17 @@ const getCredentialId = async (request, response) => {
   }
 };
 
-// const getCredentialName = () => {
-
-// };
-
-// const getAllCredential = () => {
-
-// };
+const getCredentialName = async (request, response) => {
+  const { name } = request.query;
+  try {
+    const getNameCredential = name
+      ? await getSearchCategoryName(name)
+      : await getAllCredential();
+    response.status(SUCCESS).json(getNameCredential);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
 
 const putCredential = async (request, response) => {
   const { idCredential, name } = request.body;
@@ -59,6 +65,7 @@ const deleteCredential = async (request, response) => {
 module.exports = {
   postCredential,
   getCredentialId,
+  getCredentialName,
   putCredential,
   deleteCredential,
 };
