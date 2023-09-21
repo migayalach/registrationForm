@@ -31,6 +31,18 @@ const updateCredential = async (idCredential, name) => {
   }
 };
 
+const getSearchCredentialId = async (idCredential) => {
+  const credential = await Credential.findAll({
+    where: {
+      idCredential,
+    },
+  });
+  if (credential.length > 0) {
+    return credential;
+  }
+  throw Error(`No se pudo encontrar la credencial buscada`);
+};
+
 const delCredential = async (idCredential) => {
   const deleteCredential = await Credential.findOne({
     where: { idCredential },
@@ -44,4 +56,9 @@ const delCredential = async (idCredential) => {
   return `La credencial, se elimino correctamente`;
 };
 
-module.exports = { createCredential, updateCredential, delCredential };
+module.exports = {
+  createCredential,
+  getSearchCredentialId,
+  updateCredential,
+  delCredential,
+};
