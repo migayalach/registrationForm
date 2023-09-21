@@ -51,7 +51,7 @@ const getSubUnitDataId = async (idSubUnit) => {
 };
 
 const getNameSubUnit = async (nameSubUnit) => {
-  const subUnit = await SubUnit.findOne({
+  const subUnit = await SubUnit.findAll({
     where: {
       nameSubUnit: {
         [Op.iLike]: `%${nameSubUnit}%`,
