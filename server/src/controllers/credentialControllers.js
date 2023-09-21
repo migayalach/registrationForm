@@ -31,4 +31,17 @@ const updateCredential = async (idCredential, name) => {
   }
 };
 
-module.exports = { createCredential, updateCredential };
+const delCredential = async (idCredential) => {
+  const deleteCredential = await Credential.findOne({
+    where: { idCredential },
+  });
+  if (!deleteCredential) {
+    throw Error(`La credencial no se encuentra registrada`);
+  }
+  await Credential.destroy({
+    where: { idCredential },
+  });
+  return `La credencial, se elimino correctamente`;
+};
+
+module.exports = { createCredential, updateCredential, delCredential };

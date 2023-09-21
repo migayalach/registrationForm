@@ -4,6 +4,7 @@ const ERROR = 400;
 const {
   createCredential,
   updateCredential,
+  delCredential,
 } = require("../controllers/credentialControllers");
 
 const postCredential = async (request, response) => {
@@ -26,7 +27,18 @@ const putCredential = async (request, response) => {
   }
 };
 
+const deleteCredential = async (request, response) => {
+  const { idCredential } = request.params;
+  try {
+    const deleteInfo = await delCredential(idCredential);
+    response.status(SUCCESS).json({ update: true, deleteInfo });
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postCredential,
   putCredential,
+  deleteCredential,
 };
