@@ -29,17 +29,17 @@ formModel(sequelize);
 
 const { Unit, SubUnit, User, Charges, Category, Equipment, Credential, Form } =
   sequelize.models;
-Unit.hasOne(SubUnit);
-SubUnit.belongsTo(Unit);
-Charges.hasMany(User);
-User.belongsTo(Charges);
-Category.hasMany(Equipment);
-Equipment.belongsTo(Category);
-Credential.belongsToMany(Form, { through: "FormCredential" });
-Form.belongsToMany(Credential, { through: "FormCredential" });
-User.belongsToMany(Form, { through: "UserForm" });
-Form.belongsToMany(User, { through: "UserForm" });
-// Form.hasMany(Category);
-// Category.belongsTo(Form);
+// Unit.hasOne(SubUnit);
+// SubUnit.belongsTo(Unit);
+// // Charges.hasMany(User);
+// // User.belongsTo(Charges);
+// Category.hasMany(Equipment);
+// Equipment.belongsTo(Category);
+// Credential.belongsToMany(Form, { through: "FormCredential" });
+// Form.belongsToMany(Credential, { through: "FormCredential" });
+// User.belongsToMany(Form, { through: "UserForm" });
+// Form.belongsToMany(User, { through: "UserForm" });
+// // Form.hasMany(Category);
+// // Category.belongsTo(Form);
 
 module.exports = { sequelize, ...sequelize.models };
