@@ -1,7 +1,17 @@
-const clearResponseOne = ({ idUser, name, Charge: { dataValues } }) => ({
+const clearResponseOne = ({
   idUser,
   name,
-  levelUser: dataValues.name,
+  nroIdentification,
+  email,
+  phone,
+  charge,
+}) => ({
+  idUser,
+  name,
+  nroIdentification,
+  email,
+  phone,
+  charge,
 });
 
 module.exports = {
