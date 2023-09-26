@@ -47,13 +47,20 @@ const getUserName = async (request, response) => {
 };
 
 const putUser = async (request, response) => {
-  const { idUser, name, ChargeIdCharges } = request.body;
+  const { idUser, name, nroIdentification, email, phone, charge } =
+    request.body;
   try {
-    const dataResponse = await updateUser(idUser, name, ChargeIdCharges);
+    const dataResponse = await updateUser(
+      idUser,
+      name,
+      nroIdentification,
+      email,
+      phone,
+      charge
+    );
     response.status(SUCCESS).json({
       update: true,
-      name: dataResponse.name,
-      charges: dataResponse.charges,
+      dataResponse,
     });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });

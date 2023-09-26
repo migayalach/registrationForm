@@ -39,7 +39,7 @@ const getUserDataId = async (idUser) => {
 const getAllUser = async () => await User.findAll();
 
 const getNameUser = async (name) => {
-  const userData = await User.findOne({
+  const userData = await User.findAll({
     where: {
       name: {
         [Op.iLike]: `%${name}%`,
@@ -47,10 +47,26 @@ const getNameUser = async (name) => {
     },
     // include: { model: Charges, attibutes: ["name"] },
   });
-  return clearResponseOne(userData);
+  return userData;
 };
 
-const updateUser = async (idUser, name, ChargeIdCharges) => {
+const clearData = (dataDuplicate) =>
+  (newDataObj = {
+    name: dataDuplicate.name,
+    nroIdentification: dataDuplicate.nroIdentification,
+    email: dataDuplicate.email,
+    phone: dataDuplicate.phone,
+    charge: dataDuplicate.charge,
+  });
+
+const updateUser = async (
+  idUser,
+  name,
+  nroIdentification,
+  email,
+  phone,
+  charge
+) => {
   const existsUser = await User.findOne({
     where: {
       idUser,
@@ -59,19 +75,29 @@ const updateUser = async (idUser, name, ChargeIdCharges) => {
   if (!existsUser) {
     throw Error(`El usuario: ${name} no se encuentra registrado`);
   }
-  const existLevel = await Charges.findOne({
-    attributes: ["name"],
-    where: {
-      idCharges: ChargeIdCharges,
-    },
-  });
-  if (!existLevel) {
-    throw Error(
-      `El nivel de acceso es incorrecto por tanto no se pudo actualizar`
-    );
-  }
-  await User.update({ name, ChargeIdCharges }, { where: { idUser } });
-  return { name, charges: existLevel.name };
+  //VERIFICAR SI HAY ALGUN DUPLICADO;
+  const dataDuplicateBdd = await getUserDataId(idUser);
+  const dataDuplicate = clearData(dataDuplicateBdd);
+  const dataInput = {
+    idUser,
+    name,
+    nroIdentification,
+    email,
+    phone,
+    charge,
+  };
+  // for (const j in dataDuplicate) {
+  //   console.log(dataDuplicate[j]);
+  //   for (const i in dataInput){
+
+  //   }
+  // }
+
+  await User.update(
+    { name, nroIdentification, email, phone, charge },
+    { where: { idUser } }
+  );
+  return await getUserDataId(idUser);
 };
 
 const deleteDataUser = async (idUser) => {
