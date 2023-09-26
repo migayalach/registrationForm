@@ -1,25 +1,23 @@
-const { User, Charges } = require("../database/database");
+const { User } = require("../database/database");
 const { Op } = require("sequelize");
 const { clearResponseOne } = require("../utils/userUtils");
 
-const createUser = async (name, ChargeIdCharges) => {
-  const existsPosition = await Charges.findOne({
+const createUser = async (name, nroIdentification, email, phone, charge) => {
+  const amoutUser = await User.count();
+  if (amoutUser === 0) {
+    throw Error(`La base de datos se encuentra vacia y cargaremos datos`);
+  }
+  const existsUser = await User.findOne({
+    attributes: ["name"],
     where: {
-      idCharges: ChargeIdCharges,
+      nroIdentification,
     },
   });
-  if (existsPosition) {
-    const level = await Charges.findOne({
-      attibutes: ["name"],
-      where: {
-        idCharges: ChargeIdCharges,
-      },
-    });
-    const nameLevel = level.dataValues.name;
-    await User.create({ name, ChargeIdCharges });
-    return { name, nameLevel };
+  if (existsUser) {
+    throw Error(`El usuario: ${existsUser.name}, ya existe`);
   }
-  throw Error(`El nivel de acceso no existe`);
+  await User.create({ name, nroIdentification, email, phone, charge });
+  return { name, nroIdentification, email, phone, charge };
 };
 
 const getUserDataId = async (idUser) => {
@@ -27,10 +25,10 @@ const getUserDataId = async (idUser) => {
     where: {
       idUser,
     },
-    include: {
-      model: Charges,
-      attributes: ["name"],
-    },
+    // include: {
+    //   model: Charges,
+    //   attributes: ["name"],
+    // },
   });
   if (userInfo.length > 0) {
     return clearResponseOne(userInfo[0].dataValues);
@@ -38,8 +36,7 @@ const getUserDataId = async (idUser) => {
   return await getAllUser();
 };
 
-const getAllUser = async () =>
-  await User.findAll({ include: { model: Charges, attibutes: ["name"] } });
+const getAllUser = async () => await User.findAll();
 
 const getNameUser = async (name) => {
   const userData = await User.findOne({
@@ -48,7 +45,7 @@ const getNameUser = async (name) => {
         [Op.iLike]: `%${name}%`,
       },
     },
-    include: { model: Charges, attibutes: ["name"] },
+    // include: { model: Charges, attibutes: ["name"] },
   });
   return clearResponseOne(userData);
 };

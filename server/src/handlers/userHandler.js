@@ -11,10 +11,16 @@ const {
 } = require("../controllers/userController");
 
 const postUser = async (request, response) => {
-  const { name, ChargeIdCharges } = request.body;
+  const { name, nroIdentification, email, phone, charge } = request.body;
   try {
-    const { nameLevel } = await createUser(name, ChargeIdCharges);
-    response.status(SUCCESS).json({ create: true, name, nameLevel });
+    const userCreate = await createUser(
+      name,
+      nroIdentification,
+      email,
+      phone,
+      charge
+    );
+    response.status(SUCCESS).json({ create: true, userCreate });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
