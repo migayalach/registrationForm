@@ -26,10 +26,10 @@ const getEquipmentDataId = async (idEquipment) => {
     where: {
       idEquipment,
     },
-    include: {
-      model: Category,
-      attibutes: ["name"],
-    },
+    // include: {
+    //   model: Category,
+    //   attibutes: ["name"],
+    // },
   });
   if (equipmentInfo.length > 0) {
     return equipmentInfo;
@@ -38,21 +38,24 @@ const getEquipmentDataId = async (idEquipment) => {
 };
 
 const getNameEquipment = (name) => {
-  const equipmentData = Equipment.findOne({
+  const equipmentData = Equipment.findAll({
     where: {
       name: {
         [Op.iLike]: `%${name}%`,
       },
     },
-    include: { model: Category, attibutes: ["name"] },
+    // include: { model: Category, attibutes: ["name"] },
   });
   return equipmentData;
 };
 
 const getAllEquipment = async () =>
-  await Equipment.findAll({
-    include: { model: Category, attibutes: ["name"] },
-  });
+  await Equipment
+    .findAll
+    //   {
+    //   include: { model: Category, attibutes: ["name"] },
+    // }
+    ();
 
 const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
   const existsEquipment = await Equipment.findOne({
