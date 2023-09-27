@@ -84,10 +84,9 @@ const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
 
 const deleteDataEquipment = async (idEquipment) => {
   const existsEquipment = await Equipment.findOne({ where: { idEquipment } });
-  if(!existsEquipment) {
-    throw Error (`El equipo que desea eliminar, no se encuentra registrado`);
+  if (!existsEquipment) {
+    throw Error(`El equipo que desea eliminar, no se encuentra registrado`);
   }
-
   const {
     dataValues: { name, host },
   } = await Equipment.findOne({
