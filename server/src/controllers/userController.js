@@ -96,23 +96,29 @@ const updateUser = async (
 };
 
 const deleteDataUser = async (idUser) => {
-  const {
-    dataValues: { name },
-  } = await User.findOne({
-    attributes: ["name"],
-    where: {
-      idUser,
-    },
+  const existsUser = await User.findOne({
+    where: { idUser },
   });
-  const deleteUser = await User.destroy({
-    where: {
-      idUser,
-    },
-  });
-  if (deleteUser === 1) {
-    return `Se elimino el usuario: ${name}, con exito`;
+  if (existsUser) {
+    const {
+      dataValues: { name },
+    } = await User.findOne({
+      attributes: ["name"],
+      where: {
+        idUser,
+      },
+    });
+    const deleteUser = await User.destroy({
+      where: {
+        idUser,
+      },
+    });
+    if (deleteUser === 1) {
+      return `Se elimino el usuario: ${name}, con exito`;
+    }
+    throw Error(`No se pudo eliminar el usuario ingresado`);
   }
-  throw Error(`No se pudo eliminar el usuario ingresado`);
+  throw Error(`El usuario ingresado no existe`);
 };
 
 module.exports = {
