@@ -13,7 +13,12 @@ const {
 const postEquipment = async (request, response) => {
   const { name, host, directionIp, controlLabel } = request.body;
   try {
-    const equipmentRes = await createEquipment(name, host, directionIp, controlLabel);
+    const equipmentRes = await createEquipment(
+      name,
+      host,
+      directionIp,
+      controlLabel
+    );
     response.status(SUCCESS).json({ create: true, equipmentRes });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -43,19 +48,21 @@ const getEquipmentName = async (request, response) => {
 };
 
 const putEquipment = async (request, response) => {
-  const { idEquipment, name, host, CategoryIdCategory } = request.body;
+  const { idEquipment, name, host, directionIp, controlLabel } = request.body;
   try {
     const dataResponse = await updateEquipment(
       idEquipment,
       name,
       host,
-      CategoryIdCategory
+      directionIp,
+      controlLabel
     );
     response.status(SUCCESS).json({
       update: true,
       name: dataResponse.name,
       host: dataResponse.host,
-      category: dataResponse.category,
+      directionIp: dataResponse.directionIp,
+      controlLabel: dataResponse.controlLabel,
     });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });

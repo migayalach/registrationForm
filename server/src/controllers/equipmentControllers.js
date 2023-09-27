@@ -57,7 +57,13 @@ const getAllEquipment = async () =>
     // }
     ();
 
-const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
+const updateEquipment = async (
+  idEquipment,
+  name,
+  host,
+  directionIp,
+  controlLabel
+) => {
   const existsEquipment = await Equipment.findOne({
     where: {
       idEquipment,
@@ -66,20 +72,11 @@ const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
   if (!existsEquipment) {
     throw Error(`El equipo: ${name} no se encuentra registrado`);
   }
-  const existCategory = await Category.findOne({
-    attributes: ["name"],
-    where: {
-      idCategory: CategoryIdCategory,
-    },
-  });
-  if (!existCategory) {
-    throw Error(`La categoria buscada no se pudo encontrar`);
-  }
   await Equipment.update(
-    { name, host, CategoryIdCategory },
+    { idEquipment, name, host, directionIp, controlLabel },
     { where: { idEquipment } }
   );
-  return { name, host, category: existCategory.name };
+  return { name, host, directionIp, controlLabel };
 };
 
 const deleteDataEquipment = async (idEquipment) => {
