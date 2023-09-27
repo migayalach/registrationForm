@@ -13,9 +13,9 @@ const formRouter = require("./formRoute");
 
 // entry points
 mainRouter.use("/level", levelRouter);
-mainRouter.use("/user", userRouter);
+mainRouter.use("/user", userRouter);            //ok
 mainRouter.use("/category", categoryRouter);
-mainRouter.use("/equipment", equipmentRouter);
+mainRouter.use("/equipment", equipmentRouter);  //process
 mainRouter.use("/unit", unitRouter);
 mainRouter.use("/subUnit", subUnitRouter);
 mainRouter.use("/credential", credentialRouter);

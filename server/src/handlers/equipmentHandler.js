@@ -11,9 +11,9 @@ const {
 } = require("../controllers/equipmentControllers");
 
 const postEquipment = async (request, response) => {
-  const { name, host, CategoryIdCategory } = request.body;
+  const { name, host, directionIp, controlLabel } = request.body;
   try {
-    const equipmentRes = await createEquipment(name, host, CategoryIdCategory);
+    const equipmentRes = await createEquipment(name, host, directionIp, controlLabel);
     response.status(SUCCESS).json({ create: true, equipmentRes });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });

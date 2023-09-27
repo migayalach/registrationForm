@@ -1,25 +1,24 @@
-const { Category, Equipment } = require("../database/database");
+const { Equipment } = require("../database/database");
 const { Op } = require("sequelize");
 
-const createEquipment = async (name, host, CategoryIdCategory) => {
-  const existsCategory = await Category.findOne({
-    where: {
-      idCategory: CategoryIdCategory,
-    },
-  });
-
-  if (!existsCategory) {
-    throw Error(`No se pudo encontrar La categoria buscada`);
+const createEquipment = async (name, host, directionIp, controlLabel) => {
+  const countData = await Equipment.count();
+  if (countData === 0) {
+    await Equipment.create({ name, host, directionIp, controlLabel });
+    return { name, host, directionIp, controlLabel };
   }
-  const category = await Category.findOne({
-    attributes: ["name"],
+
+  //VERIFICAR QUE NO ESTE REPETIDO
+  const existsEquipment = await Equipment.findOne({
     where: {
-      idCategory: CategoryIdCategory,
+      name,
     },
   });
-  const nameCategory = category.dataValues.name;
-  await Equipment.create({ name, host, CategoryIdCategory });
-  return { name, host, nameCategory };
+  if (!existsEquipment) {
+    await Equipment.create({ name, host, directionIp, controlLabel });
+    return { name, host, directionIp, controlLabel };
+  }
+  throw Error(`El equipo: ${name} ya se encuentra registrado`);
 };
 
 const getEquipmentDataId = async (idEquipment) => {
