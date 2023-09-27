@@ -1,6 +1,10 @@
 const { User } = require("../database/database");
 const { Op } = require("sequelize");
-const { clearResponseOne } = require("../utils/userUtils");
+const {
+  clearResponseOne,
+  clearData,
+  duplicateInfo,
+} = require("../utils/userUtils");
 
 const createUser = async (name, nroIdentification, email, phone, charge) => {
   const amoutUser = await User.count();
@@ -50,15 +54,6 @@ const getNameUser = async (name) => {
   return userData;
 };
 
-const clearData = (dataDuplicate) =>
-  (newDataObj = {
-    name: dataDuplicate.name,
-    nroIdentification: dataDuplicate.nroIdentification,
-    email: dataDuplicate.email,
-    phone: dataDuplicate.phone,
-    charge: dataDuplicate.charge,
-  });
-
 const updateUser = async (
   idUser,
   name,
@@ -75,29 +70,29 @@ const updateUser = async (
   if (!existsUser) {
     throw Error(`El usuario: ${name} no se encuentra registrado`);
   }
-  //VERIFICAR SI HAY ALGUN DUPLICADO;
   const dataDuplicateBdd = await getUserDataId(idUser);
   const dataDuplicate = clearData(dataDuplicateBdd);
   const dataInput = {
-    idUser,
-    name,
-    nroIdentification,
+    nroIdentification: parseInt(nroIdentification),
     email,
-    phone,
-    charge,
   };
-  // for (const j in dataDuplicate) {
-  //   console.log(dataDuplicate[j]);
-  //   for (const i in dataInput){
-
-  //   }
-  // }
-
-  await User.update(
-    { name, nroIdentification, email, phone, charge },
-    { where: { idUser } }
+  const duplicateData = duplicateInfo(dataDuplicate, dataInput);
+  if (duplicateData === 0) {
+    await User.update(
+      {
+        name,
+        nroIdentification: parseInt(nroIdentification),
+        email,
+        phone,
+        charge,
+      },
+      { where: { idUser } }
+    );
+    return await getUserDataId(idUser);
+  }
+  throw Error(
+    `No se permiten datos duplicados, por favor cambie el item: ${duplicateData}`
   );
-  return await getUserDataId(idUser);
 };
 
 const deleteDataUser = async (idUser) => {
