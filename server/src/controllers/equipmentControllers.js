@@ -83,6 +83,11 @@ const updateEquipment = async (idEquipment, name, host, CategoryIdCategory) => {
 };
 
 const deleteDataEquipment = async (idEquipment) => {
+  const existsEquipment = await Equipment.findOne({ where: { idEquipment } });
+  if(!existsEquipment) {
+    throw Error (`El equipo que desea eliminar, no se encuentra registrado`);
+  }
+
   const {
     dataValues: { name, host },
   } = await Equipment.findOne({
@@ -99,7 +104,7 @@ const deleteDataEquipment = async (idEquipment) => {
   if (deleteEquipment === 1) {
     return `Se elimino el equipo: ${name} con el host: ${host}, con exito`;
   }
-  throw Error(`NO se pudo eliminar el equipo deseado`);
+  throw Error(`No se pudo eliminar el equipo deseado`);
 };
 
 module.exports = {
