@@ -14,6 +14,25 @@ const clearResponseOne = ({
   charge,
 });
 
+const clearData = (dataDuplicate) =>
+  (newDataObj = {
+    nroIdentification: parseInt(dataDuplicate.nroIdentification),
+    email: dataDuplicate.email,
+  });
+
+const duplicateInfo = (dataDuplicate, dataInput) => {
+  for (const i in dataDuplicate) {
+    for (const j in dataInput) {
+      if (dataDuplicate[i] === dataInput[j]) {
+        return dataInput[j];
+      }
+    }
+  }
+  return 0;
+};
+
 module.exports = {
   clearResponseOne,
+  clearData,
+  duplicateInfo,
 };
