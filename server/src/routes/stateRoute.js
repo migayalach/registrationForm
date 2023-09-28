@@ -4,7 +4,7 @@ const {
   getStateId,
   getStateName,
   putState,
-  deleteCategory,
+  deleteState,
 } = require("../handlers/stateHandler");
 const stateRouter = Router();
 
@@ -12,6 +12,6 @@ stateRouter.post("/", postState);
 stateRouter.get("/:idState", getStateId);
 stateRouter.get("/", getStateName);
 stateRouter.put("/", putState);
-// stateRouter.delete("/:idCategory", deleteCategory);
+stateRouter.delete("/:idState", deleteState);
 
 module.exports = stateRouter;

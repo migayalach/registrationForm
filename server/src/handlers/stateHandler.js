@@ -6,7 +6,7 @@ const {
   getSearchStateName,
   getAllState,
   updateState,
-  delCategory,
+  delState,
 } = require("../controllers/stateControllers");
 
 const postState = async (request, response) => {
@@ -51,10 +51,10 @@ const putState = async (request, response) => {
   }
 };
 
-const deleteCategory = async (request, response) => {
-  const { idCategory } = request.params;
+const deleteState= async (request, response) => {
+  const { idState } = request.params;
   try {
-    const deleteInfo = await delCategory(idCategory);
+    const deleteInfo = await delState(idState);
     response.status(SUCCESS).json({ delete: true, deleteInfo });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -66,5 +66,5 @@ module.exports = {
   getStateId,
   getStateName,
   putState,
-  deleteCategory,
+  deleteState,
 };

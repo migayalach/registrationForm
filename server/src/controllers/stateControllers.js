@@ -52,17 +52,17 @@ const updateState = async (idState, name) => {
   throw Error(`El estado: ${name}, no se pudo encontrar`);
 };
 
-const delCategory = (idCategory) => {
-  const deleteCategory = State.findOne({ where: { idCategory } });
-  if (!deleteCategory) {
-    throw Error(`La categoria no se encuentra registrada`);
+const delState= (idState) => {
+  const deleteState = State.findOne({ where: { idState } });
+  if (!deleteState) {
+    throw Error(`El estado no se encuentra registrado`);
   }
   State.destroy({
     where: {
-      idCategory,
+      idState,
     },
   });
-  return `La categoria, se elimino correctamente`;
+  return `El estado, se elimino correctamente`;
 };
 
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
   getSearchStateName,
   getAllState,
   updateState,
-  delCategory,
+  delState,
 };
 
 ("aun da");
