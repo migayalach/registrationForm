@@ -1,16 +1,18 @@
-const { Charges } = require("../database/database");
+const { Procedures } = require("../database/database");
 const { Op } = require("sequelize");
 
-const createLevel = async ({ nameLevel }) => {
-  const newLevel = await Charges.findOne({ where: { name: nameLevel } });
-  if (!newLevel) {
-    return await Charges.create({ name: nameLevel });
+const createProcedures = async ({ nameProcedures }) => {
+  const newProcedures = await Procedures.findOne({
+    where: { name: nameProcedures },
+  });
+  if (!newProcedures) {
+    return await Procedures.create({ name: nameProcedures });
   }
-  throw Error(`El nivel: ${nameLevel}, ya existe`);
+  throw Error(`El proceso: ${nameProcedures}, ya existe`);
 };
 
 const getLevelSearchId = async (idCharges) => {
-  const level = await Charges.findAll({
+  const level = await Procedures.findAll({
     where: {
       idCharges,
     },
@@ -22,7 +24,7 @@ const getLevelSearchId = async (idCharges) => {
 };
 
 const getLevelSearchName = async (name) => {
-  const nameSearch = await Charges.findAll({
+  const nameSearch = await Procedures.findAll({
     where: {
       name: {
         [Op.iLike]: `%${name}%`,
@@ -32,16 +34,16 @@ const getLevelSearchName = async (name) => {
   return nameSearch;
 };
 
-const getAllLevel = async () => await Charges.findAll();
+const getAllLevel = async () => await Procedures.findAll();
 
 const updateLevel = async (idCharges, nameLevel) => {
-  const infoResponse = await Charges.findOne({
+  const infoResponse = await Procedures.findOne({
     where: {
       idCharges,
     },
   });
   if (infoResponse) {
-    const reponseInfo = await Charges.update(
+    const reponseInfo = await Procedures.update(
       { name: nameLevel },
       { where: { idCharges } }
     );
@@ -53,11 +55,11 @@ const updateLevel = async (idCharges, nameLevel) => {
 };
 
 const delLevel = async (idCharges) => {
-  const deleteLevel = await Charges.findOne({ where: { idCharges } });
+  const deleteLevel = await Procedures.findOne({ where: { idCharges } });
   if (!deleteLevel) {
     throw Error(`El nivel no se encuentra registrado`);
   }
-  await Charges.destroy({
+  await Procedures.destroy({
     where: {
       idCharges,
     },
@@ -66,7 +68,7 @@ const delLevel = async (idCharges) => {
 };
 
 module.exports = {
-  createLevel,
+  createProcedures,
   getLevelSearchId,
   getLevelSearchName,
   getAllLevel,

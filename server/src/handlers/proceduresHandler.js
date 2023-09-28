@@ -1,19 +1,19 @@
 const SUCCESS = 200;
 const ERROR = 400;
 const {
-  createLevel,
+  createProcedures,
   getLevelSearchId,
   getLevelSearchName,
   getAllLevel,
   updateLevel,
   delLevel,
-} = require("../controllers/levelController");
+} = require("../controllers/proceduresController");
 
-const postLevel = async (request, response) => {
-  const { nameLevel } = request.body;
+const postProcedures = async (request, response) => {
+  const { nameProcedures } = request.body;
   try {
-    const newLevel = await createLevel({ nameLevel });
-    response.status(SUCCESS).json({ create: true, newLevel: nameLevel });
+    const newProcedures = await createProcedures({ nameProcedures });
+    response.status(SUCCESS).json({ create: true, newProcedures });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -62,7 +62,7 @@ const deleteLevel = async (request, response) => {
 };
 
 module.exports = {
-  postLevel,
+  postProcedures,
   getLevelId,
   getLevelName,
   putLevel,

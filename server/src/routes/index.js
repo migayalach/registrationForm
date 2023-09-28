@@ -5,7 +5,7 @@ const mainRouter = Router();
 const userRouter = require("./userRoute");
 const equipmentRouter = require("./equipmentRoute");
 const stateRouter = require("./stateRoute");
-const levelRouter = require("./levelRoute");
+const proceduresRouter = require("./proceduresRoute");
 
 // const unitRouter = require("./unitRoute");
 // const subUnitRouter = require("./subUnitRoute");
@@ -16,7 +16,7 @@ const levelRouter = require("./levelRoute");
 mainRouter.use("/user", userRouter);            //ok
 mainRouter.use("/equipment", equipmentRouter);  //ok
 mainRouter.use("/state", stateRouter);          //ok
-mainRouter.use("/level", levelRouter);          // => procedimiento
+mainRouter.use("/procedures", proceduresRouter);          // => procedimiento
 
 
 
