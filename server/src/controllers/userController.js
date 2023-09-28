@@ -32,27 +32,29 @@ const getUserDataId = async (idUser) => {
     where: {
       idUser,
     },
-    // include: {
-    //   model: Charges,
-    //   attributes: ["name"],
-    // },
+    include: {
+      model: Unit,
+      attributes: ["nameUnit"],
+    },
   });
   if (userInfo.length > 0) {
-    return clearResponseOne(userInfo[0].dataValues);
+    // return clearResponseOne(userInfo[0].dataValues);
+    return userInfo;
   }
   return await getAllUser();
 };
 
-const getAllUser = async () => await User.findAll();
+const getAllUser = async () =>
+  await User.findAll({ include: { model: Unit, attributes: ["nameUnit"] } });
 
 const getNameUser = async (name) => {
   const userData = await User.findAll({
     where: {
-      name: {
+      nameUser: {
         [Op.iLike]: `%${name}%`,
       },
     },
-    // include: { model: Charges, attibutes: ["name"] },
+    include: { model: Unit, attibutes: ["nameUnit"] },
   });
   if (userData.length > 0) {
     return userData;
