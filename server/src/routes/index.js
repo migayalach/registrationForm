@@ -5,8 +5,8 @@ const mainRouter = Router();
 const userRouter = require("./userRoute");
 const equipmentRouter = require("./equipmentRoute");
 const stateRouter = require("./stateRoute");
+const levelRouter = require("./levelRoute");
 
-// const levelRouter = require("./levelRoute");
 // const unitRouter = require("./unitRoute");
 // const subUnitRouter = require("./subUnitRoute");
 // const credentialRouter = require("./credentialRoute");
@@ -15,12 +15,12 @@ const stateRouter = require("./stateRoute");
 // entry points
 mainRouter.use("/user", userRouter);            //ok
 mainRouter.use("/equipment", equipmentRouter);  //ok
-mainRouter.use("/state", stateRouter);    // => estado
+mainRouter.use("/state", stateRouter);          //ok
+mainRouter.use("/level", levelRouter);          // => procedimiento
 
 
 
 
-// mainRouter.use("/level", levelRouter);          // => procedimiento
 
 // mainRouter.use("/unit", unitRouter);            
 // mainRouter.use("/subUnit", subUnitRouter);
