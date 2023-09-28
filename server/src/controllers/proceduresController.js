@@ -36,22 +36,22 @@ const getProceduresSearchName = async (name) => {
 
 const getAllProcedures = async () => await Procedures.findAll();
 
-const updateLevel = async (idCharges, nameLevel) => {
+const updateProcedures = async (idProcedures, nameProcedures) => {
   const infoResponse = await Procedures.findOne({
     where: {
-      idCharges,
+      idProcedures,
     },
   });
   if (infoResponse) {
     const reponseInfo = await Procedures.update(
-      { name: nameLevel },
-      { where: { idCharges } }
+      { name: nameProcedures },
+      { where: { idProcedures } }
     );
     if (typeof reponseInfo === "object") {
-      return `Modificado con exito a nivel: ${nameLevel}`;
+      return `Modificado con exito el procedimiento: ${nameProcedures}`;
     }
   }
-  throw Error(`El nivel: ${nameLevel}, no se pudo encontrar`);
+  throw Error(`El procedimiento: ${nameProcedures}, no se pudo encontrar`);
 };
 
 const delLevel = async (idCharges) => {
@@ -72,6 +72,6 @@ module.exports = {
   getProceduresSearchId,
   getProceduresSearchName,
   getAllProcedures,
-  updateLevel,
+  updateProcedures,
   delLevel,
 };

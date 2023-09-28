@@ -3,7 +3,7 @@ const {
   postProcedures,
   getProceduresId,
   getProceduresName,
-  putLevel,
+  putProcedures,
   deleteLevel,
 } = require("../handlers/proceduresHandler");
 const proceduresRouter = Router();
@@ -11,7 +11,7 @@ const proceduresRouter = Router();
 proceduresRouter.post("/", postProcedures);
 proceduresRouter.get("/:idProcedures", getProceduresId);
 proceduresRouter.get("/", getProceduresName);
-// proceduresRouter.put("/", putLevel);
+proceduresRouter.put("/", putProcedures);
 // proceduresRouter.delete("/:idCharges", deleteLevel);
 
 module.exports = proceduresRouter;

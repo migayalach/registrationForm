@@ -5,7 +5,7 @@ const {
   getProceduresSearchId,
   getProceduresSearchName,
   getAllProcedures,
-  updateLevel,
+  updateProcedures,
   delLevel,
 } = require("../controllers/proceduresController");
 
@@ -41,10 +41,10 @@ const getProceduresName = async (request, response) => {
   }
 };
 
-const putLevel = async (request, response) => {
-  const { idCharges, nameLevel } = request.body;
+const putProcedures = async (request, response) => {
+  const { idProcedures, nameProcedures } = request.body;
   try {
-    const updateData = await updateLevel(idCharges, nameLevel);
+    const updateData = await updateProcedures(idProcedures, nameProcedures);
     response.status(SUCCESS).json(updateData);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -65,6 +65,6 @@ module.exports = {
   postProcedures,
   getProceduresId,
   getProceduresName,
-  putLevel,
+  putProcedures,
   deleteLevel,
 };
