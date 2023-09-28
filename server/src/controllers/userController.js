@@ -62,13 +62,14 @@ const getNameUser = async (name) => {
   return await getAllUser();
 };
 
+//falta update
 const updateUser = async (
   idUser,
-  name,
-  nroIdentification,
-  email,
-  phone,
-  charge
+  nameUser,
+  emailUser,
+  user,
+  password,
+  idArea
 ) => {
   const existsUser = await User.findOne({
     where: {
@@ -113,9 +114,9 @@ const deleteDataUser = async (idUser) => {
   });
   if (existsUser) {
     const {
-      dataValues: { name },
+      dataValues: { nameUser },
     } = await User.findOne({
-      attributes: ["name"],
+      attributes: ["nameUser"],
       where: {
         idUser,
       },
@@ -126,7 +127,7 @@ const deleteDataUser = async (idUser) => {
       },
     });
     if (deleteUser === 1) {
-      return `Se elimino el usuario: ${name}, con exito`;
+      return `Se elimino el usuario: ${nameUser}, con exito`;
     }
     throw Error(`No se pudo eliminar el usuario ingresado`);
   }

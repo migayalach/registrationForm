@@ -49,14 +49,15 @@ const getUserName = async (request, response) => {
 };
 
 const putUser = async (request, response) => {
-  const { idUser, nameUser, emailUser, user, password } = request.body;
+  const { idUser, nameUser, emailUser, user, password, idArea } = request.body;
   try {
     const dataResponse = await updateUser(
       idUser,
       nameUser,
       emailUser,
       user,
-      password
+      password,
+      idArea
     );
     response.status(SUCCESS).json({
       update: true,
