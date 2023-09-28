@@ -33,6 +33,9 @@ const { Unit, User, UserApi, Procedures, State, Equipment, Credential, Form } =
 Unit.hasOne(User);
 User.belongsTo(Unit);
 
+User.hasOne(Credential);
+Credential.belongsTo(User);
+
 // Unit.hasOne(SubUnit);
 // SubUnit.belongsTo(Unit);
 // // Charges.hasMany(User);
