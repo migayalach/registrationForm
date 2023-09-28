@@ -3,8 +3,8 @@ const ERROR = 400;
 const {
   createState,
   getSearchStateId,
-  getSearchCategoryName,
-  getAllCategory,
+  getSearchStateName,
+  getAllState,
   updateCategory,
   delCategory,
 } = require("../controllers/stateControllers");
@@ -29,13 +29,13 @@ const getStateId = async (request, response) => {
   }
 };
 
-const getCategoryName = async (request, response) => {
+const getStateName = async (request, response) => {
   const { name } = request.query;
   try {
-    const getNameCategory = name
-      ? await getSearchCategoryName(name)
-      : await getAllCategory();
-    response.status(SUCCESS).json(getNameCategory);
+    const getNameState = name
+      ? await getSearchStateName(name)
+      : await getAllState();
+    response.status(SUCCESS).json(getNameState);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -64,7 +64,7 @@ const deleteCategory = async (request, response) => {
 module.exports = {
   postState,
   getStateId,
-  getCategoryName,
+  getStateName,
   putCategory,
   deleteCategory,
 };
