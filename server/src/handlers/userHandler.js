@@ -11,14 +11,14 @@ const {
 } = require("../controllers/userController");
 
 const postUser = async (request, response) => {
-  const { name, nroIdentification, email, phone, charge } = request.body;
+  const { nameUser, emailUser, user, password, idArea } = request.body;
   try {
     const userCreate = await createUser(
-      name,
-      +nroIdentification,
-      email,
-      phone,
-      charge
+      nameUser,
+      emailUser,
+      user,
+      password,
+      idArea
     );
     response.status(SUCCESS).json({ create: true, userCreate });
   } catch (error) {
@@ -37,9 +37,11 @@ const getUserId = async (request, response) => {
 };
 
 const getUserName = async (request, response) => {
-  const { name } = request.query;
+  const { nameUser } = request.query;
   try {
-    const resController = name ? await getNameUser(name) : await getAllUser();
+    const resController = nameUser
+      ? await getNameUser(nameUser)
+      : await getAllUser();
     response.status(SUCCESS).json(resController);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -47,16 +49,14 @@ const getUserName = async (request, response) => {
 };
 
 const putUser = async (request, response) => {
-  const { idUserApi, name, nroIdentification, email, phone, charge } =
-    request.body;
+  const { idUser, nameUser, emailUser, user, password } = request.body;
   try {
     const dataResponse = await updateUser(
-      idUserApi,
-      name,
-      nroIdentification,
-      email,
-      phone,
-      charge
+      idUser,
+      nameUser,
+      emailUser,
+      user,
+      password
     );
     response.status(SUCCESS).json({
       update: true,

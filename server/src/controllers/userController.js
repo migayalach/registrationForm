@@ -1,4 +1,4 @@
-const { User } = require("../database/database");
+const { User, Unit } = require("../database/database");
 const { Op } = require("sequelize");
 const {
   clearResponseOne,
@@ -6,18 +6,25 @@ const {
   duplicateInfo,
 } = require("../utils/userUtils");
 
-const createUser = async (name, nroIdentification, email, phone, charge) => {
-  const existsUser = await User.findOne({
-    attributes: ["name"],
+const createUser = async (nameUser, emailUser, user, password, idArea) => {
+  const existArea = await Unit.findOne({
     where: {
-      nroIdentification,
+      idUnit: idArea,
     },
   });
-  if (!existsUser) {
-    await User.create({ name, nroIdentification, email, phone, charge });
-    return { name, nroIdentification, email, phone, charge };
+  if (!existArea) {
+    throw Error(`El área que ustede selecciono no existe`);
   }
-  throw Error(`El usuario: ${existsUser.name}, ya existe`);
+
+  return await User.create({
+    nameUser,
+    emailUser,
+    user,
+    password,
+    UnitIdUnit: idArea,
+  });
+  // return { nameUser, emailUser, user, password };
+  // throw Error(`El usuario: ${existsUser.name}, ya existe`);
 };
 
 const getUserDataId = async (idUser) => {
