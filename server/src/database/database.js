@@ -5,8 +5,9 @@ const equipmentModel = require("../models/Equipment");
 const stateModel = require("../models/State");
 const proceduresModel = require("../models/Procedures");
 const unitModel = require("../models/Unit");
+const userModel = require("../models/User");
 
-const subUnitModel = require("../models/SubUnidad");
+
 const credentialModel = require("../models/Credential");
 const formModel = require("../models/Form");
 
@@ -20,7 +21,7 @@ const sequelize = new Sequelize(
 );
 
 unitModel(sequelize);
-subUnitModel(sequelize);
+userModel(sequelize);
 userApiModel(sequelize);
 proceduresModel(sequelize);
 stateModel(sequelize);
@@ -28,7 +29,7 @@ equipmentModel(sequelize);
 credentialModel(sequelize);
 formModel(sequelize);
 
-const { Unit, SubUnit, UserApi, Procedures, State, Equipment, Credential, Form } =
+const { Unit, User, UserApi, Procedures, State, Equipment, Credential, Form } =
   sequelize.models;
 // Unit.hasOne(SubUnit);
 // SubUnit.belongsTo(Unit);
