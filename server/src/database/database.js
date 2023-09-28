@@ -3,10 +3,10 @@ require("dotenv").config();
 const userModel = require("../models/User");
 const equipmentModel = require("../models/Equipment");
 const stateModel = require("../models/State");
+const proceduresModel = require("../models/Procedures");
 
 const unitModel = require("../models/Unit");
 const subUnitModel = require("../models/SubUnidad");
-const chargesModel = require("../models/Charges");
 const credentialModel = require("../models/Credential");
 const formModel = require("../models/Form");
 
@@ -22,13 +22,13 @@ const sequelize = new Sequelize(
 unitModel(sequelize);
 subUnitModel(sequelize);
 userModel(sequelize);
-chargesModel(sequelize);
+proceduresModel(sequelize);
 stateModel(sequelize);
 equipmentModel(sequelize);
 credentialModel(sequelize);
 formModel(sequelize);
 
-const { Unit, SubUnit, User, Charges, State, Equipment, Credential, Form } =
+const { Unit, SubUnit, User, Procedures, State, Equipment, Credential, Form } =
   sequelize.models;
 // Unit.hasOne(SubUnit);
 // SubUnit.belongsTo(Unit);
