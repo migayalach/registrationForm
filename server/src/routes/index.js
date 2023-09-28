@@ -7,7 +7,7 @@ const equipmentRouter = require("./equipmentRoute");
 const stateRouter = require("./stateRoute");
 const proceduresRouter = require("./proceduresRoute");
 const unitRouter = require("./unitRoute");
-// const userRouter = require("./userRoute");
+const userRouter = require("./userRoute");
 
 // const credentialRouter = require("./credentialRoute");
 // const formRouter = require("./formRoute");
@@ -18,7 +18,7 @@ mainRouter.use("/equipment", equipmentRouter);      //ok
 mainRouter.use("/state", stateRouter);              //ok
 mainRouter.use("/procedures", proceduresRouter);    //ok
 mainRouter.use("/area", unitRouter);                //ok
-// mainRouter.use("/user", userRouter);
+mainRouter.use("/user", userRouter);
 
 
 // mainRouter.use("/credential", credentialRouter);
