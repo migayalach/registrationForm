@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const {
   postProcedures,
-  getLevelId,
+  getProceduresId,
   getLevelName,
   putLevel,
   deleteLevel,
@@ -9,7 +9,7 @@ const {
 const proceduresRouter = Router();
 
 proceduresRouter.post("/", postProcedures);
-// proceduresRouter.get("/:idCharges", getLevelId);
+proceduresRouter.get("/:idProcedures", getProceduresId);
 // proceduresRouter.get("/", getLevelName);
 // proceduresRouter.put("/", putLevel);
 // proceduresRouter.delete("/:idCharges", deleteLevel);

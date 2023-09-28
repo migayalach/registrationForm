@@ -2,7 +2,7 @@ const SUCCESS = 200;
 const ERROR = 400;
 const {
   createProcedures,
-  getLevelSearchId,
+  getProceduresSearchId,
   getLevelSearchName,
   getAllLevel,
   updateLevel,
@@ -19,10 +19,10 @@ const postProcedures = async (request, response) => {
   }
 };
 
-const getLevelId = async (request, response) => {
-  const { idCharges } = request.params;
+const getProceduresId = async (request, response) => {
+  const { idProcedures } = request.params;
   try {
-    const searchId = await getLevelSearchId(idCharges);
+    const searchId = await getProceduresSearchId(idProcedures);
     response.status(SUCCESS).json(searchId);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -63,7 +63,7 @@ const deleteLevel = async (request, response) => {
 
 module.exports = {
   postProcedures,
-  getLevelId,
+  getProceduresId,
   getLevelName,
   putLevel,
   deleteLevel,

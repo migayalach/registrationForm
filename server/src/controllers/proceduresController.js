@@ -11,16 +11,16 @@ const createProcedures = async ({ nameProcedures }) => {
   throw Error(`El proceso: ${nameProcedures}, ya existe`);
 };
 
-const getLevelSearchId = async (idCharges) => {
-  const level = await Procedures.findAll({
+const getProceduresSearchId = async (idProcedures) => {
+  const procedures = await Procedures.findAll({
     where: {
-      idCharges,
+      idProcedures,
     },
   });
-  if (level.length > 0) {
-    return level;
+  if (procedures.length > 0) {
+    return procedures;
   }
-  throw Error(`No se pudo encontrar el nivel buscado`);
+  throw Error(`No se pudo encontrar el procedimiento buscado`);
 };
 
 const getLevelSearchName = async (name) => {
@@ -69,7 +69,7 @@ const delLevel = async (idCharges) => {
 
 module.exports = {
   createProcedures,
-  getLevelSearchId,
+  getProceduresSearchId,
   getLevelSearchName,
   getAllLevel,
   updateLevel,
