@@ -1,16 +1,16 @@
-const { Category } = require("../database/database");
+const { State } = require("../database/database");
 const { Op } = require("sequelize");
 
-const createCategory = async (name) => {
-  const newCategory = await Category.findOne({ where: { name } });
-  if (!newCategory) {
-    return await Category.create({ name });
+const createState = async (name) => {
+  const newState = await State.findOne({ where: { name } });
+  if (!newState) {
+    return await State.create({ name });
   }
-  throw Error(`La categoria: ${name} no se pudo crear`);
+  throw Error(`El estado: ${name} no se pudo crear`);
 };
 
 const getSearchCategoryId = async (idCategory) => {
-  const category = await Category.findAll({
+  const category = await State.findAll({
     where: {
       idCategory,
     },
@@ -22,7 +22,7 @@ const getSearchCategoryId = async (idCategory) => {
 };
 
 const getSearchCategoryName = async (name) => {
-  const nameSearch = await Category.findAll({
+  const nameSearch = await State.findAll({
     where: {
       name: {
         [Op.iLike]: `%${name}%`,
@@ -32,16 +32,16 @@ const getSearchCategoryName = async (name) => {
   return nameSearch;
 };
 
-const getAllCategory = async () => await Category.findAll();
+const getAllCategory = async () => await State.findAll();
 
 const updateCategory = async (idCategory, name) => {
-  const editCategori = await Category.findOne({
+  const editCategori = await State.findOne({
     where: {
       idCategory,
     },
   });
   if (editCategori) {
-    const responseInfo = await Category.update(
+    const responseInfo = await State.update(
       { name },
       { where: { idCategory } }
     );
@@ -53,11 +53,11 @@ const updateCategory = async (idCategory, name) => {
 };
 
 const delCategory = (idCategory) => {
-  const deleteCategory = Category.findOne({ where: { idCategory } });
+  const deleteCategory = State.findOne({ where: { idCategory } });
   if (!deleteCategory) {
     throw Error(`La categoria no se encuentra registrada`);
   }
-  Category.destroy({
+  State.destroy({
     where: {
       idCategory,
     },
@@ -66,7 +66,7 @@ const delCategory = (idCategory) => {
 };
 
 module.exports = {
-  createCategory,
+  createState,
   getSearchCategoryId,
   getSearchCategoryName,
   getAllCategory,
@@ -74,4 +74,4 @@ module.exports = {
   delCategory,
 };
 
-"aun da"
+("aun da");

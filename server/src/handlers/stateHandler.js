@@ -1,19 +1,19 @@
 const SUCCESS = 200;
 const ERROR = 400;
 const {
-  createCategory,
+  createState,
   getSearchCategoryId,
   getSearchCategoryName,
   getAllCategory,
   updateCategory,
   delCategory,
-} = require("../controllers/categoryControllers");
+} = require("../controllers/stateControllers");
 
-const postCategory = async (request, response) => {
+const postState = async (request, response) => {
   const { name } = request.body;
   try {
-    const newCategory = await createCategory(name);
-    response.status(SUCCESS).json({ create: true, name: newCategory.name });
+    const newState = await createState(name);
+    response.status(SUCCESS).json({ create: true, newState });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -62,7 +62,7 @@ const deleteCategory = async (request, response) => {
 };
 
 module.exports = {
-  postCategory,
+  postState,
   getCategoryId,
   getCategoryName,
   putCategory,
