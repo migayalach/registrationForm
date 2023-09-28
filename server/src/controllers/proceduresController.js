@@ -54,17 +54,19 @@ const updateProcedures = async (idProcedures, nameProcedures) => {
   throw Error(`El procedimiento: ${nameProcedures}, no se pudo encontrar`);
 };
 
-const delLevel = async (idCharges) => {
-  const deleteLevel = await Procedures.findOne({ where: { idCharges } });
-  if (!deleteLevel) {
-    throw Error(`El nivel no se encuentra registrado`);
+const delProcedures = async (idProcedures) => {
+  const deleteProcedures = await Procedures.findOne({
+    where: { idProcedures },
+  });
+  if (!deleteProcedures) {
+    throw Error(`El proceso no se encuentra registrado`);
   }
   await Procedures.destroy({
     where: {
-      idCharges,
+      idProcedures,
     },
   });
-  return `El nivel, se elimino correctamente`;
+  return `El proceso, se elimino correctamente`;
 };
 
 module.exports = {
@@ -73,5 +75,5 @@ module.exports = {
   getProceduresSearchName,
   getAllProcedures,
   updateProcedures,
-  delLevel,
+  delProcedures,
 };

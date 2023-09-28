@@ -6,7 +6,7 @@ const {
   getProceduresSearchName,
   getAllProcedures,
   updateProcedures,
-  delLevel,
+  delProcedures,
 } = require("../controllers/proceduresController");
 
 const postProcedures = async (request, response) => {
@@ -51,10 +51,10 @@ const putProcedures = async (request, response) => {
   }
 };
 
-const deleteLevel = async (request, response) => {
-  const { idCharges } = request.params;
+const deleteProcedures = async (request, response) => {
+  const { idProcedures } = request.params;
   try {
-    const resultDelete = await delLevel(idCharges);
+    const resultDelete = await delProcedures(idProcedures);
     response.status(SUCCESS).json({ success: true, resultDelete });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -66,5 +66,5 @@ module.exports = {
   getProceduresId,
   getProceduresName,
   putProcedures,
-  deleteLevel,
+  deleteProcedures,
 };
