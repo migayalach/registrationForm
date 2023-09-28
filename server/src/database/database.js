@@ -7,7 +7,6 @@ const proceduresModel = require("../models/Procedures");
 const unitModel = require("../models/Unit");
 const userModel = require("../models/User");
 
-
 const credentialModel = require("../models/Credential");
 const formModel = require("../models/Form");
 
@@ -31,6 +30,9 @@ formModel(sequelize);
 
 const { Unit, User, UserApi, Procedures, State, Equipment, Credential, Form } =
   sequelize.models;
+Unit.hasOne(User);
+User.belongsTo(Unit);
+
 // Unit.hasOne(SubUnit);
 // SubUnit.belongsTo(Unit);
 // // Charges.hasMany(User);
