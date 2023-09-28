@@ -3,8 +3,8 @@ const ERROR = 400;
 const {
   createProcedures,
   getProceduresSearchId,
-  getLevelSearchName,
-  getAllLevel,
+  getProceduresSearchName,
+  getAllProcedures,
   updateLevel,
   delLevel,
 } = require("../controllers/proceduresController");
@@ -29,13 +29,13 @@ const getProceduresId = async (request, response) => {
   }
 };
 
-const getLevelName = async (request, response) => {
-  const { nameLevel } = request.query;
+const getProceduresName = async (request, response) => {
+  const { nameProcedures } = request.query;
   try {
-    const resultLevel = nameLevel
-      ? await getLevelSearchName(nameLevel)
-      : await getAllLevel();
-    response.status(SUCCESS).json(resultLevel);
+    const resultProcedures = nameProcedures
+      ? await getProceduresSearchName(nameProcedures)
+      : await getAllProcedures();
+    response.status(SUCCESS).json(resultProcedures);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -64,7 +64,7 @@ const deleteLevel = async (request, response) => {
 module.exports = {
   postProcedures,
   getProceduresId,
-  getLevelName,
+  getProceduresName,
   putLevel,
   deleteLevel,
 };

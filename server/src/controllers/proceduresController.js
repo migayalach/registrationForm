@@ -23,7 +23,7 @@ const getProceduresSearchId = async (idProcedures) => {
   throw Error(`No se pudo encontrar el procedimiento buscado`);
 };
 
-const getLevelSearchName = async (name) => {
+const getProceduresSearchName = async (name) => {
   const nameSearch = await Procedures.findAll({
     where: {
       name: {
@@ -34,7 +34,7 @@ const getLevelSearchName = async (name) => {
   return nameSearch;
 };
 
-const getAllLevel = async () => await Procedures.findAll();
+const getAllProcedures = async () => await Procedures.findAll();
 
 const updateLevel = async (idCharges, nameLevel) => {
   const infoResponse = await Procedures.findOne({
@@ -70,8 +70,8 @@ const delLevel = async (idCharges) => {
 module.exports = {
   createProcedures,
   getProceduresSearchId,
-  getLevelSearchName,
-  getAllLevel,
+  getProceduresSearchName,
+  getAllProcedures,
   updateLevel,
   delLevel,
 };
