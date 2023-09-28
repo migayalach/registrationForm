@@ -5,7 +5,7 @@ const {
   getSearchStateId,
   getSearchStateName,
   getAllState,
-  updateCategory,
+  updateState,
   delCategory,
 } = require("../controllers/stateControllers");
 
@@ -41,11 +41,11 @@ const getStateName = async (request, response) => {
   }
 };
 
-const putCategory = async (request, response) => {
-  const { idCategory, name } = request.body;
+const putState = async (request, response) => {
+  const { idState, name } = request.body;
   try {
-    const editCategory = await updateCategory(idCategory, name);
-    response.status(SUCCESS).json({ update: true, editCategory });
+    const editState = await updateState(idState, name);
+    response.status(SUCCESS).json({ update: true, editState });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -65,6 +65,6 @@ module.exports = {
   postState,
   getStateId,
   getStateName,
-  putCategory,
+  putState,
   deleteCategory,
 };

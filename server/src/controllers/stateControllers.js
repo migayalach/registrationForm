@@ -34,22 +34,22 @@ const getSearchStateName = async (name) => {
 
 const getAllState = async () => await State.findAll();
 
-const updateCategory = async (idCategory, name) => {
-  const editCategori = await State.findOne({
+const updateState = async (idState, name) => {
+  const editState = await State.findOne({
     where: {
-      idCategory,
+      idState,
     },
   });
-  if (editCategori) {
+  if (editState) {
     const responseInfo = await State.update(
       { name },
-      { where: { idCategory } }
+      { where: { idState } }
     );
     if (typeof responseInfo === "object") {
-      return `Categoria: ${name}, modificado con exito`;
+      return `Estado: ${name}, modificado con exito`;
     }
   }
-  throw Error(`La categoria: ${name}, no se pudo encontrar`);
+  throw Error(`El estado: ${name}, no se pudo encontrar`);
 };
 
 const delCategory = (idCategory) => {
@@ -70,7 +70,7 @@ module.exports = {
   getSearchStateId,
   getSearchStateName,
   getAllState,
-  updateCategory,
+  updateState,
   delCategory,
 };
 
