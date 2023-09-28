@@ -9,16 +9,16 @@ const createState = async (name) => {
   throw Error(`El estado: ${name} no se pudo crear`);
 };
 
-const getSearchCategoryId = async (idCategory) => {
-  const category = await State.findAll({
+const getSearchStateId = async (idState) => {
+  const state = await State.findAll({
     where: {
-      idCategory,
+      idState,
     },
   });
-  if (category.length > 0) {
-    return category;
+  if (state.length > 0) {
+    return state;
   }
-  throw Error(`No se pudo encontrar el nivel buscado`);
+  throw Error(`No se pudo encontrar el estado buscado`);
 };
 
 const getSearchCategoryName = async (name) => {
@@ -67,7 +67,7 @@ const delCategory = (idCategory) => {
 
 module.exports = {
   createState,
-  getSearchCategoryId,
+  getSearchStateId,
   getSearchCategoryName,
   getAllCategory,
   updateCategory,

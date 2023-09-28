@@ -2,7 +2,7 @@ const SUCCESS = 200;
 const ERROR = 400;
 const {
   createState,
-  getSearchCategoryId,
+  getSearchStateId,
   getSearchCategoryName,
   getAllCategory,
   updateCategory,
@@ -19,11 +19,11 @@ const postState = async (request, response) => {
   }
 };
 
-const getCategoryId = async (request, response) => {
-  const { idCategory } = request.params;
+const getStateId = async (request, response) => {
+  const { idState } = request.params;
   try {
-    const getIdCategory = await getSearchCategoryId(idCategory);
-    response.status(SUCCESS).json(getIdCategory);
+    const getIdState = await getSearchStateId(idState);
+    response.status(SUCCESS).json(getIdState);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -63,7 +63,7 @@ const deleteCategory = async (request, response) => {
 
 module.exports = {
   postState,
-  getCategoryId,
+  getStateId,
   getCategoryName,
   putCategory,
   deleteCategory,
