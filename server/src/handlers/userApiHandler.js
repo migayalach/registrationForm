@@ -68,9 +68,9 @@ const putUserApi = async (request, response) => {
 };
 
 const deleteUserApi = async (request, response) => {
-  const { idUser } = request.params;
+  const { idUserApi } = request.params;
   try {
-    const deleteUser = await deleteDataUserApi(idUser);
+    const deleteUser = await deleteDataUserApi(idUserApi);
     response.status(SUCCESS).json(deleteUser);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
