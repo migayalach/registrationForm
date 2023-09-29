@@ -9,13 +9,14 @@ module.exports = (sequelize) => {
         primaryKey: true,
         unique: true,
       },
-      name: {
-        type: DataTypes.STRING,
+      dateStart: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
-      identificationForm: {
-        type: DataTypes.STRING,
-        unique: true,
+      dateEnd: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
     },
