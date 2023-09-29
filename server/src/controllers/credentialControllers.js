@@ -33,15 +33,24 @@ const updateCredential = async (idCredential, name) => {
 };
 
 const getSearchCredentialId = async (idCredential) => {
-  const credential = await Credential.findAll({
-    where: {
-      idCredential,
-    },
+  // const credential = await Credential.findAll({
+  //   where: {
+  //     idCredential,
+  //   },
+  // });
+  // if (credential.length > 0) {
+  //   return credential;
+  // }
+  // throw Error(`No se pudo encontrar la credencial buscada`);
+  return await Credential.findOne({
+    where: { idCredential },
+    include: [
+      {
+        model: User,
+        attributes: ["nameUser"],
+      },
+    ],
   });
-  if (credential.length > 0) {
-    return credential;
-  }
-  throw Error(`No se pudo encontrar la credencial buscada`);
 };
 
 const getSearchCategoryName = async (name) => {
