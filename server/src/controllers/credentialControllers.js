@@ -1,16 +1,17 @@
-const { Credential } = require("../database/database");
+const { Credential, User } = require("../database/database");
 const { Op } = require("sequelize");
 
-const createCredential = async (name) => {
-  const newCredential = await Credential.findOne({
-    where: {
-      name,
-    },
-  });
-  if (!newCredential) {
-    return await Credential.create({ name });
-  }
-  throw Error(`La credencial: ${name} no se pudo crear`);
+const createCredential = async (name, UserIdUser) => {
+  // const newCredential = await Credential.findOne({
+  //   where: {
+  //     name,
+  //   },
+  // });
+  // if (!newCredential) {
+  //   return await Credential.create({ name });
+  // }
+  // throw Error(`La credencial: ${name} no se pudo crear`);
+  return await Credential.create({ name, UserIdUser });
 };
 
 const updateCredential = async (idCredential, name) => {

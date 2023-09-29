@@ -11,9 +11,9 @@ const {
 } = require("../controllers/credentialControllers");
 
 const postCredential = async (request, response) => {
-  const { name } = request.body;
+  const { name, UserIdUser } = request.body;
   try {
-    const newCredential = await createCredential(name);
+    const newCredential = await createCredential(name, UserIdUser);
     response.status(SUCCESS).json({ create: true, newCredential });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
