@@ -6,6 +6,7 @@ const {
   Credential,
   Form,
 } = require("../database/database");
+
 const createForm = async (
   dateStart,
   idEquipment,
@@ -14,14 +15,22 @@ const createForm = async (
   idProcedures,
   idCredential
 ) => {
-  return await Form.create({
+  const createForm = await Form.create({
     dateStart,
-    EquipmentIdEquipment: idEquipment,
-    UserApiIdUser: idUserApi,
-    StateIdState: idState,
-    ProceduresIdProcedures: idProcedures,
-    CredentialIdCredential: idCredential,
   });
+  const createEquipment = await Equipment.findByPk(idEquipment);
+  const createUserApi = await UserApi.findByPk(idUserApi);
+  const createState = await State.findByPk(idState);
+  const createProcedures = await Procedures.findByPk(idProcedures);
+  const createCredential = await Credential.findByPk(idCredential);
+
+  await createForm.addEquipment(createEquipment);
+  await createForm.addUserApi(createUserApi);
+  await createForm.addState(createState);
+  await createForm.addProcedures(createProcedures);
+  await createForm.addCredential(createCredential);
+
+  return createForm;
 };
 
 const getSearchFormId = async (idForm) => {
