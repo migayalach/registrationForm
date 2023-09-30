@@ -37,10 +37,30 @@ User.belongsTo(Unit);
 User.hasOne(Credential);
 Credential.belongsTo(User);
 
-Form.belongsToMany(Credential, { through: "FormCredential" });
-Form.belongsToMany(Equipment, { through: "FormEquipment" });
-Form.belongsToMany(UserApi, { through: "FormUserApi" });
-Form.belongsToMany(State, { through: "FormState" });
-Form.belongsToMany(Procedures, { through: "FormProcedures" });
+Form.belongsToMany(
+  Credential,
+  { through: "FormCredential" },
+  {
+    timestamps: false,
+  }
+);
+Credential.belongsToMany(Form, {
+  through: "FormCredential",
+  timestamps: false,
+});
+Form.belongsToMany(Equipment, { through: "FormEquipment", timestamps: false });
+Equipment.belongsToMany(Form, { through: "FormEquipment", timestamps: false });
+Form.belongsToMany(UserApi, { through: "FormUserApi", timestamps: false });
+UserApi.belongsToMany(Form, { through: "FormUserApi", timestamps: false });
+Form.belongsToMany(State, { through: "FormState", timestamps: false });
+State.belongsToMany(Form, { through: "FormState", timestamps: false });
+Form.belongsToMany(Procedures, {
+  through: "FormProcedures",
+  timestamps: false,
+});
+Procedures.belongsToMany(Form, {
+  through: "FormProcedures",
+  timestamps: false,
+});
 
 module.exports = { sequelize, ...sequelize.models };
