@@ -1,15 +1,17 @@
-import TableUserApi from "../../Components/Table/TableUserApi/TableUserApi";
-import TableEquipment from "../../Components/Table/TableEquipment/TableEquipment";
-import TableCredential from "../../Components/Table/TableCredential/TableCredential";
+import { NavLink } from "react-router-dom";
 
 const Form = () => {
   return (
     <div>
-      <h1>Formulario de Alta de Usuarios</h1>
-      <h3>FORM-UTIC-001</h3>
-      <TableUserApi />
-      <TableEquipment />
-      <TableCredential />
+      <p>filtros</p>
+      <h1>opciones</h1>
+      <p>vita de los filtros</p>
+      <h1>Crecion de un nuevo formulario puede ser</h1>
+      <div>
+        <NavLink to="/alta">Alta</NavLink>
+        <NavLink to="/baja">Baja</NavLink>
+        <NavLink to="/cambio">Cambio</NavLink>
+      </div>
     </div>
   );
 };
