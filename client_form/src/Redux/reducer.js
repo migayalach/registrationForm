@@ -1,10 +1,14 @@
-const rootReducer = () => {
-  switch (key) {
-    case value:
-      break;
+const initialState = {};
+
+const rootReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    // case value:
+    //   break;
 
     default:
-      break;
+      return {
+        ...state,
+      };
   }
 };
 
