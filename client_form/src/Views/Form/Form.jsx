@@ -1,6 +1,6 @@
-import TableUserApi from "../../Components/TableUserApi";
-import TableEquipment from "../../Components/TableEquipment";
-import TableCredential from "../../Components/TableCredential";
+import TableUserApi from "../../Components/Table/TableUserApi/TableUserApi";
+import TableEquipment from "../../Components/Table/TableEquipment/TableEquipment";
+import TableCredential from "../../Components/Table/TableCredential/TableCredential";
 
 const Form = () => {
   return (

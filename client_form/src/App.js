@@ -1,10 +1,10 @@
-import { Form } from "./Views";
+import { Home } from "./Views";
 import "./StyleSheets/App.css";
 
 const App = () => {
   return (
     <div className="App">
-      <Form />
+      <Home />
     </div>
   );
 };
