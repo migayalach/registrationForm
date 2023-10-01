@@ -1,11 +1,7 @@
-import Form from "../Form/Form";
-import NavBar from "../../Components/NavBar/NavBar";
-
 const Home = () => {
   return (
     <>
-      <NavBar />
-      {/* <Form /> */}
+      <h1>Estamos en home</h1>
     </>
   );
 };
