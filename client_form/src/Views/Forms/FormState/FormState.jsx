@@ -1,14 +1,19 @@
 // COMPONET'S
 
 // HOOK'S
+import { useState } from "react";
+
+// JAVASCRIP
+import validationName from "../../../Validations/validationName";
 
 // STYLESHEET'S
 
 const FormState = () => {
   return (
-    <>
-      <h1>FormState</h1>
-    </>
+    <form className="form-component">
+      <label htmlFor="nombre">Nombre: </label>
+      <input type="text" />
+    </form>
   );
 };
 
