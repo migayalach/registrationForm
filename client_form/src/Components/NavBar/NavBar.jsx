@@ -1,12 +1,19 @@
 // COMPONET'S
 
 // HOOK'S
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 // STYLESHEET'S
 import "../NavBar/navBar.css";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const handleSalir = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <NavLink to="/home" className="custom-link">
@@ -39,9 +46,9 @@ const NavBar = () => {
       <NavLink to="/about-Me" className="custom-link">
         Sobre mi
       </NavLink>
-      <NavLink to="/" className="custom-link">
+      <div onClick={handleSalir} className="custom-link">
         Salir
-      </NavLink>
+      </div>
     </>
   );
 };
