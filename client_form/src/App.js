@@ -9,6 +9,7 @@ import {
   FormLow,
   FormChange,
   Home,
+  Login,
   Procedures,
   State,
   User,
@@ -28,6 +29,7 @@ const App = () => {
     <div className="App">
       {location.pathname !== "/" && <NavBar />}
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Form />} />
         <Route path="/alta" element={<FormHigh />} />
