@@ -3,16 +3,22 @@ import {
   About,
   Area,
   Credential,
+  Detail,
   Equipment,
   Form,
+  FormChange,
+  FormEquipment,
   FormHigh,
   FormLow,
-  FormChange,
+  FormProcedures,
+  FormState,
+  FormUser,
   Home,
   Login,
   Procedures,
   State,
   User,
+  UserApi,
 } from "./Views";
 import NavBar from "./Components/NavBar/NavBar";
 
@@ -42,6 +48,7 @@ const App = () => {
         <Route path="/procedures" element={<Procedures />} />
         <Route path="/state" element={<State />} />
         <Route path="/user" element={<User />} />
+        <Route path="/userApi" element={<UserApi />} />
       </Routes>
     </div>
   );

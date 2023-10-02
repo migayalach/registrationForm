@@ -1,23 +1,47 @@
 // COMPONET'S
-import { NavLink } from "react-router-dom";
 
 // HOOK'S
+import { NavLink } from "react-router-dom";
 
 // STYLESHEET'S
+import "../NavBar/navBar.css";
 
 const NavBar = () => {
   return (
     <>
-      <NavLink to="/home">Home</NavLink>
-      <NavLink to="/state">Estados</NavLink>
-      <NavLink to="/procedures">Procedimientos</NavLink>
-      <NavLink to="/equipment">Equipo</NavLink>
-      <NavLink to="/area">Área</NavLink>
-      <NavLink to="/user">Usuario</NavLink>
-      <NavLink to="/credential">Credenciales</NavLink>
-      <NavLink to="/form">Formularios</NavLink>
-      <NavLink to="/about-Me">Sobre mi</NavLink>
-      <NavLink to="/out">Salir</NavLink>
+      <NavLink to="/home" className="custom-link">
+        Home
+      </NavLink>
+      <NavLink to="/state" className="custom-link">
+        Estados
+      </NavLink>
+      <NavLink to="/procedures" className="custom-link">
+        Procedimientos
+      </NavLink>
+      <NavLink to="/equipment" className="custom-link">
+        Equipo
+      </NavLink>
+      <NavLink to="/area" className="custom-link">
+        Área
+      </NavLink>
+      <NavLink to="/user" className="custom-link">
+        Usuarios
+      </NavLink>
+      <NavLink to="/credential" className="custom-link">
+        Credenciales
+      </NavLink>
+      <NavLink to="/form" className="custom-link">
+        Formularios
+      </NavLink>
+      <NavLink to="/userApi" className="custom-link">
+        Usuarios RRHH
+      </NavLink>
+      <NavLink to="/about-Me" className="custom-link">
+        Sobre mi
+      </NavLink>
+      <NavLink to="/out" className="custom-link">
+        Salir
+      </NavLink>
     </>
   );
 };
