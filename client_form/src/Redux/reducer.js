@@ -7,7 +7,7 @@ import {
 } from "./actions-type";
 
 const initialState = {
-  state: [],
+  stateForm: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
