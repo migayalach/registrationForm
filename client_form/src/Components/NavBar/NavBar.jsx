@@ -39,7 +39,7 @@ const NavBar = () => {
       <NavLink to="/about-Me" className="custom-link">
         Sobre mi
       </NavLink>
-      <NavLink to="/out" className="custom-link">
+      <NavLink to="/" className="custom-link">
         Salir
       </NavLink>
     </>
