@@ -5,12 +5,11 @@
 // STYLESHEET'S
 
 const Error = () => {
-    return (
-      <>
-        <h1>Error :C 404</h1>
-      </>
-    );
-  };
-  
-  export default Error;
-  
+  return (
+    <>
+      <h1>Error :C</h1>
+    </>
+  );
+};
+
+export default Error;

@@ -4,6 +4,7 @@ import Area from "./Area/Area";
 import Credential from "./Credential/Credential";
 import Detail from "./Detail/Detail";
 import Equipment from "./Equipment/Equipment";
+import Error from "./Error/Error";
 import Form from "./Forms/Form/Form";
 import FormChange from "./Forms/FormChange/FormChange";
 import FormEquipment from "./Forms/FormEquipment/FormEquipment";
@@ -25,6 +26,7 @@ export {
   Credential,
   Detail,
   Equipment,
+  Error,
   Form,
   FormChange,
   FormEquipment,

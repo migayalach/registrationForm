@@ -5,6 +5,7 @@ import {
   Credential,
   Detail,
   Equipment,
+  Error,
   Form,
   FormChange,
   FormEquipment,
@@ -23,7 +24,7 @@ import {
 import NavBar from "./Components/NavBar/NavBar";
 
 // HOOK'S
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Outlet } from "react-router-dom";
 
 // STYLESHEET'S
 import "./StyleSheets/App.css";
@@ -49,6 +50,9 @@ const App = () => {
         <Route path="/state" element={<State />} />
         <Route path="/user" element={<User />} />
         <Route path="/userApi" element={<UserApi />} />
+        {/* <Route element={<Outlet />}>
+          <Route path="*" element={<Error />} />
+        </Route> */}
       </Routes>
     </div>
   );
