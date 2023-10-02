@@ -4,12 +4,12 @@
 
 // STYLESHEET'S
 
-const Footer = () => {
+const Equipment = () => {
   return (
     <>
-      <h3>Footer</h3>
+      <h1>Equipment</h1>
     </>
   );
 };
 
-export default Footer;
+export default Equipment;

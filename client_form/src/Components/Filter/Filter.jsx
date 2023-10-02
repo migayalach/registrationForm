@@ -4,12 +4,12 @@
 
 // STYLESHEET'S
 
-const Footer = () => {
+const Filter = () => {
   return (
     <>
-      <h3>Footer</h3>
+      <h3>Filtros</h3>
     </>
   );
 };
 
-export default Footer;
+export default Filter;

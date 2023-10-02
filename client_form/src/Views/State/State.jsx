@@ -4,12 +4,12 @@
 
 // STYLESHEET'S
 
-const Footer = () => {
+const State = () => {
   return (
     <>
-      <h3>Footer</h3>
+      <h1>State</h1>
     </>
   );
 };
 
-export default Footer;
+export default State;

@@ -1,3 +1,9 @@
+// COMPONET'S
+
+// HOOK'S
+
+// STYLESHEET'S
+
 const text = {
   textEquipment: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, ex
   aspernatur iusto veniam aut error in odio vel quo dolores inventore,

@@ -4,12 +4,12 @@
 
 // STYLESHEET'S
 
-const Footer = () => {
+const Area = () => {
   return (
     <>
-      <h3>Footer</h3>
+      <h1>Area</h1>
     </>
   );
 };
 
-export default Footer;
+export default Area;

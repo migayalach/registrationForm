@@ -4,12 +4,12 @@
 
 // STYLESHEET'S
 
-const Footer = () => {
+const User = () => {
   return (
     <>
-      <h3>Footer</h3>
+      <h1>User</h1>
     </>
   );
 };
 
-export default Footer;
+export default User;

@@ -16,7 +16,7 @@ const NavBar = () => {
       <NavLink to="/user">Usuario</NavLink>
       <NavLink to="/credential">Credenciales</NavLink>
       <NavLink to="/form">Formularios</NavLink>
-      <NavLink to="/about">Sobre mi</NavLink>
+      <NavLink to="/about-Me">Sobre mi</NavLink>
       <NavLink to="/out">Salir</NavLink>
     </>
   );

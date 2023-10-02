@@ -1,9 +1,19 @@
 // COMPONET'S
-import { Home, Form } from "./Views";
+import {
+  About,
+  Area,
+  Credential,
+  Equipment,
+  Form,
+  FormHigh,
+  FormLow,
+  FormChange,
+  Home,
+  Procedures,
+  State,
+  User,
+} from "./Views";
 import NavBar from "./Components/NavBar/NavBar";
-import FormHigh from "./Components/Forms/FormHigh/FormHigh";
-import FormLow from "./Components/Forms/FormLow/FormLow";
-import FormChange from "./Components/Forms/FormChange/FormChange";
 
 // HOOK'S
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -23,16 +33,14 @@ const App = () => {
         <Route path="/alta" element={<FormHigh />} />
         <Route path="baja" element={<FormLow />} />
         <Route path="cambio" element={<FormChange />} />
+        <Route path="about-Me" element={<About />} />
+        <Route path="/area" element={<Area />} />
+        <Route path="/credential" element={<Credential />} />
+        <Route path="/equipment" element={<Equipment />} />
+        <Route path="/procedures" element={<Procedures />} />
+        <Route path="/state" element={<State />} />
+        <Route path="/user" element={<User />} />
       </Routes>
-      {/* <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/>
-      <Route exact path="" component={}/> */}
     </div>
   );
 };
