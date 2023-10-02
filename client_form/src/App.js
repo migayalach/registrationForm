@@ -32,10 +32,10 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Form />} />
-        <Route path="/alta" element={<FormHigh />} />
-        <Route path="baja" element={<FormLow />} />
-        <Route path="cambio" element={<FormChange />} />
-        <Route path="about-Me" element={<About />} />
+        <Route path="/high" element={<FormHigh />} />
+        <Route path="/low" element={<FormLow />} />
+        <Route path="/change" element={<FormChange />} />
+        <Route path="/about-Me" element={<About />} />
         <Route path="/area" element={<Area />} />
         <Route path="/credential" element={<Credential />} />
         <Route path="/equipment" element={<Equipment />} />
