@@ -3,13 +3,20 @@ import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addState } from "../../../Redux/actions";
 
 // JAVASCRIP
 import { validationName } from "../../../Validations/validationName";
 
 // STYLESHEET'S
+import "./form-state.css";
 
 const FormState = () => {
+  const dispatch = useDispatch();
+  const errorsMessage = useSelector((state) => state.errors);
+  console.log(errorsMessage);
+  
   const [userData, setUserData] = useState({
     name: "",
   });
@@ -26,8 +33,10 @@ const FormState = () => {
     );
   };
 
-  const handleAccept = () => {
-    alert("holis");
+  const handleAccept = (event) => {
+    const name = userData.name;
+    event.preventDefault();
+    dispatch(addState({ name }));
   };
 
   return (
