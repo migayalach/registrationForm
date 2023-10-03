@@ -1,3 +1,3 @@
-export const ButtonAccept = ({ label }) => {
-  return <button>{label}</button>;
+export const ButtonAccept = ({ label, onClickAccept }) => {
+  return <button onClick={onClickAccept}>{label}</button>;
 };

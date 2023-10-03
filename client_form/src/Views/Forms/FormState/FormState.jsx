@@ -26,6 +26,10 @@ const FormState = () => {
     );
   };
 
+  const handleAccept = () => {
+    alert("holis");
+  };
+
   return (
     <form className="form-component">
       <label htmlFor="nombre">Nombre: </label>
@@ -36,7 +40,9 @@ const FormState = () => {
         onChange={handleChange}
       />
       {errors.name && <p className="error">{errors.name}</p>}
-      {!errors.name && <ButtonAccept label={"Aceptar"} />}
+      {!errors.name && (
+        <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
+      )}
     </form>
   );
 };

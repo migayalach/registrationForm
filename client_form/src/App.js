@@ -31,7 +31,6 @@ import "./StyleSheets/App.css";
 
 const App = () => {
   const location = useLocation();
-  console.log(location.pathname);
   const isLoginPage = location.pathname === "/";
   const is404ErrorPage = location.pathname.startsWith("/404");
 
