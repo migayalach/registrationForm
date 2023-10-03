@@ -4,33 +4,28 @@ import {
   GET_STATE_ID,
   UPDATE_STATE,
   DELETE_STATE,
+  ERROR,
 } from "./actions-type";
 
 const initialState = {
   stateForm: [],
+  errors: null,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_STATE:
-      try {
-      } catch (error) {}
+      return {
+        ...state,
+        stateForm: payload,
+        errors: null,
+      };
 
-    // case GET_STATE:
-    //   try {
-    //   } catch (error) {}
-
-    // case GET_STATE_ID:
-    //   try {
-    //   } catch (error) {}
-
-    // case UPDATE_STATE:
-    //   try {
-    //   } catch (error) {}
-
-    // case DELETE_STATE:
-    //   try {
-    //   } catch (error) {}
+    case ERROR:
+      return {
+        ...state,
+        errors: payload,
+      };
 
     default:
       return {
@@ -40,3 +35,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
 };
 
 export default rootReducer;
+
+// try {
+// } catch (error) {}
+
+// case GET_STATE:
+//   try {
+//   } catch (error) {}
+
+// case GET_STATE_ID:
+//   try {
+//   } catch (error) {}
+
+// case UPDATE_STATE:
+//   try {
+//   } catch (error) {}
+
+// case DELETE_STATE:
+//   try {
+//   } catch (error) {}
