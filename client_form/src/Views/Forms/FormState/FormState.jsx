@@ -4,6 +4,8 @@ import { ButtonAccept } from "../../../Components/ButtonAccept";
 // HOOK'S
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// REDUX
 import { addState } from "../../../Redux/actions";
 
 // JAVASCRIP
@@ -14,8 +16,8 @@ import "./form-state.css";
 
 const FormState = () => {
   const dispatch = useDispatch();
-  const errorsMessage = useSelector((state) => state.errors);
-  console.log(errorsMessage);
+  // const errorsMessage = useSelector((state) => state.errors);
+  // console.log(errorsMessage);
   
   const [userData, setUserData] = useState({
     name: "",
