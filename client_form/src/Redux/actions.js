@@ -13,7 +13,6 @@ const URL = `http://localhost:3001/forms`;
 export const addState = (stateForm) => {
   return async function (dispatch) {
     const createState = await axios.post(`${URL}/state`, stateForm);
-    console.log(createState.data);
     try {
       const newForm = createState.data;
       dispatch({
@@ -27,4 +26,8 @@ export const addState = (stateForm) => {
       });
     }
   };
+};
+
+export const getAllState = () => {
+  return function () {};
 };

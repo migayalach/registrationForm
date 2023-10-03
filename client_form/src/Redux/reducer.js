@@ -13,6 +13,8 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
+  console.log(payload)
+  console.log(type); 
   switch (type) {
     case ADD_STATE:
       return {
