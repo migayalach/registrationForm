@@ -7,12 +7,15 @@ import {
   ERROR,
   ADD_PROCEDURES,
   GET_PROCEDURES,
+  GET_AREA,
+  ADD_AREA,
 } from "./actions-type";
 
 const initialState = {
   stateForm: [],
   aux: [],
   procedures: [],
+  area: [],
   errors: null,
 };
 
@@ -43,6 +46,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: payload,
+        errors: null,
+      };
+
+    case ADD_AREA:
+      return {
+        ...state,
+        area: [...state.area, payload.newUnit],
+        errors: null,
+      };
+
+    case GET_AREA:
+      return {
+        ...state,
+        area: payload,
         errors: null,
       };
 
