@@ -30,7 +30,7 @@ const State = () => {
       <hr />
       <h3>ACA SE MUESTRA LOS STADOS</h3>
       <h1>State</h1>
-      <Lists items={selectorState} />
+      <Lists items={selectorState} text={"Estados"} />
     </>
   );
 };
