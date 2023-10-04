@@ -4,10 +4,26 @@
 
 // STYLESHEET'S
 
-const List = () => {
+const List = ({ index, idState, name, view, editState, deleteState }) => {
   return (
     <>
-      <h1>List</h1>
+      <table border={1}>
+        <tbody>
+          <tr>
+            <td>{index}</td>
+            <td>{name}</td>
+            <td>
+              <button>Ver</button>
+            </td>
+            <td>
+              <button>Editar</button>
+            </td>
+            <td>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </>
   );
 };
