@@ -31,7 +31,7 @@
 
 // COMPONET'S
 import List from "./List";
-import Pagintation from "./Pagination/Pagintation";
+import Pagination from "./Pagination/Pagination";
 
 // HOOK'S
 import { useState } from "react";
@@ -67,7 +67,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
         );
       })}
 
-      <Pagintation
+      <Pagination
         itemsPerPage={itemsPerPage}
         totalItems={items.length}
         currentPage={currentPage}
