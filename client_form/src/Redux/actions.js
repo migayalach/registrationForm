@@ -6,6 +6,8 @@ import {
   UPDATE_STATE,
   DELETE_STATE,
   ERROR,
+  ADD_PROCEDURES,
+  GET_PROCEDURES,
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -35,6 +37,35 @@ export const getAllState = () => {
     dispatch({
       type: GET_STATE,
       payload: states,
+    });
+  };
+};
+
+export const addProcedures = (procedures) => {
+  return async function (dispatch) {
+    const createProcedures = await axios.post(`${URL}/procedures`, procedures);
+    try {
+      const newProcedure = createProcedures.data;
+      dispatch({
+        type: ADD_PROCEDURES,
+        payload: newProcedure,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllProcedures = () => {
+  return async function (dispatch) {
+    const getAllProcess = await axios.get(`${URL}/procedures`);
+    const procedures = getAllProcess.data;
+    dispatch({
+      type: GET_PROCEDURES,
+      payload: procedures,
     });
   };
 };
