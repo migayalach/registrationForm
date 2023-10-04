@@ -8,6 +8,8 @@ import {
   ERROR,
   ADD_PROCEDURES,
   GET_PROCEDURES,
+  ADD_AREA,
+  GET_AREA,
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -66,6 +68,35 @@ export const getAllProcedures = () => {
     dispatch({
       type: GET_PROCEDURES,
       payload: procedures,
+    });
+  };
+};
+
+export const addArea = (area) => {
+  return async function (dispatch) {
+    const createArea = await axios.post(`${URL}/area`, area);
+    try {
+      const newArea = createArea.data;
+      dispatch({
+        type: ADD_AREA,
+        payload: newArea,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllArea = () => {
+  return async function (dispatch) {
+    const getAllArea = await axios.get(`${URL}/area`);
+    const area = getAllArea.data;
+    dispatch({
+      type: GET_AREA,
+      payload: area,
     });
   };
 };
