@@ -3,7 +3,7 @@ import { nameRegex } from "../Utils/regex";
 export const validationName = ({ name }) => {
   const errorName = {};
   const maxLengthName = 20;
-  const minLengthName = 5;
+  const minLengthName = 4;
 
   if (!nameRegex.test(name)) {
     errorName.name = `La primera letra no puede ser caracter especial ni numero`;
