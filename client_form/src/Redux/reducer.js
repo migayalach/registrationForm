@@ -13,14 +13,18 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
-  console.log(payload)
-  console.log(type); 
   switch (type) {
     case ADD_STATE:
       return {
         ...state,
         stateForm: payload,
         errors: null,
+      };
+
+    case GET_STATE:
+      return {
+        ...state,
+        stateForm: payload,
       };
 
     case ERROR:

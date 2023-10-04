@@ -29,5 +29,12 @@ export const addState = (stateForm) => {
 };
 
 export const getAllState = () => {
-  return function () {};
+  return async function (dispatch) {
+    const getAll = await axios.get(`${URL}/state`);
+    const states = getAll.data;
+    dispatch({
+      type: GET_STATE,
+      payload: states,
+    });
+  };
 };
