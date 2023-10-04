@@ -5,11 +5,14 @@ import {
   UPDATE_STATE,
   DELETE_STATE,
   ERROR,
+  ADD_PROCEDURES,
+  GET_PROCEDURES,
 } from "./actions-type";
 
 const initialState = {
   stateForm: [],
   aux: [],
+  procedures: [],
   errors: null,
 };
 
@@ -29,6 +32,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case ADD_PROCEDURES:
+      return {
+        ...state,
+        procedures: [...state.procedures, payload.newProcedures],
+        errors: null,
+      };
+
+    case GET_PROCEDURES:
+      return {
+        ...state,
+        procedures: payload,
+        errors: null,
+      };
+
     case ERROR:
       return {
         ...state,
@@ -43,22 +60,3 @@ const rootReducer = (state = initialState, { type, payload }) => {
 };
 
 export default rootReducer;
-
-// try {
-// } catch (error) {}
-
-// case GET_STATE:
-//   try {
-//   } catch (error) {}
-
-// case GET_STATE_ID:
-//   try {
-//   } catch (error) {}
-
-// case UPDATE_STATE:
-//   try {
-//   } catch (error) {}
-
-// case DELETE_STATE:
-//   try {
-//   } catch (error) {}
