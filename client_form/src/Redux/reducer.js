@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   stateForm: [],
+  aux: [],
   errors: null,
 };
 
@@ -17,7 +18,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ADD_STATE:
       return {
         ...state,
-        stateForm: payload,
+        stateForm: [...state.stateForm, payload.newState],
         errors: null,
       };
 
@@ -25,6 +26,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: payload,
+        errors: null,
       };
 
     case ERROR:
