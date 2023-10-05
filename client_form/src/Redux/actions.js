@@ -10,6 +10,7 @@ import {
   GET_PROCEDURES,
   ADD_AREA,
   GET_AREA,
+  ADD_USER_API,
   GET_USER_API,
 } from "./actions-type";
 
@@ -100,6 +101,10 @@ export const getAllArea = () => {
       payload: area,
     });
   };
+};
+
+export const addUserApi = () => {
+  return function (dispatch) {};
 };
 
 export const getAllUserApi = () => {
