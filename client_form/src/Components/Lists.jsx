@@ -30,6 +30,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
             idEquipment,
             idUnit,
             idUser,
+            idCredential,
             name,
             nameUser,
             emailUser,
@@ -49,6 +50,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
               idProcedures={idProcedures}
               idEquipment={idEquipment}
               idUnit={idUnit}
+              idCredential={idCredential}
               name={name}
               nameUser={nameUser}
               emailUser={emailUser}

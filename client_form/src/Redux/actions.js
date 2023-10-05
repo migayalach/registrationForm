@@ -16,6 +16,8 @@ import {
   GET_USER_API,
   ADD_USER,
   GET_USER,
+  ADD_CREDENTIAL,
+  GET_CREDENTIAL,
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -177,6 +179,35 @@ export const getAllUser = () => {
     dispatch({
       type: GET_USER,
       payload: getUsers,
+    });
+  };
+};
+
+export const postCredential = (credential) => {
+  return async function (dispatch) {
+    const postCredential = await axios.post(`${URL}/credential`, credential);
+    try {
+      const newCredential = postCredential.data;
+      dispatch({
+        type: ADD_CREDENTIAL,
+        payload: newCredential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllCredential = () => {
+  return async function (dispatch) {
+    const getCredential = await axios.get(`${URL}/credential`);
+    const getCredentialAll = getCredential.data;
+    dispatch({
+      type: GET_CREDENTIAL,
+      payload: getCredentialAll,
     });
   };
 };

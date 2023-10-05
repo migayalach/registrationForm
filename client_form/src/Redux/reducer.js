@@ -14,6 +14,8 @@ import {
   GET_EQUIPMENT,
   ADD_USER,
   GET_USER,
+  ADD_CREDENTIAL,
+  GET_CREDENTIAL,
 } from "./actions-type";
 
 const initialState = {
@@ -24,6 +26,7 @@ const initialState = {
   equipment: [],
   userApi: [],
   user: [],
+  credential: [],
   errors: null,
 };
 
@@ -103,6 +106,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: payload,
+        errors: null,
+      };
+
+    case ADD_CREDENTIAL:
+      return {
+        ...state,
+        credential: [...state.credential, payload.newCredential],
+        errors: null,
+      };
+
+    case GET_CREDENTIAL:
+      return {
+        ...state,
+        credential: payload,
         errors: null,
       };
 
