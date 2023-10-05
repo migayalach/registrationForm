@@ -11,6 +11,9 @@ const List = ({
   idEquipment,
   idUnit,
   name,
+  nameUser,
+  emailUser,
+  user,
   idUser,
   nroIdentification,
   phone,
@@ -26,13 +29,15 @@ const List = ({
         <tbody>
           <tr>
             <td>{index}</td>
-            {/* ID'S */}
             {idState && <td>{idState}</td>}
             {idProcedures && <td>{idProcedures}</td>}
             {idEquipment && <td>{idEquipment}</td>}
             {idUnit && <td>{idUnit}</td>}
             {idUser && <td>{idUser}</td>}
-            <td>{name}</td>
+            {name && <td>{name}</td>}
+            {user && <td>{user}</td>}
+            {nameUser && <td>{nameUser}</td>}
+            {emailUser && <td>{emailUser}</td>}
             {nroIdentification && <td>{nroIdentification}</td>}
             {phone && <td>{phone}</td>}
             {email && <td>{email}</td>}

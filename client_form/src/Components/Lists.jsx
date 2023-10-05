@@ -29,8 +29,11 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
             idProcedures,
             idEquipment,
             idUnit,
-            name,
             idUser,
+            name,
+            nameUser,
+            emailUser,
+            user,
             nroIdentification,
             phone,
             email,
@@ -47,6 +50,9 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
               idEquipment={idEquipment}
               idUnit={idUnit}
               name={name}
+              nameUser={nameUser}
+              emailUser={emailUser}
+              user={user}
               idUser={idUser}
               nroIdentification={nroIdentification}
               phone={phone}
