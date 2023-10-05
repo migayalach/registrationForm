@@ -6,6 +6,8 @@ import {
   UPDATE_STATE,
   DELETE_STATE,
   ERROR,
+  ADD_EQUIPMENT,
+  GET_EQUIPMENT,
   ADD_PROCEDURES,
   GET_PROCEDURES,
   ADD_AREA,
@@ -99,6 +101,35 @@ export const getAllArea = () => {
     dispatch({
       type: GET_AREA,
       payload: area,
+    });
+  };
+};
+
+export const addEquipment = (equipment) => {
+  return async function (dispatch) {
+    const createEquipment = await axios.post(`${URL}/equipment`, equipment);
+    try {
+      const newEquipment = createEquipment.data;
+      dispatch({
+        type: ADD_EQUIPMENT,
+        payload: newEquipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllEquipment = () => {
+  return async function (dispatch) {
+    const getEquipmentAll = await axios.get(`${URL}/equipment`);
+    const equipment = getEquipmentAll.data;
+    dispatch({
+      type: GET_EQUIPMENT,
+      payload: equipment,
     });
   };
 };
