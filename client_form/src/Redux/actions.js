@@ -18,6 +18,8 @@ import {
   GET_USER,
   ADD_CREDENTIAL,
   GET_CREDENTIAL,
+  ADD_FORM,
+  GET_FORM,
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -208,6 +210,35 @@ export const getAllCredential = () => {
     dispatch({
       type: GET_CREDENTIAL,
       payload: getCredentialAll,
+    });
+  };
+};
+
+export const postForm = (form) => {
+  return async function (dispatch) {
+    const createForm = await axios.post(`${URL}/form`, form);
+    try {
+      const newForm = createForm.data;
+      dispatch({
+        type: ADD_FORM,
+        payload: newForm,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllForm = () => {
+  return async function (dispatch) {
+    const getFormAll = await axios.get(`${URL}/form`);
+    const getForms = getFormAll.data;
+    dispatch({
+      type: GET_FORM,
+      payload: getForms,
     });
   };
 };

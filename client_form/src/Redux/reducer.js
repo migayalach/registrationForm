@@ -16,6 +16,8 @@ import {
   GET_USER,
   ADD_CREDENTIAL,
   GET_CREDENTIAL,
+  ADD_FORM,
+  GET_FORM,
 } from "./actions-type";
 
 const initialState = {
@@ -27,6 +29,7 @@ const initialState = {
   userApi: [],
   user: [],
   credential: [],
+  form: [],
   errors: null,
 };
 
@@ -120,6 +123,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload,
+        errors: null,
+      };
+
+    case ADD_FORM:
+      return {
+        ...state,
+        form: [...state.form, payload.resCreateForm],
+        errors: null,
+      };
+
+    case GET_FORM:
+      return {
+        ...state,
+        form: payload,
         errors: null,
       };
 
