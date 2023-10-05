@@ -14,6 +14,8 @@ import {
   GET_AREA,
   ADD_USER_API,
   GET_USER_API,
+  ADD_USER,
+  GET_USER,
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -108,6 +110,7 @@ export const getAllArea = () => {
 export const addEquipment = (equipment) => {
   return async function (dispatch) {
     const createEquipment = await axios.post(`${URL}/equipment`, equipment);
+    console.log(createEquipment);
     try {
       const newEquipment = createEquipment.data;
       dispatch({
@@ -145,6 +148,35 @@ export const getAllUserApi = () => {
     dispatch({
       type: GET_USER_API,
       payload: getUserApi,
+    });
+  };
+};
+
+export const postUser = (userData) => {
+  return async function (dispatch) {
+    const postUserForm = await axios.post(`${URL}/user`, userData);
+    try {
+      const newUser = postUserForm.data;
+      dispatch({
+        type: ADD_USER,
+        payload: newUser,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllUser = () => {
+  return async function (dispatch) {
+    const getUserAll = await axios.get(`${URL}/user`);
+    const getUsers = getUserAll.data;
+    dispatch({
+      type: GET_USER,
+      payload: getUsers,
     });
   };
 };
