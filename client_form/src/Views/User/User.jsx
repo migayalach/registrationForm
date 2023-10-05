@@ -1,16 +1,33 @@
 // COMPONET'S
+import FormUser from "../Forms/FormUser/FormUser";
+import Filter from "../../Components/Filter/Filter";
+import Lists from "../../Components/Lists";
 
 // HOOK'S
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+// JAVASCRIP
+
+// REDUX
+import { getAllUser } from "../../Redux/actions";
 
 // STYLESHEET'S
 
 const User = () => {
+  const dispatch = useDispatch();
+  const selectorUser = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getAllUser());
+  }, [dispatch]);
+
   return (
     <>
-      <h1>User</h1>
-      <p>aca va el formuilario que se te permite crear usuarios</p>
+      <Filter />
       <hr />
-      <p>Aca ira la lista de los usuarios</p>
+      <FormUser />
+      <hr />
+      <Lists items={selectorUser} text={"Usuarios"} />
     </>
   );
 };
