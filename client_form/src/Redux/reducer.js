@@ -9,6 +9,7 @@ import {
   GET_PROCEDURES,
   GET_AREA,
   ADD_AREA,
+  GET_USER_API,
 } from "./actions-type";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   aux: [],
   procedures: [],
   area: [],
+  userApi: [],
   errors: null,
 };
 
@@ -60,6 +62,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         area: payload,
+        errors: null,
+      };
+
+    case GET_USER_API:
+      return {
+        ...state,
+        userApi: payload,
         errors: null,
       };
 
