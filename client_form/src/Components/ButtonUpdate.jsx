@@ -1,4 +1,3 @@
-export const ButtonUpdate = ({ label }) => {
-    return <button>{label}</button>;
-  };
-  
+export const ButtonUpdate = ({ label, onClickUpdate }) => {
+  return <button onClick={onClickUpdate}>{label}</button>;
+};
