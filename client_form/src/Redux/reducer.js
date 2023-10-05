@@ -10,6 +10,8 @@ import {
   GET_AREA,
   ADD_AREA,
   GET_USER_API,
+  ADD_EQUIPMENT,
+  GET_EQUIPMENT,
 } from "./actions-type";
 
 const initialState = {
@@ -17,6 +19,7 @@ const initialState = {
   aux: [],
   procedures: [],
   area: [],
+  equipment: [],
   userApi: [],
   errors: null,
 };
@@ -69,6 +72,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userApi: payload,
+        errors: null,
+      };
+
+    case ADD_EQUIPMENT:
+      return {
+        ...state,
+        equipment: [...state.equipment, payload.equipmentRes],
+        errors: null,
+      };
+
+    case GET_EQUIPMENT:
+      return {
+        ...state,
+        equipment: payload,
         errors: null,
       };
 
