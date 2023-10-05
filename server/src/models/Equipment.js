@@ -13,18 +13,18 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      host: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      directionIp: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      controlLabel: {
-        type: DataTypes.STRING,
-        defaultValue: false,
-      },
+      // host: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // directionIp: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // controlLabel: {
+      //   type: DataTypes.STRING,
+      //   defaultValue: false,
+      // },
     },
     {
       timestamps: false,
