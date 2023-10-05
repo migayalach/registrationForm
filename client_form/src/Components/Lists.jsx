@@ -22,19 +22,43 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
   return (
     <>
       <h1>Lista de {text}</h1>
-      {currentItems.map(({ idState, name }, index) => {
-        return (
-          <List
-            key={index}
-            index={index + 1}
-            idState={idState}
-            name={name}
-            view={view}
-            edit={editState}
-            delete={deleteState}
-          />
-        );
-      })}
+      {currentItems.map(
+        (
+          {
+            idState,
+            idProcedures,
+            idEquipment,
+            idUnit,
+            name,
+            idUser,
+            nroIdentification,
+            phone,
+            email,
+            charge,
+          },
+          index
+        ) => {
+          return (
+            <List
+              key={index}
+              index={index + 1}
+              idState={idState}
+              idProcedures={idProcedures}
+              idEquipment={idEquipment}
+              idUnit={idUnit}
+              name={name}
+              idUser={idUser}
+              nroIdentification={nroIdentification}
+              phone={phone}
+              email={email}
+              charge={charge}
+              view={view}
+              edit={editState}
+              delete={deleteState}
+            />
+          );
+        }
+      )}
 
       <Pagination
         itemsPerPage={itemsPerPage}
