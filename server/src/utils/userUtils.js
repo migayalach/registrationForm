@@ -31,8 +31,18 @@ const duplicateInfo = (dataDuplicate, dataInput) => {
   return 0;
 };
 
+const dataClear = (data) =>
+  data.map(({ name, nroIdentification, email, phone, charge }) => ({
+    name,
+    nroIdentification,
+    email,
+    phone,
+    charge,
+  }));
+
 module.exports = {
   clearResponseOne,
   clearData,
   duplicateInfo,
+  dataClear,
 };
