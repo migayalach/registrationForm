@@ -16,9 +16,7 @@ import "./form-state.css";
 
 const FormState = () => {
   const dispatch = useDispatch();
-  // const errorsMessage = useSelector((state) => state.errors);
-  // console.log(errorsMessage);
-  
+
   const [userData, setUserData] = useState({
     name: "",
   });
