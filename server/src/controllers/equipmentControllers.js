@@ -1,11 +1,31 @@
 const { Equipment } = require("../database/database");
 const { Op } = require("sequelize");
 
-const createEquipment = async (name, host, directionIp, controlLabel) => {
+// const createEquipment = async (name, host, directionIp, controlLabel) => {
+//   const countData = await Equipment.count();
+//   if (countData === 0) {
+//     await Equipment.create({ name, host, directionIp, controlLabel });
+//     return { name, host, directionIp, controlLabel };
+//   }
+
+//   //VERIFICAR QUE NO ESTE REPETIDO
+//   const existsEquipment = await Equipment.findOne({
+//     where: {
+//       name,
+//     },
+//   });
+//   if (!existsEquipment) {
+//     await Equipment.create({ name, host, directionIp, controlLabel });
+//     return { name, host, directionIp, controlLabel };
+//   }
+//   throw Error(`El equipo: ${name} ya se encuentra registrado`);
+// };
+
+const createEquipment = async (name) => {
   const countData = await Equipment.count();
   if (countData === 0) {
-    await Equipment.create({ name, host, directionIp, controlLabel });
-    return { name, host, directionIp, controlLabel };
+    await Equipment.create({ name });
+    return { name };
   }
 
   //VERIFICAR QUE NO ESTE REPETIDO
@@ -15,8 +35,8 @@ const createEquipment = async (name, host, directionIp, controlLabel) => {
     },
   });
   if (!existsEquipment) {
-    await Equipment.create({ name, host, directionIp, controlLabel });
-    return { name, host, directionIp, controlLabel };
+    await Equipment.create({ name });
+    return { name };
   }
   throw Error(`El equipo: ${name} ya se encuentra registrado`);
 };
