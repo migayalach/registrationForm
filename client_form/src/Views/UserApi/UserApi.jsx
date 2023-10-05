@@ -17,13 +17,21 @@ const UserApi = () => {
   const dispatch = useDispatch();
   const selectorUserApi = useSelector((state) => state.userApi);
 
+  useEffect(() => {
+    dispatch(getAllUserApi);
+  }, [dispatch]);
+
+  const handleUpdateData = () => {
+    dispatch(getAllUserApi());
+  };
+
   return (
     <>
       <Filter />
       <hr />
-      <ButtonUpdate label={"Actualizar"} />
+      <ButtonUpdate label={"Actualizar"} onClickUpdate={handleUpdateData} />
       <hr />
-      {/* <Lists/> */}
+      <Lists items={selectorUserApi} text={"Lista de usuarios"} />
     </>
   );
 };
