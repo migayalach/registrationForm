@@ -10,6 +10,7 @@ import {
   GET_PROCEDURES,
   ADD_AREA,
   GET_AREA,
+  GET_USER_API,
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -97,6 +98,17 @@ export const getAllArea = () => {
     dispatch({
       type: GET_AREA,
       payload: area,
+    });
+  };
+};
+
+export const getAllUserApi = () => {
+  return async function (dispatch) {
+    const getUserApiAll = await axios.get(`${URL}/userApi`);
+    const getUserApi = getUserApiAll.data;
+    dispatch({
+      type: GET_USER_API,
+      payload: getUserApi,
     });
   };
 };
