@@ -6,6 +6,11 @@ const {
   duplicateInfo,
 } = require("../utils/userUtils");
 
+const newObj = (data, params) => {
+  data = { ...data, params };
+  return data;
+};
+
 const createUser = async (nameUser, emailUser, user, password, idArea) => {
   const existArea = await Unit.findOne({
     where: {
@@ -15,14 +20,32 @@ const createUser = async (nameUser, emailUser, user, password, idArea) => {
   if (!existArea) {
     throw Error(`El área que ustede selecciono no existe`);
   }
+  const { nameUnit } = await Unit.findOne({
+    where: {
+      idUnit: idArea,
+    },
+    attributes: ["nameUnit"],
+  });
 
-  return await User.create({
+  const dataClear = await User.create({
     nameUser,
     emailUser,
     user,
     password,
     UnitIdUnit: idArea,
   });
+
+  const { idUser } = await User.findOne({ where: { emailUser } });
+
+  return {
+    idUser,
+    nameUser: dataClear.nameUser,
+    emailUser: dataClear.emailUser,
+    user: dataClear.user,
+    password: dataClear.password,
+    UnitIdUnit: dataClear.idArea,
+    nameUnit,
+  };
   // return { nameUser, emailUser, user, password };
   // throw Error(`El usuario: ${existsUser.name}, ya existe`);
 };
@@ -45,7 +68,10 @@ const getUserDataId = async (idUser) => {
 };
 
 const getAllUser = async () =>
-  await User.findAll({ include: { model: Unit, attributes: ["nameUnit"] } });
+  await User.findAll({
+    include: { model: Unit, attributes: ["nameUnit"] },
+    order: [["idUser", "ASC"]],
+  });
 
 const getNameUser = async (name) => {
   const userData = await User.findAll({
