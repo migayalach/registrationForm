@@ -8,7 +8,10 @@ import Error from "./Error/Error";
 import Form from "./Forms/Form/Form";
 import FormChange from "./Forms/FormChange/FormChange";
 import FormEquipment from "./Forms/FormEquipment/FormEquipment";
-import FormHigh from "./Forms/FormHigh/FormHigh";
+
+// import FormHigh from "./Forms/FormHigh/FormHigh";
+import High from "./High/High";
+
 import FormLow from "./Forms/FormLow/FormLow";
 import FormProcedures from "./Forms/FormProcedures/FormProcedures";
 import FormState from "./Forms/FormState/FormState";
@@ -30,7 +33,8 @@ export {
   Form,
   FormChange,
   FormEquipment,
-  FormHigh,
+  // FormHigh,
+  High,
   FormLow,
   FormProcedures,
   FormState,
