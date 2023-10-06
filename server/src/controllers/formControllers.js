@@ -57,7 +57,9 @@ const getSearchFormId = async (idForm) => {
 };
 
 const getSearchFormName = () => {};
-const getAllForm = () => {};
+
+const getAllForm = async () => await Form.findAll();
+
 const updateForm = () => {};
 const delFomr = () => {};
 
