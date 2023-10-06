@@ -9,7 +9,8 @@ import {
   Form,
   FormChange,
   FormEquipment,
-  FormHigh,
+  // FormHigh,
+  High,
   FormLow,
   FormProcedures,
   FormState,
@@ -41,7 +42,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Form />} />
-        <Route path="/high" element={<FormHigh />} />
+        <Route path="/high" element={<High />} />
         <Route path="/low" element={<FormLow />} />
         <Route path="/change" element={<FormChange />} />
         <Route path="/about-Me" element={<About />} />
