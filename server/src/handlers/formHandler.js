@@ -43,8 +43,10 @@ const getFormId = async (request, response) => {
   }
 };
 
-const getFormName = (request, response) => {
+const getFormName =async (request, response) => {
   try {
+    const responseForm = await getAllForm();
+    response.status(SUCCESS).json(responseForm)
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
