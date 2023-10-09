@@ -15,7 +15,7 @@ const postState = async (request, response) => {
     const newState = await createState(name);
     response.status(SUCCESS).json({ create: true, newState });
   } catch (error) {
-    response.status(ERROR).json({ create: false });
+    response.status(ERROR).json({ create: false, error: error.message });
   }
 };
 
@@ -47,7 +47,7 @@ const putState = async (request, response) => {
     const editState = await updateState(idState, name);
     response.status(SUCCESS).json({ update: true, editState });
   } catch (error) {
-    response.status(ERROR).json({ update: false });
+    response.status(ERROR).json({ update: false, error: error.message });
   }
 };
 
