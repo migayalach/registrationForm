@@ -51,8 +51,8 @@ const updateState = async (idState, name) => {
   throw Error(`El estado: ${name}, no se pudo encontrar`);
 };
 
-const delState = (idState) => {
-  const deleteState = State.findOne({ where: { idState } });
+const delState = async (idState) => {
+  const deleteState = await State.findOne({ where: { idState } });
   if (!deleteState) {
     throw Error(`El estado no se encuentra registrado`);
   }
@@ -72,5 +72,3 @@ module.exports = {
   updateState,
   delState,
 };
-
-("aun da");

@@ -57,7 +57,7 @@ const deleteState = async (request, response) => {
     const deleteInfo = await delState(idState);
     response.status(SUCCESS).json({ delete: true, deleteInfo });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ delete: false, error: error.message });
   }
 };
 
