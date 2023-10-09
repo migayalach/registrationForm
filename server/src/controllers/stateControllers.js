@@ -4,7 +4,8 @@ const { Op } = require("sequelize");
 const createState = async (name) => {
   const newState = await State.findOne({ where: { name } });
   if (!newState) {
-    return await State.create({ name });
+    const data = await State.create({ name });
+    return data.name;
   }
   throw Error(`El estado: ${name} no se pudo crear`);
 };
@@ -41,10 +42,7 @@ const updateState = async (idState, name) => {
     },
   });
   if (editState) {
-    const responseInfo = await State.update(
-      { name },
-      { where: { idState } }
-    );
+    const responseInfo = await State.update({ name }, { where: { idState } });
     if (typeof responseInfo === "object") {
       return `Estado: ${name}, modificado con exito`;
     }
@@ -52,7 +50,7 @@ const updateState = async (idState, name) => {
   throw Error(`El estado: ${name}, no se pudo encontrar`);
 };
 
-const delState= (idState) => {
+const delState = (idState) => {
   const deleteState = State.findOne({ where: { idState } });
   if (!deleteState) {
     throw Error(`El estado no se encuentra registrado`);

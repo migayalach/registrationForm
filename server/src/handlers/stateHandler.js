@@ -15,7 +15,7 @@ const postState = async (request, response) => {
     const newState = await createState(name);
     response.status(SUCCESS).json({ create: true, newState });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ create: false });
   }
 };
 
@@ -51,7 +51,7 @@ const putState = async (request, response) => {
   }
 };
 
-const deleteState= async (request, response) => {
+const deleteState = async (request, response) => {
   const { idState } = request.params;
   try {
     const deleteInfo = await delState(idState);
