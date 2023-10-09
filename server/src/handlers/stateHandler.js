@@ -47,7 +47,7 @@ const putState = async (request, response) => {
     const editState = await updateState(idState, name);
     response.status(SUCCESS).json({ update: true, editState });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ update: false });
   }
 };
 
