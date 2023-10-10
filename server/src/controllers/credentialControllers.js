@@ -11,7 +11,8 @@ const createCredential = async (name, UserIdUser) => {
   //   return await Credential.create({ name });
   // }
   // throw Error(`La credencial: ${name} no se pudo crear`);
-  return await Credential.create({ name, UserIdUser });
+  await Credential.create({ name, UserIdUser });
+  return await getSearchCategoryName(name);
 };
 
 const updateCredential = async (idCredential, name) => {
@@ -60,6 +61,12 @@ const getSearchCategoryName = async (name) => {
         [Op.iLike]: `%${name}%`,
       },
     },
+    // include: [
+    //   {
+    //     model: User,
+    //     attributes: ["nameUser", "UnitIdUnit"],
+    //   },
+    // ],
   });
   return nameSearch;
 };

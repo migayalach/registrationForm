@@ -4,8 +4,8 @@ const { Op } = require("sequelize");
 const createState = async (name) => {
   const newState = await State.findOne({ where: { name } });
   if (!newState) {
-    const data = await State.create({ name });
-    return data.name;
+    return await State.create({ name });
+    // return data.name;
   }
   throw Error(`El estado: ${name} no se pudo crear`);
 };
