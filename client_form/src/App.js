@@ -26,9 +26,13 @@ import NavBar from "./Components/NavBar/NavBar";
 
 // HOOK'S
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 // STYLESHEET'S
-import "./StyleSheets/App.css";
+import styles from "./app.module.css"
+library.add(fas, fab, far);
 
 const App = () => {
   const location = useLocation();
@@ -36,9 +40,10 @@ const App = () => {
   const is404ErrorPage = location.pathname.startsWith("/404");
 
   return (
-    <div className="App">
+    <div className={styles["app-container"]}>
       {!isLoginPage && !is404ErrorPage && <NavBar />}
-      <Routes>
+      <div className={styles["content-container"]}>
+      <Routes >
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Form />} />
@@ -56,6 +61,7 @@ const App = () => {
         <Route path="/404" element={<Error />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
+      </div>
     </div>
   );
 };

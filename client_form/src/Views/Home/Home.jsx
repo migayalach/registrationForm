@@ -1,14 +1,11 @@
-// COMPONET'S
-
-// HOOK'S
-
-// STYLESHEET'S
+import React from "react"; 
+import styles from "./home.module.css"; 
 
 const Home = () => {
   return (
-    <>
-      <h1>Estamos en home</h1>
-    </>
+    <div className={styles["home-container"]}>
+      <h1>HOME</h1>
+    </div>
   );
 };
 

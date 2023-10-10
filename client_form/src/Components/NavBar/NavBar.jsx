@@ -3,9 +3,9 @@
 // HOOK'S
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// STYLESHEET'S
-import "../NavBar/navBar.css";
+import styles from "./navBar.module.css";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -15,41 +15,43 @@ const NavBar = () => {
   };
 
   return (
-    <>
-      <NavLink to="/home" className="custom-link">
-        Home
+    <div className={styles["navbar-container"]}>
+      <NavLink to="/home">
+      <FontAwesomeIcon icon="fa-solid fa-house" className={styles.icon}/>Home
       </NavLink>
-      <NavLink to="/state" className="custom-link">
-        Estados
+      <NavLink to="/state">
+      <FontAwesomeIcon icon="fa-brands fa-medium" className={styles.icon}/>Estados
       </NavLink>
-      <NavLink to="/procedures" className="custom-link">
-        Procedimientos
+      <NavLink to="/procedures">
+      <FontAwesomeIcon icon="fa-solid fa-file" className={styles.icon}/>Procedimientos
       </NavLink>
-      <NavLink to="/equipment" className="custom-link">
-        Equipo
+      <NavLink to="/equipment">
+      <FontAwesomeIcon icon="fa-solid fa-people-group" className={styles.icon}/>Equipo
       </NavLink>
-      <NavLink to="/area" className="custom-link">
-        Área
+      <NavLink to="/area">
+      <FontAwesomeIcon icon="fa-solid fa-bullseye" className={styles.icon}/>Área
       </NavLink>
-      <NavLink to="/user" className="custom-link">
-        Usuarios
+      <NavLink to="/user">
+      <FontAwesomeIcon icon="fa-solid fa-circle-user" className={styles.icon}/>Usuarios
       </NavLink>
-      <NavLink to="/credential" className="custom-link">
-        Credenciales
+      <NavLink to="/credential">
+      <FontAwesomeIcon icon="fa-regular fa-address-card" className={styles.icon}/>Credenciales
       </NavLink>
-      <NavLink to="/form" className="custom-link">
-        Formularios
+      <NavLink to="/form">
+      <FontAwesomeIcon icon="fa-brands fa-wpforms" className={styles.icon}/>Formularios
       </NavLink>
-      <NavLink to="/userApi" className="custom-link">
-        Usuarios RRHH
+      <NavLink to="/userApi">
+      <FontAwesomeIcon icon="fa-solid fa-user" className={styles.icon}/>Usuarios RRHH
       </NavLink>
-      <NavLink to="/about-Me" className="custom-link">
-        Sobre mi
+      <NavLink to="/about-Me">
+      <FontAwesomeIcon icon="fa-solid fa-person" className={styles.icon}/>Sobre mi
       </NavLink>
-      <div onClick={handleSalir} className="custom-link">
-        Salir
+      <div onClick={handleSalir} >
+      <FontAwesomeIcon icon="fa-solid fa-arrow-left" className={styles.icon} />Salir
       </div>
-    </>
+      <hr  className={styles.line}/>
+      <h3>Ministerio de la Presidencia</h3>
+    </div>
   );
 };
 
