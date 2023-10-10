@@ -6,3 +6,5 @@ app.listen(PORT, () => {
   sequelize.sync({ alter: true });
   console.log(`Servidor levantado en el puerto: ${PORT}`);
 });
+
+// HOla
