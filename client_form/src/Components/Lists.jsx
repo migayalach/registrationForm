@@ -17,7 +17,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
+  
   return (
     <>
       <h1>Lista de {text}</h1>
