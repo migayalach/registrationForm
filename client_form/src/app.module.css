@@ -1,0 +1,13 @@
+.app-container {
+  display: flex;
+}
+
+.content-container {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+body {
+  color: #1b1b32;
+}
+
