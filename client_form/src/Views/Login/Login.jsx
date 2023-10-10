@@ -3,7 +3,7 @@
 // HOOK'S
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
+import styles from "./login.module.css";
 // STYLESHEET'S
 
 const Login = () => {
@@ -18,10 +18,24 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h1>soy el login</h1>
-      <button onClick={handleHola}>Login</button>
-    </>
+      <div className={styles["login-container"]}>
+      <div className={styles["login-form"]}>
+        <h1 >Formulario de Autenticación</h1>
+        <div>
+          <input type="text" placeholder="Ingrese su Correo" className={styles["input"]} />
+        </div>
+        <div>
+          <input type="password" placeholder="Contraseña" className={styles["input"]} />
+        </div>
+        <button onClick={handleHola} className={styles["login-button"]}>Login</button>
+      </div>
+      <div className={styles["welcome-message"]}>
+        <p>
+          Bienvenido al <span className={styles["highlight-text"]}>Sistema de Control de Altas y Bajas</span>
+        </p>
+        <h4>Ministerio de la Presidencia</h4>
+      </div>
+    </div>
   );
 };
 
