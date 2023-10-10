@@ -36,6 +36,11 @@ const createUser = async (nameUser, emailUser, user, password, idArea) => {
   });
 
   const { idUser } = await User.findOne({ where: { emailUser } });
+  // const unit = await Unit.findOne({
+  //   where: { idUnit: idArea },
+  //   attibutes: ["nameUnit"],
+  // });
+  // console.log(unit.dataValues.nameUnit);
 
   return {
     idUser,
@@ -67,11 +72,31 @@ const getUserDataId = async (idUser) => {
   return await getAllUser();
 };
 
-const getAllUser = async () =>
-  await User.findAll({
+const getAllUser = async () => {
+  const responseUser = await User.findAll({
     include: { model: Unit, attributes: ["nameUnit"] },
     order: [["idUser", "ASC"]],
   });
+  return responseUser.map(
+    ({
+      idUser,
+      nameUser,
+      emailUser,
+      user,
+      password,
+      UnitIdUnit,
+      Unit: { nameUnit },
+    }) => ({
+      idUser,
+      nameUser,
+      emailUser,
+      user,
+      password,
+      UnitIdUnit,
+      nameUnit,
+    })
+  );
+};
 
 const getNameUser = async (name) => {
   const userData = await User.findAll({
