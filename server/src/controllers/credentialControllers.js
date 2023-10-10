@@ -1,4 +1,5 @@
 const { Credential, User } = require("../database/database");
+const { getUnitSearchID } = require("./unitControllers");
 const { Op } = require("sequelize");
 
 const createCredential = async (name, UserIdUser) => {
@@ -71,7 +72,65 @@ const getSearchCategoryName = async (name) => {
   return nameSearch;
 };
 
-const getAllCredential = async () => await Credential.findAll();
+// const getAllCredential = async () => {
+//   const x = await Credential.findAll({
+//     include: [{ model: User }],
+//   });
+//   const aux = x.map(
+//     ({
+//       idCredential,
+//       name,
+//       UserIdUser,
+//       User: { idUser },
+//       User: { nameUser },
+//       User: { emailUser },
+//       User: { user },
+//       User: { UnitIdUnit },
+//     }) => ({
+//       idCredential,
+//       name,
+//       UserIdUser,
+//       idUser,
+//       nameUser,
+//       emailUser,
+//       user,
+//       UnitIdUnit,
+//     })
+//   );
+
+//   return aux;
+// };
+
+const getAllCredential = async () => {
+  const responseData = await Credential.findAll({
+    include: [{ model: User }],
+  });
+  return await Promise.all(
+    responseData.map(
+      async ({
+        idCredential,
+        name,
+        UserIdUser,
+        User: { idUser },
+        User: { nameUser },
+        User: { emailUser },
+        User: { user },
+        User: { UnitIdUnit },
+      }) => ({
+        idCredential,
+        name,
+        UserIdUser,
+        idUser,
+        nameUser,
+        emailUser,
+        user,
+        UnitIdUnit: (
+          await getUnitSearchID(UnitIdUnit)
+        ).map(({ idUnit, nameUnit }) => ({ idUnit, nameUnit })),
+      })
+    )
+  );
+};
 
 const delCredential = async (idCredential) => {
   const deleteCredential = await Credential.findOne({
