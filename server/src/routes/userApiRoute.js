@@ -9,7 +9,7 @@ const {
 
 const userApiRouter = Router();
 // userApiRouter.post("/", postUserApi);
-// userApiRouter.get("/:idUserApi", getUserApiId);
+userApiRouter.get("/:idUserApi", getUserApiId);
 userApiRouter.get("/", getUserApiName)
 // userApiRouter.put("/", putUserApi);
 // userApiRouter.delete("/:idUserApi", deleteUserApi);

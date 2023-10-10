@@ -2,6 +2,7 @@
 import { ButtonAccept } from "../../../Components/ButtonAccept";
 import EquipmentData from "../../../Components/EquipmentData/EquipmentData";
 import CredentialData from "../../../Components/CredentialData/CredentialData";
+import ServerPublic from "../../../Components/PublicServer/ServerPublic";
 
 // HOOK'S
 import { useState, useEffect } from "react";
@@ -71,18 +72,7 @@ const FormHigh = () => {
 
   return (
     <>
-      <p>1.- Datos del sevidor publico</p>
-      <label htmlFor="fecha">Fecha de inicio:</label>
-      <input type="date" id="fecha" name="dateStart" onChange={handleChange} />
-      <label htmlFor="idUserApi">Usuario</label>
-      <select name="idUserApi" onChange={handleChange}>
-        <option> </option>
-        {selectorUserApi.map(({ idUser, name }, index) => (
-          <option key={index} value={idUser}>
-            {name}
-          </option>
-        ))}
-      </select>
+      <ServerPublic />
       <EquipmentData />
       <CredentialData />
       {!errors.name && (
