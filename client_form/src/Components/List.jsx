@@ -12,6 +12,8 @@ const List = ({
   idUnit,
   name,
   nameUser,
+  nameUnit,
+  Unit,
   emailUser,
   user,
   idUser,
@@ -41,6 +43,7 @@ const List = ({
             {nameUser && <td>{nameUser}</td>}
             {emailUser && <td>{emailUser}</td>}
             {nroIdentification && <td>{nroIdentification}</td>}
+            {nameUnit && <td>{nameUnit}</td>}
             {phone && <td>{phone}</td>}
             {email && <td>{email}</td>}
             {charge && <td>{charge}</td>}
