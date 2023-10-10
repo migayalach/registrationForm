@@ -1,4 +1,4 @@
-// 5 de octubre - nuevo
+x// 5 de octubre - nuevo
 const { UserApi } = require("../database/database");
 const { Op } = require("sequelize");
 const {

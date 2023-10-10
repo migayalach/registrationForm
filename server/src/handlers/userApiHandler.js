@@ -89,7 +89,7 @@
 const SUCCESS = 200;
 const ERROR = 400;
 
-const { getAllUserApi, getUserApiDataId } = require("../controllers/userApiController");
+const { getAllUserApi  } = require("../controllers/userApiController");
 
 const getUserApiName = async (request, response) => {
   try {
