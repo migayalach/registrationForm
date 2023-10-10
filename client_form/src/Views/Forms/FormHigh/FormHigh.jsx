@@ -1,5 +1,7 @@
 // COMPONET'S
 import { ButtonAccept } from "../../../Components/ButtonAccept";
+import EquipmentData from "../../../Components/EquipmentData/EquipmentData";
+import CredentialData from "../../../Components/CredentialData/CredentialData";
 
 // HOOK'S
 import { useState, useEffect } from "react";
@@ -39,13 +41,15 @@ const FormHigh = () => {
 
   useEffect(() => {
     dispatch(getAllUserApi());
-    dispatch(getAllEquipment());
+    // dispatch(getAllEquipment());
     dispatch(getAllCredential());
     dispatch(getAllProcedures());
     dispatch(getAllState());
   }, []);
 
   const [errors, setErrors] = useState({});
+
+  const [addequipment, setEquipment] = useState([]);
 
   const handleChange = (event) => {
     setUserData({
@@ -54,17 +58,21 @@ const FormHigh = () => {
     });
     // setErrors(
     //   validationUser({ ...userData, [event.target.name]: event.target.value })
-    // );
+    // );handleResta
+  };
+
+  const handleAddEquipment = () => {
+    alert("agregando");
   };
 
   const handleAccept = (event) => {
     dispatch(postForm(userData));
-    event.preventDefault();
   };
 
   return (
-    <form>
-      <label htmlFor="fecha">Fecha:</label>
+    <>
+      <p>1.- Datos del sevidor publico</p>
+      <label htmlFor="fecha">Fecha de inicio:</label>
       <input type="date" id="fecha" name="dateStart" onChange={handleChange} />
       <label htmlFor="idUserApi">Usuario</label>
       <select name="idUserApi" onChange={handleChange}>
@@ -75,47 +83,12 @@ const FormHigh = () => {
           </option>
         ))}
       </select>
-      <label htmlFor="idEquipment">Equipo</label>
-      <select name="idEquipment" onChange={handleChange}>
-        <option> </option>
-        {selectorEquipment.map(({ idEquipment, name }, index) => (
-          <option key={index} value={idEquipment}>
-            {name}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="idCredential">Credencial</label>
-      <select name="idCredential" onChange={handleChange}>
-        <option> </option>
-        {selectorCredential.map(({ idCredential, name }, index) => (
-          <option key={index} value={idCredential}>
-            {name}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="idProcedures">Procedimientos</label>
-      <select name="idProcedures" onChange={handleChange}>
-        <option> </option>
-        {selectorProcedures.map(({ idProcedures, name }, index) => (
-          <option key={index} value={idProcedures}>
-            {name}
-            {idProcedures}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="idState">Estado</label>
-      <select name="idState" onChange={handleChange}>
-        <option> </option>
-        {selectorState.map(({ idState, name }, index) => (
-          <option key={index} value={idState}>
-            {name}
-          </option>
-        ))}
-      </select>
+      <EquipmentData />
+      <CredentialData />
       {!errors.name && (
         <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
       )}{" "}
-    </form>
+    </>
   );
 };
 
