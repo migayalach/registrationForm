@@ -14,7 +14,6 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -33,6 +32,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
             idCredential,
             name,
             nameUser,
+            nameUnit,
             emailUser,
             user,
             nroIdentification,
@@ -53,6 +53,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
               idCredential={idCredential}
               name={name}
               nameUser={nameUser}
+              nameUnit={nameUnit}
               emailUser={emailUser}
               user={user}
               idUser={idUser}
