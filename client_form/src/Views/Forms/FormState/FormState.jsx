@@ -12,7 +12,7 @@ import { addState } from "../../../Redux/actions";
 import { validationName } from "../../../Validations/validationName";
 
 // STYLESHEET'S
-import "./form-state.css";
+import styles from './FormState.module.css'; 
 
 const FormState = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,8 @@ const FormState = () => {
   };
 
   return (
-    <form className="form-component">
+    <form>
+      <div>
       <label htmlFor="nombre">Nombre: </label>
       <input
         type="text"
@@ -48,11 +49,19 @@ const FormState = () => {
         name="name"
         onChange={handleChange}
       />
-      {errors.name && <p className="error">{errors.name}</p>}
-      {!errors.name && (
-        <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
-      )}
+      </div>
+      {errors.name && <p >{errors.name}</p>}
+      <div className={styles['button-container']}>
+        <button
+          className={styles['button-accept']}
+          onClick={handleAccept}
+        >
+          Aceptar
+        </button>
+      </div>
     </form>
+
+    
   );
 };
 

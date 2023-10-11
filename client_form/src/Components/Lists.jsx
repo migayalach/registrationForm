@@ -20,7 +20,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
   
   return (
     <>
-      <h1>Lista de {text}</h1>
+      <h1>Lista de {text}:</h1>
       {currentItems.map(
         (
           {

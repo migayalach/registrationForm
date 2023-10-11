@@ -1,0 +1,11 @@
+.buttonContainer{
+    display: flex;  
+
+}
+.buttonCrear{
+    display: flex;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: 35px;
+
+}

@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <div className={styles["navbar-container"]}>
       <NavLink to="/home">
-      <FontAwesomeIcon icon="fa-solid fa-house" className={styles.icon}/>Home
+      <FontAwesomeIcon icon="fa-solid fa-house" className={styles.icon}/> Home
       </NavLink>
       <NavLink to="/state">
       <FontAwesomeIcon icon="fa-brands fa-medium" className={styles.icon}/>Estados

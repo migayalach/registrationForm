@@ -1,8 +1,6 @@
-// COMPONET'S
-
-// HOOK'S
-
-// STYLESHEET'S
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './List.module.css'; // Importa las clases de estilo
 
 const List = ({
   index,
@@ -28,18 +26,18 @@ const List = ({
 }) => {
   return (
     <>
-      <table border={1}>
+      <table className={styles.table}>
         <tbody>
           <tr>
-            <td>{index}</td>
-            {idState && <td>{idState}</td>}
+            <td className={styles.smallCell}>{index}</td>
+            {idState && <td className={styles.smallCell}>{idState}</td>}
             {idProcedures && <td>{idProcedures}</td>}
             {idEquipment && <td>{idEquipment}</td>}
             {idUnit && <td>{idUnit}</td>}
             {idUser && <td>{idUser}</td>}
             {idCredential && <td>{idCredential}</td>}
-            {name && <td>{name}</td>}
-            {user && <td>{user}</td>}
+            {name && <td className={styles.largeCell}>{name}</td>}
+            {user && <td className={styles.smallCell}>{user}</td>}
             {nameUser && <td>{nameUser}</td>}
             {emailUser && <td>{emailUser}</td>}
             {nroIdentification && <td>{nroIdentification}</td>}
@@ -47,14 +45,14 @@ const List = ({
             {phone && <td>{phone}</td>}
             {email && <td>{email}</td>}
             {charge && <td>{charge}</td>}
-            <td>
-              <button>Ver</button>
+            <td className={styles.smallCell}>
+              <button className={styles['icon-button']}><FontAwesomeIcon icon="fa-solid fa-eye"/></button>
             </td>
-            <td>
-              <button>Editar</button>
+            <td className={styles.smallCell}>
+              <button className={styles['icon-button']}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#0055ff",}} /></button>
             </td>
-            <td>
-              <button>Eliminar</button>
+            <td className={styles.smallCell}>
+              <button className={styles['icon-button']}><FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#ff0000",}}/></button>
             </td>
           </tr>
         </tbody>
