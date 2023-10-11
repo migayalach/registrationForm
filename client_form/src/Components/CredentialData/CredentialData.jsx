@@ -4,8 +4,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+// JAVASCRIP
+
 // REDUX
 import { getAllCredential } from "../../Redux/actions";
+
+// STYLESHEET'S
+
 
 const CredentialData = () => {
   const dispatch = useDispatch();
@@ -29,7 +34,10 @@ const CredentialData = () => {
             </option>
           ))}
         </select>
-        <button onClick={() => handleRemoveCredential(newIndex)}>X</button>
+        <input type="checkbox" name="" id="" />
+        <button type="button" onClick={() => handleRemoveCredential(newIndex)}>
+          X
+        </button>
       </div>
     );
     setCredentialFields([...credentialFields, newCredentialField]);
@@ -48,7 +56,9 @@ const CredentialData = () => {
       {credentialFields.map((field, index) => (
         <div key={index}>{field}</div>
       ))}
-      <button onClick={handleAddCredential}>Agregar nuevas credenciales</button>
+      <button type="button" onClick={handleAddCredential}>
+        Agregar nuevas credenciales
+      </button>
     </>
   );
 };
