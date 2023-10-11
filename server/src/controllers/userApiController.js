@@ -67,6 +67,18 @@ const updateUserApi = async (
   return await getUserApiDataId(idUser);
 };
 
+const getUserApiDataId = async (idUser) => {
+  const userInfo = await UserApi.findAll({
+    where: {
+      idUser,
+    },
+  });
+  if (userInfo.length > 0) {
+    return clearResponseOne(userInfo[0].dataValues);
+  }
+  return await getAllUserApi();
+};
+
 const deleteDataUserApi = async (idUser) => {
   const existsUser = await UserApi.findOne({
     where: { idUser },
@@ -96,6 +108,7 @@ const deleteDataUserApi = async (idUser) => {
 module.exports = {
   createUserApi,
   getAllUserApi,
+  getUserApiDataId,
   updateUserApi,
   deleteDataUserApi,
 };

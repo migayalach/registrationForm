@@ -89,7 +89,7 @@
 const SUCCESS = 200;
 const ERROR = 400;
 
-const { getAllUserApi  } = require("../controllers/userApiController");
+const { getAllUserApi, getUserApiDataId  } = require("../controllers/userApiController");
 
 const getUserApiName = async (request, response) => {
   try {
@@ -113,4 +113,5 @@ const getUserApiId = async (request, response) => {
 module.exports = {
   getUserApiName,
   getUserApiId,
+  
 };
