@@ -11,15 +11,20 @@ import { getAllEquipment } from "../../Redux/actions";
 
 // STYLESHEET'S
 
-const EquipmentData = () => {
+const EquipmentData = ({ onDataUserApiChange }) => {
   const dispatch = useDispatch();
   const selectorEquipment = useSelector((state) => state.equipment);
+  const [data, setData] = useState({
+    
+  })
 
   useEffect(() => {
     dispatch(getAllEquipment());
   }, []);
 
   const [equipmentFields, setEquipmentFields] = useState([]);
+  
+  console.log(equipmentFields);
 
   const handleAddEquipment = () => {
     const newIndex = equipmentFields.length + 1;
@@ -40,7 +45,9 @@ const EquipmentData = () => {
         <input type="text" />
         <label htmlFor="">Etiqueta de control: </label>
         <input type="checkbox" name="" id="" />
-        <button onClick={() => handleRemoveEquipment(newIndex)}>X</button>
+        <button type="button" onClick={() => handleRemoveEquipment(newIndex)}>
+          X
+        </button>
       </div>
     );
     setEquipmentFields([...equipmentFields, newEquipmentField]);
@@ -53,13 +60,17 @@ const EquipmentData = () => {
     setEquipmentFields(updatedFields);
   };
 
+  console.log(equipmentFields);
+
   return (
     <>
       <p>2.- Equipos de computación</p>
       {equipmentFields.map((field, index) => (
         <div key={index}>{field}</div>
       ))}
-      <button onClick={handleAddEquipment}>Agregar nuevos equipos</button>
+      <button type="button" onClick={handleAddEquipment}>
+        Agregar nuevos equipos
+      </button>
     </>
   );
 };

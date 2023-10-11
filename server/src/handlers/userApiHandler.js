@@ -89,7 +89,7 @@
 const SUCCESS = 200;
 const ERROR = 400;
 
-const { getAllUserApi } = require("../controllers/userApiController");
+const { getAllUserApi, getUserApiDataId  } = require("../controllers/userApiController");
 
 const getUserApiName = async (request, response) => {
   try {
@@ -100,6 +100,18 @@ const getUserApiName = async (request, response) => {
   }
 };
 
+const getUserApiId = async (request, response) => {
+  const { idUserApi } = request.params;
+  try {
+    const getUser = await getUserApiDataId(idUserApi);
+    response.status(SUCCESS).json(getUser);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getUserApiName,
+  getUserApiId,
+  
 };

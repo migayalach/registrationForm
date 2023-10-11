@@ -10,6 +10,7 @@ import {
   GET_AREA,
   ADD_AREA,
   GET_USER_API,
+  GET_USER_API_ID,
   ADD_EQUIPMENT,
   GET_EQUIPMENT,
   ADD_USER,
@@ -81,6 +82,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userApi: payload,
+        errors: null,
+      };
+
+    case GET_USER_API_ID:
+      return {
+        ...state,
+        aux: [payload],
         errors: null,
       };
 
