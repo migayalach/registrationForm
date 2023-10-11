@@ -7,28 +7,31 @@ import { useSelector, useDispatch } from "react-redux";
 // JAVASCRIP
 
 // REDUX
-import { getAllUserApi } from "../../Redux/actions";
+import { getAllUserApi, getUserApiId } from "../../Redux/actions";
+
 // STYLESHEET'S
 
-const ServerPublic = () => {
+const ServerPublic = ({ onDataUserApiChange }) => {
   const dispatch = useDispatch();
   const selectorUserApi = useSelector((state) => state.userApi);
+  const selectorUserIdApi = useSelector((state) => state.aux);
 
   const [dataUserApi, setDataUserApi] = useState([]);
 
   useEffect(() => {
     dispatch(getAllUserApi());
   }, []);
+  
+  useEffect(() => {
+    if (selectorUserIdApi.length > 0) {
+      setDataUserApi(selectorUserIdApi);
+      onDataUserApiChange(selectorUserIdApi);
+    }
+  }, [selectorUserIdApi]);
 
   const handleChange = (event) => {
-    console.log(event.target.value);
-    // setUserData({
-    //   ...userData,
-    //   [event.target.name]: event.target.value,
-    // });
-    // setErrors(
-    //   validationUser({ ...userData, [event.target.name]: event.target.value })
-    // );handleResta
+    const idUserApi = event.target.value;
+    dispatch(getUserApiId(idUserApi));
   };
 
   return (
@@ -44,6 +47,15 @@ const ServerPublic = () => {
         ))}
       </select>
 
+      <label htmlFor="cargo">Cargo: </label>
+      {dataUserApi.length > 0 ? (
+        dataUserApi.map(({ charge }, index) => (
+          <input key={index} type="text" value={charge} readOnly />
+        ))
+      ) : (
+        <input type="text" readOnly />
+      )}
+
       <label htmlFor="fecha">Fecha de inicio:</label>
       <input type="date" id="fecha" name="dateStart" onChange={handleChange} />
       <label htmlFor="fecha">Fecha de archivo:</label>
@@ -53,3 +65,16 @@ const ServerPublic = () => {
 };
 
 export default ServerPublic;
+
+// const handleChange = (event) => {
+//   const idUserApi = event.target.value;
+//   dispatch(getUserApiId(idUserApi));
+
+//   // setUserData({
+//   //   ...userData,
+//   //   [event.target.name]: event.target.value,
+//   // });
+//   // setErrors(
+//   //   validationUser({ ...userData, [event.target.name]: event.target.value })
+//   // );handleResta
+// };
