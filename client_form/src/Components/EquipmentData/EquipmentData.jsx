@@ -131,6 +131,8 @@ const EquipmentData = ({ onDataUserApiChange }) => {
           onChange={(event) => handleChange2(event)}
         />
       </div>
+      <span>¿Esta seguro de esta información?: </span>
+      <input type="checkbox" onChange={(event) => handleChange2(event)} />
     </>
   );
 };

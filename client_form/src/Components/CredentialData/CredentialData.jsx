@@ -46,7 +46,7 @@ const CredentialData = ({ onDataUserApiChange }) => {
       ...data,
       [event.target.name]: newData.check,
     });
-    
+
     onDataUserApiChange({
       dataSend,
     });
@@ -262,6 +262,8 @@ const CredentialData = ({ onDataUserApiChange }) => {
           />
         </div>
       ) : null}
+      <span>¿Esta seguro de esta información?: </span>
+      <input type="checkbox" onChange={(event) => handleChage(event)} />
     </>
   );
 };
