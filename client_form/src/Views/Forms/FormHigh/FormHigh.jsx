@@ -20,7 +20,6 @@ const FormHigh = () => {
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({});
-
   const [errors, setErrors] = useState({});
 
   const handleAccept = (event) => {
@@ -28,17 +27,25 @@ const FormHigh = () => {
     alert("envio");
   };
 
-  const handleUserDataChange = (data) => {
-    setUserData(data);
+  // Define un estado para almacenar los datos combinados
+  const [combinedData, setCombinedData] = useState({});
+
+  // Función para combinar los datos de los componentes hijos
+  const combineUserData = (data) => {
+    setCombinedData((prevData) => {
+      return {
+        ...prevData,
+        ...data,
+      };
+    });
   };
 
-  // console.log(userData);
-
+  // console.log(combinedData);
   return (
     <form>
-      <ServerPublic onDataUserApiChange={handleUserDataChange} />
-      <EquipmentData onDataUserApiChange={handleUserDataChange} />
-      <CredentialData onDataUserApiChange={handleUserDataChange} />
+      <ServerPublic onDataUserApiChange={combineUserData} />
+      <EquipmentData onDataUserApiChange={combineUserData} />
+      <CredentialData onDataUserApiChange={combineUserData} />
       {!errors.name && (
         <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
       )}{" "}
@@ -46,14 +53,4 @@ const FormHigh = () => {
   );
 };
 
-export default FormHigh;
-
-// const handleChange = (event) => {
-//   setUserData({
-//     ...userData,
-//     [event.target.name]: event.target.value,
-//   });
-//   // setErrors(
-//   //   validationUser({ ...userData, [event.target.name]: event.target.value })
-//   // );handleResta
-// };
+export default FormHigh
