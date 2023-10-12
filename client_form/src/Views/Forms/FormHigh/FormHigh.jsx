@@ -40,7 +40,7 @@ const FormHigh = () => {
     });
   };
 
-  // console.log(combinedData);
+  console.log(combinedData);
   return (
     <form>
       <ServerPublic onDataUserApiChange={combineUserData} />
