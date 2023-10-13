@@ -1,17 +1,20 @@
 const { DataTypes } = require("sequelize");
+
 module.exports = (sequelize) => {
   sequelize.define(
-    "Equipment",
+    "FormEquipment",
     {
-      idEquipment: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        unique: true,
-      },
-      name: {
+      ip: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      host: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      control: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     {
