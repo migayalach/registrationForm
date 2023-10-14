@@ -8,23 +8,21 @@ import ServerPublic from "../../../Components/PublicServer/ServerPublic";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-// JAVASCRIP
-
 // REDUX
-import { postForm } from "../../../Redux/actions";
+import { postForm, getAllProcedures } from "../../../Redux/actions";
+
+// JAVASCRIP
 
 // STYLESHEET'S
 import "./form-high.css";
 
 const FormHigh = () => {
   const dispatch = useDispatch();
-
-  const [userData, setUserData] = useState({});
   const [errors, setErrors] = useState({});
 
   const handleAccept = (event) => {
-    // dispatch(postForm(userData));
-    alert("envio");
+    dispatch(postForm({ ...combinedData, name: "alta" }));
+    event.preventDefault();
   };
 
   // Define un estado para almacenar los datos combinados
@@ -40,7 +38,10 @@ const FormHigh = () => {
     });
   };
 
-  console.log(combinedData);
+  useEffect(() => {
+    dispatch(getAllProcedures());
+  }, []);
+
   return (
     <form>
       <ServerPublic onDataUserApiChange={combineUserData} />
@@ -53,4 +54,4 @@ const FormHigh = () => {
   );
 };
 
-export default FormHigh
+export default FormHigh;
