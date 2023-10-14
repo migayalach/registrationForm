@@ -18,11 +18,13 @@ import "./form-high.css";
 
 const FormHigh = () => {
   const dispatch = useDispatch();
+
+  const [userData, setUserData] = useState({});
   const [errors, setErrors] = useState({});
 
   const handleAccept = (event) => {
-    dispatch(postForm({ ...combinedData, name: "alta" }));
-    event.preventDefault();
+    // dispatch(postForm(userData));
+    alert("envio");
   };
 
   // Define un estado para almacenar los datos combinados
@@ -32,24 +34,20 @@ const FormHigh = () => {
   const combineUserData = (data) => {
     setCombinedData((prevData) => {
       return {
-        ...prevData,
+        ...prevData, 
         ...data,
       };
     });
   };
 
-  useEffect(() => {
-    dispatch(getAllProcedures());
-  }, []);
-
+  console.log(combinedData);
   return (
     <form>
       <ServerPublic onDataUserApiChange={combineUserData} />
       <EquipmentData onDataUserApiChange={combineUserData} />
       <CredentialData onDataUserApiChange={combineUserData} />
-      {!errors.name && (
-        <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
-      )}{" "}
+
+      <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
     </form>
   );
 };
