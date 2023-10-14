@@ -65,16 +65,3 @@ const ServerPublic = ({ onDataUserApiChange }) => {
 };
 
 export default ServerPublic;
-
-// const handleChange = (event) => {
-//   const idUserApi = event.target.value;
-//   dispatch(getUserApiId(idUserApi));
-
-//   // setUserData({
-//   //   ...userData,
-//   //   [event.target.name]: event.target.value,
-//   // });
-//   // setErrors(
-//   //   validationUser({ ...userData, [event.target.name]: event.target.value })
-//   // );handleResta
-// };
