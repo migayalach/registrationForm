@@ -8,10 +8,10 @@ import ServerPublic from "../../../Components/PublicServer/ServerPublic";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-// JAVASCRIP
-
 // REDUX
-import { postForm } from "../../../Redux/actions";
+import { postForm, getAllProcedures } from "../../../Redux/actions";
+
+// JAVASCRIP
 
 // STYLESHEET'S
 import "./form-high.css";
@@ -34,7 +34,7 @@ const FormHigh = () => {
   const combineUserData = (data) => {
     setCombinedData((prevData) => {
       return {
-        ...prevData,
+        ...prevData, 
         ...data,
       };
     });
@@ -46,11 +46,10 @@ const FormHigh = () => {
       <ServerPublic onDataUserApiChange={combineUserData} />
       <EquipmentData onDataUserApiChange={combineUserData} />
       <CredentialData onDataUserApiChange={combineUserData} />
-      {!errors.name && (
-        <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
-      )}{" "}
+
+      <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
     </form>
   );
 };
 
-export default FormHigh
+export default FormHigh;
