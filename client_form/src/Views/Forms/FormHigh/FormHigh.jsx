@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { postForm, getAllProcedures } from "../../../Redux/actions";
 
 // JAVASCRIP
+import { clearDataHigh } from "../../../Utils/clearFunctions";
 
 // STYLESHEET'S
 import "./form-high.css";
@@ -21,7 +22,7 @@ const FormHigh = () => {
   const [errors, setErrors] = useState({});
 
   const handleAccept = (event) => {
-    dispatch(postForm({ ...combinedData, name: "alta" }));
+    dispatch(postForm(clearDataHigh(combinedData)));
     event.preventDefault();
   };
 
