@@ -10,7 +10,7 @@ export const clearDataHigh = (data) => {
     idUser: data[0]?.idUser,
     idState: parseInt(data.idState),
     nameProcedures: "alta",
-    credendial: data.dataSend,
+    credential: data.dataSend,
     equipment: clearArray([
       data.equipment.idEquipment ? data.equipment : null,
       data.equipment2.idEquipment ? data.equipment2 : null,
