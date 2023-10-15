@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "FormCredential",
     {
-      controlCredential: {
+      checkCredential: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
