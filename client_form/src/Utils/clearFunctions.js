@@ -4,13 +4,13 @@ export const clearName = (data) =>
     name: nameUnit,
   }));
 
-
 // LIMPIEZA FORM HIGH
 export const clearDataHigh = (data) => {
   const obj = {
     idUser: data[0]?.idUser,
-    name: "alta",
-    credendia: data.dataSend,
+    idState: parseInt(data.idState),
+    nameProcedures: "alta",
+    credendial: data.dataSend,
     equipment: clearArray([
       data.equipment.idEquipment ? data.equipment : null,
       data.equipment2.idEquipment ? data.equipment2 : null,
