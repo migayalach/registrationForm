@@ -227,7 +227,7 @@ export const getAllCredential = () => {
 };
 
 export const postForm = (form) => {
-  console.log(form);
+  // console.log(form);
   return async function (dispatch) {
     const createForm = await axios.post(`${URL}/form`, form);
     try {
