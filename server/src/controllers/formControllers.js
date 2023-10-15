@@ -4,31 +4,66 @@ const {
   State,
   Equipment,
   Credential,
+  FormEquipment,
+  FormCredential,
   Form,
 } = require("../database/database");
 
+const { Op } = require("sequelize");
+
 const createForm = async (
-  dateStart,
-  idEquipment,
-  idUserApi,
+  idUser,
   idState,
-  idProcedures,
-  idCredential
+  nameProcedures,
+  equipment,
+  credential
 ) => {
-  const createForm = await Form.create({
-    dateStart,
+  const { idProcedures } = await Procedures.findOne({
+    where: {
+      name: {
+        [Op.iLike]: `${nameProcedures}`,
+      },
+    },
   });
-  const createEquipment = await Equipment.findByPk(idEquipment);
-  const createUserApi = await UserApi.findByPk(idUserApi);
+  if (!idProcedures) {
+    throw Error(`No existe este procedimiento`);
+  }
+
+  const createForm = await Form.create({
+    dateStart: new Date(),
+  });
+
+  const createUserApi = await UserApi.findByPk(idUser);
   const createState = await State.findByPk(idState);
   const createProcedures = await Procedures.findByPk(idProcedures);
-  const createCredential = await Credential.findByPk(idCredential);
-
-  await createForm.addEquipment(createEquipment);
   await createForm.addUserApi(createUserApi);
   await createForm.addState(createState);
   await createForm.addProcedures(createProcedures);
-  await createForm.addCredential(createCredential);
+  
+  for (const credentialData of credential) {
+    console.log(credentialData.idCredential);
+    const createCredential = await Credential.findByPk(
+      credentialData.idCredential
+    );
+    if (createCredential) {
+      await FormCredential.create({
+        checkCredential: credentialData.check,
+      });
+      await createForm.addCredential(createCredential);
+    }
+  }
+
+  for (const equipmentData of equipment) {
+    const createEquipment = await Equipment.findByPk(equipmentData.idEquipment);
+    if (createEquipment) {
+      await FormEquipment.create({
+        ip: equipmentData.direccionIP,
+        host: equipmentData.host,
+        control: equipmentData.etiquetaControl,
+      });
+      await createForm.addEquipment(createEquipment);
+    }
+  }
 
   return createForm;
 };
