@@ -73,8 +73,10 @@ Form.belongsToMany(Equipment, {
 
 Form.belongsToMany(UserApi, { through: "FormUserApi", timestamps: false });
 UserApi.belongsToMany(Form, { through: "FormUserApi", timestamps: false });
+
 Form.belongsToMany(State, { through: "FormState", timestamps: false });
 State.belongsToMany(Form, { through: "FormState", timestamps: false });
+
 Form.belongsToMany(Procedures, {
   through: "FormProcedures",
   timestamps: false,

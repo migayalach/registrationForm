@@ -9,11 +9,6 @@ module.exports = (sequelize) => {
         primaryKey: true,
         unique: true,
       },
-      // dateStart: {
-      //   type: DataTypes.STRING,
-      //   // defaultValue: DataTypes.NOW,
-      //   allowNull: false,
-      // },
       dateStart: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
@@ -22,7 +17,7 @@ module.exports = (sequelize) => {
       dateEnd: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
