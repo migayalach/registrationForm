@@ -1,6 +1,6 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './List.module.css'; // Importa las clases de estilo
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "./List.module.css"; // Importa las clases de estilo
 
 const List = ({
   index,
@@ -8,6 +8,9 @@ const List = ({
   idProcedures,
   idEquipment,
   idUnit,
+  idForm,
+  dateStart,
+  procedures,
   name,
   nameUser,
   nameUnit,
@@ -36,6 +39,9 @@ const List = ({
             {idUnit && <td>{idUnit}</td>}
             {idUser && <td>{idUser}</td>}
             {idCredential && <td>{idCredential}</td>}
+            {idForm && <td>{idForm}</td>}
+            {dateStart && <td>{dateStart.substring(0, 10)}</td>}
+            {procedures && <td>{procedures}</td>}
             {name && <td className={styles.largeCell}>{name}</td>}
             {user && <td className={styles.smallCell}>{user}</td>}
             {nameUser && <td>{nameUser}</td>}
@@ -46,13 +52,25 @@ const List = ({
             {email && <td>{email}</td>}
             {charge && <td>{charge}</td>}
             <td className={styles.smallCell}>
-              <button className={styles['icon-button']}><FontAwesomeIcon icon="fa-solid fa-eye"/></button>
+              <button className={styles["icon-button"]}>
+                <FontAwesomeIcon icon="fa-solid fa-eye" />
+              </button>
             </td>
             <td className={styles.smallCell}>
-              <button className={styles['icon-button']}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#0055ff",}} /></button>
+              <button className={styles["icon-button"]}>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-pen"
+                  style={{ color: "#0055ff" }}
+                />
+              </button>
             </td>
             <td className={styles.smallCell}>
-              <button className={styles['icon-button']}><FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#ff0000",}}/></button>
+              <button className={styles["icon-button"]}>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-trash"
+                  style={{ color: "#ff0000" }}
+                />
+              </button>
             </td>
           </tr>
         </tbody>
