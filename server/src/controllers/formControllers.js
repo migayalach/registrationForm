@@ -29,42 +29,46 @@ const createForm = async (
     throw Error(`No existe este procedimiento`);
   }
 
-  const createForm = await Form.create({
-    dateStart: new Date(),
-  });
-
   const createUserApi = await UserApi.findByPk(idUser);
   const createState = await State.findByPk(idState);
-  const createProcedures = await Procedures.findByPk(idProcedures);
-  await createForm.addUserApi(createUserApi);
-  await createForm.addState(createState);
-  await createForm.addProcedures(createProcedures);
-  
-  for (const credentialData of credential) {
-    console.log(credentialData.idCredential);
-    const createCredential = await Credential.findByPk(
-      credentialData.idCredential
-    );
-    if (createCredential) {
-      await FormCredential.create({
-        checkCredential: credentialData.check,
-      });
-      await createForm.addCredential(createCredential);
-    }
+  const procedures = await Procedures.findByPk(idProcedures);
+  const createCredential = await Promise.all(
+    credential.map(async ({ idCredential }) => {
+      return await Credential.findByPk(idCredential);
+    })
+  );
+  const createEquipment = await Promise.all(
+    equipment.map(async ({ idEquipment }) => {
+      return await Equipment.findByPk(idEquipment);
+    })
+  );
+
+  if (
+    !procedures ||
+    !createUserApi ||
+    !createState ||
+    !createEquipment.length ||
+    !createCredential.length
+  ) {
+    throw Error(`Faltan datos`);
   }
 
-  for (const equipmentData of equipment) {
-    const createEquipment = await Equipment.findByPk(equipmentData.idEquipment);
-    if (createEquipment) {
-      await FormEquipment.create({
-        ip: equipmentData.direccionIP,
-        host: equipmentData.host,
-        control: equipmentData.etiquetaControl,
-      });
-      await createForm.addEquipment(createEquipment);
-    }
-  }
-
+  const createForm = await Form.create({ dateStart: new Date() });
+  await createForm.addUserApi(idUser);
+  await createForm.addState(idState);
+  await createForm.addProcedures(idProcedures);
+  // CREAR
+  await Promise.all(
+    credential.map(async ({ idCredential }) => {
+      return await createForm.addCredential(idCredential);
+    })
+  );
+  await Promise.all(
+    equipment.map(async ({ idEquipment }) => {
+      return createForm.addEquipment(idEquipment);
+    })
+  );
+  // ACA DEBE IR EL EDITAR PARA AGREGAR LOS DATOS QUE IGNORO SEQUELIZE
   return createForm;
 };
 

@@ -16,8 +16,10 @@ const EquipmentData = ({ onDataUserApiChange }) => {
   const selectorEquipment = useSelector((state) => state.equipment);
   const [equipment, setEquipment] = useState({
     idEquipment: "",
-    host: "",
-    direccionIP: "",
+    //CORREGIR EL ENVIO
+    dataHos: "252",
+    dataP: "1",
+    //"-------------"
     etiquetaControl: false,
   });
 
@@ -40,8 +42,11 @@ const EquipmentData = ({ onDataUserApiChange }) => {
   const selectorEquipment2 = useSelector((state) => state.equipment);
   const [equipment2, setEquipment2] = useState({
     idEquipment: "",
-    host: "",
-    direccionIP: "",
+    //CORREGIR EL ENVIO
+    dataHos: "222",
+    dataP: "2",
+    //"-------------"
+
     etiquetaControl: false,
   });
 
