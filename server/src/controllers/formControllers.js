@@ -110,3 +110,6 @@ module.exports = {
   updateForm,
   delFomr,
 };
+
+
+//ahora sigue get
