@@ -62,11 +62,11 @@ Credential.belongsToMany(Form, {
   timestamps: false,
 });
 
-Equipment.belongsToMany(Form, {
+Form.belongsToMany(Equipment, {
   through: FormEquipment,
   timestamps: false,
 });
-Form.belongsToMany(Equipment, {
+Equipment.belongsToMany(Form, {
   through: FormEquipment,
   timestamps: false,
 });
