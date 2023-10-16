@@ -11,12 +11,10 @@ module.exports = (sequelize) => {
       },
       dateStart: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
       dateEnd: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
         allowNull: true,
       },
     },
