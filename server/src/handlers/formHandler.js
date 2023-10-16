@@ -57,7 +57,7 @@ const postForm = async (request, response) => {
     );
     response.status(SUCCESS).json({ create: true, resCreateForm });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ create: false, error: error.message });
   }
 };
 
