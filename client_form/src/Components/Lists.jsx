@@ -17,7 +17,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  
+
   return (
     <>
       <h1>Lista de {text}:</h1>
@@ -30,6 +30,9 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
             idUnit,
             idUser,
             idCredential,
+            idForm,
+            dateStart,
+            procedures,
             name,
             nameUser,
             nameUnit,
@@ -51,6 +54,9 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
               idEquipment={idEquipment}
               idUnit={idUnit}
               idCredential={idCredential}
+              idForm={idForm}
+              dateStart={dateStart}
+              procedures={procedures}
               name={name}
               nameUser={nameUser}
               nameUnit={nameUnit}
