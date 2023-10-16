@@ -73,26 +73,23 @@ const createForm = async (
 };
 
 const getSearchFormId = async (idForm) => {
-  return await Form.findOne({
+  const responseData = await Form.findOne({
     where: { idForm },
     include: [
       {
-        model: Equipment,
-      },
-      {
-        model: UserApi,
-      },
-      {
         model: State,
-      },
-      {
-        model: Procedures,
-      },
-      {
-        model: Credential,
+        attributes: ["name"],
       },
     ],
   });
+
+  return [
+    {
+      idForm: responseData.idForm,
+      dateStart: responseData.dateStart,
+      procedures: responseData.States[0].dataValues.name,
+    },
+  ];
 };
 
 const getSearchFormName = () => {};
@@ -110,6 +107,5 @@ module.exports = {
   updateForm,
   delFomr,
 };
-
 
 //ahora sigue get
