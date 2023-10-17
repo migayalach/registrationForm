@@ -10,6 +10,7 @@ const {
 } = require("../database/database");
 
 const { Op } = require("sequelize");
+const { nameClear } = require("../utils/formUser");
 
 const createForm = async (
   idUser,
@@ -102,13 +103,18 @@ const getAllForm = async () => {
         model: State,
         attributes: ["name"],
       },
+      {
+        model: UserApi,
+        attributes: ["name"],
+      },
     ],
   });
 
   const formsData = responseData.map((form) => ({
     idForm: form.idForm,
     dateStart: form.dateStart,
-    procedures: form.States[0].name,
+    procedures: form.States.name,
+    nameUser: nameClear(form.UserApis.map(({ name }) => name)),
   }));
 
   return formsData;
