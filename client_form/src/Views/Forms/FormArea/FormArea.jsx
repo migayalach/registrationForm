@@ -14,7 +14,8 @@ import { validationName } from "../../../Validations/validationName";
 // STYLESHEET'S
 import "./form-area.css";
 
-const FormArea = ({ id, name }) => {
+const FormArea = ({ id, name, data }) => {
+  console.log(data);
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
@@ -47,7 +48,7 @@ const FormArea = ({ id, name }) => {
         value={userData.name}
         name="name"
         onChange={handleChange}
-      />{id}-{name}---
+      />
       {errors.name && <p className="error">{errors.name}</p>}
       {!errors.name && (
         <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />

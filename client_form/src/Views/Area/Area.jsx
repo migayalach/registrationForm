@@ -4,7 +4,7 @@ import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
 
 // HOOK'S
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
@@ -15,9 +15,14 @@ import { getAllArea } from "../../Redux/actions";
 
 // STYLESHEET'S
 
-const Area = () => {
+const Area = ({ onEditData }) => {
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
+
+  const handleDataUpdate = (data) => {
+    setData(data);
+  };
 
   useEffect(() => {
     dispatch(getAllArea());
@@ -27,9 +32,13 @@ const Area = () => {
     <>
       <Filter />
       <hr />
-      <FormArea />
+      <FormArea data={data} />
       <hr />
-      <Lists items={clearName(selectorArea)} text={"Área"} />
+      <Lists
+        items={clearName(selectorArea)}
+        text={"Área"}
+        onEditData={handleDataUpdate}
+      />
     </>
   );
 };
