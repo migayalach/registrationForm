@@ -3,10 +3,10 @@ import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // REDUX
-import {addArea} from "../../../Redux/actions";
+import { addArea } from "../../../Redux/actions";
 
 // JAVASCRIP
 import { validationName } from "../../../Validations/validationName";
@@ -14,7 +14,7 @@ import { validationName } from "../../../Validations/validationName";
 // STYLESHEET'S
 import "./form-area.css";
 
-const FormArea = () => {
+const FormArea = ({ id, name }) => {
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
@@ -47,7 +47,7 @@ const FormArea = () => {
         value={userData.name}
         name="name"
         onChange={handleChange}
-      />
+      />{id}-{name}---
       {errors.name && <p className="error">{errors.name}</p>}
       {!errors.name && (
         <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
