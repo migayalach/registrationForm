@@ -1,13 +1,14 @@
 // COMPONET'S
 import List from "./List";
 import Pagination from "./Pagination/Pagination";
+import { ButtonEdit } from "../Components/ButtonEdit";
 
 // HOOK'S
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // STYLESHEET'S
 
-const Lists = ({ items, view, editState, deleteState, text }) => {
+const Lists = ({ items, text }) => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -66,10 +67,7 @@ const Lists = ({ items, view, editState, deleteState, text }) => {
               nroIdentification={nroIdentification}
               phone={phone}
               email={email}
-              charge={charge}
-              view={view}
-              edit={editState}
-              delete={deleteState}
+              // edit={<ButtonEdit id={idUnit} />}
             />
           );
         }

@@ -1,24 +1,64 @@
 import {
+  // AREA
+  ADD_AREA,
+  GET_AREA,
+  GET_AREA_ID,
+  UPDATE_AREA,
+  DELETE_AREA,
+
+  // EQUIPMENT
+  ADD_EQUIPMENT,
+  GET_EQUIPMENT,
+  GET_EQUIPMENT_ID,
+  UPDATE_EQUIPMENT,
+  DELETE_EQUIPMENT,
+
+  // USER API
+  ADD_USER_API,
+  GET_USER_API,
+  GET_USER_API_ID,
+  UPDATE_USER_API,
+  DELETE_USER_API,
+
+  // STATE
   ADD_STATE,
   GET_STATE,
   GET_STATE_ID,
   UPDATE_STATE,
   DELETE_STATE,
-  ERROR,
+
+  // PROCEDURES
   ADD_PROCEDURES,
   GET_PROCEDURES,
-  GET_AREA,
-  ADD_AREA,
-  GET_USER_API,
-  GET_USER_API_ID,
-  ADD_EQUIPMENT,
-  GET_EQUIPMENT,
+  GET_PROCEDURES_ID,
+  UPDATE_PROCEDURES,
+  DELETE_PROCEDURES,
+
+  // USER
   ADD_USER,
   GET_USER,
+  GET_USER_ID,
+  UPDATE_USER,
+  DELETE_USER,
+
+  // CREDENTIAL
   ADD_CREDENTIAL,
   GET_CREDENTIAL,
+  GET_CREDENTIAL_ID,
+  UPDATE_CREDENTIAL,
+  DELETE_CREDENTIAL,
+
+  // FORM
   ADD_FORM,
   GET_FORM,
+  GET_FORM_ID,
+  UPDATE_FORM,
+  DELETE_FORM,
+
+  // ERROR
+  ERROR,
+
+  // FILTROS
 } from "./actions-type";
 
 const initialState = {
@@ -75,6 +115,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         area: payload,
+        errors: null,
+      };
+
+    case GET_AREA_ID:
+      return {
+        ...state,
+        aux: payload,
         errors: null,
       };
 

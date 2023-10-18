@@ -1,26 +1,65 @@
 import axios from "axios";
 import {
+  // AREA
+  ADD_AREA,
+  GET_AREA,
+  GET_AREA_ID,
+  UPDATE_AREA,
+  DELETE_AREA,
+
+  // EQUIPMENT
+  ADD_EQUIPMENT,
+  GET_EQUIPMENT,
+  GET_EQUIPMENT_ID,
+  UPDATE_EQUIPMENT,
+  DELETE_EQUIPMENT,
+
+  // USER API
+  ADD_USER_API,
+  GET_USER_API,
+  GET_USER_API_ID,
+  UPDATE_USER_API,
+  DELETE_USER_API,
+
+  // STATE
   ADD_STATE,
   GET_STATE,
   GET_STATE_ID,
   UPDATE_STATE,
   DELETE_STATE,
-  ERROR,
-  ADD_EQUIPMENT,
-  GET_EQUIPMENT,
+
+  // PROCEDURES
   ADD_PROCEDURES,
   GET_PROCEDURES,
-  ADD_AREA,
-  GET_AREA,
-  ADD_USER_API,
-  GET_USER_API,
-  GET_USER_API_ID,
+  GET_PROCEDURES_ID,
+  UPDATE_PROCEDURES,
+  DELETE_PROCEDURES,
+
+  // USER
   ADD_USER,
   GET_USER,
+  GET_USER_ID,
+  UPDATE_USER,
+  DELETE_USER,
+
+  // CREDENTIAL
   ADD_CREDENTIAL,
   GET_CREDENTIAL,
+  GET_CREDENTIAL_ID,
+  UPDATE_CREDENTIAL,
+  DELETE_CREDENTIAL,
+
+  // FORM
   ADD_FORM,
   GET_FORM,
+  GET_FORM_ID,
+  UPDATE_FORM,
+  DELETE_FORM,
+
+  // ERROR
+  ERROR,
+
+  // FILTROS
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -98,6 +137,19 @@ export const addArea = (area) => {
         payload: error.message,
       });
     }
+  };
+};
+
+export const seachIdArea = (id) => {
+  return async function (dispatch) {
+    const infoArea = await axios.get(`${URL}/area/${id}`);
+    try {
+      const areaId = infoArea.data;
+      dispatch({
+        type: GET_AREA_ID,
+        payload: areaId,
+      });
+    } catch (error) {}
   };
 };
 
