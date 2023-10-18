@@ -1,3 +1,24 @@
+// AREA
+export const ADD_AREA = "ADD_AREA";
+export const GET_AREA = "GET_AREA";
+export const GET_AREA_ID = "GET_AREA_ID";
+export const UPDATE_AREA = "UPDATE_AREA";
+export const DELETE_AREA = "DELETE_AREA";
+
+// EQUIPMENT
+export const ADD_EQUIPMENT = "ADD_EQUIPMENT";
+export const GET_EQUIPMENT = "GET_EQUIPMENT";
+export const GET_EQUIPMENT_ID = "GET_EQUIPMENT_ID";
+export const UPDATE_EQUIPMENT = "UPDATE_EQUIPMENT";
+export const DELETE_EQUIPMENT = "DELETE_EQUIPMENT";
+
+// USER API
+export const ADD_USER_API = "ADD_USER_API";
+export const GET_USER_API = "GET_USER_API";
+export const GET_USER_API_ID = "GET_USER_API_ID";
+export const UPDATE_USER_API = "UPDATE_USER_API";
+export const DELETE_USER_API = "DELETE_USER_API";
+
 // STATE
 export const ADD_STATE = "ADD_STATE";
 export const GET_STATE = "GET_STATE";
@@ -11,27 +32,6 @@ export const GET_PROCEDURES = "GET_PROCEDURES";
 export const GET_PROCEDURES_ID = "GET_PROCEDURES_ID";
 export const UPDATE_PROCEDURES = "UPDATE_PROCEDURES";
 export const DELETE_PROCEDURES = "DELETE_PROCEDURES";
-
-// USER API
-export const ADD_USER_API = "ADD_USER_API";
-export const GET_USER_API = "GET_USER_API";
-export const GET_USER_API_ID = "GET_USER_API_ID";
-export const UPDATE_USER_API = "UPDATE_USER_API";
-export const DELETE_USER_API = "DELETE_USER_API";
-
-// EQUIPMENT
-export const ADD_EQUIPMENT = "ADD_EQUIPMENT";
-export const GET_EQUIPMENT = "GET_EQUIPMENT";
-export const GET_EQUIPMENT_ID = "GET_EQUIPMENT_ID";
-export const UPDATE_EQUIPMENT = "UPDATE_EQUIPMENT";
-export const DELETE_EQUIPMENT = "DELETE_EQUIPMENT";
-
-// AREA
-export const ADD_AREA = "ADD_AREA";
-export const GET_AREA = "GET_AREA";
-export const GET_AREA_ID = "GET_AREA_ID";
-export const UPDATE_AREA = "UPDATE_AREA";
-export const DELETE_AREA = "DELETE_AREA";
 
 // USER
 export const ADD_USER = "ADD_USER";
