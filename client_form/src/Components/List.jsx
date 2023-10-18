@@ -1,4 +1,14 @@
-import React from "react";
+// COMPONEN'S
+import { ButtonEdit } from "../Components/ButtonEdit";
+
+// HOOK'S
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// REDUX
+import { seachIdArea } from "../Redux/actions";
+
+// STYLE SHEEETS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./List.module.css"; // Importa las clases de estilo
 
@@ -23,10 +33,21 @@ const List = ({
   phone,
   email,
   charge,
-  view,
-  editState,
-  deleteState,
+  // edit
 }) => {
+  const dispatch = useDispatch();
+  const selecSearhArea = useSelector((state) => state.aux);
+  const [dataAux, setDataAux] = useState([]);
+
+  const handleChangeId = (idUnit) => {
+    dispatch(seachIdArea(idUnit));
+  };
+
+  useEffect(() => {
+    setDataAux(selecSearhArea);
+  }, [selecSearhArea]);
+
+  console.log(dataAux);
   return (
     <>
       <table className={styles.table}>
@@ -57,13 +78,19 @@ const List = ({
               </button>
             </td>
             <td className={styles.smallCell}>
-              <button className={styles["icon-button"]}>
+              {/* EDITAR */}
+              <button
+                className={styles["icon-button"]}
+                onClick={() => handleChangeId(idUnit)}
+              >
                 <FontAwesomeIcon
                   icon="fa-solid fa-pen"
                   style={{ color: "#0055ff" }}
                 />
               </button>
             </td>
+
+            {/* ELIMINAR */}
             <td className={styles.smallCell}>
               <button className={styles["icon-button"]}>
                 <FontAwesomeIcon
