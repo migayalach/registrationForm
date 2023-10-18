@@ -33,7 +33,7 @@ const List = ({
   phone,
   email,
   charge,
-  // edit
+  onEditData,
 }) => {
   const dispatch = useDispatch();
   const selecSearhArea = useSelector((state) => state.aux);
@@ -45,9 +45,10 @@ const List = ({
 
   useEffect(() => {
     setDataAux(selecSearhArea);
-  }, [selecSearhArea]);
+    onEditData(dataAux);
+  }, [selecSearhArea, dataAux]);
 
-  console.log(dataAux);
+  // console.log(dataAux);
   return (
     <>
       <table className={styles.table}>
