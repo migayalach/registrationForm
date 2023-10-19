@@ -68,7 +68,8 @@ const delUnit = async (idUnit) => {
   });
   if (deleteUnit === 1) {
     const { nameUnit } = unitData;
-    return `Se elimino la unidad: ${nameUnit}, correctamente`;
+    // return `Se elimino la unidad: ${nameUnit}, correctamente`;
+    return getAllUnit();
   }
   throw Error(`No se pudo eliminar la unidad ingresada`);
 };
