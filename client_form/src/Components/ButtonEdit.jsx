@@ -1,30 +1,21 @@
-// // COMPONENT'S
-// import FormArea from "../Views/Forms/FormArea/FormArea";
+// COMPONENT'S
 
-// // HOOS'K
-// import { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+// HOOS'K
+import { useDispatch } from "react-redux";
 
-// // REDUX
-// import { seachIdArea } from "../Redux/actions";
+// REDUX
+import { seachIdArea } from "../Redux/actions";
 
-// export const ButtonEdit = ({ id }) => {
-//   const dispatch = useDispatch();
-//   const selecInfo = useSelector((state) => state.aux);
-//   const [idData, setIdData] = useState([]);
-  
-//   const [data, setData] = useState([]);
-  
-//   useEffect(() => {
-    
-//   }, []);
+export const ButtonEdit = ({ id, flag }) => {
+  const dispatch = useDispatch();
 
-//   const handleMessage = (id) => {
-//     dispatch(seachIdArea(id));
-//     setIdData(id);
-//     alert(id)
-//   };
+  const handleMessage = (id) => {
+    flag === "area" && dispatch(seachIdArea(id));
+  };
 
-//   console.log(data);
-//   return <button onClick={() => handleMessage(id)}>EDITAR</button>;
-// };
+  return (
+    <>
+      <button onClick={() => handleMessage(id)}>EDITAR</button>
+    </>
+  );
+};
