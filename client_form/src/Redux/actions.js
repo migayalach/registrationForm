@@ -164,6 +164,17 @@ export const getAllArea = () => {
   };
 };
 
+export const putArea = (dataArea) => {
+  return async function (dispatch) {
+    const editArea = await axios.put(`${URL}/area`, dataArea);
+    const area = editArea.data;
+    dispatch({
+      type: UPDATE_AREA,
+      payload: area,
+    });
+  };
+};
+
 export const addEquipment = (equipment) => {
   return async function (dispatch) {
     const createEquipment = await axios.post(`${URL}/equipment`, equipment);

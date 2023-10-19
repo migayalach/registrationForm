@@ -125,6 +125,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case UPDATE_AREA:
+      return {
+        ...state,
+        area: payload,
+        aux: [],
+        errors: null,
+      };
+
     case GET_USER_API:
       return {
         ...state,
