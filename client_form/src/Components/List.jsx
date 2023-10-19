@@ -37,19 +37,13 @@ const List = ({
   flag,
 }) => {
   const dispatch = useDispatch();
-  const selecSearhArea = useSelector((state) => state.aux);
+  const selecSearhArea = useSelector((state) => state.aux || state.area);
   const [dataAux, setDataAux] = useState([]);
-
-  // const handleChangeId = (idUnit) => {
-  //   dispatch(seachIdArea(idUnit));
-  // };
 
   useEffect(() => {
     setDataAux(selecSearhArea);
-    // onEditData(dataAux);
   }, [selecSearhArea, dataAux]);
 
-  // console.log(dataAux);
   return (
     <>
       <table className={styles.table}>
