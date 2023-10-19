@@ -15,7 +15,7 @@ import { getAllArea } from "../../Redux/actions";
 
 // STYLESHEET'S
 
-const Area = ({ onEditData }) => {
+const Area = () => {
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
@@ -28,6 +28,8 @@ const Area = ({ onEditData }) => {
     dispatch(getAllArea());
   }, [dispatch]);
 
+  console.log(data);
+
   return (
     <>
       <Filter />
@@ -37,7 +39,7 @@ const Area = ({ onEditData }) => {
       <Lists
         items={clearName(selectorArea)}
         text={"Área"}
-        onEditData={handleDataUpdate}
+        // onEditData={handleDataUpdate}
       />
     </>
   );

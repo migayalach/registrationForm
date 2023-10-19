@@ -39,13 +39,13 @@ const List = ({
   const selecSearhArea = useSelector((state) => state.aux);
   const [dataAux, setDataAux] = useState([]);
 
-  const handleChangeId = (idUnit) => {
-    dispatch(seachIdArea(idUnit));
-  };
+  // const handleChangeId = (idUnit) => {
+  //   dispatch(seachIdArea(idUnit));
+  // };
 
   useEffect(() => {
     setDataAux(selecSearhArea);
-    onEditData(dataAux);
+    // onEditData(dataAux);
   }, [selecSearhArea, dataAux]);
 
   // console.log(dataAux);
@@ -82,7 +82,7 @@ const List = ({
               {/* EDITAR */}
               <button
                 className={styles["icon-button"]}
-                onClick={() => handleChangeId(idUnit)}
+                // onClick={() => handleChangeId(idUnit)}
               >
                 <FontAwesomeIcon
                   icon="fa-solid fa-pen"
