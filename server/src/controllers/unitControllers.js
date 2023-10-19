@@ -47,7 +47,8 @@ const updateUnit = async (idUnit, nameUnit) => {
   if (infoResponse) {
     const reponseInfo = await Unit.update({ nameUnit }, { where: { idUnit } });
     if (typeof reponseInfo === "object") {
-      return `Unidad: ${nameUnit}, modificado con exito`;
+      // return `Unidad: ${nameUnit}, modificado con exito`;
+      return getAllUnit();
     }
   }
   throw Error(`La unidad: ${nameUnit}, no se pudo encontrar`);
