@@ -34,6 +34,7 @@ const List = ({
   email,
   charge,
   onEditData,
+  flag,
 }) => {
   const dispatch = useDispatch();
   const selecSearhArea = useSelector((state) => state.aux);
@@ -80,7 +81,7 @@ const List = ({
             </td>
             <td className={styles.smallCell}>
               {/* EDITAR */}
-              <button
+              {/* <button
                 className={styles["icon-button"]}
                 // onClick={() => handleChangeId(idUnit)}
               >
@@ -88,7 +89,8 @@ const List = ({
                   icon="fa-solid fa-pen"
                   style={{ color: "#0055ff" }}
                 />
-              </button>
+              </button> */}
+              <ButtonEdit id={idUnit} flag={flag} />
             </td>
 
             {/* ELIMINAR */}
