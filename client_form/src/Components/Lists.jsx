@@ -67,7 +67,7 @@ const Lists = ({ items, text, onEditData }) => {
               nroIdentification={nroIdentification}
               phone={phone}
               email={email}
-              onEditData={onEditData}
+              onEditData={() => onEditData}
             />
           );
         }
