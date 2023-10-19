@@ -28,7 +28,7 @@ const Area = () => {
     dispatch(getAllArea());
   }, [dispatch]);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -39,6 +39,7 @@ const Area = () => {
       <Lists
         items={clearName(selectorArea)}
         text={"Área"}
+        flag={"area"}
         // onEditData={handleDataUpdate}
       />
     </>

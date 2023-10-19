@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 // STYLESHEET'S
 
-const Lists = ({ items, text }) => {
+const Lists = ({ items, text, flag }) => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -67,6 +67,7 @@ const Lists = ({ items, text }) => {
               nroIdentification={nroIdentification}
               phone={phone}
               email={email}
+              flag={flag}
               // onEditData={onEditData}
             />
           );
