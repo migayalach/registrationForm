@@ -1,5 +1,6 @@
 // COMPONEN'S
 import { ButtonEdit } from "../Components/ButtonEdit";
+import { ButtonDelete } from "../Components/ButtonDelete";
 
 // HOOK'S
 import { useEffect, useState } from "react";
@@ -89,12 +90,13 @@ const List = ({
 
             {/* ELIMINAR */}
             <td className={styles.smallCell}>
-              <button className={styles["icon-button"]}>
+              {/* <button className={styles["icon-button"]}>
                 <FontAwesomeIcon
                   icon="fa-solid fa-trash"
                   style={{ color: "#ff0000" }}
                 />
-              </button>
+              </button> */}
+              <ButtonDelete id={idUnit} flag={flag} />
             </td>
           </tr>
         </tbody>
