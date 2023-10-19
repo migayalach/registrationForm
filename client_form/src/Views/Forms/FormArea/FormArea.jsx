@@ -2,7 +2,7 @@
 import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // REDUX
@@ -14,8 +14,7 @@ import { validationName } from "../../../Validations/validationName";
 // STYLESHEET'S
 import "./form-area.css";
 
-const FormArea = ({ id, name, data }) => {
-  console.log(data);
+const FormArea = ({ id, name }) => {
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
@@ -39,6 +38,8 @@ const FormArea = ({ id, name, data }) => {
     event.preventDefault();
     dispatch(addArea({ nameUnit: name }));
   };
+
+  useEffect(() => {}, []);
 
   return (
     <form className="form-component">

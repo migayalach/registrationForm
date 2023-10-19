@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 // STYLESHEET'S
 
-const Lists = ({ items, text, onEditData }) => {
+const Lists = ({ items, text }) => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -67,11 +67,12 @@ const Lists = ({ items, text, onEditData }) => {
               nroIdentification={nroIdentification}
               phone={phone}
               email={email}
-              onEditData={() => onEditData}
+              // onEditData={onEditData}
             />
           );
         }
       )}
+
       <Pagination
         itemsPerPage={itemsPerPage}
         totalItems={items.length}
