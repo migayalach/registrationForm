@@ -1,5 +1,3 @@
-// COMPONENT'S
-
 // HOOS'K
 import { useDispatch } from "react-redux";
 
@@ -9,13 +7,13 @@ import { seachIdArea } from "../Redux/actions";
 export const ButtonEdit = ({ id, flag }) => {
   const dispatch = useDispatch();
 
-  const handleMessage = (id) => {
+  const handleEdit = (id) => {
     flag === "area" && dispatch(seachIdArea(id));
   };
 
   return (
     <>
-      <button onClick={() => handleMessage(id)}>EDITAR</button>
+      <button onClick={() => handleEdit(id)}>EDITAR</button>
     </>
   );
 };

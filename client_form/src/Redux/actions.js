@@ -175,6 +175,17 @@ export const putArea = (dataArea) => {
   };
 };
 
+export const deleteArea = (idArea) => {
+  return async function (dispatch) {
+    const delArea = await axios.delete(`${URL}/area/${idArea}`);
+    const area = delArea.data;
+    dispatch({
+      type: DELETE_AREA,
+      payload: area,
+    });
+  };
+};
+
 export const addEquipment = (equipment) => {
   return async function (dispatch) {
     const createEquipment = await axios.post(`${URL}/equipment`, equipment);
