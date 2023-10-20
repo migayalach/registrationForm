@@ -273,8 +273,15 @@ export const putState = (stateData) => {
   };
 };
 
-export const deleteState = () => {
-  return function () {};
+export const deleteState = (idState) => {
+  return async function (dispatch) {
+    const stateRes = await axios.delete(`${URL}/state/${idState}`);
+    const state = stateRes.data;
+    dispatch({
+      type: DELETE_STATE,
+      payload: state,
+    });
+  };
 };
 
 //* PROCEDURES

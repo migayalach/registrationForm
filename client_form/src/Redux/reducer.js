@@ -191,7 +191,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: payload.editState,
-        aux: [],
+        errors: null,
+      };
+
+    case DELETE_STATE:
+      return {
+        ...state,
+        stateForm: payload.deleteInfo,
         errors: null,
       };
 
