@@ -36,7 +36,7 @@ const createEquipment = async (name) => {
   });
   if (!existsEquipment) {
     await Equipment.create({ name });
-    return { name };
+    return await getAllEquipment();
   }
   throw Error(`El equipo: ${name} ya se encuentra registrado`);
 };
