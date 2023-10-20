@@ -228,6 +228,17 @@ export const getIdEquipment = (idEquipment) => {
   };
 };
 
+export const putEquipment = (equipmentData) => {
+  return async function (dispatch) {
+    const equipmentRes = await axios.put(`${URL}/equipment/`, equipmentData);
+    const equipment = equipmentRes.data;
+    dispatch({
+      type: UPDATE_EQUIPMENT,
+      payload: equipment,
+    });
+  };
+};
+
 export const addUserApi = () => {
   return function (dispatch) {};
 };
