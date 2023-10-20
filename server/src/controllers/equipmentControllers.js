@@ -77,13 +77,7 @@ const getAllEquipment = async () =>
     // }
     ();
 
-const updateEquipment = async (
-  idEquipment,
-  name,
-  host,
-  directionIp,
-  controlLabel
-) => {
+const updateEquipment = async (idEquipment, name) => {
   const existsEquipment = await Equipment.findOne({
     where: {
       idEquipment,
@@ -92,11 +86,9 @@ const updateEquipment = async (
   if (!existsEquipment) {
     throw Error(`El equipo: ${name} no se encuentra registrado`);
   }
-  await Equipment.update(
-    { idEquipment, name, host, directionIp, controlLabel },
-    { where: { idEquipment } }
-  );
-  return { name, host, directionIp, controlLabel };
+  await Equipment.update({ idEquipment, name }, { where: { idEquipment } });
+  return await getAllEquipment();
+  // return { name };
 };
 
 const deleteDataEquipment = async (idEquipment) => {
