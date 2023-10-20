@@ -1,10 +1,9 @@
 // COMPONET'S
 import List from "./List";
 import Pagination from "./Pagination/Pagination";
-import { ButtonEdit } from "../Components/ButtonEdit";
 
 // HOOK'S
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // STYLESHEET'S
 
@@ -68,7 +67,6 @@ const Lists = ({ items, text, flag }) => {
               phone={phone}
               email={email}
               flag={flag}
-              // onEditData={onEditData}
             />
           );
         }

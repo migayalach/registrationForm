@@ -85,7 +85,7 @@ const List = ({
                   style={{ color: "#0055ff" }}
                 />
               </button> */}
-              <ButtonEdit id={idUnit} flag={flag} />
+              <ButtonEdit id={idUnit} idEquipment={idEquipment} flag={flag} />
             </td>
 
             {/* ELIMINAR */}
