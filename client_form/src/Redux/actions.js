@@ -239,6 +239,17 @@ export const putEquipment = (equipmentData) => {
   };
 };
 
+export const deleteEquipment = (idEquipment) => {
+  return async function (dispatch) {
+    const equipmentRes = await axios.delete(`${URL}/equipment/${idEquipment}`);
+    const equipment = equipmentRes.data;
+    dispatch({
+      type: DELETE_EQUIPMENT,
+      payload: equipment,
+    });
+  };
+};
+
 export const addUserApi = () => {
   return function (dispatch) {};
 };
