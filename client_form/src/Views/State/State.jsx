@@ -35,7 +35,7 @@ const State = () => {
       </div>
       <hr />
       <h2>ESTADOS</h2>
-      <Lists items={selectorState} text={"Estados"} />
+      <Lists items={selectorState} text={"Estados"} flag={"state"}/>
     </div>
   );
 };
