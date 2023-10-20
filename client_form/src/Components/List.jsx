@@ -96,7 +96,7 @@ const List = ({
                   style={{ color: "#ff0000" }}
                 />
               </button> */}
-              <ButtonDelete id={idUnit} flag={flag} />
+              <ButtonDelete id={idUnit} idEquipment={idEquipment} flag={flag} />
             </td>
           </tr>
         </tbody>
