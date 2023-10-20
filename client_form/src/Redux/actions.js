@@ -189,7 +189,6 @@ export const deleteArea = (idArea) => {
 export const addEquipment = (equipment) => {
   return async function (dispatch) {
     const createEquipment = await axios.post(`${URL}/equipment`, equipment);
-    console.log(createEquipment);
     try {
       const newEquipment = createEquipment.data;
       dispatch({
@@ -211,6 +210,19 @@ export const getAllEquipment = () => {
     const equipment = getEquipmentAll.data;
     dispatch({
       type: GET_EQUIPMENT,
+      payload: equipment,
+    });
+  };
+};
+
+export const getIdEquipment = (idEquipment) => {
+  return async function (dispatch) {
+    const searchIdEquipment = await axios.get(
+      `${URL}/equipment/${idEquipment}`
+    );
+    const equipment = searchIdEquipment.data;
+    dispatch({
+      type: GET_EQUIPMENT_ID,
       payload: equipment,
     });
   };
