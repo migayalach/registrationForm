@@ -183,6 +183,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case DELETE_EQUIPMENT:
+      return {
+        ...state, 
+        equipment: payload,
+        errors: null
+      }
+
     case ADD_USER:
       return {
         ...state,

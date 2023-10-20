@@ -110,7 +110,8 @@ const deleteDataEquipment = async (idEquipment) => {
     },
   });
   if (deleteEquipment === 1) {
-    return `Se elimino el equipo: ${name} con el host: ${host}, con exito`;
+    // return `Se elimino el equipo: ${name} con el host: ${host}, con exito`;
+    return await getAllEquipment();
   }
   throw Error(`No se pudo eliminar el equipo deseado`);
 };
