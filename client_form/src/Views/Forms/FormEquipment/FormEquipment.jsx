@@ -2,8 +2,8 @@
 import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // REDUX
 import { addEquipment } from "../../../Redux/actions";
@@ -16,9 +16,11 @@ import "./form-equipment.css";
 
 const FormEquipment = () => {
   const dispatch = useDispatch();
+  const selectEquipment = useSelector((state) => state.aux);
+  const initialName = selectEquipment.length ? selectEquipment[0].name : "";
 
   const [userData, setUserData] = useState({
-    name: "",
+    name: initialName,
   });
 
   const [errors, setErrors] = useState({});
@@ -36,8 +38,13 @@ const FormEquipment = () => {
   const handleAccept = (event) => {
     const name = userData.name;
     event.preventDefault();
+    // falta despachar 
     dispatch(addEquipment({ name }));
   };
+
+  useEffect(() => {
+    setUserData({ name: initialName });
+  }, [initialName]);
 
   return (
     <form className="form-component">
