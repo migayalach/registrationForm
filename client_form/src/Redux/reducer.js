@@ -76,34 +76,7 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case ADD_STATE:
-      return {
-        ...state,
-        stateForm: [...state.stateForm, payload.newState],
-        errors: null,
-      };
-
-    case GET_STATE:
-      return {
-        ...state,
-        stateForm: payload,
-        errors: null,
-      };
-
-    case ADD_PROCEDURES:
-      return {
-        ...state,
-        procedures: [...state.procedures, payload.newProcedures],
-        errors: null,
-      };
-
-    case GET_PROCEDURES:
-      return {
-        ...state,
-        procedures: payload,
-        errors: null,
-      };
-
+    //! AREA
     case ADD_AREA:
       return {
         ...state,
@@ -140,20 +113,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
-    case GET_USER_API:
-      return {
-        ...state,
-        userApi: payload,
-        errors: null,
-      };
-
-    case GET_USER_API_ID:
-      return {
-        ...state,
-        aux: [payload],
-        errors: null,
-      };
-
+    //! EQUIPMENT
     case ADD_EQUIPMENT:
       return {
         ...state,
@@ -185,11 +145,57 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case DELETE_EQUIPMENT:
       return {
-        ...state, 
+        ...state,
         equipment: payload,
-        errors: null
-      }
+        errors: null,
+      };
 
+    //! USER API
+    case GET_USER_API:
+      return {
+        ...state,
+        userApi: payload,
+        errors: null,
+      };
+
+    case GET_USER_API_ID:
+      return {
+        ...state,
+        aux: [payload],
+        errors: null,
+      };
+
+    //! STATE
+    case ADD_STATE:
+      return {
+        ...state,
+        stateForm: [...state.stateForm, payload.newState],
+        errors: null,
+      };
+
+    case GET_STATE:
+      return {
+        ...state,
+        stateForm: payload,
+        errors: null,
+      };
+
+    //! PROCEDURES
+    case ADD_PROCEDURES:
+      return {
+        ...state,
+        procedures: [...state.procedures, payload.newProcedures],
+        errors: null,
+      };
+
+    case GET_PROCEDURES:
+      return {
+        ...state,
+        procedures: payload,
+        errors: null,
+      };
+
+    //! USER
     case ADD_USER:
       return {
         ...state,
@@ -204,6 +210,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    //! CREDENTIAL
     case ADD_CREDENTIAL:
       return {
         ...state,
@@ -218,6 +225,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    //! FORM
     case ADD_FORM:
       return {
         ...state,
@@ -232,6 +240,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    //! ERROR
     case ERROR:
       return {
         ...state,

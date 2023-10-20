@@ -64,64 +64,7 @@ import {
 
 const URL = `http://localhost:3001/forms`;
 
-export const addState = (stateForm) => {
-  return async function (dispatch) {
-    const createState = await axios.post(`${URL}/state`, stateForm);
-    try {
-      const newForm = createState.data;
-      dispatch({
-        type: ADD_STATE,
-        payload: newForm,
-      });
-    } catch (error) {
-      dispatch({
-        type: ERROR,
-        payload: error.message,
-      });
-    }
-  };
-};
-
-export const getAllState = () => {
-  return async function (dispatch) {
-    const getAll = await axios.get(`${URL}/state`);
-    const states = getAll.data;
-    dispatch({
-      type: GET_STATE,
-      payload: states,
-    });
-  };
-};
-
-export const addProcedures = (procedures) => {
-  return async function (dispatch) {
-    const createProcedures = await axios.post(`${URL}/procedures`, procedures);
-    try {
-      const newProcedure = createProcedures.data;
-      dispatch({
-        type: ADD_PROCEDURES,
-        payload: newProcedure,
-      });
-    } catch (error) {
-      dispatch({
-        type: ERROR,
-        payload: error.message,
-      });
-    }
-  };
-};
-
-export const getAllProcedures = () => {
-  return async function (dispatch) {
-    const getAllProcess = await axios.get(`${URL}/procedures`);
-    const procedures = getAllProcess.data;
-    dispatch({
-      type: GET_PROCEDURES,
-      payload: procedures,
-    });
-  };
-};
-
+//* AREA
 export const addArea = (area) => {
   return async function (dispatch) {
     const createArea = await axios.post(`${URL}/area`, area);
@@ -186,6 +129,7 @@ export const deleteArea = (idArea) => {
   };
 };
 
+//* EQUIPMENT
 export const addEquipment = (equipment) => {
   return async function (dispatch) {
     const createEquipment = await axios.post(`${URL}/equipment`, equipment);
@@ -250,6 +194,7 @@ export const deleteEquipment = (idEquipment) => {
   };
 };
 
+//* USER API
 export const addUserApi = () => {
   return function (dispatch) {};
 };
@@ -276,6 +221,67 @@ export const getUserApiId = (idUserApi) => {
   };
 };
 
+//* STATE
+export const addState = (stateForm) => {
+  return async function (dispatch) {
+    const createState = await axios.post(`${URL}/state`, stateForm);
+    try {
+      const newForm = createState.data;
+      dispatch({
+        type: ADD_STATE,
+        payload: newForm,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllState = () => {
+  return async function (dispatch) {
+    const getAll = await axios.get(`${URL}/state`);
+    const states = getAll.data;
+    dispatch({
+      type: GET_STATE,
+      payload: states,
+    });
+  };
+};
+
+//* PROCEDURES
+export const addProcedures = (procedures) => {
+  return async function (dispatch) {
+    const createProcedures = await axios.post(`${URL}/procedures`, procedures);
+    try {
+      const newProcedure = createProcedures.data;
+      dispatch({
+        type: ADD_PROCEDURES,
+        payload: newProcedure,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllProcedures = () => {
+  return async function (dispatch) {
+    const getAllProcess = await axios.get(`${URL}/procedures`);
+    const procedures = getAllProcess.data;
+    dispatch({
+      type: GET_PROCEDURES,
+      payload: procedures,
+    });
+  };
+};
+
+//* USER
 export const postUser = (userData) => {
   return async function (dispatch) {
     const postUserForm = await axios.post(`${URL}/user`, userData);
@@ -305,6 +311,7 @@ export const getAllUser = () => {
   };
 };
 
+//* CREDENTIAL
 export const postCredential = (credential) => {
   return async function (dispatch) {
     const postCredential = await axios.post(`${URL}/credential`, credential);
@@ -334,6 +341,7 @@ export const getAllCredential = () => {
   };
 };
 
+//* FORM
 export const postForm = (form) => {
   return async function (dispatch) {
     const createForm = await axios.post(`${URL}/form`, form);
@@ -362,3 +370,5 @@ export const getAllForm = () => {
     });
   };
 };
+
+//* ERROR
