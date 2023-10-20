@@ -180,6 +180,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case GET_STATE_ID:
+      return {
+        ...state,
+        aux: payload,
+        errors: null,
+      };
+
+    case UPDATE_STATE:
+      return {
+        ...state,
+        stateForm: payload.editState,
+        aux: [],
+        errors: null,
+      };
+
     //! PROCEDURES
     case ADD_PROCEDURES:
       return {

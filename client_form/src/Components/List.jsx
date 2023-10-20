@@ -85,7 +85,12 @@ const List = ({
                   style={{ color: "#0055ff" }}
                 />
               </button> */}
-              <ButtonEdit id={idUnit} idEquipment={idEquipment} flag={flag} />
+              <ButtonEdit
+                id={idUnit}
+                idEquipment={idEquipment}
+                idState={idState}
+                flag={flag}
+              />
             </td>
 
             {/* ELIMINAR */}
@@ -96,7 +101,12 @@ const List = ({
                   style={{ color: "#ff0000" }}
                 />
               </button> */}
-              <ButtonDelete id={idUnit} idEquipment={idEquipment} flag={flag} />
+              <ButtonDelete
+                id={idUnit}
+                idEquipment={idEquipment}
+                idState={idState}
+                flag={flag}
+              />
             </td>
           </tr>
         </tbody>

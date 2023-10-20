@@ -44,8 +44,7 @@ const updateState = async (idState, name) => {
   if (editState) {
     const responseInfo = await State.update({ name }, { where: { idState } });
     if (typeof responseInfo === "object") {
-      // return `Estado: ${name}, modificado con exito`;
-      return await getSearchStateId(idState);
+      return await getAllState();
     }
   }
   throw Error(`El estado: ${name}, no se pudo encontrar`);
