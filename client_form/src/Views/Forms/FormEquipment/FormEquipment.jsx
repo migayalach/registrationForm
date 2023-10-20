@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // REDUX
-import { addEquipment } from "../../../Redux/actions";
+import { addEquipment, putEquipment } from "../../../Redux/actions";
 
 // JAVASCRIP
 import { validationName } from "../../../Validations/validationName";
@@ -38,8 +38,11 @@ const FormEquipment = () => {
   const handleAccept = (event) => {
     const name = userData.name;
     event.preventDefault();
-    // falta despachar 
-    dispatch(addEquipment({ name }));
+    selectEquipment[0]?.idEquipment
+      ? dispatch(
+          putEquipment({ idEquipment: selectEquipment[0].idEquipment, name })
+        )
+      : dispatch(addEquipment({ name }));
   };
 
   useEffect(() => {
