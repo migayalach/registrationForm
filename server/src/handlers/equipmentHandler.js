@@ -59,21 +59,15 @@ const getEquipmentName = async (request, response) => {
 };
 
 const putEquipment = async (request, response) => {
-  const { idEquipment, name, host, directionIp, controlLabel } = request.body;
+  const { idEquipment, name } = request.body;
   try {
     const dataResponse = await updateEquipment(
       idEquipment,
       name,
-      host,
-      directionIp,
-      controlLabel
     );
     response.status(SUCCESS).json({
       update: true,
-      name: dataResponse.name,
-      host: dataResponse.host,
-      directionIp: dataResponse.directionIp,
-      controlLabel: dataResponse.controlLabel,
+      dataResponse,
     });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });

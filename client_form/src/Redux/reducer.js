@@ -175,6 +175,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case UPDATE_EQUIPMENT:
+      return {
+        ...state,
+        equipment: payload.dataResponse,
+        aux: [],
+        errors: null,
+      };
+
     case ADD_USER:
       return {
         ...state,
