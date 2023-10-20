@@ -251,6 +251,32 @@ export const getAllState = () => {
   };
 };
 
+export const getIdState = (idState) => {
+  return async function (dispatch) {
+    const searchIdState = await axios.get(`${URL}/state/${idState}`);
+    const state = searchIdState.data;
+    dispatch({
+      type: GET_STATE_ID,
+      payload: state,
+    });
+  };
+};
+
+export const putState = (stateData) => {
+  return async function (dispatch) {
+    const stateRes = await axios.put(`${URL}/state`, stateData);
+    const state = stateRes.data;
+    dispatch({
+      type: UPDATE_STATE,
+      payload: state,
+    });
+  };
+};
+
+export const deleteState = () => {
+  return function () {};
+};
+
 //* PROCEDURES
 export const addProcedures = (procedures) => {
   return async function (dispatch) {
