@@ -55,12 +55,13 @@ const delState = async (idState) => {
   if (!deleteState) {
     throw Error(`El estado no se encuentra registrado`);
   }
-  State.destroy({
+  await State.destroy({
     where: {
       idState,
     },
   });
-  return `El estado, se elimino correctamente`;
+  // return `El estado, se elimino correctamente`;
+  return await getAllState();
 };
 
 module.exports = {
