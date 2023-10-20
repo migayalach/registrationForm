@@ -157,7 +157,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ADD_EQUIPMENT:
       return {
         ...state,
-        equipment: [...state.equipment, payload.equipmentRes],
+        equipment: payload.equipmentRes,
         errors: null,
       };
 
@@ -165,6 +165,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         equipment: payload,
+        errors: null,
+      };
+
+    case GET_EQUIPMENT_ID:
+      return {
+        ...state,
+        aux: payload,
         errors: null,
       };
 
