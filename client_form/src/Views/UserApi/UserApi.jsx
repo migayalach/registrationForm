@@ -31,7 +31,7 @@ const UserApi = () => {
       <hr />
       <ButtonUpdate label={"Actualizar"} onClickUpdate={handleUpdateData} />
       <hr />
-      <Lists items={selectorUserApi} text={"Lista de usuarios"} />
+      <Lists items={selectorUserApi} text={"Lista de usuarios"} flag={"userApi"} />
     </>
   );
 };
