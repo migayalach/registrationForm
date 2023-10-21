@@ -314,6 +314,43 @@ export const getAllProcedures = () => {
   };
 };
 
+export const getIdProcedures = (idProcedures) => {
+  return async function (dispatch) {
+    const searchProcedures = await axios.get(
+      `${URL}/procedures/${idProcedures}`
+    );
+    const procedures = searchProcedures.data;
+    dispatch({
+      type: GET_PROCEDURES_ID,
+      payload: procedures,
+    });
+  };
+};
+
+export const putProcedures = (dataProcedures) => {
+  return async function (dispatch) {
+    const proceduresRes = await axios.put(`${URL}/procedures`, dataProcedures);
+    const procedures = proceduresRes.data;
+    dispatch({
+      type: UPDATE_PROCEDURES,
+      payload: procedures,
+    });
+  };
+};
+
+export const deleteProcedures = (idProcedures) => {
+  return async function (dispatch) {
+    const delProcedures = await axios.delete(
+      `${URL}/procedures/${idProcedures}`
+    );
+    const procedures = delProcedures.data;
+    dispatch({
+      type: DELETE_PROCEDURES,
+      payload: procedures,
+    });
+  };
+};
+
 //* USER
 export const postUser = (userData) => {
   return async function (dispatch) {

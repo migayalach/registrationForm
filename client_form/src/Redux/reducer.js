@@ -216,6 +216,28 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case GET_PROCEDURES_ID:
+      return {
+        ...state,
+        aux: payload,
+        errors: null,
+      };
+
+    case UPDATE_PROCEDURES:
+      return {
+        ...state,
+        procedures: payload,
+        aux: [],
+        errors: null,
+      };
+
+    case DELETE_PROCEDURES:
+      return {
+        ...state,
+        procedures: payload.resultDelete,
+        errors: null,
+      };
+
     //! USER
     case ADD_USER:
       return {
