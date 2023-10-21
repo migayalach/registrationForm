@@ -27,7 +27,7 @@ const User = () => {
       <hr />
       <FormUser />
       <hr />
-      <Lists items={selectorUser} text={"Usuarios"} />
+      <Lists items={selectorUser} text={"Usuarios"} flag={"user"}/>
     </>
   );
 };
