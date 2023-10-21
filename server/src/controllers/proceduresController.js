@@ -48,7 +48,8 @@ const updateProcedures = async (idProcedures, nameProcedures) => {
       { where: { idProcedures } }
     );
     if (typeof reponseInfo === "object") {
-      return `Modificado con exito el procedimiento: ${nameProcedures}`;
+      // return `Modificado con exito el procedimiento: ${nameProcedures}`;
+      return await getAllProcedures();
     }
   }
   throw Error(`El procedimiento: ${nameProcedures}, no se pudo encontrar`);
@@ -66,7 +67,9 @@ const delProcedures = async (idProcedures) => {
       idProcedures,
     },
   });
-  return `El proceso, se elimino correctamente`;
+
+  // return `El proceso, se elimino correctamente`;
+  return await getAllProcedures();
 };
 
 module.exports = {
