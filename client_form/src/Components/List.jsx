@@ -38,7 +38,7 @@ const List = ({
   flag,
 }) => {
   const dispatch = useDispatch();
-  const selecSearhArea = useSelector((state) => state.aux || state.area );
+  const selecSearhArea = useSelector((state) => state.aux || state.area);
   const [dataAux, setDataAux] = useState([]);
 
   useEffect(() => {
@@ -90,6 +90,7 @@ const List = ({
                 idEquipment={idEquipment}
                 idState={idState}
                 idProcedures={idProcedures}
+                idUser={idUser}
                 flag={flag}
               />
             </td>
