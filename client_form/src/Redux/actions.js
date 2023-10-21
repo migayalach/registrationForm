@@ -381,6 +381,19 @@ export const getAllUser = () => {
   };
 };
 
+export const getIdUser = (idUser) => {
+  return async function (dispatch) {
+    const getSearchIdUser = await axios.get(`${URL}/user/${idUser}`);
+    const user = getSearchIdUser.data;
+    dispatch({
+      type: GET_USER_ID,
+      payload: user,
+    });
+  };
+};
+
+
+
 //* CREDENTIAL
 export const postCredential = (credential) => {
   return async function (dispatch) {
