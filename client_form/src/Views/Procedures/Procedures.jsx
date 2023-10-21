@@ -26,7 +26,7 @@ const Procedures = () => {
       <hr />
       <FormProcedures />
       <hr />
-      <Lists items={selectorProcedures} text={"Procedimientos"} />
+      <Lists items={selectorProcedures} text={"Procedimientos"} flag={"procedures"}/>
     </>
   );
 };
