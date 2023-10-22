@@ -444,6 +444,28 @@ export const getAllCredential = () => {
   };
 };
 
+export const getIdCredential = (idCredential) => {
+  return async function (dispatch) {
+    const credentialRes = await axios.get(`${URL}/credential/${idCredential}`);
+    const credential = credentialRes.data;
+    dispatch({
+      type: GET_CREDENTIAL_ID,
+      payload: credential,
+    });
+  };
+};
+
+export const updataCredential = (credentialData) => {
+  return async function (dispatch) {
+    const credentialRes = await axios.put(`${URL}/credential`, credentialData);
+    const credential = credentialRes.data;
+    dispatch({
+      type: UPDATE_CREDENTIAL,
+      payload: credential,
+    });
+  };
+};
+
 export const deleteCredential = (idCredential) => {
   return async function (dispatch) {
     const credentialRes = await axios.delete(
