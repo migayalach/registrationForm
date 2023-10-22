@@ -13,7 +13,8 @@ const createCredential = async (name, UserIdUser) => {
   // }
   // throw Error(`La credencial: ${name} no se pudo crear`);
   await Credential.create({ name, UserIdUser });
-  return await getSearchCategoryName(name);
+  // return await getSearchCategoryName(name);
+  return await getAllCredential();
 };
 
 const updateCredential = async (idCredential, name) => {
