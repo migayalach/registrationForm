@@ -128,35 +128,37 @@ const updateUser = async (
     },
   });
   if (!existsUser) {
-    throw Error(`El usuario: ${name} no se encuentra registrado`);
+    throw Error(`El usuario: ${nameUser} no se encuentra registrado`);
   }
 
-  const dataDuplicateBdd = await getAllUser();
-  const dataUserFind = dataDuplicateBdd
-    .map(({ dataValues }) => dataValues)
-    .filter((dataValues) => dataValues.idUser !== +idUser)
-    .find(
-      (dataValues) =>
-        dataValues.nroIdentification === +nroIdentification ||
-        dataValues.email === email
-    );
+  // // ARREGLAR DUPLICADOS
+  // const dataDuplicateBdd = await getAllUser();
+  // const dataUserFind = dataDuplicateBdd
+  //   .map(({ dataValues }) => dataValues)
+  //   .filter((dataValues) => dataValues.idUser !== +idUser)
+  //   .find(
+  //     (dataValues) =>
+  //       // dataValues.nroIdentification === +nroIdentification ||
+  //       dataValues.emailUser === emailUser
+  //   );
 
-  if (dataUserFind) {
-    throw Error(
-      `No se permiten datos duplicados, por favor verifique y cambie los items`
-    );
-  }
+  // if (dataUserFind) {
+  //   throw Error(
+  //     `No se permiten datos duplicados, por favor verifique y cambie los items`
+  //   );
+  // }
   await User.update(
     {
-      name,
-      nroIdentification: parseInt(nroIdentification),
-      email,
-      phone,
-      charge,
+      nameUser,
+      // nroIdentification: parseInt(nroIdentification),
+      emailUser,
+      user,
+      password,
+      UnitIdUnit: idArea,
     },
     { where: { idUser } }
   );
-  return await getUserDataId(idUser);
+  return await getAllUser();
 };
 
 const deleteDataUser = async (idUser) => {
