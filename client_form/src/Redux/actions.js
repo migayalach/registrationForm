@@ -444,6 +444,19 @@ export const getAllCredential = () => {
   };
 };
 
+export const deleteCredential = (idCredential) => {
+  return async function (dispatch) {
+    const credentialRes = await axios.delete(
+      `${URL}/credential/${idCredential}`
+    );
+    const credential = credentialRes.data;
+    dispatch({
+      type: DELETE_CREDENTIAL,
+      payload: credential,
+    });
+  };
+};
+
 //* FORM
 export const postForm = (form) => {
   return async function (dispatch) {

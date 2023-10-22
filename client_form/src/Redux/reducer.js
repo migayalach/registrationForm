@@ -290,6 +290,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case DELETE_CREDENTIAL:
+      return {
+        ...state,
+        credential: payload.deleteInfo,
+        errors: null,
+      };
+
     //! FORM
     case ADD_FORM:
       return {
