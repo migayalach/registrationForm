@@ -30,7 +30,8 @@ const updateCredential = async (idCredential, name) => {
     { where: { idCredential } }
   );
   if (typeof responseInfo === "object") {
-    return `Credencial: ${name}, modificada con exito`;
+    // return `Credencial: ${name}, modificada con exito`;
+    return await getAllCredential();
   }
 };
 
