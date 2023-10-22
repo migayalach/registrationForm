@@ -108,6 +108,7 @@ const List = ({
                 idEquipment={idEquipment}
                 idState={idState}
                 idProcedures={idProcedures}
+                idUser={idUser}
                 flag={flag}
               />
             </td>
