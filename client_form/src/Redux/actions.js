@@ -381,6 +381,28 @@ export const getAllUser = () => {
   };
 };
 
+export const getIdUser = (idUser) => {
+  return async function (dispatch) {
+    const getSearchIdUser = await axios.get(`${URL}/user/${idUser}`);
+    const user = getSearchIdUser.data;
+    dispatch({
+      type: GET_USER_ID,
+      payload: user,
+    });
+  };
+};
+
+export const editUser = (dataUser) => {
+  return async function (dispatch) {
+    const userResponse = await axios.put(`${URL}/user`, dataUser);
+    const user = userResponse.data;
+    dispatch({
+      type: UPDATE_USER,
+      payload: user,
+    });
+  };
+};
+
 //* CREDENTIAL
 export const postCredential = (credential) => {
   return async function (dispatch) {
