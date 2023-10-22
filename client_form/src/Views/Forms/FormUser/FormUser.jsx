@@ -54,7 +54,9 @@ const FormUser = () => {
   };
 
   const handleAccept = (event) => {
-    dispatch(postUser(userData));
+    selectorAux.length
+      ? dispatch(editUser({ ...userData, idUser: selectorAux[0].idUser }))
+      : dispatch(postUser(userData));
     event.preventDefault();
   };
 

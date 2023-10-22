@@ -260,6 +260,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case UPDATE_USER:
+      return {
+        ...state,
+        aux: [],
+        user: payload.dataResponse,
+        errors: null,
+      };
+
     //! CREDENTIAL
     case ADD_CREDENTIAL:
       return {
