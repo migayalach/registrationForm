@@ -293,7 +293,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_CREDENTIAL_ID:
       return {
         ...state,
-        aux: payload,
+        aux: [payload],
         errors: null,
       };
 
