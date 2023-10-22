@@ -392,7 +392,16 @@ export const getIdUser = (idUser) => {
   };
 };
 
-
+export const editUser = (dataUser) => {
+  return async function (dispatch) {
+    const userResponse = await axios.put(`${URL}/user`, dataUser);
+    const user = userResponse.data;
+    dispatch({
+      type: UPDATE_USER,
+      payload: user,
+    });
+  };
+};
 
 //* CREDENTIAL
 export const postCredential = (credential) => {
