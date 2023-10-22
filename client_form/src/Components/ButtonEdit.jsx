@@ -2,9 +2,9 @@
 import { useDispatch } from "react-redux";
 
 // REDUX
-import { seachIdArea, getIdEquipment, getIdState, getIdProcedures, getIdUser } from "../Redux/actions";
+import { seachIdArea, getIdEquipment, getIdState, getIdProcedures, getIdUser, getIdCredential } from "../Redux/actions";
 
-export const ButtonEdit = ({ id, idEquipment, idState, idProcedures, idUser, flag }) => {
+export const ButtonEdit = ({ id, idEquipment, idState, idProcedures, idUser, idCredential, flag }) => {
   const dispatch = useDispatch();
 
   const handleEdit = (id) => {
@@ -12,7 +12,8 @@ export const ButtonEdit = ({ id, idEquipment, idState, idProcedures, idUser, fla
     flag === "equipment" && dispatch(getIdEquipment(idEquipment));
     flag === "state" && dispatch(getIdState(idState))
     flag === "procedures" && dispatch(getIdProcedures(idProcedures));
-    flag === "user" && dispatch(getIdUser(idUser))
+    flag === "user" && dispatch(getIdUser(idUser));
+    flag === "credential" && dispatch(getIdCredential(idCredential));
   };
 
   return (
@@ -22,6 +23,7 @@ export const ButtonEdit = ({ id, idEquipment, idState, idProcedures, idUser, fla
       {idState && <button onClick={() => handleEdit(idEquipment)}>EDITAR</button>}
       {idProcedures && <button onClick={() => handleEdit(idProcedures)}>EDITAR</button>}
       {idUser && <button onClick={() => handleEdit(idUser)}>EDITAR</button>}
+      {idCredential &&<button onClick={() => handleEdit(idCredential)}>XXX</button>}
     </>
   );
 };
