@@ -30,7 +30,8 @@ const updateCredential = async (idCredential, name) => {
     { where: { idCredential } }
   );
   if (typeof responseInfo === "object") {
-    return `Credencial: ${name}, modificada con exito`;
+    // return `Credencial: ${name}, modificada con exito`;
+    return await getAllCredential();
   }
 };
 
@@ -142,7 +143,8 @@ const delCredential = async (idCredential) => {
   await Credential.destroy({
     where: { idCredential },
   });
-  return `La credencial, se elimino correctamente`;
+  // return `La credencial, se elimino correctamente`;
+  return await getAllCredential();
 };
 
 module.exports = {

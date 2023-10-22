@@ -91,6 +91,7 @@ const List = ({
                 idState={idState}
                 idProcedures={idProcedures}
                 idUser={idUser}
+                idCredential={idCredential}
                 flag={flag}
               />
             </td>
@@ -109,6 +110,7 @@ const List = ({
                 idState={idState}
                 idProcedures={idProcedures}
                 idUser={idUser}
+                idCredential={idCredential}
                 flag={flag}
               />
             </td>

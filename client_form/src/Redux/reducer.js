@@ -290,6 +290,28 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case GET_CREDENTIAL_ID:
+      return {
+        ...state,
+        aux: payload,
+        errors: null,
+      };
+
+    case UPDATE_CREDENTIAL:
+      return {
+        ...state,
+        aux: [],
+        credential: payload.editCredential,
+        errors: null,
+      };
+
+    case DELETE_CREDENTIAL:
+      return {
+        ...state,
+        credential: payload.deleteInfo,
+        errors: null,
+      };
+
     //! FORM
     case ADD_FORM:
       return {

@@ -8,6 +8,7 @@ import {
   deleteState,
   deleteProcedures,
   deleteUser,
+  deleteCredential,
 } from "../Redux/actions";
 
 export const ButtonDelete = ({
@@ -16,6 +17,7 @@ export const ButtonDelete = ({
   idState,
   idProcedures,
   idUser,
+  idCredential,
   flag,
 }) => {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ export const ButtonDelete = ({
     flag === "state" && dispatch(deleteState(idState));
     flag === "procedures" && dispatch(deleteProcedures(idProcedures));
     flag === "user" && dispatch(deleteUser(idUser));
+    flag === "credential" && dispatch(deleteCredential(idCredential));
   };
 
   return (

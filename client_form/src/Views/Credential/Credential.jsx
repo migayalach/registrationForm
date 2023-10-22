@@ -28,7 +28,11 @@ const Credential = () => {
       <hr />
       <FormCredential />
       <hr />
-      <Lists items={selectorCredential} text={"Credenciales"} />
+      <Lists
+        items={selectorCredential}
+        text={"Credenciales"}
+        flag={"credential"}
+      />
     </>
   );
 };
