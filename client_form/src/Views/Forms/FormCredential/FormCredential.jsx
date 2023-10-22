@@ -26,10 +26,9 @@ const FormCredential = () => {
   let initialname = "";
   let initialIdUser = "";
 
-  console.log(selectorAux);
-  if (selectorAux) {
-    initialname = selectorAux.name;
-    initialIdUser = selectorAux.UserIdUser;
+  if (selectorAux.length > 0) {
+    initialname = selectorAux[0].name;
+    initialIdUser = selectorAux[0].UserIdUser;
   }
 
   const [userData, setUserData] = useState({
@@ -44,17 +43,17 @@ const FormCredential = () => {
       ...userData,
       [event.target.name]: event.target.value,
     });
-    // setErrors(
-    //   validationUser({ ...userData, [event.target.name]: event.target.value })
-    // );
+    // // setErrors(
+    // //   validationUser({ ...userData, [event.target.name]: event.target.value })
+    // // );
   };
 
   const handleAccept = (event) => {
-    selectorAux
+    selectorAux.length
       ? dispatch(
           updataCredential({
             ...userData,
-            idCredential: selectorAux.idCredential,
+            idCredential: selectorAux[0].idCredential,
           })
         )
       : dispatch(postCredential(userData));
