@@ -3,7 +3,7 @@ const {
   postCredential,
   getCredentialId,
   getCredentialName,
-  // putCredential,
+  putCredential,
   deleteCredential,
 } = require("../handlers/credentialHandler");
 const credentialRouter = Router();
@@ -11,7 +11,7 @@ const credentialRouter = Router();
 credentialRouter.post("/", postCredential);
 credentialRouter.get("/:idCredential", getCredentialId);
 credentialRouter.get("/", getCredentialName);
-// credentialRouter.put("/", putCredential);
+credentialRouter.put("/", putCredential);
 credentialRouter.delete("/:idCredential", deleteCredential);
 
 module.exports = credentialRouter;
