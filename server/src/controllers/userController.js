@@ -180,7 +180,8 @@ const deleteDataUser = async (idUser) => {
       },
     });
     if (deleteUser === 1) {
-      return `Se elimino el usuario: ${nameUser}, con exito`;
+      // return `Se elimino el usuario: ${nameUser}, con exito`;
+      return await getAllUser();
     }
     throw Error(`No se pudo eliminar el usuario ingresado`);
   }
