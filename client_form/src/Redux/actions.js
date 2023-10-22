@@ -403,6 +403,17 @@ export const editUser = (dataUser) => {
   };
 };
 
+export const deleteUser = (idUser) => {
+  return async function (dispatch) {
+    const userDelete = await axios.delete(`${URL}/user/${idUser}`);
+    const user = userDelete.data;
+    dispatch({
+      type: DELETE_USER,
+      payload: user,
+    });
+  };
+};
+
 //* CREDENTIAL
 export const postCredential = (credential) => {
   return async function (dispatch) {
