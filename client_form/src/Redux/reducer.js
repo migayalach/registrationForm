@@ -279,7 +279,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ADD_CREDENTIAL:
       return {
         ...state,
-        credential: [...state.credential, payload.newCredential],
+        credential: payload.newCredential,
         errors: null,
       };
 
@@ -293,7 +293,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_CREDENTIAL_ID:
       return {
         ...state,
-        aux: payload,
+        aux: [payload],
         errors: null,
       };
 
