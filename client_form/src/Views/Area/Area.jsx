@@ -18,7 +18,7 @@ import { getAllArea } from "../../Redux/actions";
 const Area = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
-
+  
   useEffect(() => {
     dispatch(getAllArea());
   }, [dispatch]);

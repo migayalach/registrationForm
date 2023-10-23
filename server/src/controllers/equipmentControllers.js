@@ -25,7 +25,7 @@ const createEquipment = async (name) => {
   const countData = await Equipment.count();
   if (countData === 0) {
     await Equipment.create({ name });
-    return { name };
+    return await getAllEquipment();
   }
 
   //VERIFICAR QUE NO ESTE REPETIDO
@@ -70,12 +70,7 @@ const getNameEquipment = (name) => {
 };
 
 const getAllEquipment = async () =>
-  await Equipment
-    .findAll
-    //   {
-    //   include: { model: Category, attibutes: ["name"] },
-    // }
-    ();
+  await Equipment.findAll();
 
 const updateEquipment = async (idEquipment, name) => {
   const existsEquipment = await Equipment.findOne({

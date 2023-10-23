@@ -17,7 +17,6 @@ import { getAllEquipment } from "../../Redux/actions";
 const Equipment = () => {
   const dispatch = useDispatch();
   const selectorEquipment = useSelector((state) => state.equipment);
-  // console.log(selectorEquipment);
 
   useEffect(() => {
     dispatch(getAllEquipment());
