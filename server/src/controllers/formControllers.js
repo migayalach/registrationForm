@@ -74,7 +74,7 @@ const createForm = async (
 };
 
 const getSearchFormId = async (idForm) => {
-  return await Form.findOne({
+  const responseForm = await Form.findOne({
     where: { idForm },
     include: [
       {
@@ -94,6 +94,26 @@ const getSearchFormId = async (idForm) => {
       },
     ],
   });
+  const equipment = responseForm.Equipment.map(
+    ({
+      idEquipment,
+      name,
+      FormEquipment: control,
+      FormEquipment: dataP,
+      FormEquipment: dataHos,
+    }) => (idEquipment, name, control, dataP, dataHos)
+  );
+
+  const userApi = responseForm.UserApis.map(
+    ({ idUser, name, nroIdentification, charge }) => ({
+      idUser,
+      name,
+      nroIdentification,
+      charge,
+    })
+  );
+
+  return responseForm;
 };
 
 const getAllForm = async () => {
@@ -122,7 +142,17 @@ const getAllForm = async () => {
 
 const getSearchFormName = () => {};
 const updateForm = () => {};
-const delFomr = () => {};
+
+const delFomr = async (idForm) => {
+  const deleteForm = await Form.findOne({ where: { idForm } });
+  if (!deleteForm) {
+    throw Error(`El formulario buscado no se encuentra entre los registros`);
+  }
+  await Form.destroy({
+    where: { idForm },
+  });
+  return await getAllForm();
+};
 
 module.exports = {
   createForm,
