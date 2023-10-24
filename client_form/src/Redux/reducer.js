@@ -343,7 +343,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case DELETE_FORM:
       return {
         ...state,
-        form: payload,
+        form: payload.deletForm,
         errors: null,
       };
 
