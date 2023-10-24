@@ -58,19 +58,26 @@ const createForm = async (
   await createForm.addUserApi(idUser);
   await createForm.addState(idState);
   await createForm.addProcedures(idProcedures);
+
   // CREAR
   await Promise.all(
     credential.map(async ({ idCredential }) => {
       return await createForm.addCredential(idCredential);
     })
   );
+
   await Promise.all(
-    equipment.map(async ({ idEquipment }) => {
-      return createForm.addEquipment(idEquipment);
+    equipment.map(async ({ idEquipment, dataHos, dataP, etiquetaControl }) => {
+      return createForm.addEquipment(idEquipment, {
+        through: {
+          dataHos: dataHos,
+          dataP: dataP,
+          control: etiquetaControl,
+        },
+      });
     })
   );
-  // ACA DEBE IR EL EDITAR PARA AGREGAR LOS DATOS QUE IGNORO SEQUELIZE
-  // return createForm;
+
   return getAllForm();
 };
 
