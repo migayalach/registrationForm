@@ -16,10 +16,8 @@ const EquipmentData = ({ onDataUserApiChange }) => {
   const selectorEquipment = useSelector((state) => state.equipment);
   const [equipment, setEquipment] = useState({
     idEquipment: "",
-    //CORREGIR EL ENVIO
-    dataHos: "252",
-    dataP: "1",
-    //"-------------"
+    dataHos: "",
+    dataP: "",
     etiquetaControl: false,
   });
 
@@ -42,11 +40,8 @@ const EquipmentData = ({ onDataUserApiChange }) => {
   const selectorEquipment2 = useSelector((state) => state.equipment);
   const [equipment2, setEquipment2] = useState({
     idEquipment: "",
-    //CORREGIR EL ENVIO
-    dataHos: "222",
-    dataP: "2",
-    //"-------------"
-
+    dataHos: "",
+    dataP: "",
     etiquetaControl: false,
   });
 
@@ -83,15 +78,15 @@ const EquipmentData = ({ onDataUserApiChange }) => {
         <label htmlFor="host">Host: </label>
         <input
           type="text"
-          name="host"
-          value={equipment.host}
+          name="dataHos"
+          value={equipment.dataHos}
           onChange={handleChange}
         />
         <label htmlFor="ip">Direction IP: </label>
         <input
           type="text"
-          name="direccionIP"
-          value={equipment.direccionIP}
+          name="dataP"
+          value={equipment.dataP}
           onChange={handleChange}
         />
         <label htmlFor="control">Etiqueta de control: </label>
@@ -117,15 +112,15 @@ const EquipmentData = ({ onDataUserApiChange }) => {
         <label htmlFor="host">Host: </label>
         <input
           type="text"
-          name="host"
-          value={equipment2.host}
+          name="dataHos"
+          value={equipment2.dataHos}
           onChange={handleChange2}
         />
         <label htmlFor="ip">Direction IP: </label>
         <input
           type="text"
-          name="direccionIP"
-          value={equipment2.direccionIP}
+          name="dataP"
+          value={equipment2.dataP}
           onChange={handleChange2}
         />
         <label htmlFor="control">Etiqueta de control: </label>
