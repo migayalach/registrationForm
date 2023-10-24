@@ -327,6 +327,26 @@ const rootReducer = (state = initialState, { type, payload }) => {
         errors: null,
       };
 
+    case GET_FORM_ID:
+      return {
+        ...state,
+        aux: [payload],
+        errors: null,
+      };
+
+    case UPDATE_FORM:
+      return {
+        ...state,
+        errors: null,
+      };
+
+    case DELETE_FORM:
+      return {
+        ...state,
+        form: payload,
+        errors: null,
+      };
+
     //! ERROR
     case ERROR:
       return {

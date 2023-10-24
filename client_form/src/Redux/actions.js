@@ -509,4 +509,37 @@ export const getAllForm = () => {
   };
 };
 
+export const getIdForm = (idForm) => {
+  return async function (dispatch) {
+    const getFormId = await axios.get(`${URL}/form/${idForm}`);
+    const form = getFormId.data;
+    dispatch({
+      type: GET_FORM_ID,
+      payload: form,
+    });
+  };
+};
+
+export const updateForm = (dataForm) => {
+  return async function (dispatch) {
+    const putForm = await axios.put(`${URL}/form`, dataForm);
+    const form = putForm.data;
+    dispatch({
+      type: UPDATE_FORM,
+      payload: form,
+    });
+  };
+};
+
+export const deleteForm = (idForm) => {
+  return async function (dispatch) {
+    const delForm = await axios.delete(`${URL}/form/${idForm}`);
+    const form = delForm.data;
+    dispatch({
+      type: DELETE_FORM,
+      payload: form,
+    });
+  };
+};
+
 //* ERROR
