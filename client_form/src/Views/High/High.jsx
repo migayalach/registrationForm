@@ -29,7 +29,7 @@ const High = () => {
       <h1>soy high</h1>
       <FormHigh />
       <hr />
-      <Lists items={selectorForm} text={"Altas"} />
+      <Lists items={selectorForm} text={"Altas"} flag={"alta"} />
     </>
   );
 };
