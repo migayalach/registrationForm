@@ -4,8 +4,6 @@ const {
   State,
   Equipment,
   Credential,
-  FormEquipment,
-  FormCredential,
   Form,
 } = require("../database/database");
 
@@ -102,15 +100,29 @@ const getSearchFormId = async (idForm) => {
       },
     ],
   });
+
+  const credential = responseForm.Credentials.map(
+    ({ idCredential, UserIdUser, FormCredential: checkCredential }) => ({
+      idCredential,
+      UserIdUser,
+      checkCredential: checkCredential.checkCredential,
+    })
+  );
+
   const equipment = responseForm.Equipment.map(
-    ({
+    ({ idEquipment, name, FormEquipment }) => ({
       idEquipment,
       name,
-      FormEquipment: control,
-      FormEquipment: dataP,
-      FormEquipment: dataHos,
-    }) => (idEquipment, name, control, dataP, dataHos)
+      control: FormEquipment.control,
+      dataP: FormEquipment.dataP,
+      dataHos: FormEquipment.dataHos,
+    })
   );
+
+  const state = responseForm.States.map(({ idState, name }) => ({
+    idState,
+    name,
+  }));
 
   const userApi = responseForm.UserApis.map(
     ({ idUser, name, nroIdentification, charge }) => ({
@@ -121,7 +133,21 @@ const getSearchFormId = async (idForm) => {
     })
   );
 
-  return responseForm;
+  const procedures = responseForm.Procedures.map(({ idProcedures, name }) => ({
+    idProcedures,
+    name,
+  }));
+
+  return {
+    idForm: responseForm.idForm,
+    dateStart: responseForm.dateStart,
+    dateEnd: responseForm.dateEnd,
+    state,
+    userApi,
+    procedures,
+    credential,
+    equipment,
+  };
 };
 
 const getAllForm = async () => {
@@ -149,6 +175,7 @@ const getAllForm = async () => {
 };
 
 const getSearchFormName = () => {};
+
 const updateForm = () => {};
 
 const delFomr = async (idForm) => {
