@@ -316,7 +316,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ADD_FORM:
       return {
         ...state,
-        form: [...state.form, payload.resCreateForm],
+        form: payload.resCreateForm,
         errors: null,
       };
 

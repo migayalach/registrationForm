@@ -70,7 +70,8 @@ const createForm = async (
     })
   );
   // ACA DEBE IR EL EDITAR PARA AGREGAR LOS DATOS QUE IGNORO SEQUELIZE
-  return createForm;
+  // return createForm;
+  return getAllForm();
 };
 
 const getSearchFormId = async (idForm) => {
