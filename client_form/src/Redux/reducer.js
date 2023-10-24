@@ -337,6 +337,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case UPDATE_FORM:
       return {
         ...state,
+        aux: [],
         errors: null,
       };
 
