@@ -15,13 +15,16 @@ const ServerPublic = ({ onDataUserApiChange }) => {
   const dispatch = useDispatch();
   const selectorUserApi = useSelector((state) => state.userApi);
   const selectorUserIdApi = useSelector((state) => state.aux);
+  const selectorAuxEx = useSelector((state) => state.auxExtra);
+
+  // const date = selectorAuxEx[0]?.dateStart.slice(0, 10);
 
   const [dataUserApi, setDataUserApi] = useState([]);
 
   useEffect(() => {
     dispatch(getAllUserApi());
   }, []);
-  
+
   useEffect(() => {
     if (selectorUserIdApi.length > 0) {
       setDataUserApi(selectorUserIdApi);
@@ -38,7 +41,11 @@ const ServerPublic = ({ onDataUserApiChange }) => {
     <>
       <p>1.- Datos del sevidor publico</p>
       <label htmlFor="idUserApi">Usuario</label>
-      <select name="idUserApi" onChange={handleChange}>
+      <select
+        name="idUserApi"
+        value={selectorAuxEx[0]?.idUser}
+        onChange={handleChange}
+      >
         <option> </option>
         {selectorUserApi.map(({ idUser, name, charge }, index) => (
           <option key={index} value={idUser}>
@@ -57,9 +64,15 @@ const ServerPublic = ({ onDataUserApiChange }) => {
       )}
 
       <label htmlFor="fecha">Fecha de inicio:</label>
-      <input type="date" id="fecha" name="dateStart" onChange={handleChange} />
+      <input
+        type="date"
+        id="fecha"
+        name="dateStart"
+        // value={date}
+        // onChange={handleChange}
+      />
       <label htmlFor="fecha">Fecha de archivo:</label>
-      <input type="date" id="fecha" name="dateStart" onChange={handleChange} />
+      {/* <input type="date" id="fecha" name="dateEnd" onChange={handleChange} /> */}
     </>
   );
 };

@@ -4,8 +4,6 @@ const {
   State,
   Equipment,
   Credential,
-  FormEquipment,
-  FormCredential,
   Form,
 } = require("../database/database");
 
@@ -102,26 +100,35 @@ const getSearchFormId = async (idForm) => {
       },
     ],
   });
-  const equipment = responseForm.Equipment.map(
-    ({
-      idEquipment,
-      name,
-      FormEquipment: control,
-      FormEquipment: dataP,
-      FormEquipment: dataHos,
-    }) => (idEquipment, name, control, dataP, dataHos)
-  );
 
-  const userApi = responseForm.UserApis.map(
-    ({ idUser, name, nroIdentification, charge }) => ({
-      idUser,
-      name,
-      nroIdentification,
-      charge,
+  const credential = responseForm.Credentials.map(
+    ({ idCredential, UserIdUser, FormCredential: checkCredential }) => ({
+      idCredential,
+      UserIdUser,
+      checkCredential: checkCredential.checkCredential,
     })
   );
 
-  return responseForm;
+  const equipment = responseForm.Equipment.map(
+    ({ idEquipment, name, FormEquipment }) => ({
+      idEquipment,
+      name,
+      control: FormEquipment.control,
+      dataP: FormEquipment.dataP,
+      dataHos: FormEquipment.dataHos,
+    })
+  );
+
+  return {
+    idForm: responseForm.idForm,
+    dateStart: responseForm.dateStart,
+    dateEnd: responseForm.dateEnd,
+    idState: responseForm.States[0].idState,
+    idUser: responseForm.UserApis[0].idUser,
+    idProcedures: responseForm.Procedures[0].idProcedures,
+    credential, //ok
+    equipment, //ok
+  };
 };
 
 const getAllForm = async () => {
@@ -149,7 +156,30 @@ const getAllForm = async () => {
 };
 
 const getSearchFormName = () => {};
-const updateForm = () => {};
+
+const updateForm = async (
+  idForm,
+  idUser,
+  idState,
+  idProcedures,
+  credential,
+  equipment
+) => {
+  const form = await Form.findOne({ where: { idForm } });
+  if (!form) {
+    throw Error(`El formulario que usted busca no existe`);
+  }
+
+  // const credentialEdit = credential.map(async ({ idCredential, check }) => {
+  //   const existCredential = await Form.findByPk(idCredential);
+  //   console.log(existCredential);
+  //   // if (existCredential) {
+  //   //   existCredential.checkCredential = check;
+  //   //   await existCredential.save();
+  //   // }
+  // });
+  // await Promise.all(credentialEdit);
+};
 
 const delFomr = async (idForm) => {
   const deleteForm = await Form.findOne({ where: { idForm } });

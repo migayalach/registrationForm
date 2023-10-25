@@ -13,6 +13,7 @@ import {
   postForm,
   getAllProcedures,
   getAllState,
+  updateForm,
 } from "../../../Redux/actions";
 
 // JAVASCRIP
@@ -24,10 +25,21 @@ import "./form-high.css";
 const FormHigh = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.stateForm);
+  const selectorForm = useSelector((state) => state.auxExtra);
   const [errors, setErrors] = useState({});
 
   const handleAccept = (event) => {
-    dispatch(postForm(clearDataHigh(combinedData)));
+    selectorForm.length
+      ? dispatch(
+          updateForm({
+            idForm: selectorForm[0].idForm,
+            idUser: selectorForm[0].idUser,
+            idProcedures: selectorForm[0].idProcedures,
+            combinedData,
+            idState: selectorForm[0].idState,
+          })
+        )
+      : dispatch(postForm(clearDataHigh(combinedData)));
     event.preventDefault();
   };
 
@@ -62,7 +74,11 @@ const FormHigh = () => {
   return (
     <form>
       <label htmlFor="estado">Seleccione un estado: </label>
-      <select name="idState" onChange={handleChange}>
+      <select
+        name="idState"
+        value={selectorForm[0]?.idProcedures}
+        onChange={handleChange}
+      >
         <option></option>
         {state.map(({ idState, name }, index) => (
           <option key={index} value={idState}>

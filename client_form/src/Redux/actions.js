@@ -1,4 +1,5 @@
 import axios from "axios";
+import { dataSend } from "../Utils/clearFunctions";
 import {
   // AREA
   ADD_AREA,
@@ -481,6 +482,7 @@ export const deleteCredential = (idCredential) => {
 
 //* FORM
 export const postForm = (form) => {
+  console.log(form);
   return async function (dispatch) {
     const createForm = await axios.post(`${URL}/form`, form);
     try {
@@ -522,7 +524,7 @@ export const getIdForm = (idForm) => {
 
 export const updateForm = (dataForm) => {
   return async function (dispatch) {
-    const putForm = await axios.put(`${URL}/form`, dataForm);
+    const putForm = await axios.put(`${URL}/form`, dataSend(dataForm));
     const form = putForm.data;
     dispatch({
       type: UPDATE_FORM,

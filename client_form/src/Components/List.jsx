@@ -92,6 +92,7 @@ const List = ({
                 idProcedures={idProcedures}
                 idUser={idUser}
                 idCredential={idCredential}
+                idForm={idForm}
                 flag={flag}
               />
             </td>

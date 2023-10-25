@@ -14,11 +14,33 @@ import { getAllEquipment } from "../../Redux/actions";
 const EquipmentData = ({ onDataUserApiChange }) => {
   const dispatch = useDispatch();
   const selectorEquipment = useSelector((state) => state.equipment);
+  const selectorAuxEx = useSelector((state) => state.auxExtra);
+  let initialIdEquipment = "";
+  let initialDataHos = "";
+  let initialDataP = "";
+  let initialEtiquetaControl = "";
+  let initialIdEquipment2 = "";
+  let initialDataHos2 = "";
+  let initialDataP2 = "";
+  let initialEtiquetaControl2 = "";
+
+  if (selectorAuxEx.length > 0) {
+    initialIdEquipment = selectorAuxEx[0].equipment[0]?.idEquipment;
+    initialDataHos = selectorAuxEx[0].equipment[0]?.dataHos;
+    initialDataP = selectorAuxEx[0].equipment[0]?.dataP;
+    initialEtiquetaControl = selectorAuxEx[0].equipment[0]?.control;
+
+    initialIdEquipment2 = selectorAuxEx[0].equipment[1]?.idEquipment;
+    initialDataHos2 = selectorAuxEx[0].equipment[1]?.dataHos;
+    initialDataP2 = selectorAuxEx[0].equipment[1]?.dataP;
+    initialEtiquetaControl2 = selectorAuxEx[0].equipment[1]?.control;
+  }
+
   const [equipment, setEquipment] = useState({
-    idEquipment: "",
-    dataHos: "",
-    dataP: "",
-    etiquetaControl: false,
+    idEquipment: initialIdEquipment,
+    dataHos: initialDataHos,
+    dataP: initialDataP,
+    etiquetaControl: initialEtiquetaControl,
   });
 
   const handleChange = (event) => {
@@ -36,13 +58,27 @@ const EquipmentData = ({ onDataUserApiChange }) => {
     });
   };
 
+  useEffect(() => {
+    setEquipment({
+      idEquipment: initialIdEquipment,
+      dataHos: initialDataHos,
+      dataP: initialDataP,
+      etiquetaControl: initialEtiquetaControl,
+    });
+  }, [
+    initialIdEquipment,
+    initialDataHos,
+    initialDataP,
+    initialEtiquetaControl,
+  ]);
+
   // DOS
   const selectorEquipment2 = useSelector((state) => state.equipment);
   const [equipment2, setEquipment2] = useState({
-    idEquipment: "",
-    dataHos: "",
-    dataP: "",
-    etiquetaControl: false,
+    idEquipment: initialIdEquipment2,
+    dataHos: initialDataHos2,
+    dataP: initialDataP2,
+    etiquetaControl: initialEtiquetaControl2,
   });
 
   const handleChange2 = (event) => {
@@ -60,6 +96,20 @@ const EquipmentData = ({ onDataUserApiChange }) => {
   };
 
   useEffect(() => {
+    setEquipment2({
+      idEquipment: initialIdEquipment2,
+      dataHos: initialDataHos2,
+      dataP: initialDataP2,
+      etiquetaControl: initialEtiquetaControl2,
+    });
+  }, [
+    initialIdEquipment2,
+    initialDataHos2,
+    initialDataP2,
+    initialEtiquetaControl2,
+  ]);
+
+  useEffect(() => {
     dispatch(getAllEquipment());
   }, []);
 
@@ -67,7 +117,11 @@ const EquipmentData = ({ onDataUserApiChange }) => {
     <>
       <p>2.- Equipos de computación</p>
       <div>
-        <select name="idEquipment" onChange={handleChange}>
+        <select
+          name="idEquipment"
+          value={equipment.idEquipment}
+          onChange={handleChange}
+        >
           <option></option>
           {selectorEquipment.map(({ idEquipment, name }, index) => (
             <option key={index} value={idEquipment}>
@@ -101,7 +155,11 @@ const EquipmentData = ({ onDataUserApiChange }) => {
       <hr />
 
       <div>
-        <select name="idEquipment" onChange={handleChange2}>
+        <select
+          name="idEquipment"
+          value={equipment2.idEquipment}
+          onChange={handleChange2}
+        >
           <option></option>
           {selectorEquipment2.map(({ idEquipment, name }, index) => (
             <option key={index} value={idEquipment}>
