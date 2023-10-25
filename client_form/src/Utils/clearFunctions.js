@@ -28,3 +28,19 @@ const clearArray = (array) => {
   }
   return aux;
 };
+
+export const dataSend = (data) => {
+  const credential = data.combinedData.dataSend;
+  const equipment1 = data.combinedData.equipment;
+  const equipment2 = data.combinedData.equipment2;
+  const equipment = [equipment1, equipment2];
+
+  return {
+    idForm: data.idForm,
+    idUser: data.idUser,
+    idState: data.idState,
+    idProcedures: data.idProcedures,
+    credential,
+    equipment,
+  };
+};

@@ -45,8 +45,18 @@ const getFormName = async (request, response) => {
   }
 };
 
-const putForm = (request, response) => {
+const putForm = async (request, response) => {
+  const { idForm, idUser, idState, idProcedures, credential, equipment } = request.body;
   try {
+    const updateData = await updateForm(
+      idForm,
+      idUser,
+      idState,
+      idProcedures,
+      credential,
+      equipment
+    );
+    response.status(SUCCESS).json({ edit: true, updateData });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { dataSend } from "../Utils/clearFunctions";
 import {
   // AREA
   ADD_AREA,
@@ -523,7 +524,7 @@ export const getIdForm = (idForm) => {
 
 export const updateForm = (dataForm) => {
   return async function (dispatch) {
-    const putForm = await axios.put(`${URL}/form`, dataForm);
+    const putForm = await axios.put(`${URL}/form`, dataSend(dataForm));
     const form = putForm.data;
     dispatch({
       type: UPDATE_FORM,

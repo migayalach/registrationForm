@@ -64,6 +64,7 @@ import {
 const initialState = {
   stateForm: [],
   aux: [],
+  auxExtra: [],
   procedures: [],
   area: [],
   equipment: [],
@@ -330,14 +331,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_FORM_ID:
       return {
         ...state,
-        aux: [payload],
+        auxExtra: [payload],
         errors: null,
       };
 
     case UPDATE_FORM:
       return {
         ...state,
-        aux: [],
+        auxExtra: [],
+        // form: [payload.updateData],
         errors: null,
       };
 

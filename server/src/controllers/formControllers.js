@@ -119,34 +119,15 @@ const getSearchFormId = async (idForm) => {
     })
   );
 
-  const state = responseForm.States.map(({ idState, name }) => ({
-    idState,
-    name,
-  }));
-
-  const userApi = responseForm.UserApis.map(
-    ({ idUser, name, nroIdentification, charge }) => ({
-      idUser,
-      name,
-      nroIdentification,
-      charge,
-    })
-  );
-
-  const procedures = responseForm.Procedures.map(({ idProcedures, name }) => ({
-    idProcedures,
-    name,
-  }));
-
   return {
     idForm: responseForm.idForm,
     dateStart: responseForm.dateStart,
     dateEnd: responseForm.dateEnd,
-    state,
-    userApi,
-    procedures,
-    credential,
-    equipment,
+    idState: responseForm.States[0].idState,
+    idUser: responseForm.UserApis[0].idUser,
+    idProcedures: responseForm.Procedures[0].idProcedures,
+    credential, //ok
+    equipment, //ok
   };
 };
 
@@ -176,7 +157,29 @@ const getAllForm = async () => {
 
 const getSearchFormName = () => {};
 
-const updateForm = () => {};
+const updateForm = async (
+  idForm,
+  idUser,
+  idState,
+  idProcedures,
+  credential,
+  equipment
+) => {
+  const form = await Form.findOne({ where: { idForm } });
+  if (!form) {
+    throw Error(`El formulario que usted busca no existe`);
+  }
+
+  // const credentialEdit = credential.map(async ({ idCredential, check }) => {
+  //   const existCredential = await Form.findByPk(idCredential);
+  //   console.log(existCredential);
+  //   // if (existCredential) {
+  //   //   existCredential.checkCredential = check;
+  //   //   await existCredential.save();
+  //   // }
+  // });
+  // await Promise.all(credentialEdit);
+};
 
 const delFomr = async (idForm) => {
   const deleteForm = await Form.findOne({ where: { idForm } });

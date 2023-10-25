@@ -3,7 +3,7 @@ const {
   postForm,
   getFormId,
   getFormName,
-  // putForm,
+  putForm,
   deleteForm,
 } = require("../handlers/formHandler");
 const formRouter = Router();
@@ -11,7 +11,7 @@ const formRouter = Router();
 formRouter.post("/", postForm);
 formRouter.get("/:idForm", getFormId);
 formRouter.get("/", getFormName);
-// formRouter.put("/", putForm);
+formRouter.put("/", putForm);
 formRouter.delete("/:idForm", deleteForm);
 
 module.exports = formRouter;
