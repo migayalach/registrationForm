@@ -5,6 +5,8 @@ const {
   Equipment,
   Credential,
   Form,
+  FormCredential,
+  FormEquipment,
 } = require("../database/database");
 
 const { Op } = require("sequelize");
@@ -162,23 +164,51 @@ const updateForm = async (
   idUser,
   idState,
   idProcedures,
-  credential,
+  credential, //OK
   equipment
 ) => {
-  const form = await Form.findOne({ where: { idForm } });
-  if (!form) {
-    throw Error(`El formulario que usted busca no existe`);
+  const form = await Form.findByPk(idForm);
+  const user = await UserApi.findByPk(idUser);
+  const state = await State.findByPk(idState);
+  const procedure = await Procedures.findByPk(idProcedures);
+
+  if (!form || !user || !state || !procedure) {
+    throw Error(`No se pudo completar este proceso`);
   }
 
-  // const credentialEdit = credential.map(async ({ idCredential, check }) => {
-  //   const existCredential = await Form.findByPk(idCredential);
-  //   console.log(existCredential);
-  //   // if (existCredential) {
-  //   //   existCredential.checkCredential = check;
-  //   //   await existCredential.save();
-  //   // }
+  // EQUIPO
+  // 1.- VER SI SON LOS MISMOS DATOS
+  // 2.- SI SON LOS MISMOS DATOS NO HACER NADA
+  // 3.- SI NO SON LOS MISMOS DATOS EN UNO O AMBOS EDITAR EL QUE HAYA QUE EDITAR
+
+  // // TRAER DE LA BASE DE DATOS LO QUE HAY
+  // const equipmentBdd = await FormEquipment.findAll({
+  //   attributes: ["control", "dataP", "dataHos", "EquipmentIdEquipment"],
+  //   where: { FormIdForm: idForm },
   // });
-  // await Promise.all(credentialEdit);
+
+  // console.log(equipmentBdd[0].dataValues);
+  // console.log("************************");
+  // console.log(equipmentBdd[1].dataValues);
+  // console.log("************************");
+  // console.log(equipment[0]);
+  // console.log("************************");
+  // console.log(equipment[1]);
+  // // const igual = equipmentBdd.fine(
+  // //   ({ control, dataP, dataHos, EquipmentIdEquipment }) => {}
+  // // );
+
+  //CREDENCIAL
+  const resCredential = credential.map(async ({ idCredential, check }) => {
+    return FormCredential.update(
+      { checkCredential: check },
+      { where: { FormIdForm: idForm, CredentialIdCredential: idCredential } }
+    );
+  });
+
+  await Promise.all(resCredential);
+
+  return;
 };
 
 const delFomr = async (idForm) => {

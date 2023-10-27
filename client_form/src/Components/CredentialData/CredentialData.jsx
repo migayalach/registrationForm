@@ -14,10 +14,12 @@ import { getAllCredential } from "../../Redux/actions";
 const CredentialData = ({ onDataUserApiChange }) => {
   const dispatch = useDispatch();
   const selectorCredential = useSelector((state) => state.credential);
+  const selecAux = useSelector((state)=> state.auxExtra);
+  console.log(selecAux[0].credential);
 
   const [dataSend, setDataSend] = useState([]);
 
-  // UNO
+  // !UNO
   const [data, setData] = useState({
     idCredential: "",
     check: false,
@@ -52,7 +54,7 @@ const CredentialData = ({ onDataUserApiChange }) => {
     });
   };
 
-  // DOS
+  //! DOS
   const [data1, setData1] = useState({
     idCredential: "",
     check: false,
@@ -86,7 +88,7 @@ const CredentialData = ({ onDataUserApiChange }) => {
     });
   };
 
-  // TRES
+  //! TRES
   const [data2, setData2] = useState({
     idCredential: "",
     check: false,
@@ -120,7 +122,7 @@ const CredentialData = ({ onDataUserApiChange }) => {
     });
   };
 
-  // CUATRO
+  //! CUATRO
   const [data3, setData3] = useState({
     idCredential: "",
     check: false,
@@ -154,7 +156,7 @@ const CredentialData = ({ onDataUserApiChange }) => {
     });
   };
 
-  // CINCO
+  //! CINCO
   const [data4, setData4] = useState({
     idCredential: "",
     check: false,

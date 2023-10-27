@@ -2,6 +2,10 @@
 import { NavLink } from "react-router-dom";
 import Filter from "../../../Components/Filter/Filter";
 
+import DataServerPrublic from "../../../Components/DataServerPrublic";
+import DataEquipment from "../../../Components/DataEquipment";
+import DataCredential from "../../../Components/DataCredential";
+
 // HOOK'S
 
 // STYLESHEET'S
@@ -9,7 +13,20 @@ import Filter from "../../../Components/Filter/Filter";
 const Form = () => {
   return (
     <div>
-      <Filter />
+      <h4>1.- Datos del servidor publico:</h4>
+      <DataServerPrublic />
+      <h4>2.- Equipos de computación:</h4>
+      <DataEquipment />
+      <h4>3.- Credenciales de acceso:</h4>
+      <DataCredential />
+    </div>
+  );
+};
+
+export default Form;
+
+{
+  /* <Filter />
       <h1>opciones</h1>
       <p>vita de los filtros</p>
       <h1>Crecion de un nuevo formulario puede ser</h1>
@@ -17,9 +34,5 @@ const Form = () => {
         <NavLink to="/high">Alta</NavLink>
         <NavLink to="/low">Baja</NavLink>
         <NavLink to="/change">Cambio</NavLink>
-      </div>
-    </div>
-  );
-};
-
-export default Form;
+      </div> */
+}
