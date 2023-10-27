@@ -48,12 +48,6 @@ const FormArea = () => {
     setUserData({ name: initialName });
   }, [initialName]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     setUserData({ name: "" });
-  //   };
-  // }, []);
-
   return (
     <form className="form-component">
       <label htmlFor="nombre">Nombre: </label>
