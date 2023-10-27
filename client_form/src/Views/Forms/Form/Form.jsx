@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Filter from "../../../Components/Filter/Filter";
 
 import DataServerPrublic from "../../../Components/DataServerPrublic";
-import ListaDeTareas from "../../../Components/ListaDeTareas";
+import DataEquipment from "../../../Components/DataEquipment";
 import DataCredential from "../../../Components/DataCredential";
 
 // HOOK'S
@@ -16,7 +16,7 @@ const Form = () => {
       <h4>1.- Datos del servidor publico:</h4>
       <DataServerPrublic />
       <h4>2.- Equipos de computación:</h4>
-      <ListaDeTareas />
+      <DataEquipment />
       <h4>3.- Credenciales de acceso:</h4>
       <DataCredential />
     </div>
