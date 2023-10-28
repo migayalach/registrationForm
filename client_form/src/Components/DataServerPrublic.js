@@ -27,7 +27,7 @@ const DataServerPrublic = ({ handleData }) => {
   }, []);
 
   useEffect(() => {
-    userData[0]?.idUser && handleData(userData[0]?.idUser, "userPublic");
+    userData[0]?.idUser && handleData(userData[0]?.idUser, "idUser");
   }, [userData]);
 
   return (
