@@ -4,7 +4,7 @@ import CredentialForm from "./CredentialForm";
 import CredentialData from "./CredentialData";
 import { v4 as uuidv4 } from "uuid";
 
-const DataCredential = () => {
+const DataCredential = ({ handleData }) => {
   const [credenciales, setCredenciales] = useState([]);
 
   const agregarCredencial = (credential, name) => {
@@ -31,9 +31,10 @@ const DataCredential = () => {
     setCredenciales(credencialesActualizadas);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    handleData(credenciales, "credential");
+  }, [credenciales]);
 
-  console.log(credenciales);
   return (
     <>
       <CredentialForm agregarCredencial={agregarCredencial} />

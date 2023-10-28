@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUserApi } from "../Redux/actions";
 
-const DataServerPrublic = () => {
+const DataServerPrublic = ({ handleData }) => {
   const dispatch = useDispatch();
   const selectorUser = useSelector((state) => state.userApi);
   const [userData, setUserData] = useState([]);
@@ -25,6 +25,10 @@ const DataServerPrublic = () => {
   useEffect(() => {
     dispatch(getAllUserApi());
   }, []);
+
+  useEffect(() => {
+    userData[0]?.idUser && handleData(userData[0]?.idUser, "idUser");
+  }, [userData]);
 
   return (
     <>
