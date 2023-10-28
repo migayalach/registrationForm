@@ -8,6 +8,11 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      idUnique: {
+        type: DataTypes.TEXT,
+        unique: true,
+        allowNull: false,
+      },
     },
     {
       timestamps: false,
