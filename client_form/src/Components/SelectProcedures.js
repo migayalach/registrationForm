@@ -16,7 +16,7 @@ const SelectProcedures = ({ handleData }) => {
   }, []);
 
   useEffect(() => {
-    handleData(procedures, "procedure");
+    handleData(procedures, "idProcedure");
   }, [procedures]);
 
   return (
