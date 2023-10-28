@@ -15,24 +15,13 @@ const { nameClear } = require("../utils/formUser");
 const createForm = async (
   idUser,
   idState,
-  nameProcedures,
+  idProcedure,
   equipment,
   credential
 ) => {
-  const { idProcedures } = await Procedures.findOne({
-    where: {
-      name: {
-        [Op.iLike]: `${nameProcedures}`,
-      },
-    },
-  });
-  if (!idProcedures) {
-    throw Error(`No existe este procedimiento`);
-  }
-
+  const createProcedure = await Procedures.findByPk(idProcedure);
   const createUserApi = await UserApi.findByPk(idUser);
   const createState = await State.findByPk(idState);
-  const procedures = await Procedures.findByPk(idProcedures);
   const createCredential = await Promise.all(
     credential.map(async ({ idCredential }) => {
       return await Credential.findByPk(idCredential);
@@ -45,7 +34,7 @@ const createForm = async (
   );
 
   if (
-    !procedures ||
+    !createProcedure ||
     !createUserApi ||
     !createState ||
     !createEquipment.length ||
@@ -57,22 +46,25 @@ const createForm = async (
   const createForm = await Form.create({ dateStart: new Date() });
   await createForm.addUserApi(idUser);
   await createForm.addState(idState);
-  await createForm.addProcedures(idProcedures);
-
-  // CREAR
+  await createForm.addProcedures(idProcedure);
   await Promise.all(
-    credential.map(async ({ idCredential }) => {
-      return await createForm.addCredential(idCredential);
+    credential.map(async ({ idCredential, check, id }) => {
+      return await createForm.addCredential(idCredential, {
+        through: {
+          checkCredential: check,
+          idUnique: id,
+        },
+      });
     })
   );
-
   await Promise.all(
-    equipment.map(async ({ idEquipment, dataHos, dataP, etiquetaControl }) => {
+    equipment.map(async ({ idEquipment, host, ip, check, id }) => {
       return createForm.addEquipment(idEquipment, {
         through: {
-          dataHos: dataHos,
-          dataP: dataP,
-          control: etiquetaControl,
+          host,
+          ip,
+          control: check,
+          idUnique: id,
         },
       });
     })
