@@ -6,20 +6,26 @@ import DataEquipment from "../../../Components/DataEquipment";
 import DataCredential from "../../../Components/DataCredential";
 import SelectState from "../../../Components/SelectState";
 import SelectProcedures from "../../../Components/SelectProcedures";
+import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+// REDUX
+import { postForm } from "../../../Redux/actions";
+
 // STYLESHEET'S
 
 const Form = () => {
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
-    userPublic: "",
+    idUser: "",
+    idState: "",
+    idProcedure: "",
     equipment: "",
     credential: "",
-    state: "",
-    procedure: "",
   });
 
   const handleData = (info, type) => {
@@ -29,10 +35,14 @@ const Form = () => {
     });
   };
 
+  const handleAccept = () => {
+    dispatch(postForm(data));
+  };
+
   useEffect(() => {}, []);
-  console.log(data);
+
   return (
-    <div>
+    <>
       <h4>Seleccione un estado:</h4>
       <SelectState handleData={handleData} />
       <h4>Seleccione un proceso:</h4>
@@ -43,7 +53,8 @@ const Form = () => {
       <DataEquipment handleData={handleData} />
       <h4>3.- Credenciales de acceso:</h4>
       <DataCredential handleData={handleData} />
-    </div>
+      <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
+    </>
   );
 };
 
