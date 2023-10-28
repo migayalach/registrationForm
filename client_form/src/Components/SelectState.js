@@ -16,7 +16,7 @@ const SelectState = ({ handleData }) => {
   }, []);
 
   useEffect(() => {
-    handleData(state, "state");
+    handleData(state, "idState");
   }, [state]);
 
   return (
