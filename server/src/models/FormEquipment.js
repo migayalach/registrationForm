@@ -8,14 +8,17 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-      dataP: {
+      ip: {
         type: DataTypes.STRING,
-        defaultValue: "0",
         allowNull: false,
       },
-      dataHos: {
+      host: {
         type: DataTypes.STRING,
-        defaultValue: "0",
+        allowNull: false,
+      },
+      idUnique: {
+        type: DataTypes.TEXT,
+        unique: true,
         allowNull: false,
       },
     },

@@ -10,13 +10,12 @@ const {
 } = require("../controllers/formControllers");
 
 const postForm = async (request, response) => {
-  const { idUser, idState, nameProcedures, equipment, credential } =
-    request.body;
+  const { idUser, idState, idProcedure, equipment, credential } = request.body;
   try {
     const resCreateForm = await createForm(
       idUser,
       idState,
-      nameProcedures,
+      idProcedure,
       equipment,
       credential
     );
@@ -46,7 +45,8 @@ const getFormName = async (request, response) => {
 };
 
 const putForm = async (request, response) => {
-  const { idForm, idUser, idState, idProcedures, credential, equipment } = request.body;
+  const { idForm, idUser, idState, idProcedures, credential, equipment } =
+    request.body;
   try {
     const updateData = await updateForm(
       idForm,
