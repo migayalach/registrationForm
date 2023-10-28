@@ -4,7 +4,7 @@ import EquipmentForm from "./EquipmentForm";
 import EquipmentData from "./EquipmentData";
 import { v4 as uuidv4 } from "uuid";
 
-const DataEquipment = () => {
+const DataEquipment = ({ handleData }) => {
   const [equipos, setEquipos] = useState([]);
 
   const agregarEquipo = (equipment, name) => {
@@ -31,7 +31,9 @@ const DataEquipment = () => {
     setEquipos(equiposActualizados);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    handleData(equipos, "equipment");
+  }, [equipos]);
 
   return (
     <>
