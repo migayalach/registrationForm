@@ -31,7 +31,7 @@ export const ButtonDelete = ({
     flag === "procedures" && dispatch(deleteProcedures(idProcedures));
     flag === "user" && dispatch(deleteUser(idUser));
     flag === "credential" && dispatch(deleteCredential(idCredential));
-    flag === "alta" && dispatch(deleteForm(idForm));
+    flag === "form" && dispatch(deleteForm(idForm));
   };
 
   return (
