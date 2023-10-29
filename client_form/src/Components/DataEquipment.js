@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from "react";
-import "../StyleSheets/ListaDeTareas.css";
+// COMPONET'S
 import EquipmentForm from "./EquipmentForm";
 import EquipmentData from "./EquipmentData";
+
+// HOOK'S
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+
+// REDUX
+
+// STYLESHEET'S
+import "../StyleSheets/ListaDeTareas.css";
 
 const DataEquipment = ({ handleData }) => {
   const [equipos, setEquipos] = useState([]);
+  const selectEquipment = useSelector((state) => state.auxExtra);
+  const dataEquipment = selectEquipment[0]?.equipment;
 
   const agregarEquipo = (equipment, name) => {
     equipment.id = uuidv4();
@@ -34,6 +44,12 @@ const DataEquipment = ({ handleData }) => {
   useEffect(() => {
     handleData(equipos, "equipment");
   }, [equipos]);
+
+  useEffect(() => {
+    if (dataEquipment) {
+      setEquipos(dataEquipment);
+    }
+  }, [dataEquipment]);
 
   return (
     <>
