@@ -47,4 +47,3 @@ const SelectProcedures = ({ handleData }) => {
 };
 
 export default SelectProcedures;
-
