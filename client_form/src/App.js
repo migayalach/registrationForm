@@ -9,9 +9,10 @@ import {
   Form,
   FormChange,
   FormEquipment,
+  FormView,
   // FormHigh,
-  High,
-  FormLow,
+  // High,
+  // FormLow,
   FormProcedures,
   FormState,
   FormUser,
@@ -30,6 +31,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+
 // STYLESHEET'S
 import styles from "./app.module.css"
 library.add(fas, fab, far);
@@ -46,10 +48,7 @@ const App = () => {
       <Routes >
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/high" element={<High />} />
-        <Route path="/low" element={<FormLow />} />
-        <Route path="/change" element={<FormChange />} />
+        <Route path="/form" element={<FormView />} />      
         <Route path="/about-Me" element={<About />} />
         <Route path="/area" element={<Area />} />
         <Route path="/credential" element={<Credential />} />
