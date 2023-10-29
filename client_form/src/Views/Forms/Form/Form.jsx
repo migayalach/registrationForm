@@ -1,6 +1,4 @@
 // COMPONET'S
-import { NavLink } from "react-router-dom";
-import Filter from "../../../Components/Filter/Filter";
 import DataServerPrublic from "../../../Components/DataServerPrublic";
 import DataEquipment from "../../../Components/DataEquipment";
 import DataCredential from "../../../Components/DataCredential";
@@ -10,7 +8,7 @@ import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // REDUX
 import { postForm } from "../../../Redux/actions";
@@ -59,15 +57,3 @@ const Form = () => {
 };
 
 export default Form;
-
-{
-  /* <Filter />
-      <h1>opciones</h1>
-      <p>vita de los filtros</p>
-      <h1>Crecion de un nuevo formulario puede ser</h1>
-      <div>
-        <NavLink to="/high">Alta</NavLink>
-        <NavLink to="/low">Baja</NavLink>
-        <NavLink to="/change">Cambio</NavLink>
-      </div> */
-}
