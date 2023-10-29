@@ -96,20 +96,29 @@ const getSearchFormId = async (idForm) => {
   });
 
   const credential = responseForm.Credentials.map(
-    ({ idCredential, UserIdUser, FormCredential: checkCredential }) => ({
+    ({
       idCredential,
       UserIdUser,
-      checkCredential: checkCredential.checkCredential,
+      name,
+      FormCredential: checkCredential,
+      FormCredential: idUnique,
+    }) => ({
+      idCredential,
+      UserIdUser,
+      credencial: name,
+      check: checkCredential.checkCredential,
+      id: idUnique.idUnique,
     })
   );
 
   const equipment = responseForm.Equipment.map(
     ({ idEquipment, name, FormEquipment }) => ({
       idEquipment,
-      name,
-      control: FormEquipment.control,
-      dataP: FormEquipment.dataP,
-      dataHos: FormEquipment.dataHos,
+      equipo: name,
+      check: FormEquipment.control,
+      ip: FormEquipment.ip,
+      host: FormEquipment.host,
+      id: FormEquipment.idUnique,
     })
   );
 
@@ -119,9 +128,9 @@ const getSearchFormId = async (idForm) => {
     dateEnd: responseForm.dateEnd,
     idState: responseForm.States[0].idState,
     idUser: responseForm.UserApis[0].idUser,
-    idProcedures: responseForm.Procedures[0].idProcedures,
-    credential, //ok
-    equipment, //ok
+    idProcedure: responseForm.Procedures[0].idProcedures,
+    credential,
+    equipment,
   };
 };
 
