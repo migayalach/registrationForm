@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from "react";
-import "../StyleSheets/ListaDeTareas.css";
+// COMPONET'S
 import CredentialForm from "./CredentialForm";
 import CredentialData from "./CredentialData";
+
+// HOOK'S
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+
+// REDUX
+
+// STYLESHEET'S
+import "../StyleSheets/ListaDeTareas.css";
 
 const DataCredential = ({ handleData }) => {
   const [credenciales, setCredenciales] = useState([]);
+  const selectCredencial = useSelector((state) => state.auxExtra);
+  const dataCredencial = selectCredencial[0]?.credential;
 
   const agregarCredencial = (credential, name) => {
     credential.id = uuidv4();
@@ -34,6 +44,12 @@ const DataCredential = ({ handleData }) => {
   useEffect(() => {
     handleData(credenciales, "credential");
   }, [credenciales]);
+
+  useEffect(() => {
+    if (dataCredencial) {
+      setCredenciales(dataCredencial);
+    }
+  }, [dataCredencial]);
 
   return (
     <>
