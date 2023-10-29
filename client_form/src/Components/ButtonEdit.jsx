@@ -31,7 +31,7 @@ export const ButtonEdit = ({
     flag === "procedures" && dispatch(getIdProcedures(idProcedures));
     flag === "user" && dispatch(getIdUser(idUser));
     flag === "credential" && dispatch(getIdCredential(idCredential));
-    flag === "alta" && dispatch(getIdForm(idForm));
+    flag === "form" && dispatch(getIdForm(idForm));
   };
 
   return (
