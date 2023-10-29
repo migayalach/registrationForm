@@ -8,7 +8,7 @@ import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // REDUX
 import { postForm } from "../../../Redux/actions";
@@ -17,6 +17,7 @@ import { postForm } from "../../../Redux/actions";
 
 const Form = () => {
   const dispatch = useDispatch();
+  const selectForm = useSelector((state) => state.auxExtra);
 
   const [data, setData] = useState({
     idUser: "",
@@ -37,7 +38,16 @@ const Form = () => {
     dispatch(postForm(data));
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const formData = selectForm[0];
+    setData({
+      idUser: formData?.idUser,
+      idState: formData?.idState,
+      idProcedure: formData?.idProcedure,
+      equipment: formData?.equipment,
+      credential: formData?.credential,
+    });
+  }, [selectForm]);
 
   return (
     <>
