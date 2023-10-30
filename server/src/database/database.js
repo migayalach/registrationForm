@@ -1,5 +1,6 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
+
 const userApiModel = require("../models/UserApi");
 const equipmentModel = require("../models/Equipment");
 const stateModel = require("../models/State");
