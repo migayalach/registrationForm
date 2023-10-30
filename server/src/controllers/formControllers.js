@@ -7,6 +7,9 @@ const {
   Form,
   FormCredential,
   FormEquipment,
+  FormUserApi,
+  FormState,
+  FormProcedures,
 } = require("../database/database");
 
 const { Op } = require("sequelize");
@@ -47,6 +50,7 @@ const createForm = async (
   await createForm.addUserApi(idUser);
   await createForm.addState(idState);
   await createForm.addProcedures(idProcedure);
+
   await Promise.all(
     credential.map(async ({ idCredential, check, id }) => {
       return await createForm.addCredential(idCredential, {
@@ -57,6 +61,7 @@ const createForm = async (
       });
     })
   );
+
   await Promise.all(
     equipment.map(async ({ idEquipment, host, ip, check, id }) => {
       return createForm.addEquipment(idEquipment, {
@@ -70,7 +75,7 @@ const createForm = async (
     })
   );
 
-  return getAllForm();
+  return await getAllForm();
 };
 
 const getSearchFormId = async (idForm) => {
@@ -164,40 +169,33 @@ const updateForm = async (
   idForm,
   idUser,
   idState,
-  idProcedures,
-  credential, //OK
+  idProcedure,
+  credential,
   equipment
 ) => {
   const form = await Form.findByPk(idForm);
   const user = await UserApi.findByPk(idUser);
   const state = await State.findByPk(idState);
-  const procedure = await Procedures.findByPk(idProcedures);
+  const procedure = await Procedures.findByPk(idProcedure);
 
   if (!form || !user || !state || !procedure) {
     throw Error(`No se pudo completar este proceso`);
   }
 
-  // EQUIPO
-  // 1.- VER SI SON LOS MISMOS DATOS
-  // 2.- SI SON LOS MISMOS DATOS NO HACER NADA
-  // 3.- SI NO SON LOS MISMOS DATOS EN UNO O AMBOS EDITAR EL QUE HAYA QUE EDITAR
+  await FormUserApi.update(
+    { UserApiIdUser: idUser },
+    { where: { FormIdForm: idForm } }
+  );
 
-  // // TRAER DE LA BASE DE DATOS LO QUE HAY
-  // const equipmentBdd = await FormEquipment.findAll({
-  //   attributes: ["control", "dataP", "dataHos", "EquipmentIdEquipment"],
-  //   where: { FormIdForm: idForm },
-  // });
+  await FormState.update(
+    { StateIdState: idState },
+    { where: { FormIdForm: idForm } }
+  );
 
-  // console.log(equipmentBdd[0].dataValues);
-  // console.log("************************");
-  // console.log(equipmentBdd[1].dataValues);
-  // console.log("************************");
-  // console.log(equipment[0]);
-  // console.log("************************");
-  // console.log(equipment[1]);
-  // // const igual = equipmentBdd.fine(
-  // //   ({ control, dataP, dataHos, EquipmentIdEquipment }) => {}
-  // // );
+  await FormProcedures.update(
+    { ProcedureIdProcedures: idProcedure },
+    { where: { FormIdForm: idForm } }
+  );
 
   //CREDENCIAL
   const resCredential = credential.map(async ({ idCredential, check }) => {
@@ -207,9 +205,20 @@ const updateForm = async (
     );
   });
 
-  await Promise.all(resCredential);
+  //EQUIPMENT
+  const resEquipment = equipment.map(
+    async ({ idEquipment, host, ip, check }) => {
+      return FormEquipment.update(
+        { control: check, ip, host },
+        { where: { FormIdForm: idForm, EquipmentIdEquipment: idEquipment } }
+      );
+    }
+  );
 
-  return;
+  await Promise.all(resCredential);
+  await Promise.all(resEquipment);
+
+  return await getAllForm();
 };
 
 const delFomr = async (idForm) => {
@@ -231,5 +240,3 @@ module.exports = {
   updateForm,
   delFomr,
 };
-
-//ahora sigue get
