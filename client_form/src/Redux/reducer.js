@@ -55,6 +55,9 @@ import {
   UPDATE_FORM,
   DELETE_FORM,
 
+  //LOGIN
+  LOGIN_ACCESS,
+
   // ERROR
   ERROR,
 
@@ -347,6 +350,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload.deletForm,
+        errors: null,
+      };
+
+    //! LOGIN
+    case LOGIN_ACCESS:
+      return {
+        ...state,
+        aux: [payload],
         errors: null,
       };
 
