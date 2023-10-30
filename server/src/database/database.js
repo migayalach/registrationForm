@@ -10,6 +10,9 @@ const credentialModel = require("../models/Credential");
 const formModel = require("../models/Form");
 const formEquipment = require("../models/FormEquipment");
 const formCredential = require("../models/FormCredential");
+const formUserApi = require("../models/FormUserApi");
+const formState = require("../models/FormState");
+const formProcedures = require("../models/FormProcedures");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 const sequelize = new Sequelize(
@@ -30,6 +33,9 @@ credentialModel(sequelize);
 formModel(sequelize);
 formEquipment(sequelize);
 formCredential(sequelize);
+formUserApi(sequelize);
+formState(sequelize);
+formProcedures(sequelize);
 
 const {
   Unit,
@@ -42,6 +48,9 @@ const {
   Form,
   FormEquipment,
   FormCredential,
+  FormUserApi,
+  FormState,
+  FormProcedures,
 } = sequelize.models;
 
 Unit.hasOne(User);
@@ -71,18 +80,20 @@ Equipment.belongsToMany(Form, {
   timestamps: false,
 });
 
-Form.belongsToMany(UserApi, { through: "FormUserApi", timestamps: false });
-UserApi.belongsToMany(Form, { through: "FormUserApi", timestamps: false });
+// CREAR
+Form.belongsToMany(UserApi, { through: FormUserApi, timestamps: false });
+UserApi.belongsToMany(Form, { through: FormUserApi, timestamps: false });
 
-Form.belongsToMany(State, { through: "FormState", timestamps: false });
-State.belongsToMany(Form, { through: "FormState", timestamps: false });
+// CREAR
+Form.belongsToMany(State, { through: FormState, timestamps: false });
+State.belongsToMany(Form, { through: FormState, timestamps: false });
 
 Form.belongsToMany(Procedures, {
-  through: "FormProcedures",
+  through: FormProcedures,
   timestamps: false,
 });
 Procedures.belongsToMany(Form, {
-  through: "FormProcedures",
+  through: FormProcedures,
   timestamps: false,
 });
 
