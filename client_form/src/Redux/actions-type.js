@@ -54,6 +54,9 @@ export const GET_FORM_ID = "GET_FORM_ID";
 export const UPDATE_FORM = "UPDATE_FORM";
 export const DELETE_FORM = "DELETE_FORM";
 
+//LOGIN
+export const LOGIN_ACCESS = "LOGIN_ACCESS";
+
 // ERROR
 export const ERROR = "ERROR";
 
