@@ -45,14 +45,14 @@ const getFormName = async (request, response) => {
 };
 
 const putForm = async (request, response) => {
-  const { idForm, idUser, idState, idProcedures, credential, equipment } =
+  const { idForm, idUser, idState, idProcedure, credential, equipment } =
     request.body;
   try {
     const updateData = await updateForm(
       idForm,
       idUser,
       idState,
-      idProcedures,
+      idProcedure,
       credential,
       equipment
     );

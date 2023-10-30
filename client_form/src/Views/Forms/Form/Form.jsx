@@ -11,13 +11,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // REDUX
-import { postForm } from "../../../Redux/actions";
+import { postForm, updateForm } from "../../../Redux/actions";
 
 // STYLESHEET'S
 
 const Form = () => {
   const dispatch = useDispatch();
   const selectForm = useSelector((state) => state.auxExtra);
+  const dataIdForm = selectForm[0]?.idForm;
 
   const [data, setData] = useState({
     idUser: "",
@@ -35,7 +36,9 @@ const Form = () => {
   };
 
   const handleAccept = () => {
-    dispatch(postForm(data));
+    dataIdForm
+      ? dispatch(updateForm({ ...data, idForm: dataIdForm }))
+      : dispatch(postForm(data));
   };
 
   useEffect(() => {
@@ -47,7 +50,7 @@ const Form = () => {
       equipment: formData?.equipment,
       credential: formData?.credential,
     });
-  }, [selectForm]);
+  }, [selectForm, dataIdForm]);
 
   return (
     <>

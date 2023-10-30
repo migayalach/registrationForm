@@ -523,7 +523,7 @@ export const getIdForm = (idForm) => {
 
 export const updateForm = (dataForm) => {
   return async function (dispatch) {
-    const putForm = await axios.put(`${URL}/form`, dataSend(dataForm));
+    const putForm = await axios.put(`${URL}/form`, dataForm);
     const form = putForm.data;
     dispatch({
       type: UPDATE_FORM,

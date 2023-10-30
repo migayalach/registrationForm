@@ -339,7 +339,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         auxExtra: [],
-        // form: [payload.updateData],
+        form: payload.updateData,
         errors: null,
       };
 
