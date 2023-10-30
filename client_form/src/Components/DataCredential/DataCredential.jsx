@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 // REDUX
 
 // STYLESHEET'S
-import "../StyleSheets/ListaDeTareas.css";
+import "../../StyleSheets/ListaDeTareas.css";
 
 const DataCredential = ({ handleData }) => {
   const [credenciales, setCredenciales] = useState([]);

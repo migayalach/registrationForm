@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCredential, getIdCredential } from "../Redux/actions";
+import { getAllCredential, getIdCredential } from "../../Redux/actions";
 
 const CredentialForm = ({ agregarCredencial }) => {
   const dispatch = useDispatch();

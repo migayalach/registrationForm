@@ -6,7 +6,6 @@ import Detail from "./Detail/Detail";
 import Equipment from "./Equipment/Equipment";
 import Error from "./Error/Error";
 import Form from "./Forms/Form/Form";
-import FormChange from "./Forms/FormChange/FormChange";
 import FormEquipment from "./Forms/FormEquipment/FormEquipment";
 import FormView from "./FormView/FormView";
 import FormProcedures from "./Forms/FormProcedures/FormProcedures";
@@ -27,7 +26,6 @@ export {
   Equipment,
   Error,
   Form,
-  FormChange,
   FormEquipment,
   FormView,
   FormProcedures,
