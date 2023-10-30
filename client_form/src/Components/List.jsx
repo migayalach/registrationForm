@@ -11,7 +11,7 @@ import { seachIdArea } from "../Redux/actions";
 
 // STYLE SHEEETS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./List.module.css"; // Importa las clases de estilo
+import styles from "../StyleSheets/List.module.css"; // Importa las clases de estilo
 
 const List = ({
   index,

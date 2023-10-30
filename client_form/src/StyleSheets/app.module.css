@@ -1,0 +1,9 @@
+.app-container {
+  display: flex;
+  color: black;
+}
+
+.content-container {
+  flex-grow: 1;
+  margin-left: 40px;
+}
