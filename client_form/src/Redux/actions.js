@@ -57,6 +57,9 @@ import {
   UPDATE_FORM,
   DELETE_FORM,
 
+  //LOGIN
+  LOGIN_ACCESS,
+
   // ERROR
   ERROR,
 
@@ -539,6 +542,17 @@ export const deleteForm = (idForm) => {
     dispatch({
       type: DELETE_FORM,
       payload: form,
+    });
+  };
+};
+
+//* LOGIN
+export const login = (data) => {
+  return async function (dispatch) {
+    const access = await axios.post(`${URL}/login`, data);
+    dispatch({
+      type: LOGIN_ACCESS,
+      payload: access.data,
     });
   };
 };
