@@ -14,6 +14,7 @@ import "../StyleSheets/ListaDeTareas.css";
 
 const DataEquipment = ({ handleData }) => {
   const [equipos, setEquipos] = useState([]);
+  const [flag, setFlag] = useState(false);
   const selectEquipment = useSelector((state) => state.auxExtra);
   const dataEquipment = selectEquipment[0]?.equipment;
 
@@ -31,19 +32,18 @@ const DataEquipment = ({ handleData }) => {
     setEquipos(equiposActualizados);
   };
 
-  const completarTarea = (id) => {
-    const equiposActualizados = equipos.map((equipment) => {
-      if (equipment.id === id) {
-        equipment.completada = !equipment.completada;
+  const completarTarea = (id, checked) => {
+    for (const i of equipos) {
+      if (i.id === id) {
+        i.check = !checked;
       }
-      return equipment;
-    });
-    setEquipos(equiposActualizados);
+    }
+    setFlag(!flag);
   };
 
   useEffect(() => {
     handleData(equipos, "equipment");
-  }, [equipos]);
+  }, [equipos, flag]);
 
   useEffect(() => {
     if (dataEquipment) {

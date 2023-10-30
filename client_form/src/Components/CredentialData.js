@@ -1,7 +1,6 @@
 import { AiFillCloseCircle } from "react-icons/ai";
 const CredentialData = ({
   id,
-  idCredential,
   credential,
   check,
   completarTarea,
@@ -9,9 +8,6 @@ const CredentialData = ({
 }) => {
   return (
     <div>
-      {/* <div className="tarea-texto" onClick={() => completarTarea(id)}>
-        {texto}
-      </div> */}
       <table border="1px" style={{ width: "500px", height: "40px" }}>
         <thead>
           <tr>
@@ -23,7 +19,12 @@ const CredentialData = ({
           <tr>
             <td style={{ width: "150px" }}>{credential}</td>
             <td style={{ width: "150px" }}>
-              <input type="checkbox" checked={check} readOnly />
+              <input
+                type="checkbox"
+                checked={check}
+                onClick={() => completarTarea(id, check)}
+                readOnly
+              />
             </td>
           </tr>
         </tbody>
