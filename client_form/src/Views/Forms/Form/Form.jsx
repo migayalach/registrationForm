@@ -1,7 +1,7 @@
 // COMPONET'S
 import DataServerPrublic from "../../../Components/DataServerPrublic";
-import DataEquipment from "../../../Components/DataEquipment";
-import DataCredential from "../../../Components/DataCredential";
+import DataEquipment from "../../../Components/DataEquipment/DataEquipment";
+import DataCredential from "../../../Components/DataCredential/DataCredential";
 import SelectState from "../../../Components/SelectState";
 import SelectProcedures from "../../../Components/SelectProcedures";
 import { ButtonAccept } from "../../../Components/ButtonAccept";

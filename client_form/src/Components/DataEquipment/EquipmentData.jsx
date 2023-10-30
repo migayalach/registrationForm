@@ -1,5 +1,5 @@
 import React from "react";
-import "../StyleSheets/Tarea.css";
+import "../../StyleSheets/Tarea.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const EquipmentData = ({

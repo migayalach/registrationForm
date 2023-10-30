@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../StyleSheets/TareaFormulario.css";
+import "../../StyleSheets/TareaFormulario.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllEquipment, getIdEquipment } from "../Redux/actions";
+import { getAllEquipment, getIdEquipment } from "../../Redux/actions";
 
 const EquipmentForm = ({ agregarEquipo }) => {
   const dispatch = useDispatch();

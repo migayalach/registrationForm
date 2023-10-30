@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 // REDUX
 
 // STYLESHEET'S
-import "../StyleSheets/ListaDeTareas.css";
+import "../../StyleSheets/ListaDeTareas.css";
 
 const DataEquipment = ({ handleData }) => {
   const [equipos, setEquipos] = useState([]);
