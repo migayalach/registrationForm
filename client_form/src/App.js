@@ -41,7 +41,7 @@ const App = () => {
   const isLoginPage = location.pathname === "/";
   const is404ErrorPage = location.pathname.startsWith("/404");
 
-  const initialAccess = localStorage.getItem('access') === 'true' || false;
+  const initialAccess = localStorage.getItem("access") === "true" || false;
   const [access, setAccess] = useState(initialAccess);
   const selectLogin = useSelector((state) => state.aux);
   const accessRes = selectLogin[0]?.access;
