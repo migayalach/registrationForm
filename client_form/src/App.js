@@ -41,13 +41,11 @@ const App = () => {
   const isLoginPage = location.pathname === "/";
   const is404ErrorPage = location.pathname.startsWith("/404");
 
-  const initialAccess = localStorage.getItem('access') === 'true' || false;
-  const [access, setAccess] = useState(initialAccess);
-  const selectLogin = useSelector((state) => state.aux);
+  const [access, setAccess] = useState(false);
+  const selectLogin = useSelector((state) => state.auxUser);
   const accessRes = selectLogin[0]?.access;
 
   const changeState = () => {
-    localStorage.setItem("access", "false");
     setAccess(false);
     navigate("/");
   };
@@ -55,12 +53,21 @@ const App = () => {
   useEffect(() => {
     if (selectLogin.length) {
       if (accessRes === true) {
-        localStorage.setItem("access", "true");
         setAccess(true);
         navigate("/home");
       }
     }
   }, [accessRes]);
+
+  useEffect(() => {
+    if (!access && !isLoginPage) {
+      navigate("/");
+      if (!access && !isLoginPage) {
+        alert("Adios");
+        navigate("/");
+      }
+    }
+  }, [access, isLoginPage]);
 
   return (
     <div className={styles["app-container"]}>

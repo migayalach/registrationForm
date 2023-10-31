@@ -68,6 +68,7 @@ const initialState = {
   stateForm: [],
   aux: [],
   auxExtra: [],
+  auxUser: [],
   procedures: [],
   area: [],
   equipment: [],
@@ -357,7 +358,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case LOGIN_ACCESS:
       return {
         ...state,
-        aux: [payload],
+        auxUser: [payload],
         errors: null,
       };
 

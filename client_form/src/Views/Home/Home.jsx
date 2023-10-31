@@ -1,7 +1,7 @@
-import React from "react"; 
-import styles from "./home.module.css"; 
+import React, { useState } from "react";
+import styles from "./home.module.css";
 
-const Home = () => {
+const Home = ({ handleSaludo }) => {
   return (
     <div className={styles["home-container"]}>
       <h1>HOME</h1>

@@ -1,4 +1,4 @@
-const { User } = require("../database/database");
+const { User, Unit } = require("../database/database");
 const { Op } = require("sequelize");
 
 const getLoginData = async (emailUser, password) => {
@@ -14,10 +14,11 @@ const getLoginData = async (emailUser, password) => {
         },
       ],
     },
+    include: [{ model: Unit, attributes: ["nameUnit"] }],
   });
 
   return user
-    ? { access: true, message: `Bienvenid@: ${user.nameUser}` }
+    ? { access: true, name: user.nameUser, unit: user.Unit.nameUnit }
     : { access: false, message: "Usuario no encontrado" };
 };
 
