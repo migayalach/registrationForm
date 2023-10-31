@@ -78,11 +78,3 @@ Para poner en marcha la aplicación:
 
    - npm install
    - npm start
-
-## Configuración de Variables de Entorno (.env)
-
-Configuración de la base de datos PostgreSQL
-DB_HOST=localhost
-DB_NAME=nombre_de_la_base_de_datos
-DB_USER=usuario_de_la_base_de_datos
-DB_PASSWORD=contraseña_de_la_base_de_datos
