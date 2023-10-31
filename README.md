@@ -47,18 +47,42 @@ Para poner en marcha la aplicación:
 
 1. Asegúrate de que tienes Node.js instalado en tu sistema. La versión utilizada en este proyecto es Node.js v18.14.2.
 
-2. Navega a la carpeta raíz del proyecto.
+2. Configuración de Variables de Entorno (.env)
+   Antes de ejecutar la aplicación, asegúrate de configurar las variables de entorno necesarias mediante un archivo `.env`. Estas variables son esenciales para la configuración de la aplicación y deben mantenerse privadas. Puedes crear un archivo `.env` en la carpeta raíz del proyecto y definir las variables requeridas, como las credenciales de la base de datos o cualquier otra información confidencial.
 
-3. Navega a la carpeta `client_form` para configurar y ejecutar el frontend.
+   Asegúrate de incluir el archivo `.env` en el archivo `.gitignore` para evitar que se suba al control de versiones y mantener segura la información sensible.
+
+   -Configuración de la base de datos PostgreSQL
+
+   - DB_HOST=localhost
+   - DB_NAME=nombre_de_la_base_de_datos
+   - DB_USER=usuario_de_la_base_de_datos
+   - DB_PASSWORD=contraseña_de_la_base_de_datos
+
+   EJEMPLO:
+
+   <img src="./img/envConfiguration.png" width='400px'/><br>
+
+3. Navega a la carpeta raíz del proyecto.
+
+4. Navega a la carpeta `client_form` para configurar y ejecutar el frontend.
 
    ./cd client_form
 
-   - pm install
+   - npm install
    - npm start
 
-4. Luego, dirígete a la carpeta `server` para configurar y ejecutar el backend
+5. Luego, dirígete a la carpeta `server` para configurar y ejecutar el backend
 
    ./cd server
 
    - npm install
    - npm start
+
+## Configuración de Variables de Entorno (.env)
+
+Configuración de la base de datos PostgreSQL
+DB_HOST=localhost
+DB_NAME=nombre_de_la_base_de_datos
+DB_USER=usuario_de_la_base_de_datos
+DB_PASSWORD=contraseña_de_la_base_de_datos
