@@ -17,7 +17,15 @@ import {
 import NavBar from "./Components/NavBar/NavBar";
 
 // HOOK'S
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -29,12 +37,34 @@ library.add(fas, fab, far);
 
 const App = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isLoginPage = location.pathname === "/";
   const is404ErrorPage = location.pathname.startsWith("/404");
 
+  const initialAccess = localStorage.getItem('access') === 'true' || false;
+  const [access, setAccess] = useState(initialAccess);
+  const selectLogin = useSelector((state) => state.aux);
+  const accessRes = selectLogin[0]?.access;
+
+  const changeState = () => {
+    localStorage.setItem("access", "false");
+    setAccess(false);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (selectLogin.length) {
+      if (accessRes === true) {
+        localStorage.setItem("access", "true");
+        setAccess(true);
+        navigate("/home");
+      }
+    }
+  }, [accessRes]);
+
   return (
     <div className={styles["app-container"]}>
-      {!isLoginPage && !is404ErrorPage && <NavBar />}
+      {!isLoginPage && !is404ErrorPage && <NavBar changeState={changeState} />}
       <div className={styles["content-container"]}>
         <Routes>
           <Route path="/" element={<Login />} />
