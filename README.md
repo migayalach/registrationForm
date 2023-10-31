@@ -53,7 +53,7 @@ Para poner en marcha la aplicación:
 
    ./cd client_form
 
-   - pm install
+   - npm install
    - npm start
 
 4. Luego, dirígete a la carpeta `server` para configurar y ejecutar el backend
