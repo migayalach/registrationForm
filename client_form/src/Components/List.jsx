@@ -21,6 +21,9 @@ const List = ({
   idUnit,
   idForm,
   dateStart,
+  dateEnd,
+  procedure,
+  state,
   procedures,
   name,
   nameUser,
@@ -59,6 +62,9 @@ const List = ({
             {idCredential && <td>{idCredential}</td>}
             {idForm && <td>{idForm}</td>}
             {dateStart && <td>{dateStart.substring(0, 10)}</td>}
+            {dateEnd ? <td>{dateEnd.substring(0, 10)}</td> : <td></td>}
+            {procedure && <td>{procedure}</td>}
+            {state && <td>{state}</td>}
             {procedures && <td>{procedures}</td>}
             {name && <td className={styles.largeCell}>{name}</td>}
             {user && <td className={styles.smallCell}>{user}</td>}
