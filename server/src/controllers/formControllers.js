@@ -150,13 +150,19 @@ const getAllForm = async () => {
         model: UserApi,
         attributes: ["name"],
       },
+      {
+        model: Procedures,
+        attributes: ["name"],
+      },
     ],
   });
 
   const formsData = responseData.map((form) => ({
     idForm: form.idForm,
     dateStart: form.dateStart,
-    procedures: form.States.name,
+    dateEnd: form.dateEnd,
+    state: nameClear(form.States.map(({ name }) => name)),
+    procedure: nameClear(form.Procedures.map(({ name }) => name)),
     nameUser: nameClear(form.UserApis.map(({ name }) => name)),
   }));
 
@@ -167,6 +173,7 @@ const getSearchFormName = () => {};
 
 const updateForm = async (
   idForm,
+  checkForm,
   idUser,
   idState,
   idProcedure,
@@ -180,6 +187,20 @@ const updateForm = async (
 
   if (!form || !user || !state || !procedure) {
     throw Error(`No se pudo completar este proceso`);
+  }
+
+  if (checkForm) {
+    await Form.update(
+      { dateEnd: new Date(), checkForm: true },
+      { where: { idForm } }
+    );
+  }
+
+  if (!checkForm) {
+    await Form.update(
+      { dateEnd: null, checkForm: false },
+      { where: { idForm } }
+    );
   }
 
   await FormUserApi.update(

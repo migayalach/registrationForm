@@ -45,11 +45,19 @@ const getFormName = async (request, response) => {
 };
 
 const putForm = async (request, response) => {
-  const { idForm, idUser, idState, idProcedure, credential, equipment } =
-    request.body;
+  const {
+    idForm,
+    checkForm,
+    idUser,
+    idState,
+    idProcedure,
+    credential,
+    equipment,
+  } = request.body;
   try {
     const updateData = await updateForm(
       idForm,
+      checkForm,
       idUser,
       idState,
       idProcedure,
