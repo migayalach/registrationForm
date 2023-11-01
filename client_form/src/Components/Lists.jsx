@@ -32,6 +32,9 @@ const Lists = ({ items, text, flag }) => {
             idCredential,
             idForm,
             dateStart,
+            dateEnd,
+            procedure,
+            state,
             procedures,
             name,
             nameUser,
@@ -56,6 +59,9 @@ const Lists = ({ items, text, flag }) => {
               idCredential={idCredential}
               idForm={idForm}
               dateStart={dateStart}
+              dateEnd={dateEnd}
+              procedure={procedure}
+              state={state}
               procedures={procedures}
               name={name}
               nameUser={nameUser}
