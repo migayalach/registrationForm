@@ -58,7 +58,7 @@ const NavBar = ({ changeState }) => {
         <FontAwesomeIcon icon="fa-solid fa-person" className={styles.icon} />
         Sobre mi
       </NavLink>
-      <div onClick={() => changeState()}>
+      <div onClick={() => changeState("logout")}>
         <FontAwesomeIcon
           icon="fa-solid fa-arrow-left"
           className={styles.icon}
