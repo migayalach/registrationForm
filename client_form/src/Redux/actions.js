@@ -60,6 +60,9 @@ import {
   //LOGIN
   LOGIN_ACCESS,
 
+  // LOGOUT
+  LOGOUT_ACCESS,
+
   // ERROR
   ERROR,
 
@@ -553,6 +556,15 @@ export const login = (data) => {
     dispatch({
       type: LOGIN_ACCESS,
       payload: access.data,
+    });
+  };
+};
+
+// LOGOUT
+export const logout = () => {
+  return function (dispatch) {
+    dispatch({
+      type: LOGOUT_ACCESS,
     });
   };
 };
