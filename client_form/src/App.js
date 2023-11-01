@@ -24,12 +24,15 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+
+//REDUX
+import { logout } from "./Redux/actions";
 
 // STYLESHEET'S
 import styles from "./StyleSheets/app.module.css";
@@ -38,6 +41,7 @@ library.add(fas, fab, far);
 const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isLoginPage = location.pathname === "/";
   const is404ErrorPage = location.pathname.startsWith("/404");
 
@@ -45,7 +49,8 @@ const App = () => {
   const selectLogin = useSelector((state) => state.auxUser);
   const accessRes = selectLogin[0]?.access;
 
-  const changeState = () => {
+  const changeState = (flag) => {
+    flag === "logout" && dispatch(logout());
     setAccess(false);
     navigate("/");
   };
@@ -61,9 +66,11 @@ const App = () => {
 
   useEffect(() => {
     if (!access && !isLoginPage) {
+      dispatch(logout());
       navigate("/");
       if (!access && !isLoginPage) {
         alert("Adios");
+        dispatch(logout());
         navigate("/");
       }
     }

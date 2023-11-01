@@ -57,6 +57,9 @@ export const DELETE_FORM = "DELETE_FORM";
 //LOGIN
 export const LOGIN_ACCESS = "LOGIN_ACCESS";
 
+// LOGOUT
+export const LOGOUT_ACCESS = "LOGOUT_ACCESS";
+
 // ERROR
 export const ERROR = "ERROR";
 

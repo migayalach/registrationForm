@@ -60,6 +60,7 @@ import {
 
   // ERROR
   ERROR,
+  LOGOUT_ACCESS,
 
   // FILTROS
 } from "./actions-type";
@@ -360,6 +361,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         auxUser: [payload],
         errors: null,
+      };
+
+    //! LOGOUT
+    case LOGOUT_ACCESS:
+      return {
+        stateForm: [],
+        aux: [],
+        auxExtra: [],
+        auxUser: [],
+        procedures: [],
+        area: [],
+        equipment: [],
+        userApi: [],
+        user: [],
+        credential: [],
+        form: [],
       };
 
     //! ERROR
