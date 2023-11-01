@@ -131,6 +131,7 @@ const getSearchFormId = async (idForm) => {
     idForm: responseForm.idForm,
     dateStart: responseForm.dateStart,
     dateEnd: responseForm.dateEnd,
+    checkForm: responseForm.checkForm,
     idState: responseForm.States[0].idState,
     idUser: responseForm.UserApis[0].idUser,
     idProcedure: responseForm.Procedures[0].idProcedures,

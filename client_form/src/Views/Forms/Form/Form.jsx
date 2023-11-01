@@ -5,7 +5,7 @@ import DataCredential from "../../../Components/DataCredential/DataCredential";
 import SelectState from "../../../Components/SelectState";
 import SelectProcedures from "../../../Components/SelectProcedures";
 import { ButtonAccept } from "../../../Components/ButtonAccept";
-
+import { CheckUTIC } from "../../../Components/CheckUTIC";
 // HOOK'S
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const Form = () => {
     idProcedure: "",
     equipment: "",
     credential: "",
+    checkForm: false,
   });
 
   const handleData = (info, type) => {
@@ -64,6 +65,8 @@ const Form = () => {
       <DataEquipment handleData={handleData} />
       <h4>3.- Credenciales de acceso:</h4>
       <DataCredential handleData={handleData} />
+      <span>Si es que esta todo en orden puede dar su visto bueno</span>
+      <CheckUTIC handleData={handleData} />
       <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
     </>
   );
