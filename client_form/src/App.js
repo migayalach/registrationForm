@@ -26,10 +26,13 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+
+// LIBRARY
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+import Swal from "sweetalert2";
 
 //REDUX
 import { logout } from "./Redux/actions";
@@ -47,7 +50,9 @@ const App = () => {
 
   const [access, setAccess] = useState(false);
   const selectLogin = useSelector((state) => state.auxUser);
+  const errorLogin = useSelector((state) => state.errors);
   const accessRes = selectLogin[0]?.access;
+  const errorRes = selectLogin[0]?.message;
 
   const changeState = (flag) => {
     flag === "logout" && dispatch(logout());
@@ -69,12 +74,21 @@ const App = () => {
       dispatch(logout());
       navigate("/");
       if (!access && !isLoginPage) {
-        alert("Adios");
         dispatch(logout());
         navigate("/");
       }
     }
   }, [access, isLoginPage]);
+
+  useEffect(() => {
+    if (errorLogin !== undefined && errorRes !== undefined) {
+      Swal.fire({
+        icon: "question",
+        title: "Oops...",
+        text: errorRes,
+      });
+    }
+  }, [errorLogin, errorRes]);
 
   return (
     <div className={styles["app-container"]}>
