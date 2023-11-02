@@ -552,11 +552,18 @@ export const deleteForm = (idForm) => {
 //* LOGIN
 export const login = (data) => {
   return async function (dispatch) {
-    const access = await axios.post(`${URL}/login`, data);
-    dispatch({
-      type: LOGIN_ACCESS,
-      payload: access.data,
-    });
+    try {
+      const access = await axios.post(`${URL}/login`, data);
+      dispatch({
+        type: LOGIN_ACCESS,
+        payload: access.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data.error,
+      });
+    }
   };
 };
 
