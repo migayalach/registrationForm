@@ -18,6 +18,7 @@ const Login = () => {
   // const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErros] = useState({});
   const [inputData, setInputData] = useState({
     emailUser: "",
     password: "",
@@ -34,6 +35,9 @@ const Login = () => {
       ...inputData,
       [event.target.name]: event.target.value,
     });
+    setErros(
+      validationLogin({ ...inputData, [event.target.name]: event.target.value })
+    );
   };
 
   useEffect(() => {
@@ -53,6 +57,7 @@ const Login = () => {
             placeholder="Ingrese su Correo"
             className="input"
           />
+          {errors.emailUser && <p className="error">{errors.emailUser}</p>}
         </div>
         <div className="password-input">
           <input
@@ -63,6 +68,7 @@ const Login = () => {
             placeholder="Contraseña"
             className="input"
           />
+          {errors.password && <p className="error">{errors.password}</p>}
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
@@ -73,9 +79,12 @@ const Login = () => {
             {showPassword ? "Ocultar" : "Mostrar"} contraseña
           </button>
         </div>
-        <button type="submit" className="login-button">
-          Login
-        </button>
+
+        {Object.keys(errors).length < 2 && (
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        )}
       </form>
       <div className="welcome-message">
         <p>
