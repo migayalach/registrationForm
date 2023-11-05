@@ -19,6 +19,8 @@ const FormUser = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
   const selectorAux = useSelector((state) => state.aux);
+  const selectorUser = useSelector((state) => state.user);
+
   let initialnameUser = "";
   let initialemailUser = "";
   let initialuser = "";
@@ -26,12 +28,17 @@ const FormUser = () => {
   let initialidArea = "";
 
   if (selectorAux.length > 0) {
-    initialnameUser = selectorAux[0].nameUser;
-    initialemailUser = selectorAux[0].emailUser;
-    initialuser = selectorAux[0].user;
-    initialpassword = selectorAux[0].password;
-    initialidArea = selectorAux[0].UnitIdUnit;
+    initialnameUser = selectorAux[0]?.nameUser;
+    initialemailUser = selectorAux[0]?.emailUser;
+    initialuser = selectorAux[0]?.user;
+    initialpassword = selectorAux[0]?.password;
+    initialidArea = selectorAux[0]?.UnitIdUnit;
   }
+  initialnameUser = selectorUser[0]?.nameUser;
+  initialemailUser = selectorUser[0]?.emailUser;
+  initialuser = selectorUser[0]?.user;
+  initialpassword = selectorUser[0]?.password;
+  initialidArea = selectorUser[0]?.UnitIdUnit;
 
   const [userData, setUserData] = useState({
     nameUser: initialnameUser,
@@ -55,8 +62,10 @@ const FormUser = () => {
 
   const handleAccept = (event) => {
     selectorAux.length
-      ? dispatch(editUser({ ...userData, idUser: selectorAux[0].idUser }))
+      ? dispatch(editUser({ ...userData, idUser: selectorAux[0]?.idUser }))
       : dispatch(postUser(userData));
+    dispatch(editUser({ ...userData, idUser: selectorUser[0]?.idUser }));
+
     event.preventDefault();
   };
 
