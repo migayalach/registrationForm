@@ -377,6 +377,17 @@ export const postUser = (userData) => {
   };
 };
 
+export const getNameUser = (nameUser) => {
+  return async function (dispatch) {
+    const getUser = await axios.get(`${URL}/user?nameUser=${nameUser}`);
+    const userName = getUser.data;
+    dispatch({
+      type: GET_USER,
+      payload: userName,
+    });
+  };
+};
+
 export const getAllUser = () => {
   return async function (dispatch) {
     const getUserAll = await axios.get(`${URL}/user`);

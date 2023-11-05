@@ -1,19 +1,29 @@
 // COMPONET'S
 
 // HOOK'S
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+//REDUX
+import { editUser, getNameUser } from "../../Redux/actions";
+
+// JAVASCRIP
 
 // STYLESHEET'S
 
 const About = () => {
+  const selectUser = useSelector((state) => state.auxUser);
+  const nameUser = selectUser[0].name;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNameUser(nameUser));
+  }, [nameUser]);
+
   return (
     <>
-      <h1>Sobre mi</h1>
-      <h1>Hola mi nombre es Daniela Sole</h1>
-      <img
-        src="https://scontent.flpb2-1.fna.fbcdn.net/v/t39.30808-6/393399146_832791881875906_9000518948385316679_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=hRbE9-OgHQgAX9x-TP1&_nc_ht=scontent.flpb2-1.fna&oh=00_AfAh_PJxs8ylS6MW195SLU8iXkdAxSJhujDXiGq_Fdc_TQ&oe=6531AB91"
-        alt="foto"
-      />
-      <h3>I am a backend developer</h3>
+      <h3>Mi informacion personal</h3>
+      <span>{nameUser}</span>
     </>
   );
 };
