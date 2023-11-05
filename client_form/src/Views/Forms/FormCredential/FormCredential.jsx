@@ -14,7 +14,7 @@ import {
 } from "../../../Redux/actions";
 
 // JAVASCRIP
-import { validationUser } from "../../../Validations/validationUser";
+import { validationCredential } from "../../../Validations/validationCredential";
 
 // STYLESHEET'S
 import "./form-credential.css";
@@ -43,9 +43,12 @@ const FormCredential = () => {
       ...userData,
       [event.target.name]: event.target.value,
     });
-    // // setErrors(
-    // //   validationUser({ ...userData, [event.target.name]: event.target.value })
-    // // );
+    setErrors(
+      validationCredential({
+        ...userData,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const handleAccept = (event) => {
@@ -96,8 +99,9 @@ const FormCredential = () => {
           </option>
         ))}
       </select>
+      {errors.idUser && <p className="error">{errors.idUser}</p>}
 
-      {!errors.name && (
+      {Object.keys(errors).length < 1 && (
         <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
       )}
     </form>
