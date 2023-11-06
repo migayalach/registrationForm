@@ -35,7 +35,7 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import Swal from "sweetalert2";
 
 //REDUX
-import { logout } from "./Redux/actions";
+import { logout, getAllArea } from "./Redux/actions";
 
 // STYLESHEET'S
 import styles from "./StyleSheets/app.module.css";
@@ -65,6 +65,7 @@ const App = () => {
       if (accessRes === true) {
         setAccess(true);
         navigate("/home");
+        dispatch(getAllArea());
       }
     }
   }, [accessRes]);
