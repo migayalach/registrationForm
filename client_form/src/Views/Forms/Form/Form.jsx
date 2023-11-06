@@ -19,6 +19,11 @@ const Form = () => {
   const dispatch = useDispatch();
   const selectForm = useSelector((state) => state.auxExtra);
   const dataIdForm = selectForm[0]?.idForm;
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
 
   const [data, setData] = useState({
     idUser: "",
@@ -65,8 +70,10 @@ const Form = () => {
       <DataEquipment handleData={handleData} />
       <h4>3.- Credenciales de acceso:</h4>
       <DataCredential handleData={handleData} />
-      <span>Si es que esta todo en orden puede dar su visto bueno</span>
-      <CheckUTIC handleData={handleData} />
+      {resulData === "UTIC" && (
+        <span>Si es que esta todo en orden puede dar su visto bueno</span>
+      )}
+      {resulData === "UTIC" && <CheckUTIC handleData={handleData} />}
       <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
     </>
   );
