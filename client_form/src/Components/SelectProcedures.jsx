@@ -15,6 +15,11 @@ const SelectProcedures = ({ handleData }) => {
   const selectProcedures = useSelector((state) => state.procedures);
   const selectAux = useSelector((state) => state.auxExtra);
   const dataProcedure = selectAux[0]?.idProcedure;
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
 
   const handleChange = (event) => {
     setProcedures(event.target.value);
@@ -34,7 +39,12 @@ const SelectProcedures = ({ handleData }) => {
 
   return (
     <>
-      <select name="idProcedure" value={procedures} onChange={handleChange}>
+      <select
+        name="idProcedure"
+        value={procedures}
+        onChange={handleChange}
+        disabled={resulData !== "UTIC"}
+      >
         <option></option>
         {selectProcedures.map(({ idProcedures, name }, index) => (
           <option key={index} value={idProcedures}>
