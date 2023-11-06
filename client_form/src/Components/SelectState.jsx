@@ -15,6 +15,11 @@ const SelectState = ({ handleData }) => {
   const selectState = useSelector((state) => state.stateForm);
   const selectAux = useSelector((state) => state.auxExtra);
   const dataState = selectAux[0]?.idState;
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
 
   const handleChange = (event) => {
     setState(event.target.value);
@@ -34,7 +39,12 @@ const SelectState = ({ handleData }) => {
 
   return (
     <>
-      <select name="idState" value={state} onChange={handleChange}>
+      <select
+        name="idState"
+        value={state}
+        onChange={handleChange}
+        disabled={resulData !== "UTIC"}
+      >
         <option></option>
         {selectState.map(({ idState, name }, index) => (
           <option key={index} value={idState}>

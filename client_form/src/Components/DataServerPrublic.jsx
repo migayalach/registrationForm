@@ -15,6 +15,11 @@ const DataServerPrublic = ({ handleData }) => {
   const selectorUser = useSelector((state) => state.userApi);
   const selectAux = useSelector((state) => state.auxExtra);
   const dataUser = selectAux[0]?.idUser;
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
 
   // FUNCION ENCARGADA DE BUSCAR EL USUARIO POR SU ID, DENTRO DEL ARRAY QUE SE OBTIENE DE REDUX
   // PARA POSTERIORMENTE AGREGAR AL ESTADO LOCAL.
@@ -52,7 +57,12 @@ const DataServerPrublic = ({ handleData }) => {
   return (
     <>
       <label htmlFor="usuario">Seleccione un usuario: </label>
-      <select name="idUser" value={dataUser} onChange={handleChange}>
+      <select
+        name="idUser"
+        value={dataUser}
+        onChange={handleChange}
+        disabled={resulData !== "UTIC"}
+      >
         <option></option>
         {selectorUser.map(({ idUser, name }, index) => (
           <option key={index} value={idUser}>

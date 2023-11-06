@@ -17,6 +17,11 @@ const DataCredential = ({ handleData }) => {
   const [flag, setFlag] = useState(false);
   const selectCredencial = useSelector((state) => state.auxExtra);
   const dataCredencial = selectCredencial[0]?.credential;
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
 
   const agregarCredencial = (credential, name) => {
     credential.id = uuidv4();
@@ -53,7 +58,9 @@ const DataCredential = ({ handleData }) => {
 
   return (
     <>
-      <CredentialForm agregarCredencial={agregarCredencial} />
+      {resulData === "UTIC" && (
+        <CredentialForm agregarCredencial={agregarCredencial} />
+      )}
       <div className="tareas-lista-contenedor">
         {credenciales.map(({ id, idCredential, credencial, check }) => (
           <CredentialData

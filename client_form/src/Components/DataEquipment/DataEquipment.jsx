@@ -17,6 +17,11 @@ const DataEquipment = ({ handleData }) => {
   const [flag, setFlag] = useState(false);
   const selectEquipment = useSelector((state) => state.auxExtra);
   const dataEquipment = selectEquipment[0]?.equipment;
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
 
   const agregarEquipo = (equipment, name) => {
     equipment.id = uuidv4();
@@ -53,7 +58,7 @@ const DataEquipment = ({ handleData }) => {
 
   return (
     <>
-      <EquipmentForm agregarEquipo={agregarEquipo} />
+      {resulData === "UTIC" && <EquipmentForm agregarEquipo={agregarEquipo} />}
       <div className="tareas-lista-contenedor">
         {equipos.map(({ id, idEquipment, equipo, host, ip, check }) => (
           <EquipmentData
