@@ -46,6 +46,7 @@ const FormState = () => {
     setUserData({ name: initialName });
   }, [initialName]);
 
+  console.log(Object.keys(errors).length < 1);
   return (
     <form>
       <div>
@@ -58,11 +59,13 @@ const FormState = () => {
         />
       </div>
       {errors.name && <p>{errors.name}</p>}
-      <div className={styles["button-container"]}>
-        <button className={styles["button-accept"]} onClick={handleAccept}>
-          Aceptar
-        </button>
-      </div>
+      {Object.keys(errors).length < 1 && (
+        <div className={styles["button-container"]}>
+          <button className={styles["button-accept"]} onClick={handleAccept}>
+            Aceptar
+          </button>
+        </div>
+      )}
     </form>
   );
 };

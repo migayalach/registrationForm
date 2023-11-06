@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../Redux/actions";
 
 //JAVASCRIP
-import validationLogin from "./validationLogin";
+import validationLogin from "../../../Validations/validationLogin";
 
 // STYLESHEET'S
 import "../../Login/login.css";
