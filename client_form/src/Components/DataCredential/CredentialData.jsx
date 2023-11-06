@@ -3,6 +3,7 @@ const CredentialData = ({
   id,
   credential,
   check,
+  resulData,
   completarTarea,
   eliminarCredencial,
 }) => {
@@ -30,12 +31,14 @@ const CredentialData = ({
         </tbody>
       </table>
 
-      <div
-        className="tarea-contenedor-iconos"
-        onClick={() => eliminarCredencial(id)}
-      >
-        <AiFillCloseCircle className="tarea-icono" />
-      </div>
+      {resulData === "UTIC" && (
+        <div
+          className="tarea-contenedor-iconos"
+          onClick={() => eliminarCredencial(id)}
+        >
+          <AiFillCloseCircle className="tarea-icono" />
+        </div>
+      )}
     </div>
   );
 };
