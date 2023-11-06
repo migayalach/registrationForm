@@ -69,6 +69,7 @@ const DataEquipment = ({ handleData }) => {
             host={host}
             ip={ip}
             check={check}
+            resulData={resulData}
             eliminarEquipo={eliminarEquipo}
             completarTarea={completarTarea}
           />
