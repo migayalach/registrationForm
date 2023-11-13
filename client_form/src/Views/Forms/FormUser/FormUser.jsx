@@ -19,6 +19,11 @@ const FormUser = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
   const selectorAux = useSelector((state) => state.aux);
+  const selUserData = useSelector((state) => state.auxUser);
+  const area = selUserData.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
+
   const [errors, setErrors] = useState({});
 
   let initialnameUser = "";
@@ -120,7 +125,12 @@ const FormUser = () => {
       {errors.password && <p className="error">{errors.password}</p>}
 
       <label htmlFor="area">Area</label>
-      <select name="idArea" value={userData.idArea} onChange={handleChange}>
+      <select
+        name="idArea"
+        value={userData.idArea}
+        onChange={handleChange}
+        disabled={resulData !== "UTIC"}
+      >
         <option> </option>
         {selectorArea.map(({ idUnit, nameUnit }, index) => (
           <option key={index} value={idUnit}>
