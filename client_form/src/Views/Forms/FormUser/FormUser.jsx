@@ -85,8 +85,6 @@ const FormUser = () => {
     initialidArea,
   ]);
 
-  console.log(resulData);
-
   return (
     <form>
       <h1>FormUser</h1>
