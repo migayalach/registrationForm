@@ -19,7 +19,11 @@ const FormUser = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
   const selectorAux = useSelector((state) => state.aux);
-  // const selectorUser = useSelector((state) => state.user);
+  const selUserData = useSelector((state) => state.auxUser);
+  const area = selUserData.map(({ unit }) => unit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
+
   const [errors, setErrors] = useState({});
 
   let initialnameUser = "";
@@ -35,11 +39,6 @@ const FormUser = () => {
     initialpassword = selectorAux[0]?.password;
     initialidArea = selectorAux[0]?.UnitIdUnit;
   }
-  // initialnameUser = selectorUser[0]?.nameUser;
-  // initialemailUser = selectorUser[0]?.emailUser;
-  // initialuser = selectorUser[0]?.user;
-  // initialpassword = selectorUser[0]?.password;
-  // initialidArea = selectorUser[0]?.UnitIdUnit;
 
   const [userData, setUserData] = useState({
     nameUser: initialnameUser,
@@ -60,12 +59,10 @@ const FormUser = () => {
   };
 
   const handleAccept = (event) => {
+    event.preventDefault();
     selectorAux.length
       ? dispatch(editUser({ ...userData, idUser: selectorAux[0]?.idUser }))
       : dispatch(postUser(userData));
-    // dispatch(editUser({ ...userData, idUser: selectorUser[0]?.idUser }));
-
-    event.preventDefault();
   };
 
   useEffect(() => {
@@ -128,7 +125,12 @@ const FormUser = () => {
       {errors.password && <p className="error">{errors.password}</p>}
 
       <label htmlFor="area">Area</label>
-      <select name="idArea" value={userData.idArea} onChange={handleChange}>
+      <select
+        name="idArea"
+        value={userData.idArea}
+        onChange={handleChange}
+        disabled={resulData !== "UTIC"}
+      >
         <option> </option>
         {selectorArea.map(({ idUnit, nameUnit }, index) => (
           <option key={index} value={idUnit}>
@@ -138,8 +140,8 @@ const FormUser = () => {
       </select>
       {errors.idArea && <p className="error">{errors.idArea}</p>}
 
-      {Object.keys(errors).length < 1  && (
-      <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
+      {Object.keys(errors).length < 1 && (
+        <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
       )}
     </form>
   );

@@ -42,6 +42,11 @@ const List = ({
 }) => {
   const dispatch = useDispatch();
   const selecSearhArea = useSelector((state) => state.aux || state.area);
+  const selUserData = useSelector((state) => state.auxUser);
+  const selArea = useSelector((state) => state.area);
+  const area = selArea.map(({ nameUnit }) => nameUnit);
+  const userArea = selUserData[0]?.unit;
+  const resulData = area.find((index) => index === userArea);
   const [dataAux, setDataAux] = useState([]);
 
   useEffect(() => {
@@ -111,16 +116,18 @@ const List = ({
                   style={{ color: "#ff0000" }}
                 />
               </button> */}
-              <ButtonDelete
-                id={idUnit}
-                idEquipment={idEquipment}
-                idState={idState}
-                idProcedures={idProcedures}
-                idUser={idUser}
-                idCredential={idCredential}
-                idForm={idForm}
-                flag={flag}
-              />
+              {resulData === "UTIC" && (
+                <ButtonDelete
+                  id={idUnit}
+                  idEquipment={idEquipment}
+                  idState={idState}
+                  idProcedures={idProcedures}
+                  idUser={idUser}
+                  idCredential={idCredential}
+                  idForm={idForm}
+                  flag={flag}
+                />
+              )}
             </td>
           </tr>
         </tbody>

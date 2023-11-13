@@ -10,6 +10,7 @@ const EquipmentData = ({
   check,
   completarTarea,
   eliminarEquipo,
+  resulData,
 }) => {
   return (
     <div>
@@ -32,6 +33,7 @@ const EquipmentData = ({
                 type="checkbox"
                 checked={check}
                 onClick={() => completarTarea(id, check)}
+                disabled={resulData !== "UTIC"}
                 readOnly
               />
             </td>
@@ -39,12 +41,14 @@ const EquipmentData = ({
         </tbody>
       </table>
 
-      <div
-        className="tarea-contenedor-iconos"
-        onClick={() => eliminarEquipo(id)}
-      >
-        <AiFillCloseCircle className="tarea-icono" />
-      </div>
+      {resulData === "UTIC" && (
+        <div
+          className="tarea-contenedor-iconos"
+          onClick={() => eliminarEquipo(id)}
+        >
+          <AiFillCloseCircle className="tarea-icono" />
+        </div>
+      )}
     </div>
   );
 };

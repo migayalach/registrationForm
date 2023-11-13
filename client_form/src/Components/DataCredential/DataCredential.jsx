@@ -69,6 +69,7 @@ const DataCredential = ({ handleData }) => {
             idCredential={idCredential}
             credential={credencial}
             check={check}
+            resulData={resulData}
             eliminarCredencial={eliminarCredencial}
             completarTarea={completarTarea}
           />
