@@ -19,7 +19,6 @@ const FormUser = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
   const selectorAux = useSelector((state) => state.aux);
-  // const selectorUser = useSelector((state) => state.user);
   const [errors, setErrors] = useState({});
 
   let initialnameUser = "";
@@ -35,11 +34,6 @@ const FormUser = () => {
     initialpassword = selectorAux[0]?.password;
     initialidArea = selectorAux[0]?.UnitIdUnit;
   }
-  // initialnameUser = selectorUser[0]?.nameUser;
-  // initialemailUser = selectorUser[0]?.emailUser;
-  // initialuser = selectorUser[0]?.user;
-  // initialpassword = selectorUser[0]?.password;
-  // initialidArea = selectorUser[0]?.UnitIdUnit;
 
   const [userData, setUserData] = useState({
     nameUser: initialnameUser,
@@ -60,12 +54,10 @@ const FormUser = () => {
   };
 
   const handleAccept = (event) => {
+    event.preventDefault();
     selectorAux.length
       ? dispatch(editUser({ ...userData, idUser: selectorAux[0]?.idUser }))
       : dispatch(postUser(userData));
-    // dispatch(editUser({ ...userData, idUser: selectorUser[0]?.idUser }));
-
-    event.preventDefault();
   };
 
   useEffect(() => {
@@ -138,8 +130,8 @@ const FormUser = () => {
       </select>
       {errors.idArea && <p className="error">{errors.idArea}</p>}
 
-      {Object.keys(errors).length < 1  && (
-      <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
+      {Object.keys(errors).length < 1 && (
+        <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
       )}
     </form>
   );
