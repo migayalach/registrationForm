@@ -20,7 +20,7 @@ const FormUser = () => {
   const selectorArea = useSelector((state) => state.area);
   const selectorAux = useSelector((state) => state.aux);
   const selUserData = useSelector((state) => state.auxUser);
-  const area = selUserData.map(({ nameUnit }) => nameUnit);
+  const area = selUserData.map(({ unit }) => unit);
   const userArea = selUserData[0]?.unit;
   const resulData = area.find((index) => index === userArea);
 
@@ -84,6 +84,8 @@ const FormUser = () => {
     initialpassword,
     initialidArea,
   ]);
+
+  console.log(resulData);
 
   return (
     <form>
