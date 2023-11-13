@@ -13,7 +13,7 @@ const {
 } = require("../database/database");
 
 const { Op } = require("sequelize");
-const { nameClear } = require("../utils/formUser");
+const { clearResponseGet } = require("../utils/formUser");
 
 const createForm = async (
   idUser,
@@ -158,16 +158,7 @@ const getAllForm = async () => {
     ],
   });
 
-  const formsData = responseData.map((form) => ({
-    idForm: form.idForm,
-    dateStart: form.dateStart,
-    dateEnd: form.dateEnd,
-    state: nameClear(form.States.map(({ name }) => name)),
-    procedure: nameClear(form.Procedures.map(({ name }) => name)),
-    nameUser: nameClear(form.UserApis.map(({ name }) => name)),
-  }));
-
-  return formsData;
+  return clearResponseGet(responseData);
 };
 
 const getSearchFormName = () => {};
@@ -254,6 +245,71 @@ const delFomr = async (idForm) => {
   return await getAllForm();
 };
 
+const searchData = async (procedure, userApi, state, start, end) => {
+  if (procedure) {
+    const resData = await Form.findAll({
+      include: [
+        { model: Procedures, attributes: ["name"] },
+        { model: State, attributes: ["name"] },
+        { model: UserApi, attributes: ["name"] },
+      ],
+      where: {
+        "$Procedures.name$": {
+          [Op.iLike]: `%${procedure}%`,
+        },
+      },
+    });
+    return resData.length ? clearResponseGet(resData) : await getAllForm();
+  } else if (userApi) {
+    const resData = await Form.findAll({
+      include: [
+        { model: Procedures, attributes: ["name"] },
+        { model: State, attributes: ["name"] },
+        { model: UserApi, attributes: ["name"] },
+      ],
+      where: {
+        "$UserApis.name$": {
+          [Op.iLike]: `%${userApi}%`,
+        },
+      },
+    });
+    return resData.length ? clearResponseGet(resData) : await getAllForm();
+  } else if (state) {
+    const resData = await Form.findAll({
+      include: [
+        { model: State, attributes: ["name"] },
+        { model: Procedures, attributes: ["name"] },
+        { model: UserApi, attributes: ["name"] },
+      ],
+      where: {
+        "$States.name$": {
+          [Op.iLike]: `%${state}%`,
+        },
+      },
+    });
+    return resData.length ? clearResponseGet(resData) : await getAllForm();
+  } else if (start || end) {
+    const resData = await Form.findAll({
+      include: [
+        { model: State, attributes: ["name"] },
+        { model: Procedures, attributes: ["name"] },
+        { model: UserApi, attributes: ["name"] },
+      ],
+      where: {
+        dateStart: {
+          [Op.between]: [start, end],
+        },
+        dateEnd: {
+          [Op.between]: [start, end],
+        },
+      },
+    });
+    return resData.length ? clearResponseGet(resData) : await getAllForm();
+  } else {
+    return await getAllForm();
+  }
+};
+
 module.exports = {
   createForm,
   getSearchFormId,
@@ -261,4 +317,5 @@ module.exports = {
   getAllForm,
   updateForm,
   delFomr,
+  searchData,
 };
