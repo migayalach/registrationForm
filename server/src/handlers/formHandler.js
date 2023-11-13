@@ -4,6 +4,7 @@ const {
   createForm,
   getSearchFormId,
   getSearchFormName,
+  searchData,
   getAllForm,
   updateForm,
   delFomr,
@@ -37,7 +38,11 @@ const getFormId = async (request, response) => {
 
 const getFormName = async (request, response) => {
   try {
-    const responseForm = await getAllForm();
+    const { procedure, userApi, state, start, end } = request.query;
+    const responseForm =
+      procedure || userApi || state || start || end
+        ? await searchData(procedure, userApi, state, start, end)
+        : await getAllForm();
     response.status(SUCCESS).json(responseForm);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
