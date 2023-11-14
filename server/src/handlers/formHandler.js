@@ -26,6 +26,22 @@ const postForm = async (request, response) => {
   }
 };
 
+const dataSearch = async (request, response) => {
+  const { procedure, state, userApi, dateStart, dateEnd } = request.body;
+  try {
+    const responseForm = await searchData(
+      procedure,
+      state,
+      userApi,
+      dateStart,
+      dateEnd
+    );
+    response.status(SUCCESS).json(responseForm);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
 const getFormId = async (request, response) => {
   const { idForm } = request.params;
   try {
@@ -38,11 +54,7 @@ const getFormId = async (request, response) => {
 
 const getFormName = async (request, response) => {
   try {
-    const { procedure, userApi, state, start, end } = request.query;
-    const responseForm =
-      procedure || userApi || state || start || end
-        ? await searchData(procedure, userApi, state, start, end)
-        : await getAllForm();
+    const responseForm = await getAllForm();
     response.status(SUCCESS).json(responseForm);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -85,4 +97,11 @@ const deleteForm = async (request, response) => {
   }
 };
 
-module.exports = { postForm, getFormId, getFormName, putForm, deleteForm };
+module.exports = {
+  postForm,
+  dataSearch,
+  getFormId,
+  getFormName,
+  putForm,
+  deleteForm,
+};

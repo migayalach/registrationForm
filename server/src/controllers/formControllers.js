@@ -245,69 +245,41 @@ const delFomr = async (idForm) => {
   return await getAllForm();
 };
 
-const searchData = async (procedure, userApi, state, start, end) => {
-  if (procedure) {
-    const resData = await Form.findAll({
-      include: [
-        { model: Procedures, attributes: ["name"] },
-        { model: State, attributes: ["name"] },
-        { model: UserApi, attributes: ["name"] },
-      ],
-      where: {
+const searchData = async (procedure, state, userApi, dateStart, dateEnd) => {
+  const resData = await Form.findAll({
+    include: [
+      { model: Procedures, attributes: ["name"] },
+      { model: State, attributes: ["name"] },
+      { model: UserApi, attributes: ["name"] },
+    ],
+    where: {
+      ...(dateStart &&
+        dateEnd && {
+          dateStart: {
+            [Op.between]: [dateStart, dateEnd],
+          },
+        }),
+      ...(procedure && {
         "$Procedures.name$": {
           [Op.iLike]: `%${procedure}%`,
         },
-      },
-    });
-    return resData.length ? clearResponseGet(resData) : await getAllForm();
-  } else if (userApi) {
-    const resData = await Form.findAll({
-      include: [
-        { model: Procedures, attributes: ["name"] },
-        { model: State, attributes: ["name"] },
-        { model: UserApi, attributes: ["name"] },
-      ],
-      where: {
+      }),
+      ...(userApi && {
         "$UserApis.name$": {
           [Op.iLike]: `%${userApi}%`,
         },
-      },
-    });
-    return resData.length ? clearResponseGet(resData) : await getAllForm();
-  } else if (state) {
-    const resData = await Form.findAll({
-      include: [
-        { model: State, attributes: ["name"] },
-        { model: Procedures, attributes: ["name"] },
-        { model: UserApi, attributes: ["name"] },
-      ],
-      where: {
+      }),
+      ...(state && {
         "$States.name$": {
           [Op.iLike]: `%${state}%`,
         },
-      },
-    });
-    return resData.length ? clearResponseGet(resData) : await getAllForm();
-  } else if (start || end) {
-    const resData = await Form.findAll({
-      include: [
-        { model: State, attributes: ["name"] },
-        { model: Procedures, attributes: ["name"] },
-        { model: UserApi, attributes: ["name"] },
-      ],
-      where: {
-        dateStart: {
-          [Op.between]: [start, end],
-        },
-        dateEnd: {
-          [Op.between]: [start, end],
-        },
-      },
-    });
-    return resData.length ? clearResponseGet(resData) : await getAllForm();
-  } else {
-    return await getAllForm();
-  }
+      }),
+    },
+  });
+
+  return resData.length
+    ? clearResponseGet(resData)
+    : [{ message: `No se encontraron datos` }];
 };
 
 module.exports = {

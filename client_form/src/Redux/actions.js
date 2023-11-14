@@ -527,6 +527,17 @@ export const getAllForm = () => {
   };
 };
 
+export const searchFormData = (data) => {
+  return async function (dispatch) {
+    const searchData = await axios.post(`${URL}/form/search`, data);
+    const dataRes = searchData.data;
+    dispatch({
+      type: GET_FORM,
+      payload: dataRes,
+    });
+  };
+};
+
 export const getIdForm = (idForm) => {
   return async function (dispatch) {
     const getFormId = await axios.get(`${URL}/form/${idForm}`);
