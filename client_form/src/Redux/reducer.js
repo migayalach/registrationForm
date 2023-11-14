@@ -24,6 +24,7 @@ import {
   ADD_STATE,
   GET_STATE,
   GET_STATE_ID,
+  GET_STATE_NAME,
   UPDATE_STATE,
   DELETE_STATE,
 
@@ -192,6 +193,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: payload,
         errors: null,
       };
+
+    case GET_STATE_NAME: {
+      return {
+        ...state,
+        stateForm: payload,
+        errors: null,
+      };
+    }
 
     case UPDATE_STATE:
       return {
