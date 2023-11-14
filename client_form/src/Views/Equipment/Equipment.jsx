@@ -24,8 +24,8 @@ const Equipment = () => {
 
   return (
     <>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <FormEquipment />
       <hr />
       <Lists items={selectorEquipment} text={"Equipo"} flag={"equipment"} />

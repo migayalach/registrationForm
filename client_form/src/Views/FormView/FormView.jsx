@@ -1,5 +1,5 @@
 // COMPONET'S
-import Filter from "../../Components/Filter/Filter";
+import FilterForm from "../../Components/FilterForm/FilterForm";
 import Form from "../Forms/Form/Form";
 import Lists from "../../Components/Lists";
 
@@ -37,7 +37,7 @@ const FormView = () => {
   return (
     <>
       <Form />
-      <Filter />
+      <FilterForm />
       <Lists items={selecForm} text={"formularios"} flag={"form"} />
     </>
   );

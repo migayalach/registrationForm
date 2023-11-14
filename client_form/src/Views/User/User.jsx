@@ -23,8 +23,8 @@ const User = () => {
 
   return (
     <>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <FormUser />
       <hr />
       <Lists items={selectorUser} text={"Usuarios"} flag={"user"}/>

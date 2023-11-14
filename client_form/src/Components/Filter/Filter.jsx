@@ -3,102 +3,63 @@
 // HOOK'S
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 // REDUX
 import {
-  getAllProcedures,
   getAllState,
+  getAllProcedures,
+  getAllEquipment,
+  getAllArea,
+  getAllUser,
+  getAllCredential,
   getAllUserApi,
-  searchFormData,
+  getStateName,
 } from "../../Redux/actions";
 
 // STYLESHEET'S
 
 const Filter = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const [data, setData] = useState({
-    procedure: "",
-    state: "",
-    userApi: "",
-    dateStart: "",
-    dateEnd: "",
-  });
-  const procedure = useSelector((state) => state.procedures);
-  const state = useSelector((state) => state.stateForm);
-  const userApi = useSelector((state) => state.userApi);
+  const selectorState = useSelector((state) => state.stateForm || state.procedures);
+  console.log(selectorState);
 
-  const onChangeSearchFilter = (event) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const sendInfo = (event) => {
-    event.preventDefault();
-    dispatch(searchFormData(data));
-  };
+  const searchData = (event) => {};
 
   useEffect(() => {
-    dispatch(getAllProcedures());
-    dispatch(getAllState());
-    dispatch(getAllUserApi());
-  }, [dispatch]);
+    if (location.pathname === "state") {
+      dispatch(getAllState());
+    } else if (location.pathname === "procedures") {
+      dispatch(getAllProcedures());
+    } else if (location.pathname === "equipment") {
+      dispatch(getAllEquipment());
+    } else if (location.pathname === "area") {
+      dispatch(getAllArea());
+    } else if (location.pathname === "user") {
+      dispatch(getAllUser());
+    } else if (location.pathname === "credential") {
+      dispatch(getAllCredential());
+    } else if (location.pathname === "userApi") {
+      dispatch(getAllUserApi);
+    }
+    console.log(location.pathname);
+  }, []);
 
   return (
-    <>
-      <form onSubmit={sendInfo}>
-        <div>
-          <label htmlFor="procedure">Proceso:</label>
-          <select name="procedure" onChange={onChangeSearchFilter}>
-            <option></option>
-            {procedure.map(({ name }, index) => (
-              <option key={index} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="state">Estado: </label>
-          <select name="state" onChange={onChangeSearchFilter}>
-            <option></option>
-            {state.map(({ name }, index) => (
-              <option key={index} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="userApi">Usuario:</label>
-          <select name="userApi" onChange={onChangeSearchFilter}>
-            <option></option>
-            {userApi.map(({ name, nroIdentification, email }, index) => (
-              <option
-                key={index}
-                value={name}
-              >{`${name} - ${nroIdentification} - ${email}`}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="dateStart"> Desde :</label>
-          <input type="date" name="dateStart" onChange={onChangeSearchFilter} />
-        </div>
-        <div>
-          <label htmlFor="dateEnd"> Hasta:</label>
-          <input type="date" name="dateEnd" onChange={onChangeSearchFilter} />
-        </div>
-
-        <div>
-          <button type="submit">Buscar</button>
-        </div>
-      </form>
-    </>
+    <form>
+      <div>
+        <label htmlFor="nombre">Nombre: </label>
+        <select name="" onChange={searchData}>
+          <option></option>
+          {selectorState.map(({ name }, index) => (
+            <option key={index} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </form>
   );
 };
 

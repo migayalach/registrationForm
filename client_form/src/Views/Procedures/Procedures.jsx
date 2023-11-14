@@ -22,8 +22,8 @@ const Procedures = () => {
 
   return (
     <>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <FormProcedures />
       <hr />
       <Lists items={selectorProcedures} text={"Procedimientos"} flag={"procedures"}/>

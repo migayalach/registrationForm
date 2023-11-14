@@ -27,11 +27,15 @@ const UserApi = () => {
 
   return (
     <>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <ButtonUpdate label={"Actualizar"} onClickUpdate={handleUpdateData} />
       <hr />
-      <Lists items={selectorUserApi} text={"Lista de usuarios"} flag={"userApi"} />
+      <Lists
+        items={selectorUserApi}
+        text={"Lista de usuarios"}
+        flag={"userApi"}
+      />
     </>
   );
 };

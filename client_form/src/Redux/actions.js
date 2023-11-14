@@ -26,6 +26,7 @@ import {
   ADD_STATE,
   GET_STATE,
   GET_STATE_ID,
+  GET_STATE_NAME,
   UPDATE_STATE,
   DELETE_STATE,
 
@@ -265,6 +266,17 @@ export const getIdState = (idState) => {
     dispatch({
       type: GET_STATE_ID,
       payload: state,
+    });
+  };
+};
+
+export const getStateName = (name) => {
+  return async function (dispatch) {
+    const searchState = await axios.get(`${URL}/state?name=${name}`);
+    const stateName = searchState.data;
+    dispatch({
+      type: GET_STATE_NAME,
+      payload: stateName,
     });
   };
 };
