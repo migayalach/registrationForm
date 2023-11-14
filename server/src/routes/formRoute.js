@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const {
   postForm,
+  dataSearch,
   getFormId,
   getFormName,
   putForm,
@@ -9,6 +10,7 @@ const {
 const formRouter = Router();
 
 formRouter.post("/", postForm);
+formRouter.post("/search", dataSearch)
 formRouter.get("/:idForm", getFormId);
 formRouter.get("/", getFormName);
 formRouter.put("/", putForm);
