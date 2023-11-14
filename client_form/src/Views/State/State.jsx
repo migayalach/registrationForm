@@ -26,8 +26,8 @@ const State = () => {
 
   return (
     <div>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <h3>Crear Formulario:</h3>
       <div className={styles.buttonContainer}>
       <button onClick={openModal} className={styles.buttonCrear}>Crear</button>

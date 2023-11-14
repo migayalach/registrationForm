@@ -25,8 +25,8 @@ const Area = () => {
 
   return (
     <>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <FormArea />
       <hr />
       <Lists items={clearName(selectorArea)} text={"Área"} flag={"area"} />

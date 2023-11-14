@@ -24,8 +24,8 @@ const Credential = () => {
 
   return (
     <>
-      <Filter />
-      <hr />
+      {/* <Filter />
+      <hr /> */}
       <FormCredential />
       <hr />
       <Lists
