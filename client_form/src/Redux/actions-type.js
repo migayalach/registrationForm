@@ -23,6 +23,7 @@ export const DELETE_USER_API = "DELETE_USER_API";
 export const ADD_STATE = "ADD_STATE";
 export const GET_STATE = "GET_STATE";
 export const GET_STATE_ID = "GET_STATE_ID";
+export const GET_STATE_NAME = "GET_STATE_NAME";
 export const UPDATE_STATE = "UPDATE_STATE";
 export const DELETE_STATE = "DELETE_STATE";
 
