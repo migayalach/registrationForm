@@ -232,8 +232,8 @@ export const getUserApiId = (idUserApi) => {
 //* STATE
 export const addState = (stateForm) => {
   return async function (dispatch) {
-    const createState = await axios.post(`${URL}/state`, stateForm);
     try {
+      const createState = await axios.post(`${URL}/state`, stateForm);
       const newForm = createState.data;
       dispatch({
         type: ADD_STATE,
@@ -242,7 +242,7 @@ export const addState = (stateForm) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };
@@ -609,5 +609,3 @@ export const logout = () => {
     });
   };
 };
-
-//* ERROR
