@@ -12,15 +12,29 @@ import { useSelector, useDispatch } from "react-redux";
 // REDUX
 import { getAllCredential } from "../../Redux/actions";
 
+// LIBRARY
+import Swal from "sweetalert2";
+
 // STYLESHEET'S
 
 const Credential = () => {
   const dispatch = useDispatch();
   const selectorCredential = useSelector((state) => state.credential);
+  const errorValidate = useSelector((state) => state.errors);
 
   useEffect(() => {
     dispatch(getAllCredential());
   }, [dispatch]);
+
+  useEffect(() => {
+    errorValidate &&
+      errorValidate.credential === false &&
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: errorValidate.error,
+      });
+  }, [errorValidate]);
 
   return (
     <>
