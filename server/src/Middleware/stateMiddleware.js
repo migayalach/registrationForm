@@ -9,27 +9,23 @@ const validateStateData = (request, response, next) => {
       throw Error(`El nombre es muy corto para poder ser valido`);
     return next();
   } catch (error) {
-    return response
-      .status(ERROR)
-      .json({ validate: false, error: error.message });
+    return response.status(ERROR).json({ state: false, error: error.message });
   }
 };
 
 const validateStateDataPut = (request, response, next) => {
   const { idState, name } = request.body;
-  if (!idState)
-    return response
-      .status(ERROR)
-      .json({ error: `Falta el identificador de lo que busca` });
-  if (!Number.isInteger(+idState))
-    return response.status(ERROR).json({
-      error: `Necesitamos saber el identificador unico para poder buscarlo`,
-    });
-  if (!name)
-    return response
-      .status(ERROR)
-      .json({ error: `Por favor ingrese un nombre` });
-  next();
+  try {
+    if (!idState) throw Error(`Falta el identificador de lo que busca`);
+    if (!Number.isInteger(+idState))
+      throw Error(
+        `Necesitamos saber el identificador unico para poder buscarlo`
+      );
+    if (!name) throw Error(`Por favor ingrese un nombre`);
+    return next();
+  } catch (error) {
+    return response.status(ERROR).json({ state: false, error: error.message });
+  }
 };
 
 module.exports = { validateStateData, validateStateDataPut };
