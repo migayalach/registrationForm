@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const {
-  validateData,
   validateId,
-  validateDataPut,
 } = require("../Middleware/toolsMiddleware");
+const {validateStateData, validateStateDataPut} = require("../Middleware/stateMiddleware")
+
 const {
   postState,
   getStateId,
@@ -13,10 +13,10 @@ const {
 } = require("../handlers/stateHandler");
 const stateRouter = Router();
 
-stateRouter.post("/", validateData, postState);
+stateRouter.post("/", validateStateData, postState);
 stateRouter.get("/:idState", validateId, getStateId);
 stateRouter.get("/", getStateName);
-stateRouter.put("/", validateDataPut, putState);
+stateRouter.put("/", validateStateDataPut, putState);
 stateRouter.delete("/:idState", validateId, deleteState);
 
 module.exports = stateRouter;
