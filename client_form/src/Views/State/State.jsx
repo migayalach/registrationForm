@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllState } from "../../Redux/actions";
+// COMPONET'S
 import FormState from "../Forms/FormState/FormState";
 import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
-import Modal from "./modal"; // Importa el componente Modal
+
+// HOOK'S
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllState } from "../../Redux/actions";
+
+// REDUX
+
+// STYLESHEET'S
 import styles from "./state.module.css";
+
 // LIBRARY
+import Modal from "./modal"; // Importa el componente Modal
 import Swal from "sweetalert2";
 
 const State = () => {
@@ -21,6 +29,7 @@ const State = () => {
 
   useEffect(() => {
     errorValidate &&
+      errorValidate.state === false &&
       Swal.fire({
         icon: "warning",
         title: "Oops...",
