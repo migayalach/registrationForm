@@ -63,3 +63,6 @@ export const LOGOUT_ACCESS = "LOGOUT_ACCESS";
 
 // ERROR
 export const ERROR = "ERROR";
+
+// SUCCESS
+export const SUCCESS = "SUCCESS";
