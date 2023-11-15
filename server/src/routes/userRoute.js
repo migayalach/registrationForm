@@ -1,4 +1,9 @@
 const { Router } = require("express");
+const { validateId } = require("../Middleware/toolsMiddleware");
+const {
+  validateUserData,
+  validateUserDataPut,
+} = require("../Middleware/userMiddleware");
 const {
   postUser,
   getUserId,
@@ -8,10 +13,10 @@ const {
 } = require("../handlers/userHandler");
 
 const userRouter = Router();
-userRouter.post("/", postUser);
-userRouter.get("/:idUser", getUserId);
-userRouter.get("/", getUserName)
-userRouter.put("/", putUser);
-userRouter.delete("/:idUser", deleteUser);
+userRouter.post("/", validateUserData, postUser);
+userRouter.get("/:idUser", validateId, getUserId);
+userRouter.get("/", getUserName);
+userRouter.put("/", validateUserDataPut, putUser);
+userRouter.delete("/:idUser", validateId, deleteUser);
 
 module.exports = userRouter;

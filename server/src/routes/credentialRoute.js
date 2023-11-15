@@ -1,4 +1,9 @@
 const { Router } = require("express");
+const { validateId } = require("../Middleware/toolsMiddleware");
+const {
+  validateCredentialData,
+  validateCredentialDataPut,
+} = require("../Middleware/credentialMiddleware");
 const {
   postCredential,
   getCredentialId,
@@ -8,10 +13,10 @@ const {
 } = require("../handlers/credentialHandler");
 const credentialRouter = Router();
 
-credentialRouter.post("/", postCredential);
-credentialRouter.get("/:idCredential", getCredentialId);
+credentialRouter.post("/", validateCredentialData, postCredential);
+credentialRouter.get("/:idCredential", validateId, getCredentialId);
 credentialRouter.get("/", getCredentialName);
-credentialRouter.put("/", putCredential);
-credentialRouter.delete("/:idCredential", deleteCredential);
+credentialRouter.put("/", validateCredentialDataPut, putCredential);
+credentialRouter.delete("/:idCredential", validateId, deleteCredential);
 
 module.exports = credentialRouter;

@@ -46,7 +46,6 @@ const FormState = () => {
     setUserData({ name: initialName });
   }, [initialName]);
 
-  console.log(Object.keys(errors).length < 1);
   return (
     <form>
       <div>
