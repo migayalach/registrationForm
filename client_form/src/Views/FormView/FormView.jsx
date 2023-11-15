@@ -20,6 +20,7 @@ import Swal from "sweetalert2";
 const FormView = () => {
   const dispatch = useDispatch();
   const selecForm = useSelector((state) => state.form);
+  const errorValidate = useSelector((state) => state.errors);
 
   useEffect(() => {
     dispatch(getAllForm());
@@ -33,6 +34,16 @@ const FormView = () => {
         text: "No se encontraron datos",
       });
   }, [selecForm]);
+
+  useEffect(() => {
+    errorValidate &&
+      errorValidate.form === false &&
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `Por favor ingresa datos`,
+      });
+  }, [errorValidate]);
 
   return (
     <>

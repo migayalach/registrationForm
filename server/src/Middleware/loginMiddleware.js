@@ -1,10 +1,15 @@
 const ERROR = 400;
 const validateLogin = (request, response, next) => {
   const { emailUser, password } = request.body;
-  if (!emailUser) return response.status(ERROR).json({ error: `Falta email` });
-  if (!password)
-    return response.status(ERROR).json({ error: `Flata la contraseña` });
-  next();
+  try {
+    if (!emailUser) throw Error(`Falta email`);
+    if (!password) throw Error(`Flata la contraseña`);
+    return next();
+  } catch (error) {
+    return response
+      .status(ERROR)
+      .json({ loginForm: false, error: error.message });
+  }
 };
 
 module.exports = { validateLogin };

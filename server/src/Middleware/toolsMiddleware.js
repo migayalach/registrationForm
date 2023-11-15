@@ -10,28 +10,33 @@ const validateId = (request, response, next) => {
     idUser,
     idForm,
   } = request.params;
-  if (
-    !Number.isInteger(
-      +idState ||
-        +idProcedures ||
-        +idEquipment ||
-        +idUnit ||
-        +idCredential ||
-        +idUser ||
-        +idForm
+  try {
+    if (
+      !Number.isInteger(
+        +idState ||
+          +idProcedures ||
+          +idEquipment ||
+          +idUnit ||
+          +idCredential ||
+          +idUser ||
+          +idForm
+      )
     )
-  )
-    return response.status(ERROR).json({ error: `No se encontro lo busca` });
-  next();
+      throw Error(`No se encontro lo busca`);
+    return next();
+  } catch (error) {
+    return response.status(ERROR).json({ tools: false, error: error.message });
+  }
 };
 
 const validateName = (request, response, next) => {
   const { name } = request.query;
-  if (!name)
-    return response
-      .status(ERROR)
-      .json({ error: `Por favor ingrese un nombre para poder buscarlo` });
-  next();
+  try {
+    if (!name) throw Error(`Por favor ingrese un nombre para poder buscarlo`);
+    return next();
+  } catch (error) {
+    return response.status(ERROR).json({ tools: false, error: error.message });
+  }
 };
 
 module.exports = { validateId, validateName };

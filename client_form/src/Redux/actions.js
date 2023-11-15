@@ -75,8 +75,8 @@ const URL = `http://localhost:3001/forms`;
 //* AREA
 export const addArea = (area) => {
   return async function (dispatch) {
-    const createArea = await axios.post(`${URL}/area`, area);
     try {
+      const createArea = await axios.post(`${URL}/area`, area);
       const newArea = createArea.data;
       dispatch({
         type: ADD_AREA,
@@ -85,7 +85,7 @@ export const addArea = (area) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };
@@ -140,8 +140,8 @@ export const deleteArea = (idArea) => {
 //* EQUIPMENT
 export const addEquipment = (equipment) => {
   return async function (dispatch) {
-    const createEquipment = await axios.post(`${URL}/equipment`, equipment);
     try {
+      const createEquipment = await axios.post(`${URL}/equipment`, equipment);
       const newEquipment = createEquipment.data;
       dispatch({
         type: ADD_EQUIPMENT,
@@ -150,7 +150,7 @@ export const addEquipment = (equipment) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };
@@ -306,8 +306,11 @@ export const deleteState = (idState) => {
 //* PROCEDURES
 export const addProcedures = (procedures) => {
   return async function (dispatch) {
-    const createProcedures = await axios.post(`${URL}/procedures`, procedures);
     try {
+      const createProcedures = await axios.post(
+        `${URL}/procedures`,
+        procedures
+      );
       const newProcedure = createProcedures.data;
       dispatch({
         type: ADD_PROCEDURES,
@@ -316,7 +319,7 @@ export const addProcedures = (procedures) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };
@@ -373,8 +376,8 @@ export const deleteProcedures = (idProcedures) => {
 //* USER
 export const postUser = (userData) => {
   return async function (dispatch) {
-    const postUserForm = await axios.post(`${URL}/user`, userData);
     try {
+      const postUserForm = await axios.post(`${URL}/user`, userData);
       const newUser = postUserForm.data;
       dispatch({
         type: ADD_USER,
@@ -383,7 +386,7 @@ export const postUser = (userData) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };
@@ -447,8 +450,8 @@ export const deleteUser = (idUser) => {
 //* CREDENTIAL
 export const postCredential = (credential) => {
   return async function (dispatch) {
-    const postCredential = await axios.post(`${URL}/credential`, credential);
     try {
+      const postCredential = await axios.post(`${URL}/credential`, credential);
       const newCredential = postCredential.data;
       dispatch({
         type: ADD_CREDENTIAL,
@@ -457,7 +460,7 @@ export const postCredential = (credential) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };
@@ -512,8 +515,8 @@ export const deleteCredential = (idCredential) => {
 //* FORM
 export const postForm = (form) => {
   return async function (dispatch) {
-    const createForm = await axios.post(`${URL}/form`, form);
     try {
+      const createForm = await axios.post(`${URL}/form`, form);
       const newForm = createForm.data;
       dispatch({
         type: ADD_FORM,
@@ -522,7 +525,7 @@ export const postForm = (form) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.message,
+        payload: error.response.data,
       });
     }
   };

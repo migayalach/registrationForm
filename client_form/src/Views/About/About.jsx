@@ -11,6 +11,9 @@ import { getNameUser, editUser } from "../../Redux/actions";
 
 // JAVASCRIP
 
+// LIBRARY
+import Swal from "sweetalert2";
+
 // STYLESHEET'S
 
 const About = () => {
@@ -23,6 +26,7 @@ const About = () => {
   useEffect(() => {
     dispatch(getNameUser(nameUser));
   }, [nameUser]);
+
   return (
     <>
       <FormUser />

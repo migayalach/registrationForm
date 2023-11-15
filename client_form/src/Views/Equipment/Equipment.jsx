@@ -12,15 +12,29 @@ import { getAllEquipment } from "../../Redux/actions";
 
 // JAVASCRIP
 
+// LIBRARY
+import Swal from "sweetalert2";
+
 // STYLESHEET'S
 
 const Equipment = () => {
   const dispatch = useDispatch();
   const selectorEquipment = useSelector((state) => state.equipment);
+  const errorValidate = useSelector((state) => state.errors);
 
   useEffect(() => {
     dispatch(getAllEquipment());
   }, [dispatch]);
+
+  useEffect(() => {
+    errorValidate &&
+      errorValidate.equipment === false &&
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: errorValidate.error,
+      });
+  }, [errorValidate]);
 
   return (
     <>
