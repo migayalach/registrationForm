@@ -13,15 +13,29 @@ import { clearName } from "../../Utils/clearFunctions";
 // REDUX
 import { getAllArea } from "../../Redux/actions";
 
+// LIBRARY
+import Swal from "sweetalert2";
+
 // STYLESHEET'S
 
 const Area = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
-  
+  const errorValidate = useSelector((state) => state.errors);
+
   useEffect(() => {
     dispatch(getAllArea());
   }, [dispatch]);
+
+  useEffect(() => {
+    errorValidate &&
+      errorValidate.unit === false &&
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: errorValidate.error,
+      });
+  }, [errorValidate]);
 
   return (
     <>
