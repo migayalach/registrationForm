@@ -47,9 +47,15 @@ const putUnit = async (request, response) => {
   const { idUnit, nameUnit } = request.body;
   try {
     const updateData = await updateUnit(idUnit, nameUnit);
-    response.status(SUCCESS).json(updateData);
+    response
+      .status(SUCCESS)
+      .json({
+        unit: true,
+        message: "Unidad actualizada exitosamente",
+        updateData,
+      });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ unit: false, error: error.message });
   }
 };
 
@@ -57,9 +63,11 @@ const deleteUnit = async (request, response) => {
   const { idUnit } = request.params;
   try {
     const deleteData = await delUnit(idUnit);
-    response.status(SUCCESS).json(deleteData);
+    response
+      .status(SUCCESS)
+      .json({ unit: true, message: "Unidad elimada exitosamente", deleteData });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ unit: false, error: error.message });
   }
 };
 

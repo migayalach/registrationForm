@@ -47,7 +47,6 @@ const updateUnit = async (idUnit, nameUnit) => {
   if (infoResponse) {
     const reponseInfo = await Unit.update({ nameUnit }, { where: { idUnit } });
     if (typeof reponseInfo === "object") {
-      // return `Unidad: ${nameUnit}, modificado con exito`;
       return getAllUnit();
     }
   }
@@ -67,8 +66,6 @@ const delUnit = async (idUnit) => {
     },
   });
   if (deleteUnit === 1) {
-    const { nameUnit } = unitData;
-    // return `Se elimino la unidad: ${nameUnit}, correctamente`;
     return getAllUnit();
   }
   throw Error(`No se pudo eliminar la unidad ingresada`);
