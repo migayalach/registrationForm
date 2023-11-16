@@ -740,56 +740,91 @@ export const postForm = (form) => {
 
 export const getAllForm = () => {
   return async function (dispatch) {
-    const getFormAll = await axios.get(`${URL}/form`);
-    const getForms = getFormAll.data;
-    dispatch({
-      type: GET_FORM,
-      payload: getForms,
-    });
+    try {
+      const getFormAll = await axios.get(`${URL}/form`);
+      const getForms = getFormAll.data;
+      dispatch({
+        type: GET_FORM,
+        payload: getForms,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const searchFormData = (data) => {
   return async function (dispatch) {
-    const searchData = await axios.post(`${URL}/form/search`, data);
-    const dataRes = searchData.data;
-    dispatch({
-      type: GET_FORM,
-      payload: dataRes,
-    });
+    try {
+      const searchData = await axios.post(`${URL}/form/search`, data);
+      const dataRes = searchData.data;
+      dispatch({
+        type: GET_FORM,
+        payload: dataRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdForm = (idForm) => {
   return async function (dispatch) {
-    const getFormId = await axios.get(`${URL}/form/${idForm}`);
-    const form = getFormId.data;
-    dispatch({
-      type: GET_FORM_ID,
-      payload: form,
-    });
+    try {
+      const getFormId = await axios.get(`${URL}/form/${idForm}`);
+      const form = getFormId.data;
+      dispatch({
+        type: GET_FORM_ID,
+        payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const updateForm = (dataForm) => {
   return async function (dispatch) {
-    const putForm = await axios.put(`${URL}/form`, dataForm);
-    const form = putForm.data;
-    dispatch({
-      type: UPDATE_FORM,
-      payload: form,
-    });
+    try {
+      const putForm = await axios.put(`${URL}/form`, dataForm);
+      const form = putForm.data;
+      dispatch({
+        type: UPDATE_FORM,
+        payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteForm = (idForm) => {
   return async function (dispatch) {
-    const delForm = await axios.delete(`${URL}/form/${idForm}`);
-    const form = delForm.data;
-    dispatch({
-      type: DELETE_FORM,
-      payload: form,
-    });
+    try {
+      const delForm = await axios.delete(`${URL}/form/${idForm}`);
+      const form = delForm.data;
+      dispatch({
+        type: DELETE_FORM,
+        payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
