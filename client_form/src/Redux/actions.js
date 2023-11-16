@@ -849,8 +849,15 @@ export const login = (data) => {
 // LOGOUT
 export const logout = () => {
   return function (dispatch) {
-    dispatch({
-      type: LOGOUT_ACCESS,
-    });
+    try {
+      dispatch({
+        type: LOGOUT_ACCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
