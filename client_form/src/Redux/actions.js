@@ -96,8 +96,8 @@ export const addArea = (area) => {
 
 export const seachIdArea = (id) => {
   return async function (dispatch) {
-    const infoArea = await axios.get(`${URL}/area/${id}`);
     try {
+      const infoArea = await axios.get(`${URL}/area/${id}`);
       const areaId = infoArea.data;
       dispatch({
         type: GET_AREA_ID,
@@ -187,47 +187,77 @@ export const addEquipment = (equipment) => {
 
 export const getAllEquipment = () => {
   return async function (dispatch) {
-    const getEquipmentAll = await axios.get(`${URL}/equipment`);
-    const equipment = getEquipmentAll.data;
-    dispatch({
-      type: GET_EQUIPMENT,
-      payload: equipment,
-    });
+    try {
+      const getEquipmentAll = await axios.get(`${URL}/equipment`);
+      const equipment = getEquipmentAll.data;
+      dispatch({
+        type: GET_EQUIPMENT,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdEquipment = (idEquipment) => {
   return async function (dispatch) {
-    const searchIdEquipment = await axios.get(
-      `${URL}/equipment/${idEquipment}`
-    );
-    const equipment = searchIdEquipment.data;
-    dispatch({
-      type: GET_EQUIPMENT_ID,
-      payload: equipment,
-    });
+    try {
+      const searchIdEquipment = await axios.get(
+        `${URL}/equipment/${idEquipment}`
+      );
+      const equipment = searchIdEquipment.data;
+      dispatch({
+        type: GET_EQUIPMENT_ID,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const putEquipment = (equipmentData) => {
   return async function (dispatch) {
-    const equipmentRes = await axios.put(`${URL}/equipment/`, equipmentData);
-    const equipment = equipmentRes.data;
-    dispatch({
-      type: UPDATE_EQUIPMENT,
-      payload: equipment,
-    });
+    try {
+      const equipmentRes = await axios.put(`${URL}/equipment/`, equipmentData);
+      const equipment = equipmentRes.data;
+      dispatch({
+        type: UPDATE_EQUIPMENT,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteEquipment = (idEquipment) => {
   return async function (dispatch) {
-    const equipmentRes = await axios.delete(`${URL}/equipment/${idEquipment}`);
-    const equipment = equipmentRes.data;
-    dispatch({
-      type: DELETE_EQUIPMENT,
-      payload: equipment,
-    });
+    try {
+      const equipmentRes = await axios.delete(
+        `${URL}/equipment/${idEquipment}`
+      );
+      const equipment = equipmentRes.data;
+      dispatch({
+        type: DELETE_EQUIPMENT,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
