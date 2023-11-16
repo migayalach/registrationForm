@@ -642,47 +642,80 @@ export const postCredential = (credential) => {
 
 export const getAllCredential = () => {
   return async function (dispatch) {
-    const getCredential = await axios.get(`${URL}/credential`);
-    const getCredentialAll = getCredential.data;
-    dispatch({
-      type: GET_CREDENTIAL,
-      payload: getCredentialAll,
-    });
+    try {
+      const getCredential = await axios.get(`${URL}/credential`);
+      const getCredentialAll = getCredential.data;
+      dispatch({
+        type: GET_CREDENTIAL,
+        payload: getCredentialAll,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdCredential = (idCredential) => {
   return async function (dispatch) {
-    const credentialRes = await axios.get(`${URL}/credential/${idCredential}`);
-    const credential = credentialRes.data;
-    dispatch({
-      type: GET_CREDENTIAL_ID,
-      payload: credential,
-    });
+    try {
+      const credentialRes = await axios.get(
+        `${URL}/credential/${idCredential}`
+      );
+      const credential = credentialRes.data;
+      dispatch({
+        type: GET_CREDENTIAL_ID,
+        payload: credential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const updataCredential = (credentialData) => {
   return async function (dispatch) {
-    const credentialRes = await axios.put(`${URL}/credential`, credentialData);
-    const credential = credentialRes.data;
-    dispatch({
-      type: UPDATE_CREDENTIAL,
-      payload: credential,
-    });
+    try {
+      const credentialRes = await axios.put(
+        `${URL}/credential`,
+        credentialData
+      );
+      const credential = credentialRes.data;
+      dispatch({
+        type: UPDATE_CREDENTIAL,
+        payload: credential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteCredential = (idCredential) => {
   return async function (dispatch) {
-    const credentialRes = await axios.delete(
-      `${URL}/credential/${idCredential}`
-    );
-    const credential = credentialRes.data;
-    dispatch({
-      type: DELETE_CREDENTIAL,
-      payload: credential,
-    });
+    try {
+      const credentialRes = await axios.delete(
+        `${URL}/credential/${idCredential}`
+      );
+      const credential = credentialRes.data;
+      dispatch({
+        type: DELETE_CREDENTIAL,
+        payload: credential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
