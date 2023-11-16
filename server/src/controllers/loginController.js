@@ -1,4 +1,4 @@
-const { User, Unit } = require("../database/database");
+const { User, Unit, Credential } = require("../database/database");
 const { Op } = require("sequelize");
 
 const getLoginData = async (emailUser, password) => {
@@ -14,12 +14,29 @@ const getLoginData = async (emailUser, password) => {
         },
       ],
     },
-    include: [{ model: Unit, attributes: ["nameUnit"] }],
+    include: [{ model: Unit, attributes: ["nameUnit"] }, { model: Credential }],
   });
 
-  return user
-    ? { access: true, name: user.nameUser, unit: user.Unit.nameUnit }
-    : { access: false, message: "Usuario no encontrado" };
+  if (user.Unit.nameUnit === "UTIC") {
+    return {
+      access: true,
+      name: user.nameUser,
+      unit: user.Unit.nameUnit,
+      credential: "UTIC",
+    };
+  } else {
+    return user
+      ? {
+          access: true,
+          name: user.nameUser,
+          unit: user.Unit.nameUnit,
+          credential: user.Credential.name,
+        }
+      : { access: false, message: "Usuario no encontrado" };
+  }
 };
 
 module.exports = { getLoginData };
+
+// miguel@gmail.com
+// holaMundo@1
