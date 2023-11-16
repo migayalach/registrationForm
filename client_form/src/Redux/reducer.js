@@ -115,7 +115,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case UPDATE_AREA:
       return {
         ...state,
-        area: payload,
+        area: payload.updateData,
+        success: { unit: payload.unit, message: payload.message },
         aux: [],
         errors: null,
       };
@@ -123,7 +124,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case DELETE_AREA:
       return {
         ...state,
-        area: payload,
+        area: payload.deleteData,
+        success: { unit: payload.unit, message: payload.message },
         errors: null,
       };
 
