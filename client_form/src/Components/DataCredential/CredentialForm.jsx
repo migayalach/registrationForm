@@ -1,6 +1,13 @@
+// COMPONET'S
+
+// HOOK'S
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+// REDUX
 import { getAllCredential, getIdCredential } from "../../Redux/actions";
+
+// STYLESHEET'S
 
 const CredentialForm = ({ agregarCredencial }) => {
   const dispatch = useDispatch();
