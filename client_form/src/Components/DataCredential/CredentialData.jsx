@@ -1,4 +1,8 @@
+// LIBRERIAS
 import { AiFillCloseCircle } from "react-icons/ai";
+
+// STYLESHEET'S
+
 const CredentialData = ({
   id,
   credential,
@@ -6,6 +10,7 @@ const CredentialData = ({
   resulData,
   completarTarea,
   eliminarCredencial,
+  credentialData,
 }) => {
   return (
     <div>
@@ -25,6 +30,7 @@ const CredentialData = ({
                 checked={check}
                 onClick={() => completarTarea(id, check)}
                 readOnly
+                disabled={credential !== credentialData}
               />
             </td>
           </tr>

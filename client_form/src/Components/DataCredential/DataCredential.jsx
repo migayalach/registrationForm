@@ -22,6 +22,7 @@ const DataCredential = ({ handleData }) => {
   const area = selArea.map(({ nameUnit }) => nameUnit);
   const userArea = selUserData[0]?.unit;
   const resulData = area.find((index) => index === userArea);
+  const credentialData = selUserData[0]?.credential;
 
   const agregarCredencial = (credential, name) => {
     credential.id = uuidv4();
@@ -72,6 +73,7 @@ const DataCredential = ({ handleData }) => {
             resulData={resulData}
             eliminarCredencial={eliminarCredencial}
             completarTarea={completarTarea}
+            credentialData={credentialData}
           />
         ))}
       </div>
