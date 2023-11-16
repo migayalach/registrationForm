@@ -435,49 +435,80 @@ export const addProcedures = (procedures) => {
 
 export const getAllProcedures = () => {
   return async function (dispatch) {
-    const getAllProcess = await axios.get(`${URL}/procedures`);
-    const procedures = getAllProcess.data;
-    dispatch({
-      type: GET_PROCEDURES,
-      payload: procedures,
-    });
+    try {
+      const getAllProcess = await axios.get(`${URL}/procedures`);
+      const procedures = getAllProcess.data;
+      dispatch({
+        type: GET_PROCEDURES,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdProcedures = (idProcedures) => {
   return async function (dispatch) {
-    const searchProcedures = await axios.get(
-      `${URL}/procedures/${idProcedures}`
-    );
-    const procedures = searchProcedures.data;
-    dispatch({
-      type: GET_PROCEDURES_ID,
-      payload: procedures,
-    });
+    try {
+      const searchProcedures = await axios.get(
+        `${URL}/procedures/${idProcedures}`
+      );
+      const procedures = searchProcedures.data;
+      dispatch({
+        type: GET_PROCEDURES_ID,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const putProcedures = (dataProcedures) => {
   return async function (dispatch) {
-    const proceduresRes = await axios.put(`${URL}/procedures`, dataProcedures);
-    const procedures = proceduresRes.data;
-    dispatch({
-      type: UPDATE_PROCEDURES,
-      payload: procedures,
-    });
+    try {
+      const proceduresRes = await axios.put(
+        `${URL}/procedures`,
+        dataProcedures
+      );
+      const procedures = proceduresRes.data;
+      dispatch({
+        type: UPDATE_PROCEDURES,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteProcedures = (idProcedures) => {
   return async function (dispatch) {
-    const delProcedures = await axios.delete(
-      `${URL}/procedures/${idProcedures}`
-    );
-    const procedures = delProcedures.data;
-    dispatch({
-      type: DELETE_PROCEDURES,
-      payload: procedures,
-    });
+    try {
+      const delProcedures = await axios.delete(
+        `${URL}/procedures/${idProcedures}`
+      );
+      const procedures = delProcedures.data;
+      dispatch({
+        type: DELETE_PROCEDURES,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
