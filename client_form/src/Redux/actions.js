@@ -71,7 +71,6 @@ import {
   SUCCESS,
 
   // FILTROS
-  
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -110,12 +109,16 @@ export const seachIdArea = (id) => {
 
 export const getAllArea = () => {
   return async function (dispatch) {
-    const getAllArea = await axios.get(`${URL}/area`);
-    const area = getAllArea.data;
-    dispatch({
-      type: GET_AREA,
-      payload: area,
-    });
+    try {
+      const getAllArea = await axios.get(`${URL}/area`);
+      const area = getAllArea.data;
+      dispatch({
+        type: GET_AREA,
+        payload: area,
+      });
+    } catch (error) {
+      
+    }
   };
 };
 
