@@ -10,7 +10,7 @@ const createUnit = async ({ nameUnit }) => {
   if (!newUnit) {
     return await Unit.create({ nameUnit });
   }
-  throw Error(`La unidad: ${nameUnit}, existe`);
+  throw Error(`La unidad: ${nameUnit}, ya existe`);
 };
 
 const getUnitSearchID = async (idUnit) => {
