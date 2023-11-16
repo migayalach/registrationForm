@@ -103,7 +103,12 @@ export const seachIdArea = (id) => {
         type: GET_AREA_ID,
         payload: areaId,
       });
-    } catch (error) {}
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -117,30 +122,47 @@ export const getAllArea = () => {
         payload: area,
       });
     } catch (error) {
-      
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
     }
   };
 };
 
 export const putArea = (dataArea) => {
   return async function (dispatch) {
-    const editArea = await axios.put(`${URL}/area`, dataArea);
-    const area = editArea.data;
-    dispatch({
-      type: UPDATE_AREA,
-      payload: area,
-    });
+    try {
+      const editArea = await axios.put(`${URL}/area`, dataArea);
+      const area = editArea.data;
+      dispatch({
+        type: UPDATE_AREA,
+        payload: area,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteArea = (idArea) => {
   return async function (dispatch) {
-    const delArea = await axios.delete(`${URL}/area/${idArea}`);
-    const area = delArea.data;
-    dispatch({
-      type: DELETE_AREA,
-      payload: area,
-    });
+    try {
+      const delArea = await axios.delete(`${URL}/area/${idArea}`);
+      const area = delArea.data;
+      dispatch({
+        type: DELETE_AREA,
+        payload: area,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
