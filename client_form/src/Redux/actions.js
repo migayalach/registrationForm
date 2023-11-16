@@ -533,56 +533,91 @@ export const postUser = (userData) => {
 
 export const getNameUser = (nameUser) => {
   return async function (dispatch) {
-    const getUser = await axios.get(`${URL}/user?nameUser=${nameUser}`);
-    const userName = getUser.data;
-    dispatch({
-      type: GET_USER,
-      payload: userName,
-    });
+    try {
+      const getUser = await axios.get(`${URL}/user?nameUser=${nameUser}`);
+      const userName = getUser.data;
+      dispatch({
+        type: GET_USER,
+        payload: userName,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getAllUser = () => {
   return async function (dispatch) {
-    const getUserAll = await axios.get(`${URL}/user`);
-    const getUsers = getUserAll.data;
-    dispatch({
-      type: GET_USER,
-      payload: getUsers,
-    });
+    try {
+      const getUserAll = await axios.get(`${URL}/user`);
+      const getUsers = getUserAll.data;
+      dispatch({
+        type: GET_USER,
+        payload: getUsers,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdUser = (idUser) => {
   return async function (dispatch) {
-    const getSearchIdUser = await axios.get(`${URL}/user/${idUser}`);
-    const user = getSearchIdUser.data;
-    dispatch({
-      type: GET_USER_ID,
-      payload: user,
-    });
+    try {
+      const getSearchIdUser = await axios.get(`${URL}/user/${idUser}`);
+      const user = getSearchIdUser.data;
+      dispatch({
+        type: GET_USER_ID,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const editUser = (dataUser) => {
   return async function (dispatch) {
-    const userResponse = await axios.put(`${URL}/user`, dataUser);
-    const user = userResponse.data;
-    dispatch({
-      type: UPDATE_USER,
-      payload: user,
-    });
+    try {
+      const userResponse = await axios.put(`${URL}/user`, dataUser);
+      const user = userResponse.data;
+      dispatch({
+        type: UPDATE_USER,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteUser = (idUser) => {
   return async function (dispatch) {
-    const userDelete = await axios.delete(`${URL}/user/${idUser}`);
-    const user = userDelete.data;
-    dispatch({
-      type: DELETE_USER,
-      payload: user,
-    });
+    try {
+      const userDelete = await axios.delete(`${URL}/user/${idUser}`);
+      const user = userDelete.data;
+      dispatch({
+        type: DELETE_USER,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
