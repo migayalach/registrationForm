@@ -323,56 +323,91 @@ export const addState = (stateForm) => {
 
 export const getAllState = () => {
   return async function (dispatch) {
-    const getAll = await axios.get(`${URL}/state`);
-    const states = getAll.data;
-    dispatch({
-      type: GET_STATE,
-      payload: states,
-    });
+    try {
+      const getAll = await axios.get(`${URL}/state`);
+      const states = getAll.data;
+      dispatch({
+        type: GET_STATE,
+        payload: states,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdState = (idState) => {
   return async function (dispatch) {
-    const searchIdState = await axios.get(`${URL}/state/${idState}`);
-    const state = searchIdState.data;
-    dispatch({
-      type: GET_STATE_ID,
-      payload: state,
-    });
+    try {
+      const searchIdState = await axios.get(`${URL}/state/${idState}`);
+      const state = searchIdState.data;
+      dispatch({
+        type: GET_STATE_ID,
+        payload: state,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getStateName = (name) => {
   return async function (dispatch) {
-    const searchState = await axios.get(`${URL}/state?name=${name}`);
-    const stateName = searchState.data;
-    dispatch({
-      type: GET_STATE_NAME,
-      payload: stateName,
-    });
+    try {
+      const searchState = await axios.get(`${URL}/state?name=${name}`);
+      const stateName = searchState.data;
+      dispatch({
+        type: GET_STATE_NAME,
+        payload: stateName,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const putState = (stateData) => {
   return async function (dispatch) {
-    const stateRes = await axios.put(`${URL}/state`, stateData);
-    const state = stateRes.data;
-    dispatch({
-      type: UPDATE_STATE,
-      payload: state,
-    });
+    try {
+      const stateRes = await axios.put(`${URL}/state`, stateData);
+      const state = stateRes.data;
+      dispatch({
+        type: UPDATE_STATE,
+        payload: state,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteState = (idState) => {
   return async function (dispatch) {
-    const stateRes = await axios.delete(`${URL}/state/${idState}`);
-    const state = stateRes.data;
-    dispatch({
-      type: DELETE_STATE,
-      payload: state,
-    });
+    try {
+      const stateRes = await axios.delete(`${URL}/state/${idState}`);
+      const state = stateRes.data;
+      dispatch({
+        type: DELETE_STATE,
+        payload: state,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
