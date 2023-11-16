@@ -13,10 +13,11 @@ const postUnit = async (request, response) => {
   const { nameUnit } = request.body;
   try {
     const newUnit = await createUnit({ nameUnit });
-    // response.status(SUCCESS).json({ create: true, name: newUnit.nameUnit });
-    response.status(SUCCESS).json({ create: true, newUnit });
+    response
+      .status(SUCCESS)
+      .json({ unit: true, message: "Unidad creada exitosamente", newUnit });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ unit: false, error: error.message });
   }
 };
 

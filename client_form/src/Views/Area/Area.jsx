@@ -9,33 +9,35 @@ import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
 import { clearName } from "../../Utils/clearFunctions";
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
 
 // REDUX
 import { getAllArea } from "../../Redux/actions";
 
 // LIBRARY
-import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
+import "react-toastify/dist/ReactToastify.css";
 
 const Area = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
-  const errorValidate = useSelector((state) => state.errors);
+  const stateResponse = useSelector((state) => state.errors || state.success);
 
   useEffect(() => {
     dispatch(getAllArea());
   }, [dispatch]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.unit === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: errorValidate.error,
-      });
-  }, [errorValidate]);
+    if (stateResponse) {
+      if (stateResponse.unit === false) {
+        swalMessage(stateResponse.error, "warning");
+      } else if (stateResponse.unit === true) {
+        toastSuccess(stateResponse.message, "success");
+      }
+    }
+  }, [stateResponse]);
 
   return (
     <>
@@ -44,6 +46,11 @@ const Area = () => {
       <FormArea />
       <hr />
       <Lists items={clearName(selectorArea)} text={"Área"} flag={"area"} />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
+      />
     </>
   );
 };

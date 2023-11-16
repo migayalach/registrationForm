@@ -92,6 +92,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         area: [...state.area, payload.newUnit],
+        success: { unit: payload.unit, message: payload.message },
         errors: null,
       };
 
@@ -99,6 +100,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         area: payload,
+        success: null,
         errors: null,
       };
 
@@ -106,6 +108,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
@@ -397,6 +400,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         errors: payload,
+        success: null,
       };
 
     default:
