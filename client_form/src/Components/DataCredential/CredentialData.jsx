@@ -30,7 +30,9 @@ const CredentialData = ({
                 checked={check}
                 onClick={() => completarTarea(id, check)}
                 readOnly
-                disabled={credential !== credentialData}
+                disabled={
+                  credential !== credentialData && credentialData != "UTIC"
+                }
               />
             </td>
           </tr>
