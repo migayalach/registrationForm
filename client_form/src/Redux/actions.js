@@ -96,14 +96,19 @@ export const addArea = (area) => {
 
 export const seachIdArea = (id) => {
   return async function (dispatch) {
-    const infoArea = await axios.get(`${URL}/area/${id}`);
     try {
+      const infoArea = await axios.get(`${URL}/area/${id}`);
       const areaId = infoArea.data;
       dispatch({
         type: GET_AREA_ID,
         payload: areaId,
       });
-    } catch (error) {}
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -117,30 +122,47 @@ export const getAllArea = () => {
         payload: area,
       });
     } catch (error) {
-      
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
     }
   };
 };
 
 export const putArea = (dataArea) => {
   return async function (dispatch) {
-    const editArea = await axios.put(`${URL}/area`, dataArea);
-    const area = editArea.data;
-    dispatch({
-      type: UPDATE_AREA,
-      payload: area,
-    });
+    try {
+      const editArea = await axios.put(`${URL}/area`, dataArea);
+      const area = editArea.data;
+      dispatch({
+        type: UPDATE_AREA,
+        payload: area,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteArea = (idArea) => {
   return async function (dispatch) {
-    const delArea = await axios.delete(`${URL}/area/${idArea}`);
-    const area = delArea.data;
-    dispatch({
-      type: DELETE_AREA,
-      payload: area,
-    });
+    try {
+      const delArea = await axios.delete(`${URL}/area/${idArea}`);
+      const area = delArea.data;
+      dispatch({
+        type: DELETE_AREA,
+        payload: area,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -165,47 +187,77 @@ export const addEquipment = (equipment) => {
 
 export const getAllEquipment = () => {
   return async function (dispatch) {
-    const getEquipmentAll = await axios.get(`${URL}/equipment`);
-    const equipment = getEquipmentAll.data;
-    dispatch({
-      type: GET_EQUIPMENT,
-      payload: equipment,
-    });
+    try {
+      const getEquipmentAll = await axios.get(`${URL}/equipment`);
+      const equipment = getEquipmentAll.data;
+      dispatch({
+        type: GET_EQUIPMENT,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdEquipment = (idEquipment) => {
   return async function (dispatch) {
-    const searchIdEquipment = await axios.get(
-      `${URL}/equipment/${idEquipment}`
-    );
-    const equipment = searchIdEquipment.data;
-    dispatch({
-      type: GET_EQUIPMENT_ID,
-      payload: equipment,
-    });
+    try {
+      const searchIdEquipment = await axios.get(
+        `${URL}/equipment/${idEquipment}`
+      );
+      const equipment = searchIdEquipment.data;
+      dispatch({
+        type: GET_EQUIPMENT_ID,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const putEquipment = (equipmentData) => {
   return async function (dispatch) {
-    const equipmentRes = await axios.put(`${URL}/equipment/`, equipmentData);
-    const equipment = equipmentRes.data;
-    dispatch({
-      type: UPDATE_EQUIPMENT,
-      payload: equipment,
-    });
+    try {
+      const equipmentRes = await axios.put(`${URL}/equipment/`, equipmentData);
+      const equipment = equipmentRes.data;
+      dispatch({
+        type: UPDATE_EQUIPMENT,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteEquipment = (idEquipment) => {
   return async function (dispatch) {
-    const equipmentRes = await axios.delete(`${URL}/equipment/${idEquipment}`);
-    const equipment = equipmentRes.data;
-    dispatch({
-      type: DELETE_EQUIPMENT,
-      payload: equipment,
-    });
+    try {
+      const equipmentRes = await axios.delete(
+        `${URL}/equipment/${idEquipment}`
+      );
+      const equipment = equipmentRes.data;
+      dispatch({
+        type: DELETE_EQUIPMENT,
+        payload: equipment,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -216,23 +268,37 @@ export const addUserApi = () => {
 
 export const getAllUserApi = () => {
   return async function (dispatch) {
-    const getUserApiAll = await axios.get(`${URL}/userApi`);
-    const getUserApi = getUserApiAll.data;
-    dispatch({
-      type: GET_USER_API,
-      payload: getUserApi,
-    });
+    try {
+      const getUserApiAll = await axios.get(`${URL}/userApi`);
+      const getUserApi = getUserApiAll.data;
+      dispatch({
+        type: GET_USER_API,
+        payload: getUserApi,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getUserApiId = (idUserApi) => {
   return async function (dispatch) {
-    const getDataId = await axios.get(`${URL}/userApi/${idUserApi}`);
-    const getUserApi = getDataId.data;
-    dispatch({
-      type: GET_USER_API_ID,
-      payload: getUserApi,
-    });
+    try {
+      const getDataId = await axios.get(`${URL}/userApi/${idUserApi}`);
+      const getUserApi = getDataId.data;
+      dispatch({
+        type: GET_USER_API_ID,
+        payload: getUserApi,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -257,56 +323,91 @@ export const addState = (stateForm) => {
 
 export const getAllState = () => {
   return async function (dispatch) {
-    const getAll = await axios.get(`${URL}/state`);
-    const states = getAll.data;
-    dispatch({
-      type: GET_STATE,
-      payload: states,
-    });
+    try {
+      const getAll = await axios.get(`${URL}/state`);
+      const states = getAll.data;
+      dispatch({
+        type: GET_STATE,
+        payload: states,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdState = (idState) => {
   return async function (dispatch) {
-    const searchIdState = await axios.get(`${URL}/state/${idState}`);
-    const state = searchIdState.data;
-    dispatch({
-      type: GET_STATE_ID,
-      payload: state,
-    });
+    try {
+      const searchIdState = await axios.get(`${URL}/state/${idState}`);
+      const state = searchIdState.data;
+      dispatch({
+        type: GET_STATE_ID,
+        payload: state,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getStateName = (name) => {
   return async function (dispatch) {
-    const searchState = await axios.get(`${URL}/state?name=${name}`);
-    const stateName = searchState.data;
-    dispatch({
-      type: GET_STATE_NAME,
-      payload: stateName,
-    });
+    try {
+      const searchState = await axios.get(`${URL}/state?name=${name}`);
+      const stateName = searchState.data;
+      dispatch({
+        type: GET_STATE_NAME,
+        payload: stateName,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const putState = (stateData) => {
   return async function (dispatch) {
-    const stateRes = await axios.put(`${URL}/state`, stateData);
-    const state = stateRes.data;
-    dispatch({
-      type: UPDATE_STATE,
-      payload: state,
-    });
+    try {
+      const stateRes = await axios.put(`${URL}/state`, stateData);
+      const state = stateRes.data;
+      dispatch({
+        type: UPDATE_STATE,
+        payload: state,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteState = (idState) => {
   return async function (dispatch) {
-    const stateRes = await axios.delete(`${URL}/state/${idState}`);
-    const state = stateRes.data;
-    dispatch({
-      type: DELETE_STATE,
-      payload: state,
-    });
+    try {
+      const stateRes = await axios.delete(`${URL}/state/${idState}`);
+      const state = stateRes.data;
+      dispatch({
+        type: DELETE_STATE,
+        payload: state,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -334,49 +435,80 @@ export const addProcedures = (procedures) => {
 
 export const getAllProcedures = () => {
   return async function (dispatch) {
-    const getAllProcess = await axios.get(`${URL}/procedures`);
-    const procedures = getAllProcess.data;
-    dispatch({
-      type: GET_PROCEDURES,
-      payload: procedures,
-    });
+    try {
+      const getAllProcess = await axios.get(`${URL}/procedures`);
+      const procedures = getAllProcess.data;
+      dispatch({
+        type: GET_PROCEDURES,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdProcedures = (idProcedures) => {
   return async function (dispatch) {
-    const searchProcedures = await axios.get(
-      `${URL}/procedures/${idProcedures}`
-    );
-    const procedures = searchProcedures.data;
-    dispatch({
-      type: GET_PROCEDURES_ID,
-      payload: procedures,
-    });
+    try {
+      const searchProcedures = await axios.get(
+        `${URL}/procedures/${idProcedures}`
+      );
+      const procedures = searchProcedures.data;
+      dispatch({
+        type: GET_PROCEDURES_ID,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const putProcedures = (dataProcedures) => {
   return async function (dispatch) {
-    const proceduresRes = await axios.put(`${URL}/procedures`, dataProcedures);
-    const procedures = proceduresRes.data;
-    dispatch({
-      type: UPDATE_PROCEDURES,
-      payload: procedures,
-    });
+    try {
+      const proceduresRes = await axios.put(
+        `${URL}/procedures`,
+        dataProcedures
+      );
+      const procedures = proceduresRes.data;
+      dispatch({
+        type: UPDATE_PROCEDURES,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteProcedures = (idProcedures) => {
   return async function (dispatch) {
-    const delProcedures = await axios.delete(
-      `${URL}/procedures/${idProcedures}`
-    );
-    const procedures = delProcedures.data;
-    dispatch({
-      type: DELETE_PROCEDURES,
-      payload: procedures,
-    });
+    try {
+      const delProcedures = await axios.delete(
+        `${URL}/procedures/${idProcedures}`
+      );
+      const procedures = delProcedures.data;
+      dispatch({
+        type: DELETE_PROCEDURES,
+        payload: procedures,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -401,56 +533,91 @@ export const postUser = (userData) => {
 
 export const getNameUser = (nameUser) => {
   return async function (dispatch) {
-    const getUser = await axios.get(`${URL}/user?nameUser=${nameUser}`);
-    const userName = getUser.data;
-    dispatch({
-      type: GET_USER,
-      payload: userName,
-    });
+    try {
+      const getUser = await axios.get(`${URL}/user?nameUser=${nameUser}`);
+      const userName = getUser.data;
+      dispatch({
+        type: GET_USER,
+        payload: userName,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getAllUser = () => {
   return async function (dispatch) {
-    const getUserAll = await axios.get(`${URL}/user`);
-    const getUsers = getUserAll.data;
-    dispatch({
-      type: GET_USER,
-      payload: getUsers,
-    });
+    try {
+      const getUserAll = await axios.get(`${URL}/user`);
+      const getUsers = getUserAll.data;
+      dispatch({
+        type: GET_USER,
+        payload: getUsers,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdUser = (idUser) => {
   return async function (dispatch) {
-    const getSearchIdUser = await axios.get(`${URL}/user/${idUser}`);
-    const user = getSearchIdUser.data;
-    dispatch({
-      type: GET_USER_ID,
-      payload: user,
-    });
+    try {
+      const getSearchIdUser = await axios.get(`${URL}/user/${idUser}`);
+      const user = getSearchIdUser.data;
+      dispatch({
+        type: GET_USER_ID,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const editUser = (dataUser) => {
   return async function (dispatch) {
-    const userResponse = await axios.put(`${URL}/user`, dataUser);
-    const user = userResponse.data;
-    dispatch({
-      type: UPDATE_USER,
-      payload: user,
-    });
+    try {
+      const userResponse = await axios.put(`${URL}/user`, dataUser);
+      const user = userResponse.data;
+      dispatch({
+        type: UPDATE_USER,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteUser = (idUser) => {
   return async function (dispatch) {
-    const userDelete = await axios.delete(`${URL}/user/${idUser}`);
-    const user = userDelete.data;
-    dispatch({
-      type: DELETE_USER,
-      payload: user,
-    });
+    try {
+      const userDelete = await axios.delete(`${URL}/user/${idUser}`);
+      const user = userDelete.data;
+      dispatch({
+        type: DELETE_USER,
+        payload: user,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -475,47 +642,80 @@ export const postCredential = (credential) => {
 
 export const getAllCredential = () => {
   return async function (dispatch) {
-    const getCredential = await axios.get(`${URL}/credential`);
-    const getCredentialAll = getCredential.data;
-    dispatch({
-      type: GET_CREDENTIAL,
-      payload: getCredentialAll,
-    });
+    try {
+      const getCredential = await axios.get(`${URL}/credential`);
+      const getCredentialAll = getCredential.data;
+      dispatch({
+        type: GET_CREDENTIAL,
+        payload: getCredentialAll,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdCredential = (idCredential) => {
   return async function (dispatch) {
-    const credentialRes = await axios.get(`${URL}/credential/${idCredential}`);
-    const credential = credentialRes.data;
-    dispatch({
-      type: GET_CREDENTIAL_ID,
-      payload: credential,
-    });
+    try {
+      const credentialRes = await axios.get(
+        `${URL}/credential/${idCredential}`
+      );
+      const credential = credentialRes.data;
+      dispatch({
+        type: GET_CREDENTIAL_ID,
+        payload: credential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const updataCredential = (credentialData) => {
   return async function (dispatch) {
-    const credentialRes = await axios.put(`${URL}/credential`, credentialData);
-    const credential = credentialRes.data;
-    dispatch({
-      type: UPDATE_CREDENTIAL,
-      payload: credential,
-    });
+    try {
+      const credentialRes = await axios.put(
+        `${URL}/credential`,
+        credentialData
+      );
+      const credential = credentialRes.data;
+      dispatch({
+        type: UPDATE_CREDENTIAL,
+        payload: credential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteCredential = (idCredential) => {
   return async function (dispatch) {
-    const credentialRes = await axios.delete(
-      `${URL}/credential/${idCredential}`
-    );
-    const credential = credentialRes.data;
-    dispatch({
-      type: DELETE_CREDENTIAL,
-      payload: credential,
-    });
+    try {
+      const credentialRes = await axios.delete(
+        `${URL}/credential/${idCredential}`
+      );
+      const credential = credentialRes.data;
+      dispatch({
+        type: DELETE_CREDENTIAL,
+        payload: credential,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -540,56 +740,91 @@ export const postForm = (form) => {
 
 export const getAllForm = () => {
   return async function (dispatch) {
-    const getFormAll = await axios.get(`${URL}/form`);
-    const getForms = getFormAll.data;
-    dispatch({
-      type: GET_FORM,
-      payload: getForms,
-    });
+    try {
+      const getFormAll = await axios.get(`${URL}/form`);
+      const getForms = getFormAll.data;
+      dispatch({
+        type: GET_FORM,
+        payload: getForms,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const searchFormData = (data) => {
   return async function (dispatch) {
-    const searchData = await axios.post(`${URL}/form/search`, data);
-    const dataRes = searchData.data;
-    dispatch({
-      type: GET_FORM,
-      payload: dataRes,
-    });
+    try {
+      const searchData = await axios.post(`${URL}/form/search`, data);
+      const dataRes = searchData.data;
+      dispatch({
+        type: GET_FORM,
+        payload: dataRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getIdForm = (idForm) => {
   return async function (dispatch) {
-    const getFormId = await axios.get(`${URL}/form/${idForm}`);
-    const form = getFormId.data;
-    dispatch({
-      type: GET_FORM_ID,
-      payload: form,
-    });
+    try {
+      const getFormId = await axios.get(`${URL}/form/${idForm}`);
+      const form = getFormId.data;
+      dispatch({
+        type: GET_FORM_ID,
+        payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const updateForm = (dataForm) => {
   return async function (dispatch) {
-    const putForm = await axios.put(`${URL}/form`, dataForm);
-    const form = putForm.data;
-    dispatch({
-      type: UPDATE_FORM,
-      payload: form,
-    });
+    try {
+      const putForm = await axios.put(`${URL}/form`, dataForm);
+      const form = putForm.data;
+      dispatch({
+        type: UPDATE_FORM,
+        payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const deleteForm = (idForm) => {
   return async function (dispatch) {
-    const delForm = await axios.delete(`${URL}/form/${idForm}`);
-    const form = delForm.data;
-    dispatch({
-      type: DELETE_FORM,
-      payload: form,
-    });
+    try {
+      const delForm = await axios.delete(`${URL}/form/${idForm}`);
+      const form = delForm.data;
+      dispatch({
+        type: DELETE_FORM,
+        payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
@@ -614,8 +849,15 @@ export const login = (data) => {
 // LOGOUT
 export const logout = () => {
   return function (dispatch) {
-    dispatch({
-      type: LOGOUT_ACCESS,
-    });
+    try {
+      dispatch({
+        type: LOGOUT_ACCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
