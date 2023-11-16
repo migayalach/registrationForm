@@ -268,23 +268,37 @@ export const addUserApi = () => {
 
 export const getAllUserApi = () => {
   return async function (dispatch) {
-    const getUserApiAll = await axios.get(`${URL}/userApi`);
-    const getUserApi = getUserApiAll.data;
-    dispatch({
-      type: GET_USER_API,
-      payload: getUserApi,
-    });
+    try {
+      const getUserApiAll = await axios.get(`${URL}/userApi`);
+      const getUserApi = getUserApiAll.data;
+      dispatch({
+        type: GET_USER_API,
+        payload: getUserApi,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
 export const getUserApiId = (idUserApi) => {
   return async function (dispatch) {
-    const getDataId = await axios.get(`${URL}/userApi/${idUserApi}`);
-    const getUserApi = getDataId.data;
-    dispatch({
-      type: GET_USER_API_ID,
-      payload: getUserApi,
-    });
+    try {
+      const getDataId = await axios.get(`${URL}/userApi/${idUserApi}`);
+      const getUserApi = getDataId.data;
+      dispatch({
+        type: GET_USER_API_ID,
+        payload: getUserApi,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
   };
 };
 
