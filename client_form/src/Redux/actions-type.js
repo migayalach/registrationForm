@@ -55,6 +55,12 @@ export const GET_FORM_ID = "GET_FORM_ID";
 export const UPDATE_FORM = "UPDATE_FORM";
 export const DELETE_FORM = "DELETE_FORM";
 
+// FILTER'S
+export const SEARCH_NAME_USER = "SEARCH_NAME_USER";
+export const SEARCH_NAME_UNIT = "SEARCH_NAME_UNIT ";
+export const ORDER_A_Z = "ORDER_A_Z";
+export const ORDER_Z_A = "ORDER_Z_A";
+
 //LOGIN
 export const LOGIN_ACCESS = "LOGIN_ACCESS";
 

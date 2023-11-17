@@ -1,6 +1,5 @@
 // COMPONET'S
 import FormEquipment from "../Forms/FormEquipment/FormEquipment";
-import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
 
 // HOOK'S
@@ -39,8 +38,6 @@ const Equipment = () => {
 
   return (
     <>
-      {/* <Filter />
-      <hr /> */}
       <FormEquipment />
       <hr />
       <Lists items={selectorEquipment} text={"Equipo"} flag={"equipment"} />

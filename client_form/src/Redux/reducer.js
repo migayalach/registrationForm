@@ -56,14 +56,20 @@ import {
   UPDATE_FORM,
   DELETE_FORM,
 
+  // FILTER'S
+  SEARCH_NAME_USER,
+  SEARCH_NAME_UNIT,
+  ORDER_A_Z,
+  ORDER_Z_A,
+
   //LOGIN
   LOGIN_ACCESS,
 
-  // ERROR
-  ERROR,
+  // LOGOUT
   LOGOUT_ACCESS,
 
-  // FILTROS
+  // ERROR
+  ERROR,
 } from "./actions-type";
 
 const initialState = {
@@ -80,6 +86,7 @@ const initialState = {
   form: [],
   errors: null,
   success: null,
+  filter: null,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -91,6 +98,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         area: [...state.area, payload.newUnit],
         success: { unit: payload.unit, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_AREA:
@@ -99,6 +107,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         area: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_AREA_ID:
@@ -107,6 +116,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case UPDATE_AREA:
@@ -116,6 +126,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         success: { unit: payload.unit, message: payload.message },
         aux: [],
         errors: null,
+        filter: null,
       };
 
     case DELETE_AREA:
@@ -124,6 +135,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         area: payload.deleteData,
         success: { unit: payload.unit, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     //! EQUIPMENT
@@ -133,6 +145,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         equipment: payload.equipmentRes,
         success: { equipment: payload.equipment, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_EQUIPMENT:
@@ -141,6 +154,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         equipment: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_EQUIPMENT_ID:
@@ -158,6 +172,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: [],
         success: { equipment: payload.equipment, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case DELETE_EQUIPMENT:
@@ -166,6 +181,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         equipment: payload.delEquipment,
         success: { equipment: payload.equipment, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     //! USER API
@@ -190,6 +206,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         stateForm: [...state.stateForm, payload.newState],
         success: { state: payload.state, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_STATE:
@@ -198,6 +215,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         stateForm: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_STATE_ID:
@@ -206,6 +224,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_STATE_NAME: {
@@ -214,6 +233,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         stateForm: payload,
         success: null,
         errors: null,
+        filter: null,
       };
     }
 
@@ -223,6 +243,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         stateForm: payload.editState,
         success: { state: payload.state, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case DELETE_STATE:
@@ -231,6 +252,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         stateForm: payload.deleteInfo,
         success: { state: payload.state, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     //! PROCEDURES
@@ -240,6 +262,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         procedures: [...state.procedures, payload.newProcedures],
         success: { procedure: payload.procedure, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_PROCEDURES:
@@ -248,6 +271,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         procedures: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_PROCEDURES_ID:
@@ -256,6 +280,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case UPDATE_PROCEDURES:
@@ -265,6 +290,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: [],
         success: { procedure: payload.procedure, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case DELETE_PROCEDURES:
@@ -273,6 +299,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         procedures: payload.resultDelete,
         success: { procedure: payload.procedure, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     //! USER
@@ -282,6 +309,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         user: [...state.user, payload.userCreate],
         success: { user: payload.user, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_USER:
@@ -290,6 +318,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         user: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_USER_ID:
@@ -298,6 +327,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case UPDATE_USER:
@@ -307,6 +337,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         user: payload.dataResponse,
         success: { user: payload.user, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case DELETE_USER:
@@ -315,6 +346,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         user: payload.deleteUser,
         success: { user: payload.user, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     //! CREDENTIAL
@@ -324,6 +356,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         credential: payload.newCredential,
         success: { credential: payload.credential, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_CREDENTIAL:
@@ -332,6 +365,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         credential: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_CREDENTIAL_ID:
@@ -340,6 +374,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         aux: [payload],
         success: null,
         errors: null,
+        filter: null,
       };
 
     case UPDATE_CREDENTIAL:
@@ -349,6 +384,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         credential: payload.editCredential,
         success: { credential: payload.credential, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case DELETE_CREDENTIAL:
@@ -357,6 +393,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         credential: payload.deleteInfo,
         success: { credential: payload.credential, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     //! FORM
@@ -366,6 +403,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         form: payload.resCreateForm,
         success: { form: payload.form, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case GET_FORM:
@@ -374,6 +412,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         form: payload,
         success: null,
         errors: null,
+        filter: null,
       };
 
     case GET_FORM_ID:
@@ -382,6 +421,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         auxExtra: [payload],
         success: null,
         errors: null,
+        filter: null,
       };
 
     case UPDATE_FORM:
@@ -391,6 +431,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         form: payload.updateData,
         success: { form: payload.form, message: payload.message },
         errors: null,
+        filter: null,
       };
 
     case DELETE_FORM:
@@ -399,7 +440,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
         form: payload.deletForm,
         success: { form: payload.form, message: payload.message },
         errors: null,
+        filter: null,
       };
+
+    //! FILTER'S
+    case SEARCH_NAME_USER: {
+      return {
+        ...state,
+        filter: payload.length <= 1 ? payload : null,
+        errors: null,
+      };
+    }
+
+    case SEARCH_NAME_UNIT: {
+      return { ...state, errors: null };
+    }
 
     //! LOGIN
     case LOGIN_ACCESS:
@@ -407,6 +462,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         auxUser: [payload],
         errors: null,
+        filter: null,
       };
 
     //! LOGOUT
@@ -425,6 +481,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         form: [],
         errors: null,
         success: null,
+        filter: null,
       };
 
     //! ERROR
@@ -432,6 +489,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         errors: payload,
+
         success: null,
       };
 

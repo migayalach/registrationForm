@@ -21,8 +21,9 @@ import { ToastContainer } from "react-toastify";
 const User = () => {
   const dispatch = useDispatch();
   const selectorUser = useSelector((state) => state.user);
+  const selectorFilter = useSelector((state) => state.filter);
   const selectStateUser = useSelector((state) => state.errors || state.success);
-  
+
   useEffect(() => {
     dispatch(getAllUser());
   }, [dispatch]);
@@ -39,11 +40,15 @@ const User = () => {
 
   return (
     <>
-      {/* <Filter />
-      <hr /> */}
+      <Filter />
+      <hr />
       <FormUser />
       <hr />
-      <Lists items={selectorUser} text={"Usuarios"} flag={"user"} />
+      <Lists
+        items={selectorFilter ? selectorFilter : selectorUser}
+        text={"Usuarios"}
+        flag={"user"}
+      />
       <ToastContainer
         position="bottom-right"
         className="toast-container"

@@ -1,6 +1,5 @@
 // COMPONET'S
 import FormArea from "../Forms/FormArea/FormArea";
-import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
 
 // HOOK'S
@@ -41,8 +40,6 @@ const Area = () => {
 
   return (
     <>
-      {/* <Filter />
-      <hr /> */}
       <FormArea />
       <hr />
       <Lists items={clearName(selectorArea)} text={"Área"} flag={"area"} />

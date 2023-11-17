@@ -1,6 +1,5 @@
 // COMPONET'S
 import FormProcedures from "../Forms/FormProcedures/FormProcedures";
-import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
 
 // HOOK'S
@@ -39,8 +38,6 @@ const Procedures = () => {
 
   return (
     <>
-      {/* <Filter />
-      <hr /> */}
       <FormProcedures />
       <hr />
       <Lists
