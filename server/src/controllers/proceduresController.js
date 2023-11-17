@@ -48,7 +48,6 @@ const updateProcedures = async (idProcedures, nameProcedures) => {
       { where: { idProcedures } }
     );
     if (typeof reponseInfo === "object") {
-      // return `Modificado con exito el procedimiento: ${nameProcedures}`;
       return await getAllProcedures();
     }
   }
@@ -67,8 +66,6 @@ const delProcedures = async (idProcedures) => {
       idProcedures,
     },
   });
-
-  // return `El proceso, se elimino correctamente`;
   return await getAllProcedures();
 };
 
