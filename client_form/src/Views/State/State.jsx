@@ -1,6 +1,4 @@
 // COMPONET'S
-import FormState from "../Forms/FormState/FormState";
-import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
 
 // HOOK'S
@@ -50,8 +48,6 @@ const State = () => {
 
   return (
     <div>
-      {/* <Filter />
-      <hr /> */}
       <h3>Crear Formulario:</h3>
       <div className={styles.buttonContainer}>
         <button onClick={openModal} className={styles.buttonCrear}>
