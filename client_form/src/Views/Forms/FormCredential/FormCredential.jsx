@@ -1,5 +1,4 @@
 // COMPONET'S
-// import Filter from "../../../Components/Filter/Filter";
 import { ButtonAccept } from "../../../Components/ButtonAccept";
 
 // HOOK'S

@@ -63,9 +63,6 @@ import {
   ERROR,
   LOGOUT_ACCESS,
 
-  // SUCCESS
-  SUCCESS,
-
   // FILTROS
 } from "./actions-type";
 
@@ -426,6 +423,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         user: [],
         credential: [],
         form: [],
+        errors: null,
+        success: null,
       };
 
     //! ERROR

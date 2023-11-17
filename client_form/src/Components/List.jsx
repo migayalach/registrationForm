@@ -4,13 +4,11 @@ import { ButtonDelete } from "../Components/ButtonDelete";
 
 // HOOK'S
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // REDUX
-import { seachIdArea } from "../Redux/actions";
 
 // STYLE SHEEETS
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../StyleSheets/List.module.css"; // Importa las clases de estilo
 
 const List = ({
@@ -28,7 +26,6 @@ const List = ({
   name,
   nameUser,
   nameUnit,
-  Unit,
   emailUser,
   user,
   idUser,
@@ -37,10 +34,8 @@ const List = ({
   phone,
   email,
   charge,
-  onEditData,
   flag,
 }) => {
-  const dispatch = useDispatch();
   const selecSearhArea = useSelector((state) => state.aux || state.area);
   const selUserData = useSelector((state) => state.auxUser);
   const selArea = useSelector((state) => state.area);
@@ -80,22 +75,8 @@ const List = ({
             {phone && <td>{phone}</td>}
             {email && <td>{email}</td>}
             {charge && <td>{charge}</td>}
+
             <td className={styles.smallCell}>
-              <button className={styles["icon-button"]}>
-                <FontAwesomeIcon icon="fa-solid fa-eye" />
-              </button>
-            </td>
-            <td className={styles.smallCell}>
-              {/* EDITAR */}
-              {/* <button
-                className={styles["icon-button"]}
-                // onClick={() => handleChangeId(idUnit)}
-              >
-                <FontAwesomeIcon
-                  icon="fa-solid fa-pen"
-                  style={{ color: "#0055ff" }}
-                />
-              </button> */}
               <ButtonEdit
                 id={idUnit}
                 idEquipment={idEquipment}
@@ -108,14 +89,7 @@ const List = ({
               />
             </td>
 
-            {/* ELIMINAR */}
             <td className={styles.smallCell}>
-              {/* <button className={styles["icon-button"]}>
-                <FontAwesomeIcon
-                  icon="fa-solid fa-trash"
-                  style={{ color: "#ff0000" }}
-                />
-              </button> */}
               {resulData === "UTIC" && (
                 <ButtonDelete
                   id={idUnit}

@@ -12,6 +12,12 @@ import {
   deleteForm,
 } from "../Redux/actions";
 
+// LIBRERI
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+// STYLE SHEEETS
+import styles from "../StyleSheets/List.module.css";
+
 export const ButtonDelete = ({
   id,
   idEquipment,
@@ -37,7 +43,15 @@ export const ButtonDelete = ({
   return (
     <>
       {flag !== "userApi" && (
-        <button onClick={() => handleDelete()}>ELIMINAR</button>
+        <button
+          onClick={() => handleDelete()}
+          className={styles["icon-button"]}
+        >
+          <FontAwesomeIcon
+            icon="fa-solid fa-trash"
+            style={{ color: "#ff0000" }}
+          />
+        </button>
       )}
     </>
   );

@@ -44,7 +44,6 @@ const Lists = ({ items, text, flag }) => {
             nroIdentification,
             phone,
             email,
-            charge,
           },
           index
         ) => {

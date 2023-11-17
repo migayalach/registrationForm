@@ -64,15 +64,8 @@ const ServerPublic = ({ onDataUserApiChange }) => {
       )}
 
       <label htmlFor="fecha">Fecha de inicio:</label>
-      <input
-        type="date"
-        id="fecha"
-        name="dateStart"
-        // value={date}
-        // onChange={handleChange}
-      />
+      <input type="date" id="fecha" name="dateStart" />
       <label htmlFor="fecha">Fecha de archivo:</label>
-      {/* <input type="date" id="fecha" name="dateEnd" onChange={handleChange} /> */}
     </>
   );
 };

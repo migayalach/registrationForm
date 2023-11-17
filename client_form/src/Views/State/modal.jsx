@@ -1,7 +1,11 @@
+// COMPONET'S
+import FormState from "../Forms/FormState/FormState";
+
+// HOOK'S
 import React from "react";
 
+// STYLESHEET'S
 import styles from "./modal.module.css";
-import FormState from "../Forms/FormState/FormState";
 
 const Modal = ({ onClose, isOpen }) => {
   const closeModal = () => {
