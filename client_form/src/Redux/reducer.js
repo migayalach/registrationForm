@@ -134,6 +134,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         equipment: payload.equipmentRes,
+        success: { equipment: payload.equipment, message: payload.message },
         errors: null,
       };
 
@@ -141,6 +142,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         equipment: payload,
+        success: null,
         errors: null,
       };
 
@@ -148,6 +150,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
@@ -156,13 +159,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         equipment: payload.dataResponse,
         aux: [],
+        success: { equipment: payload.equipment, message: payload.message },
         errors: null,
       };
 
     case DELETE_EQUIPMENT:
       return {
         ...state,
-        equipment: payload,
+        equipment: payload.delEquipment,
+        success: { equipment: payload.equipment, message: payload.message },
         errors: null,
       };
 
