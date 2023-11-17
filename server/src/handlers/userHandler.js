@@ -20,9 +20,11 @@ const postUser = async (request, response) => {
       password,
       idArea
     );
-    response.status(SUCCESS).json({ create: true, userCreate });
+    response
+      .status(SUCCESS)
+      .json({ user: true, message: "Usuario creado exitosamente", userCreate });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ user: false, error: error.message });
   }
 };
 
@@ -60,11 +62,12 @@ const putUser = async (request, response) => {
       idArea
     );
     response.status(SUCCESS).json({
-      update: true,
+      user: true,
+      message: "Usuario actualizado, exitosamente",
       dataResponse,
     });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ user: false, error: error.message });
   }
 };
 
@@ -72,9 +75,15 @@ const deleteUser = async (request, response) => {
   const { idUser } = request.params;
   try {
     const deleteUser = await deleteDataUser(idUser);
-    response.status(SUCCESS).json(deleteUser);
+    response
+      .status(SUCCESS)
+      .json({
+        user: true,
+        message: "Usuario eliminado, exitosamente",
+        deleteUser,
+      });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ user: false, error: error.message });
   }
 };
 
