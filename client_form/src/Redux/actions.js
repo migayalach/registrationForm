@@ -840,7 +840,7 @@ export const login = (data) => {
     } catch (error) {
       dispatch({
         type: ERROR,
-        payload: error.response.data.error,
+        payload: error.response.data,
       });
     }
   };

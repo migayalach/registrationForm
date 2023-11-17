@@ -9,7 +9,7 @@ const getLogin = async (request, response) => {
     const loginResponse = await getLoginData(emailUser, password);
     response.status(SUCCESS).json(loginResponse);
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ access: false, message: error.message });
   }
 };
 

@@ -22,7 +22,7 @@ const User = () => {
   const dispatch = useDispatch();
   const selectorUser = useSelector((state) => state.user);
   const selectStateUser = useSelector((state) => state.errors || state.success);
-
+  
   useEffect(() => {
     dispatch(getAllUser());
   }, [dispatch]);

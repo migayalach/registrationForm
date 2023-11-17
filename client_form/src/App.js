@@ -3,7 +3,6 @@ import {
   About,
   Area,
   Credential,
-  Detail,
   Equipment,
   Error,
   FormView,
@@ -32,10 +31,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import Swal from "sweetalert2";
 
 //REDUX
 import { logout, getAllArea } from "./Redux/actions";
+
+// JAVASCRIP
+import { swalMessage } from "./Utils/messageAler";
 
 // STYLESHEET'S
 import styles from "./StyleSheets/app.module.css";
@@ -47,12 +48,10 @@ const App = () => {
   const dispatch = useDispatch();
   const isLoginPage = location.pathname === "/";
   const is404ErrorPage = location.pathname.startsWith("/404");
-
   const [access, setAccess] = useState(false);
   const selectLogin = useSelector((state) => state.auxUser);
   const errorLogin = useSelector((state) => state.errors);
   const accessRes = selectLogin[0]?.access;
-  const errorRes = selectLogin[0]?.message;
 
   const changeState = (flag) => {
     flag === "logout" && dispatch(logout());
@@ -82,14 +81,12 @@ const App = () => {
   }, [access, isLoginPage]);
 
   useEffect(() => {
-    if (errorLogin !== undefined && errorRes !== undefined) {
-      Swal.fire({
-        icon: "question",
-        title: "Oops...",
-        text: errorRes,
-      });
+    if (errorLogin) {
+      if (errorLogin.access === false) {
+        swalMessage(errorLogin.message, "question");
+      }
     }
-  }, [errorLogin, errorRes]);
+  }, [errorLogin]);
 
   return (
     <div className={styles["app-container"]}>
