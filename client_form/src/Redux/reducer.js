@@ -58,8 +58,9 @@ import {
 
   // FILTER'S
   SEARCH_NAME_USER,
-  SEARCH_NAME_CREDENTIAL,
-  SEARCH_NAME_USER_API,
+  SEARCH_NAME_UNIT,
+  ORDER_A_Z,
+  ORDER_Z_A,
 
   //LOGIN
   LOGIN_ACCESS,
@@ -449,6 +450,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
         filter: payload.length <= 1 ? payload : null,
         errors: null,
       };
+    }
+
+    case SEARCH_NAME_UNIT: {
+      return { ...state, errors: null };
     }
 
     //! LOGIN

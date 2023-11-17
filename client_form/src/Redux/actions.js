@@ -60,8 +60,9 @@ import {
 
   // FILTER'S
   SEARCH_NAME_USER,
-  SEARCH_NAME_CREDENTIAL,
-  SEARCH_NAME_USER_API,
+  SEARCH_NAME_UNIT,
+  ORDER_A_Z,
+  ORDER_Z_A,
 
   //LOGIN
   LOGIN_ACCESS,
@@ -837,7 +838,9 @@ export const filterData = ({ location, route, value }) => {
     try {
       const searchData = await axios.get(`${URL}${location}?${route}=${value}`);
       dispatch({
-        type: route === "nameUser" && SEARCH_NAME_USER,
+        type:
+          (route === "nameUser" && SEARCH_NAME_USER) ||
+          (route === "nameUnit" && SEARCH_NAME_UNIT),
         payload: searchData.data,
       });
     } catch (error) {
