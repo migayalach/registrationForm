@@ -79,19 +79,29 @@ const getAllUser = async () => {
   );
 };
 
-const getNameUser = async (name) => {
+const getNameUser = async (name, nameUnit, order) => {
   const userData = await User.findAll({
+    include: { model: Unit, attributes: ["nameUnit"] },
     where: {
-      nameUser: {
-        [Op.iLike]: `%${name}%`,
-      },
+      ...(name && {
+        nameUser: {
+          [Op.iLike]: `%${name}%`,
+        },
+      }),
+      ...(nameUnit && {
+        "$Unit.nameUnit$": {
+          [Op.iLike]: `%${nameUnit}%`,
+        },
+      }),
     },
-    include: { model: Unit, attibutes: ["nameUnit"] },
+    order: [[order === "DESC" ? "nameUser" : "nameUser", order]],
   });
+
   if (userData.length > 0) {
     return userData;
   }
-  return await getAllUser();
+  await getAllUser();
+  throw Error`No se encontro lo que busca`;
 };
 
 const updateUser = async (
