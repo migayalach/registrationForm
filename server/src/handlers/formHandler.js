@@ -20,9 +20,13 @@ const postForm = async (request, response) => {
       equipment,
       credential
     );
-    response.status(SUCCESS).json({ create: true, resCreateForm });
+    response.status(SUCCESS).json({
+      form: true,
+      message: "Formulario creado exitosamente",
+      resCreateForm,
+    });
   } catch (error) {
-    response.status(ERROR).json({ create: false, error: error.message });
+    response.status(ERROR).json({ form: false, error: error.message });
   }
 };
 
@@ -81,9 +85,13 @@ const putForm = async (request, response) => {
       credential,
       equipment
     );
-    response.status(SUCCESS).json({ edit: true, updateData });
+    response.status(SUCCESS).json({
+      form: true,
+      message: "Formulario actualizado exitosamente",
+      updateData,
+    });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ form: false, error: error.message });
   }
 };
 
@@ -91,9 +99,13 @@ const deleteForm = async (request, response) => {
   const { idForm } = request.params;
   try {
     const deletForm = await delFomr(idForm);
-    response.status(SUCCESS).json({ delete: true, deletForm });
+    response.status(SUCCESS).json({
+      form: true,
+      message: "Formulario eliminado exitosamente",
+      deletForm,
+    });
   } catch (error) {
-    response.status(ERROR).json({ delete: false, error: error.message });
+    response.status(ERROR).json({ form: false, error: error.message });
   }
 };
 
