@@ -367,6 +367,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload.resCreateForm,
+        success: { form: payload.form, message: payload.message },
         errors: null,
       };
 
@@ -374,6 +375,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload,
+        success: null,
         errors: null,
       };
 
@@ -381,6 +383,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         auxExtra: [payload],
+        success: null,
         errors: null,
       };
 
@@ -389,6 +392,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         auxExtra: [],
         form: payload.updateData,
+        success: { form: payload.form, message: payload.message },
         errors: null,
       };
 
@@ -396,6 +400,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload.deletForm,
+        success: { form: payload.form, message: payload.message },
         errors: null,
       };
 
