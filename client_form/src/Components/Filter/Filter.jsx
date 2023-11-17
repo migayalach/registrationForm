@@ -61,17 +61,6 @@ const Filter = () => {
         </select>
       </div>
       <div>
-        <label htmlFor="email">Email: </label>
-        <select name="value" onChange={onChangeData} id="emailUser">
-          <option></option>
-          {selectorState.map(({ emailUser }, index) => (
-            <option key={index} value={emailUser}>
-              {emailUser}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
         <label htmlFor="area">Área: </label>
         <select name="value" onChange={onChangeData} id="nameUnit">
           <option></option>
@@ -81,6 +70,12 @@ const Filter = () => {
             </option>
           ))}
         </select>
+      </div>
+      <div>
+        <label htmlFor="orden-A-Z">A-Z</label>
+      </div>
+      <div>
+        <label htmlFor="orden-Z-A">Z-A</label>
       </div>
       <button type="submit">Buscar</button>
     </form>
