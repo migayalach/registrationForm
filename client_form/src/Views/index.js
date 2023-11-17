@@ -2,7 +2,6 @@
 import About from "./About/About";
 import Area from "./Area/Area";
 import Credential from "./Credential/Credential";
-import Detail from "./Detail/Detail";
 import Equipment from "./Equipment/Equipment";
 import Error from "./Error/Error";
 import Form from "./Forms/Form/Form";
@@ -22,7 +21,6 @@ export {
   About,
   Area,
   Credential,
-  Detail,
   Equipment,
   Error,
   Form,

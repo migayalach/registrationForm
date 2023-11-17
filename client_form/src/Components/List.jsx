@@ -54,13 +54,13 @@ const List = ({
         <tbody>
           <tr>
             <td className={styles.smallCell}>{index}</td>
-            {idState && <td className={styles.smallCell}>{idState}</td>}
+            {/* {idState && <td className={styles.smallCell}>{idState}</td>}
             {idProcedures && <td>{idProcedures}</td>}
             {idEquipment && <td>{idEquipment}</td>}
             {idUnit && <td>{idUnit}</td>}
             {idUser && <td>{idUser}</td>}
             {idCredential && <td>{idCredential}</td>}
-            {idForm && <td>{idForm}</td>}
+            {idForm && <td>{idForm}</td>} */}
             {dateStart && <td>{dateStart.substring(0, 10)}</td>}
             {dateEnd ? <td>{dateEnd.substring(0, 10)}</td> : <td></td>}
             {procedure && <td>{procedure}</td>}
