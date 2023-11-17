@@ -283,6 +283,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: [...state.user, payload.userCreate],
+        success: { user: payload.user, message: payload.message },
         errors: null,
       };
 
@@ -290,6 +291,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: payload,
+        success: null,
         errors: null,
       };
 
@@ -297,6 +299,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
@@ -305,13 +308,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         aux: [],
         user: payload.dataResponse,
+        success: { user: payload.user, message: payload.message },
         errors: null,
       };
 
     case DELETE_USER:
       return {
         ...state,
-        user: payload,
+        user: payload.deleteUser,
+        success: { user: payload.user, message: payload.message },
         errors: null,
       };
 
