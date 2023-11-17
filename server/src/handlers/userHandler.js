@@ -39,14 +39,15 @@ const getUserId = async (request, response) => {
 };
 
 const getUserName = async (request, response) => {
-  const { nameUser } = request.query;
+  const { nameUser, nameUnit, order } = request.query;
   try {
-    const resController = nameUser
-      ? await getNameUser(nameUser)
-      : await getAllUser();
+    const resController =
+      nameUser || nameUnit || order
+        ? await getNameUser(nameUser, nameUnit, order)
+        : await getAllUser();
     response.status(SUCCESS).json(resController);
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ userSearch: false, message: error.message });
   }
 };
 
@@ -75,13 +76,11 @@ const deleteUser = async (request, response) => {
   const { idUser } = request.params;
   try {
     const deleteUser = await deleteDataUser(idUser);
-    response
-      .status(SUCCESS)
-      .json({
-        user: true,
-        message: "Usuario eliminado, exitosamente",
-        deleteUser,
-      });
+    response.status(SUCCESS).json({
+      user: true,
+      message: "Usuario eliminado, exitosamente",
+      deleteUser,
+    });
   } catch (error) {
     response.status(ERROR).json({ user: false, error: error.message });
   }
