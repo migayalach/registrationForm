@@ -833,14 +833,14 @@ export const deleteForm = (idForm) => {
 };
 
 //* FILTER'S
-export const filterData = ({ location, route, value }) => {
+export const filterData = ({ location, area, nombre, order }) => {
   return async function (dispatch) {
     try {
-      const searchData = await axios.get(`${URL}${location}?${route}=${value}`);
+      const searchData = await axios.get(
+        `${URL}${location}?nameUser=${nombre}&nameUnit=${area}&order=${order}`
+      );
       dispatch({
-        type:
-          (route === "nameUser" && SEARCH_NAME_USER) ||
-          (route === "nameUnit" && SEARCH_NAME_UNIT),
+        type: SEARCH_NAME_USER,
         payload: searchData.data,
       });
     } catch (error) {
