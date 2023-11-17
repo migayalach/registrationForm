@@ -8,33 +8,36 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
 
 // REDUX
 import { getAllCredential } from "../../Redux/actions";
 
 // LIBRARY
-import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
 
 const Credential = () => {
   const dispatch = useDispatch();
   const selectorCredential = useSelector((state) => state.credential);
-  const errorValidate = useSelector((state) => state.errors);
+  const selectStateCredential = useSelector(
+    (state) => state.errors || state.success
+  );
 
   useEffect(() => {
     dispatch(getAllCredential());
   }, [dispatch]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.credential === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: errorValidate.error,
-      });
-  }, [errorValidate]);
+    if (selectStateCredential) {
+      if (selectStateCredential.credential === false) {
+        swalMessage(selectStateCredential.error, "warning");
+      } else if (selectStateCredential.credential === true) {
+        toastSuccess(selectStateCredential.message, "success");
+      }
+    }
+  }, [selectStateCredential]);
 
   return (
     <>
@@ -46,6 +49,11 @@ const Credential = () => {
         items={selectorCredential}
         text={"Credenciales"}
         flag={"credential"}
+      />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
       />
     </>
   );
