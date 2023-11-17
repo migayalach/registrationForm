@@ -241,6 +241,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: [...state.procedures, payload.newProcedures],
+        success: { procedure: payload.procedure, message: payload.message },
         errors: null,
       };
 
@@ -248,6 +249,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: payload,
+        success: null,
         errors: null,
       };
 
@@ -255,14 +257,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
     case UPDATE_PROCEDURES:
       return {
         ...state,
-        procedures: payload,
+        procedures: payload.updateData,
         aux: [],
+        success: { procedure: payload.procedure, message: payload.message },
         errors: null,
       };
 
@@ -270,6 +274,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: payload.resultDelete,
+        success: { procedure: payload.procedure, message: payload.message },
         errors: null,
       };
 
