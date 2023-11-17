@@ -7,58 +7,82 @@ import { useLocation } from "react-router-dom";
 
 // REDUX
 import {
-  getAllState,
-  getAllProcedures,
-  getAllEquipment,
-  getAllArea,
   getAllUser,
   getAllCredential,
   getAllUserApi,
-  getStateName,
+  filterData,
 } from "../../Redux/actions";
 
 // STYLESHEET'S
 
 const Filter = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
-  const selectorState = useSelector((state) => state.stateForm || state.procedures);
-  console.log(selectorState);
+  const [data, setData] = useState({
+    route: "",
+    value: "",
+    location: "",
+  });
+  const location = useLocation();
+  const selectorState = useSelector((state) => state.user);
 
-  const searchData = (event) => {};
+  const onChangeData = (event) => {
+    setData({
+      [event.target.name]: event.target.value,
+      route: event.target.id,
+    });
+  };
+
+  const searchData = (event) => {
+    event.preventDefault();
+    dispatch(filterData({ ...data, location: location.pathname }));
+  };
 
   useEffect(() => {
-    if (location.pathname === "state") {
-      dispatch(getAllState());
-    } else if (location.pathname === "procedures") {
-      dispatch(getAllProcedures());
-    } else if (location.pathname === "equipment") {
-      dispatch(getAllEquipment());
-    } else if (location.pathname === "area") {
-      dispatch(getAllArea());
-    } else if (location.pathname === "user") {
+    if (location.pathname === "/user") {
       dispatch(getAllUser());
-    } else if (location.pathname === "credential") {
+    } else if (location.pathname === "/credential") {
       dispatch(getAllCredential());
-    } else if (location.pathname === "userApi") {
+    } else if (location.pathname === "/userApi") {
       dispatch(getAllUserApi);
     }
-    console.log(location.pathname);
-  }, []);
+  }, [dispatch]);
 
   return (
-    <form>
+    <form onSubmit={searchData}>
       <div>
-        <label htmlFor="nombre">Nombre: </label>
-        <select name="" onChange={searchData}>
+        <label htmlFor="name">Nombre: </label>
+        <select name="value" onChange={onChangeData} id="nameUser">
           <option></option>
-          {selectorState.map(({ name }, index) => (
-            <option key={index} value={name}>
-              {name}
+          {selectorState.map(({ nameUser }, index) => (
+            <option key={index} value={nameUser}>
+              {nameUser}
             </option>
           ))}
         </select>
       </div>
+      <div>
+        <label htmlFor="email">Email: </label>
+        <select name="value" onChange={onChangeData} id="emailUser">
+          <option></option>
+          {selectorState.map(({ emailUser }, index) => (
+            <option key={index} value={emailUser}>
+              {emailUser}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="area">Área: </label>
+        <select name="value" onChange={onChangeData} id="nameUnit">
+          <option></option>
+          {selectorState.map(({ nameUnit }, index) => (
+            <option key={index} value={nameUnit}>
+              {nameUnit}
+            </option>
+          ))}
+        </select>
+      </div>
+      <button type="submit">Buscar</button>
     </form>
   );
 };
