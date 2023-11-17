@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // REDUX
-import { addUserApi, getAllUserApi } from "../../Redux/actions";
+import { getAllUserApi } from "../../Redux/actions";
 
 // STYLESHEET'S
 import "./user-api.css";
