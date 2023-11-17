@@ -8,33 +8,34 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
 
 // REDUX
 import { getAllUser } from "../../Redux/actions";
 
 // LIBRARY
-import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
 
 const User = () => {
   const dispatch = useDispatch();
   const selectorUser = useSelector((state) => state.user);
-  const errorValidate = useSelector((state) => state.errors);
+  const selectStateUser = useSelector((state) => state.errors || state.success);
 
   useEffect(() => {
     dispatch(getAllUser());
   }, [dispatch]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.user === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: `Por favor ingresa datos`,
-      });
-  }, [errorValidate]);
+    if (selectStateUser) {
+      if (selectStateUser.user === false) {
+        swalMessage(selectStateUser.error, "warning");
+      } else if (selectStateUser.user === true) {
+        toastSuccess(selectStateUser.message, "success");
+      }
+    }
+  }, [selectStateUser]);
 
   return (
     <>
@@ -43,6 +44,11 @@ const User = () => {
       <FormUser />
       <hr />
       <Lists items={selectorUser} text={"Usuarios"} flag={"user"} />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
+      />
     </>
   );
 };

@@ -10,17 +10,18 @@ import { useSelector, useDispatch } from "react-redux";
 // REDUX
 import { getAllForm } from "../../Redux/actions";
 
-// LIBRARY
-import Swal from "sweetalert2";
-
 // JAVASCRIP
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
+
+// LIBRARY
+import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
 
 const FormView = () => {
   const dispatch = useDispatch();
   const selecForm = useSelector((state) => state.form);
-  const errorValidate = useSelector((state) => state.errors);
+  const selecStateForm = useSelector((state) => state.errors || state.success);
 
   useEffect(() => {
     dispatch(getAllForm());
@@ -28,28 +29,29 @@ const FormView = () => {
 
   useEffect(() => {
     selecForm[0]?.message === "No se encontraron datos" &&
-      Swal.fire({
-        icon: "info",
-        title: "Oops...",
-        text: "No se encontraron datos",
-      });
+      swalMessage("No se encontraron datos", "info");
   }, [selecForm]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.form === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: `Por favor ingresa datos`,
-      });
-  }, [errorValidate]);
+    if (selecStateForm) {
+      if (selecStateForm.form === false) {
+        swalMessage(`Por favor ingresa datos`, "warning");
+      } else if (selecStateForm.form === true) {
+        toastSuccess(selecStateForm.message, "success");
+      }
+    }
+  }, [selecStateForm]);
 
   return (
     <>
       <Form />
       <FilterForm />
       <Lists items={selecForm} text={"formularios"} flag={"form"} />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
+      />
     </>
   );
 };

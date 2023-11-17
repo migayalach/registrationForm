@@ -134,6 +134,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         equipment: payload.equipmentRes,
+        success: { equipment: payload.equipment, message: payload.message },
         errors: null,
       };
 
@@ -141,6 +142,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         equipment: payload,
+        success: null,
         errors: null,
       };
 
@@ -148,6 +150,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
@@ -156,13 +159,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         equipment: payload.dataResponse,
         aux: [],
+        success: { equipment: payload.equipment, message: payload.message },
         errors: null,
       };
 
     case DELETE_EQUIPMENT:
       return {
         ...state,
-        equipment: payload,
+        equipment: payload.delEquipment,
+        success: { equipment: payload.equipment, message: payload.message },
         errors: null,
       };
 
@@ -186,6 +191,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: [...state.stateForm, payload.newState],
+        success: { state: payload.state, message: payload.message },
         errors: null,
       };
 
@@ -193,6 +199,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: payload,
+        success: null,
         errors: null,
       };
 
@@ -200,6 +207,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
@@ -207,6 +215,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: payload,
+        success: null,
         errors: null,
       };
     }
@@ -215,6 +224,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: payload.editState,
+        success: { state: payload.state, message: payload.message },
         errors: null,
       };
 
@@ -222,6 +232,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stateForm: payload.deleteInfo,
+        success: { state: payload.state, message: payload.message },
         errors: null,
       };
 
@@ -230,6 +241,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: [...state.procedures, payload.newProcedures],
+        success: { procedure: payload.procedure, message: payload.message },
         errors: null,
       };
 
@@ -237,6 +249,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: payload,
+        success: null,
         errors: null,
       };
 
@@ -244,14 +257,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
     case UPDATE_PROCEDURES:
       return {
         ...state,
-        procedures: payload,
+        procedures: payload.updateData,
         aux: [],
+        success: { procedure: payload.procedure, message: payload.message },
         errors: null,
       };
 
@@ -259,6 +274,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         procedures: payload.resultDelete,
+        success: { procedure: payload.procedure, message: payload.message },
         errors: null,
       };
 
@@ -267,6 +283,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: [...state.user, payload.userCreate],
+        success: { user: payload.user, message: payload.message },
         errors: null,
       };
 
@@ -274,6 +291,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: payload,
+        success: null,
         errors: null,
       };
 
@@ -281,6 +299,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: payload,
+        success: null,
         errors: null,
       };
 
@@ -289,13 +308,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         aux: [],
         user: payload.dataResponse,
+        success: { user: payload.user, message: payload.message },
         errors: null,
       };
 
     case DELETE_USER:
       return {
         ...state,
-        user: payload,
+        user: payload.deleteUser,
+        success: { user: payload.user, message: payload.message },
         errors: null,
       };
 
@@ -304,6 +325,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload.newCredential,
+        success: { credential: payload.credential, message: payload.message },
         errors: null,
       };
 
@@ -311,6 +333,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload,
+        success: null,
         errors: null,
       };
 
@@ -318,6 +341,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: [payload],
+        success: null,
         errors: null,
       };
 
@@ -326,6 +350,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         aux: [],
         credential: payload.editCredential,
+        success: { credential: payload.credential, message: payload.message },
         errors: null,
       };
 
@@ -333,6 +358,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload.deleteInfo,
+        success: { credential: payload.credential, message: payload.message },
         errors: null,
       };
 
@@ -341,6 +367,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload.resCreateForm,
+        success: { form: payload.form, message: payload.message },
         errors: null,
       };
 
@@ -348,6 +375,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload,
+        success: null,
         errors: null,
       };
 
@@ -355,6 +383,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         auxExtra: [payload],
+        success: null,
         errors: null,
       };
 
@@ -363,6 +392,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         auxExtra: [],
         form: payload.updateData,
+        success: { form: payload.form, message: payload.message },
         errors: null,
       };
 
@@ -370,6 +400,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         form: payload.deletForm,
+        success: { form: payload.form, message: payload.message },
         errors: null,
       };
 

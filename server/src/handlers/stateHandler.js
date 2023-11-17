@@ -13,9 +13,11 @@ const postState = async (request, response) => {
   const { name } = request.body;
   try {
     const newState = await createState(name);
-    response.status(SUCCESS).json({ create: true, newState });
+    response
+      .status(SUCCESS)
+      .json({ state: true, message: "Estado creado exitosamente", newState });
   } catch (error) {
-    response.status(ERROR).json({ create: false, error: error.message });
+    response.status(ERROR).json({ state: false, error: error.message });
   }
 };
 
@@ -45,9 +47,13 @@ const putState = async (request, response) => {
   const { idState, name } = request.body;
   try {
     const editState = await updateState(idState, name);
-    response.status(SUCCESS).json({ update: true, editState });
+    response.status(SUCCESS).json({
+      state: true,
+      message: "Estado actualizado exitosamente",
+      editState,
+    });
   } catch (error) {
-    response.status(ERROR).json({ update: false, error: error.message });
+    response.status(ERROR).json({ state: false, error: error.message });
   }
 };
 
@@ -55,9 +61,13 @@ const deleteState = async (request, response) => {
   const { idState } = request.params;
   try {
     const deleteInfo = await delState(idState);
-    response.status(SUCCESS).json({ delete: true, deleteInfo });
+    response.status(SUCCESS).json({
+      state: true,
+      message: "Estado eliminado exitosamente",
+      deleteInfo,
+    });
   } catch (error) {
-    response.status(ERROR).json({ delete: false, error: error.message });
+    response.status(ERROR).json({ state: false, error: error.message });
   }
 };
 

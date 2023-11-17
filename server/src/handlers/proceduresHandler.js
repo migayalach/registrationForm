@@ -13,9 +13,13 @@ const postProcedures = async (request, response) => {
   const { nameProcedures } = request.body;
   try {
     const newProcedures = await createProcedures({ nameProcedures });
-    response.status(SUCCESS).json({ create: true, newProcedures });
+    response.status(SUCCESS).json({
+      procedure: true,
+      message: "Procedimiento creado exitosamente",
+      newProcedures,
+    });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ procedure: false, error: error.message });
   }
 };
 
@@ -45,7 +49,11 @@ const putProcedures = async (request, response) => {
   const { idProcedures, nameProcedures } = request.body;
   try {
     const updateData = await updateProcedures(idProcedures, nameProcedures);
-    response.status(SUCCESS).json(updateData);
+    response.status(SUCCESS).json({
+      procedure: true,
+      message: "Procedimiento actualizado exitosamente",
+      updateData,
+    });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -55,9 +63,13 @@ const deleteProcedures = async (request, response) => {
   const { idProcedures } = request.params;
   try {
     const resultDelete = await delProcedures(idProcedures);
-    response.status(SUCCESS).json({ success: true, resultDelete });
+    response.status(SUCCESS).json({
+      procedure: true,
+      message: "Procedimiento eliminado exitosamente",
+      resultDelete,
+    });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ procedure: false, error: error.message });
   }
 };
 

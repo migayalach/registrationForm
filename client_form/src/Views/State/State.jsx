@@ -10,17 +10,20 @@ import { getAllState } from "../../Redux/actions";
 
 // REDUX
 
-// STYLESHEET'S
-import styles from "./state.module.css";
+// JAVASCRIP
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
 
 // LIBRARY
-import Modal from "./modal"; // Importa el componente Modal
-import Swal from "sweetalert2";
+import Modal from "./modal";
+import { ToastContainer } from "react-toastify";
+
+// STYLESHEET'S
+import styles from "./state.module.css";
 
 const State = () => {
   const dispatch = useDispatch();
   const selectorState = useSelector((state) => state.stateForm);
-  const errorValidate = useSelector((state) => state.errors);
+  const selectState = useSelector((state) => state.errors || state.success);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -28,14 +31,14 @@ const State = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.state === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: errorValidate.error,
-      });
-  }, [errorValidate]);
+    if (selectState) {
+      if (selectState.state === false) {
+        swalMessage(selectState.error, "warning");
+      } else if (selectState.state === true) {
+        toastSuccess(selectState.message, "success");
+      }
+    }
+  }, [selectState]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -59,6 +62,11 @@ const State = () => {
       <hr />
       <h2>ESTADOS</h2>
       <Lists items={selectorState} text={"Estados"} flag={"state"} />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
+      />
     </div>
   );
 };

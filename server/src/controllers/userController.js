@@ -1,15 +1,5 @@
 const { User, Unit } = require("../database/database");
 const { Op } = require("sequelize");
-const {
-  clearResponseOne,
-  clearData,
-  duplicateInfo,
-} = require("../utils/userUtils");
-
-const newObj = (data, params) => {
-  data = { ...data, params };
-  return data;
-};
 
 const createUser = async (nameUser, emailUser, user, password, idArea) => {
   const existArea = await Unit.findOne({
@@ -36,12 +26,6 @@ const createUser = async (nameUser, emailUser, user, password, idArea) => {
   });
 
   const { idUser } = await User.findOne({ where: { emailUser } });
-  // const unit = await Unit.findOne({
-  //   where: { idUnit: idArea },
-  //   attibutes: ["nameUnit"],
-  // });
-  // console.log(unit.dataValues.nameUnit);
-
   return {
     idUser,
     nameUser: dataClear.nameUser,
@@ -51,8 +35,6 @@ const createUser = async (nameUser, emailUser, user, password, idArea) => {
     UnitIdUnit: dataClear.idArea,
     nameUnit,
   };
-  // return { nameUser, emailUser, user, password };
-  // throw Error(`El usuario: ${existsUser.name}, ya existe`);
 };
 
 const getUserDataId = async (idUser) => {
@@ -66,7 +48,6 @@ const getUserDataId = async (idUser) => {
     },
   });
   if (userInfo.length > 0) {
-    // return clearResponseOne(userInfo[0].dataValues);
     return userInfo;
   }
   return await getAllUser();
@@ -113,7 +94,6 @@ const getNameUser = async (name) => {
   return await getAllUser();
 };
 
-//falta update
 const updateUser = async (
   idUser,
   nameUser,
@@ -131,26 +111,9 @@ const updateUser = async (
     throw Error(`El usuario: ${nameUser} no se encuentra registrado`);
   }
 
-  // // ARREGLAR DUPLICADOS
-  // const dataDuplicateBdd = await getAllUser();
-  // const dataUserFind = dataDuplicateBdd
-  //   .map(({ dataValues }) => dataValues)
-  //   .filter((dataValues) => dataValues.idUser !== +idUser)
-  //   .find(
-  //     (dataValues) =>
-  //       // dataValues.nroIdentification === +nroIdentification ||
-  //       dataValues.emailUser === emailUser
-  //   );
-
-  // if (dataUserFind) {
-  //   throw Error(
-  //     `No se permiten datos duplicados, por favor verifique y cambie los items`
-  //   );
-  // }
   await User.update(
     {
       nameUser,
-      // nroIdentification: parseInt(nroIdentification),
       emailUser,
       user,
       password,
@@ -180,7 +143,6 @@ const deleteDataUser = async (idUser) => {
       },
     });
     if (deleteUser === 1) {
-      // return `Se elimino el usuario: ${nameUser}, con exito`;
       return await getAllUser();
     }
     throw Error(`No se pudo eliminar el usuario ingresado`);

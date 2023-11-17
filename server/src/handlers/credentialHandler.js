@@ -14,9 +14,13 @@ const postCredential = async (request, response) => {
   const { name, UserIdUser } = request.body;
   try {
     const newCredential = await createCredential(name, UserIdUser);
-    response.status(SUCCESS).json({ create: true, newCredential });
+    response.status(SUCCESS).json({
+      credential: true,
+      message: "Credencial creada exitosamente",
+      newCredential,
+    });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ credential: false, error: error.message });
   }
 };
 
@@ -46,9 +50,13 @@ const putCredential = async (request, response) => {
   const { idCredential, name } = request.body;
   try {
     const editCredential = await updateCredential(idCredential, name);
-    response.status(SUCCESS).json({ update: true, editCredential });
+    response.status(SUCCESS).json({
+      credential: true,
+      message: "Credencial actualizada exitosamente",
+      editCredential,
+    });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ credential: false, error: error.message });
   }
 };
 
@@ -56,9 +64,13 @@ const deleteCredential = async (request, response) => {
   const { idCredential } = request.params;
   try {
     const deleteInfo = await delCredential(idCredential);
-    response.status(SUCCESS).json({ update: true, deleteInfo });
+    response.status(SUCCESS).json({
+      credential: true,
+      message: "Credencial eliminada exitosamente",
+      deleteInfo,
+    });
   } catch (error) {
-    response.status(ERROR).json({ error: error.message });
+    response.status(ERROR).json({ credential: false, error: error.message });
   }
 };
 

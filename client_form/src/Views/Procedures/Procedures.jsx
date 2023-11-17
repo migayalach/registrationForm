@@ -10,29 +10,32 @@ import { useSelector, useDispatch } from "react-redux";
 // REDUX
 import { getAllProcedures } from "../../Redux/actions";
 
+// JAVASCRIP
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
+
 // LIBRARY
-import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
 
 const Procedures = () => {
   const dispatch = useDispatch();
   const selectorProcedures = useSelector((state) => state.procedures);
-  const errorValidate = useSelector((state) => state.errors);
+  const stateProcedure = useSelector((state) => state.errors || state.success);
 
   useEffect(() => {
     dispatch(getAllProcedures());
   }, [dispatch]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.procedure === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: errorValidate.error,
-      });
-  }, [errorValidate]);
+    if (stateProcedure) {
+      if (stateProcedure.procedure === false) {
+        swalMessage(stateProcedure.error, "warning");
+      } else if (stateProcedure.procedure === true) {
+        toastSuccess(stateProcedure.message, "success");
+      }
+    }
+  }, [stateProcedure]);
 
   return (
     <>
@@ -44,6 +47,11 @@ const Procedures = () => {
         items={selectorProcedures}
         text={"Procedimientos"}
         flag={"procedures"}
+      />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
       />
     </>
   );

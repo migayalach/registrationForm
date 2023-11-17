@@ -36,6 +36,7 @@ const validateUserData = (request, response, next) => {
 
 const validateUserDataPut = (request, response, next) => {
   const { idUser, nameUser, emailUser, user, password, idArea } = request.body;
+  const minLength = 4;
   try {
     if (!idUser) throw Error(`Falta el identificador de lo que busca`);
     if (!Number.isInteger(+idUser))

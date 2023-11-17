@@ -3,17 +3,7 @@ const { getUnitSearchID } = require("./unitControllers");
 const { Op } = require("sequelize");
 
 const createCredential = async (name, UserIdUser) => {
-  // const newCredential = await Credential.findOne({
-  //   where: {
-  //     name,
-  //   },
-  // });
-  // if (!newCredential) {
-  //   return await Credential.create({ name });
-  // }
-  // throw Error(`La credencial: ${name} no se pudo crear`);
   await Credential.create({ name, UserIdUser });
-  // return await getSearchCategoryName(name);
   return await getAllCredential();
 };
 
@@ -31,21 +21,11 @@ const updateCredential = async (idCredential, name) => {
     { where: { idCredential } }
   );
   if (typeof responseInfo === "object") {
-    // return `Credencial: ${name}, modificada con exito`;
     return await getAllCredential();
   }
 };
 
 const getSearchCredentialId = async (idCredential) => {
-  // const credential = await Credential.findAll({
-  //   where: {
-  //     idCredential,
-  //   },
-  // });
-  // if (credential.length > 0) {
-  //   return credential;
-  // }
-  // throw Error(`No se pudo encontrar la credencial buscada`);
   return await Credential.findOne({
     where: { idCredential },
     include: [
@@ -64,44 +44,9 @@ const getSearchCategoryName = async (name) => {
         [Op.iLike]: `%${name}%`,
       },
     },
-    // include: [
-    //   {
-    //     model: User,
-    //     attributes: ["nameUser", "UnitIdUnit"],
-    //   },
-    // ],
   });
   return nameSearch;
 };
-
-// const getAllCredential = async () => {
-//   const x = await Credential.findAll({
-//     include: [{ model: User }],
-//   });
-//   const aux = x.map(
-//     ({
-//       idCredential,
-//       name,
-//       UserIdUser,
-//       User: { idUser },
-//       User: { nameUser },
-//       User: { emailUser },
-//       User: { user },
-//       User: { UnitIdUnit },
-//     }) => ({
-//       idCredential,
-//       name,
-//       UserIdUser,
-//       idUser,
-//       nameUser,
-//       emailUser,
-//       user,
-//       UnitIdUnit,
-//     })
-//   );
-
-//   return aux;
-// };
 
 const getAllCredential = async () => {
   const responseData = await Credential.findAll({
@@ -144,7 +89,6 @@ const delCredential = async (idCredential) => {
   await Credential.destroy({
     where: { idCredential },
   });
-  // return `La credencial, se elimino correctamente`;
   return await getAllCredential();
 };
 

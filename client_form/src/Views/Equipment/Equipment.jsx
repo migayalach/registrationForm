@@ -11,30 +11,31 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllEquipment } from "../../Redux/actions";
 
 // JAVASCRIP
+import { swalMessage, toastSuccess } from "../../Utils/messageAler";
 
 // LIBRARY
-import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
 
 const Equipment = () => {
   const dispatch = useDispatch();
   const selectorEquipment = useSelector((state) => state.equipment);
-  const errorValidate = useSelector((state) => state.errors);
+  const stateEquipment = useSelector((state) => state.errors || state.success);
 
   useEffect(() => {
     dispatch(getAllEquipment());
   }, [dispatch]);
 
   useEffect(() => {
-    errorValidate &&
-      errorValidate.equipment === false &&
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: errorValidate.error,
-      });
-  }, [errorValidate]);
+    if (stateEquipment) {
+      if (stateEquipment.equipment === false) {
+        swalMessage(stateEquipment.error, "warning");
+      } else if (stateEquipment.equipment === true) {
+        toastSuccess(stateEquipment.message, "success");
+      }
+    }
+  }, [stateEquipment]);
 
   return (
     <>
@@ -43,6 +44,11 @@ const Equipment = () => {
       <FormEquipment />
       <hr />
       <Lists items={selectorEquipment} text={"Equipo"} flag={"equipment"} />
+      <ToastContainer
+        position="bottom-right"
+        className="toast-container"
+        autoClose={1500}
+      />
     </>
   );
 };
