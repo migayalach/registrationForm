@@ -1,26 +1,6 @@
 const { Equipment } = require("../database/database");
 const { Op } = require("sequelize");
 
-// const createEquipment = async (name, host, directionIp, controlLabel) => {
-//   const countData = await Equipment.count();
-//   if (countData === 0) {
-//     await Equipment.create({ name, host, directionIp, controlLabel });
-//     return { name, host, directionIp, controlLabel };
-//   }
-
-//   //VERIFICAR QUE NO ESTE REPETIDO
-//   const existsEquipment = await Equipment.findOne({
-//     where: {
-//       name,
-//     },
-//   });
-//   if (!existsEquipment) {
-//     await Equipment.create({ name, host, directionIp, controlLabel });
-//     return { name, host, directionIp, controlLabel };
-//   }
-//   throw Error(`El equipo: ${name} ya se encuentra registrado`);
-// };
-
 const createEquipment = async (name) => {
   const countData = await Equipment.count();
   if (countData === 0) {
@@ -46,10 +26,6 @@ const getEquipmentDataId = async (idEquipment) => {
     where: {
       idEquipment,
     },
-    // include: {
-    //   model: Category,
-    //   attibutes: ["name"],
-    // },
   });
   if (equipmentInfo.length > 0) {
     return equipmentInfo;
@@ -64,13 +40,11 @@ const getNameEquipment = (name) => {
         [Op.iLike]: `%${name}%`,
       },
     },
-    // include: { model: Category, attibutes: ["name"] },
   });
   return equipmentData;
 };
 
-const getAllEquipment = async () =>
-  await Equipment.findAll();
+const getAllEquipment = async () => await Equipment.findAll();
 
 const updateEquipment = async (idEquipment, name) => {
   const existsEquipment = await Equipment.findOne({
@@ -83,7 +57,6 @@ const updateEquipment = async (idEquipment, name) => {
   }
   await Equipment.update({ idEquipment, name }, { where: { idEquipment } });
   return await getAllEquipment();
-  // return { name };
 };
 
 const deleteDataEquipment = async (idEquipment) => {
@@ -105,7 +78,6 @@ const deleteDataEquipment = async (idEquipment) => {
     },
   });
   if (deleteEquipment === 1) {
-    // return `Se elimino el equipo: ${name} con el host: ${host}, con exito`;
     return await getAllEquipment();
   }
   throw Error(`No se pudo eliminar el equipo deseado`);
