@@ -10,27 +10,15 @@ const {
   deleteDataEquipment,
 } = require("../controllers/equipmentControllers");
 
-// const postEquipment = async (request, response) => {
-//   const { name, host, directionIp, controlLabel } = request.body;
-//   try {
-//     const equipmentRes = await createEquipment(
-//       name,
-//       host,
-//       directionIp,
-//       controlLabel
-//     );
-//     response.status(SUCCESS).json({ create: true, equipmentRes });
-//   } catch (error) {
-//     response.status(ERROR).json({ error: error.message });
-//   }
-// };
 const postEquipment = async (request, response) => {
   const { name } = request.body;
   try {
-    const equipmentRes = await createEquipment(
-      name,
-    );
-    response.status(SUCCESS).json({ create: true, equipmentRes });
+    const equipmentRes = await createEquipment(name);
+    response.status(SUCCESS).json({
+      equipment: true,
+      message: "Equipo creado exitosamente",
+      equipmentRes,
+    });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -61,12 +49,10 @@ const getEquipmentName = async (request, response) => {
 const putEquipment = async (request, response) => {
   const { idEquipment, name } = request.body;
   try {
-    const dataResponse = await updateEquipment(
-      idEquipment,
-      name,
-    );
+    const dataResponse = await updateEquipment(idEquipment, name);
     response.status(SUCCESS).json({
-      update: true,
+      equipment: true,
+      message: "Equipo actualizado exitosamente",
       dataResponse,
     });
   } catch (error) {
@@ -78,7 +64,13 @@ const deleteEquipment = async (request, response) => {
   const { idEquipment } = request.params;
   try {
     const delEquipment = await deleteDataEquipment(idEquipment);
-    response.status(SUCCESS).json(delEquipment);
+    response
+      .status(SUCCESS)
+      .json({
+        equipment: true,
+        message: "Equipo eliminado exitosamente",
+        delEquipment,
+      });
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
