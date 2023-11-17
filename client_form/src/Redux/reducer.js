@@ -325,6 +325,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload.newCredential,
+        success: { credential: payload.credential, message: payload.message },
         errors: null,
       };
 
@@ -332,6 +333,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload,
+        success: null,
         errors: null,
       };
 
@@ -339,6 +341,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         aux: [payload],
+        success: null,
         errors: null,
       };
 
@@ -347,6 +350,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         aux: [],
         credential: payload.editCredential,
+        success: { credential: payload.credential, message: payload.message },
         errors: null,
       };
 
@@ -354,6 +358,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         credential: payload.deleteInfo,
+        success: { credential: payload.credential, message: payload.message },
         errors: null,
       };
 
