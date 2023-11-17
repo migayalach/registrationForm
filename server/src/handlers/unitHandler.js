@@ -47,13 +47,11 @@ const putUnit = async (request, response) => {
   const { idUnit, nameUnit } = request.body;
   try {
     const updateData = await updateUnit(idUnit, nameUnit);
-    response
-      .status(SUCCESS)
-      .json({
-        unit: true,
-        message: "Unidad actualizada exitosamente",
-        updateData,
-      });
+    response.status(SUCCESS).json({
+      unit: true,
+      message: "Unidad actualizada exitosamente",
+      updateData,
+    });
   } catch (error) {
     response.status(ERROR).json({ unit: false, error: error.message });
   }
