@@ -5,7 +5,6 @@ const createState = async (name) => {
   const newState = await State.findOne({ where: { name } });
   if (!newState) {
     return await State.create({ name });
-    // return data.name;
   }
   throw Error(`El estado: ${name} no se pudo crear`);
 };
@@ -60,7 +59,6 @@ const delState = async (idState) => {
       idState,
     },
   });
-  // return `El estado, se elimino correctamente`;
   return await getAllState();
 };
 
