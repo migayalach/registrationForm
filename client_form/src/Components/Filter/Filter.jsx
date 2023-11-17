@@ -18,17 +18,18 @@ import {
 const Filter = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    route: "",
-    value: "",
+    area: "",
+    nombre: "",
     location: "",
+    order: "",
   });
   const location = useLocation();
   const selectorState = useSelector((state) => state.user);
-
+  const selectorUnit = useSelector((state) => state.area);
   const onChangeData = (event) => {
     setData({
+      ...data,
       [event.target.name]: event.target.value,
-      route: event.target.id,
     });
   };
 
@@ -51,7 +52,7 @@ const Filter = () => {
     <form onSubmit={searchData}>
       <div>
         <label htmlFor="name">Nombre: </label>
-        <select name="value" onChange={onChangeData} id="nameUser">
+        <select name="nombre" onChange={onChangeData}>
           <option></option>
           {selectorState.map(({ nameUser }, index) => (
             <option key={index} value={nameUser}>
@@ -62,9 +63,9 @@ const Filter = () => {
       </div>
       <div>
         <label htmlFor="area">Área: </label>
-        <select name="value" onChange={onChangeData} id="nameUnit">
+        <select name="area" onChange={onChangeData}>
           <option></option>
-          {selectorState.map(({ nameUnit }, index) => (
+          {selectorUnit.map(({ nameUnit }, index) => (
             <option key={index} value={nameUnit}>
               {nameUnit}
             </option>
@@ -72,10 +73,12 @@ const Filter = () => {
         </select>
       </div>
       <div>
-        <label htmlFor="orden-A-Z">A-Z</label>
-      </div>
-      <div>
-        <label htmlFor="orden-Z-A">Z-A</label>
+        <label htmlFor="ordenar-">Ordenar: </label>
+        <select name="order" onChange={onChangeData}>
+          <option value=""></option>
+          <option value="ASC">A-Z</option>
+          <option value="DESC">Z-A</option>
+        </select>
       </div>
       <button type="submit">Buscar</button>
     </form>

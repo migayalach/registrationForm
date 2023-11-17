@@ -447,7 +447,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case SEARCH_NAME_USER: {
       return {
         ...state,
-        filter: payload.length <= 1 ? payload : null,
+        filter: payload,
         errors: null,
       };
     }
@@ -489,7 +489,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         errors: payload,
-
+        filter: null,
         success: null,
       };
 

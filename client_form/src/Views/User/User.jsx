@@ -34,15 +34,17 @@ const User = () => {
         swalMessage(selectStateUser.error, "warning");
       } else if (selectStateUser.user === true) {
         toastSuccess(selectStateUser.message, "success");
+      } else if (selectStateUser.userSearch === false) {
+        toastSuccess(selectStateUser.message, "error");
       }
     }
   }, [selectStateUser]);
 
   return (
     <>
-      <Filter />
-      <hr />
       <FormUser />
+      <hr />
+      <Filter />
       <hr />
       <Lists
         items={selectorFilter ? selectorFilter : selectorUser}
