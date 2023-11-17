@@ -58,6 +58,11 @@ import {
   UPDATE_FORM,
   DELETE_FORM,
 
+  // FILTER'S
+  SEARCH_NAME_USER,
+  SEARCH_NAME_CREDENTIAL,
+  SEARCH_NAME_USER_API,
+
   //LOGIN
   LOGIN_ACCESS,
 
@@ -69,8 +74,6 @@ import {
 
   // SUCCESS
   SUCCESS,
-
-  // FILTROS
 } from "./actions-type";
 
 const URL = `http://localhost:3001/forms`;
@@ -818,6 +821,24 @@ export const deleteForm = (idForm) => {
       dispatch({
         type: DELETE_FORM,
         payload: form,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+
+//* FILTER'S
+export const filterData = ({ location, route, value }) => {
+  return async function (dispatch) {
+    try {
+      const searchData = await axios.get(`${URL}${location}?${route}=${value}`);
+      dispatch({
+        type: route === "nameUser" && SEARCH_NAME_USER,
+        payload: searchData.data,
       });
     } catch (error) {
       dispatch({
