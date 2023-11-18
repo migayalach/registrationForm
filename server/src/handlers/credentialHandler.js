@@ -35,11 +35,12 @@ const getCredentialId = async (request, response) => {
 };
 
 const getCredentialName = async (request, response) => {
-  const { name } = request.query;
+  const { nameUser, name, order } = request.query;
   try {
-    const getNameCredential = name
-      ? await getSearchCategoryName(name)
-      : await getAllCredential();
+    const getNameCredential =
+    nameUser || name || order
+        ? await getSearchCategoryName(nameUser, name, order)
+        : await getAllCredential();
     response.status(SUCCESS).json(getNameCredential);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
