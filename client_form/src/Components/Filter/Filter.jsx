@@ -50,17 +50,20 @@ const Filter = () => {
 
   return (
     <form onSubmit={searchData}>
-      <div>
-        <label htmlFor="name">Nombre: </label>
-        <select name="nombre" onChange={onChangeData}>
-          <option></option>
-          {selectorState.map(({ nameUser }, index) => (
-            <option key={index} value={nameUser}>
-              {nameUser}
-            </option>
-          ))}
-        </select>
-      </div>
+      {location.pathname === "/user" ||
+        (location.pathname === "/credential" && (
+          <div>
+            <label htmlFor="name">Nombre: </label>
+            <select name="nombre" onChange={onChangeData}>
+              <option></option>
+              {selectorState.map(({ nameUser }, index) => (
+                <option key={index} value={nameUser}>
+                  {nameUser}
+                </option>
+              ))}
+            </select>
+          </div>
+        ))}
 
       {location.pathname === "/user" && (
         <div>
