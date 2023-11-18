@@ -61,17 +61,21 @@ const Filter = () => {
           ))}
         </select>
       </div>
-      <div>
-        <label htmlFor="area">Área: </label>
-        <select name="area" onChange={onChangeData}>
-          <option></option>
-          {selectorUnit.map(({ nameUnit }, index) => (
-            <option key={index} value={nameUnit}>
-              {nameUnit}
-            </option>
-          ))}
-        </select>
-      </div>
+
+      {location.pathname === "/user" && (
+        <div>
+          <label htmlFor="area">Área: </label>
+          <select name="area" onChange={onChangeData}>
+            <option></option>
+            {selectorUnit.map(({ nameUnit }, index) => (
+              <option key={index} value={nameUnit}>
+                {nameUnit}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <div>
         <label htmlFor="ordenar-">Ordenar: </label>
         <select name="order" onChange={onChangeData}>
