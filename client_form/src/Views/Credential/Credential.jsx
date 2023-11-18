@@ -21,6 +21,7 @@ import { ToastContainer } from "react-toastify";
 const Credential = () => {
   const dispatch = useDispatch();
   const selectorCredential = useSelector((state) => state.credential);
+  const selectorFilter = useSelector((state) => state.filter);
   const selectStateCredential = useSelector(
     (state) => state.errors || state.success
   );
@@ -41,12 +42,12 @@ const Credential = () => {
 
   return (
     <>
-      {/* <Filter />
-      <hr /> */}
       <FormCredential />
       <hr />
+      <Filter />
+      <hr />
       <Lists
-        items={selectorCredential}
+        items={selectorFilter ? selectorFilter : selectorCredential}
         text={"Credenciales"}
         flag={"credential"}
       />

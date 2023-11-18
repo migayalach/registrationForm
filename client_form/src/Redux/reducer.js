@@ -14,11 +14,8 @@ import {
   DELETE_EQUIPMENT,
 
   // USER API
-  ADD_USER_API,
   GET_USER_API,
   GET_USER_API_ID,
-  UPDATE_USER_API,
-  DELETE_USER_API,
 
   // STATE
   ADD_STATE,
@@ -58,9 +55,8 @@ import {
 
   // FILTER'S
   SEARCH_NAME_USER,
-  SEARCH_NAME_UNIT,
-  ORDER_A_Z,
-  ORDER_Z_A,
+  SEARCH_NAME_CREDENTIAL,
+  SEARCH_NAME_USER_API,
 
   //LOGIN
   LOGIN_ACCESS,
@@ -452,8 +448,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
     }
 
-    case SEARCH_NAME_UNIT: {
-      return { ...state, errors: null };
+    case SEARCH_NAME_CREDENTIAL: {
+      return {
+        ...state,
+        filter: payload,
+        errors: null,
+      };
+    }
+
+    case SEARCH_NAME_USER_API : {
+      return {
+        ...state,
+        filter: payload,
+        errors: null,
+      }
     }
 
     //! LOGIN

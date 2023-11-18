@@ -1,4 +1,5 @@
 const { User, Unit } = require("../database/database");
+const { orderFuc } = require("../utils/toolsFunction");
 const { Op } = require("sequelize");
 
 const createUser = async (nameUser, emailUser, user, password, idArea) => {
@@ -94,8 +95,11 @@ const getNameUser = async (name, nameUnit, order) => {
         },
       }),
     },
-    order: [[order === "DESC" ? "nameUser" : "nameUser", order]],
   });
+
+  if (order || (nameUnit && order)) {
+    return orderFuc(userData, order, "nameUser");
+  }
 
   if (userData.length > 0) {
     return userData;

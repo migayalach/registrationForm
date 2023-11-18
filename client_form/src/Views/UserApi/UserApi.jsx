@@ -16,6 +16,7 @@ import "./user-api.css";
 const UserApi = () => {
   const dispatch = useDispatch();
   const selectorUserApi = useSelector((state) => state.userApi);
+  const selectorFilter = useSelector((state) => state.filter);
 
   useEffect(() => {
     dispatch(getAllUserApi);
@@ -27,12 +28,12 @@ const UserApi = () => {
 
   return (
     <>
-      {/* <Filter />
-      <hr /> */}
       <ButtonUpdate label={"Actualizar"} onClickUpdate={handleUpdateData} />
       <hr />
+      <Filter />
+      <hr />
       <Lists
-        items={selectorUserApi}
+        items={selectorFilter ? selectorFilter : selectorUserApi}
         text={"Lista de usuarios"}
         flag={"userApi"}
       />

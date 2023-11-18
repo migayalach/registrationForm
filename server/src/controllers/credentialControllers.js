@@ -1,5 +1,6 @@
 const { Credential, User } = require("../database/database");
 const { getUnitSearchID } = require("./unitControllers");
+const { orderFuc, clearDataUser } = require("../utils/toolsFunction");
 const { Op } = require("sequelize");
 
 const createCredential = async (name, UserIdUser) => {
@@ -37,15 +38,31 @@ const getSearchCredentialId = async (idCredential) => {
   });
 };
 
-const getSearchCategoryName = async (name) => {
+const getSearchCategoryName = async (nameUser, name, order) => {
   const nameSearch = await Credential.findAll({
+    include: { model: User },
     where: {
-      name: {
-        [Op.iLike]: `%${name}%`,
-      },
+      ...(name && {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      }),
+      ...(nameUser && {
+        "$User.nameUser$": {
+          [Op.iLike]: `%${nameUser}%`,
+        },
+      }),
     },
   });
-  return nameSearch;
+
+  if (order && !nameUser) {
+    return orderFuc(clearDataUser(nameSearch), order, "nameUser");
+  }
+
+  if (nameSearch.length > 0) {
+    return clearDataUser(nameSearch);
+  }
+  throw Error`No se encontro lo que busca`;
 };
 
 const getAllCredential = async () => {
