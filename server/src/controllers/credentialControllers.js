@@ -56,7 +56,7 @@ const getSearchCategoryName = async (nameUser, name, order) => {
   });
 
   if (order && !nameUser) {
-    return orderFuc(clearDataUser(nameSearch), order);
+    return orderFuc(clearDataUser(nameSearch), order, "nameUser");
   }
 
   if (nameSearch.length > 0) {
