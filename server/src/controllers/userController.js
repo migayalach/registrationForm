@@ -98,7 +98,7 @@ const getNameUser = async (name, nameUnit, order) => {
   });
 
   if (order || (nameUnit && order)) {
-    return orderFuc(userData, order);
+    return orderFuc(userData, order, "nameUser");
   }
 
   if (userData.length > 0) {
