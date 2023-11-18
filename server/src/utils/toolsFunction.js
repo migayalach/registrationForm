@@ -1,4 +1,4 @@
-module.exports = orderFuc = (array, order) => {
+const orderFuc = (array, order) => {
   let n = array.length,
     aux = 0,
     temp = 0;
@@ -20,4 +20,32 @@ module.exports = orderFuc = (array, order) => {
 const valor = (text) => {
   let character = text.split("")[0];
   return character.charCodeAt();
+};
+
+const clearDataUser = (array) =>
+  array.map(
+    ({
+      idCredential,
+      name,
+      UserIdUser,
+      User: { idUser },
+      User: { nameUser },
+      User: { emailUser },
+      User: { user },
+      User: { UnitIdUnit },
+    }) => ({
+      idCredential,
+      name,
+      UserIdUser,
+      idUser: idUser,
+      nameUser: nameUser,
+      emailUser: emailUser,
+      user: user,
+      UnitIdUnit: UnitIdUnit,
+    })
+  );
+
+module.exports = {
+  orderFuc,
+  clearDataUser,
 };
