@@ -1,5 +1,4 @@
 import axios from "axios";
-import { dataSend } from "../Utils/clearFunctions";
 import {
   // AREA
   ADD_AREA,
@@ -16,11 +15,8 @@ import {
   DELETE_EQUIPMENT,
 
   // USER API
-  ADD_USER_API,
   GET_USER_API,
   GET_USER_API_ID,
-  UPDATE_USER_API,
-  DELETE_USER_API,
 
   // STATE
   ADD_STATE,
@@ -61,6 +57,7 @@ import {
   // FILTER'S
   SEARCH_NAME_USER,
   SEARCH_NAME_CREDENTIAL,
+  SEARCH_NAME_USER_API,
 
   //LOGIN
   LOGIN_ACCESS,
@@ -264,10 +261,6 @@ export const deleteEquipment = (idEquipment) => {
 };
 
 //* USER API
-export const addUserApi = () => {
-  return function (dispatch) {};
-};
-
 export const getAllUserApi = () => {
   return async function (dispatch) {
     try {
@@ -840,7 +833,8 @@ export const filterData = ({ location, area, nombre, order }) => {
       dispatch({
         type:
           (location === "/user" && SEARCH_NAME_USER) ||
-          (location === "/credential" && SEARCH_NAME_CREDENTIAL),
+          (location === "/credential" && SEARCH_NAME_CREDENTIAL) ||
+          (location === "/userApi" && SEARCH_NAME_USER_API),
         payload: searchData.data,
       });
     } catch (error) {
