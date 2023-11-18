@@ -1,5 +1,5 @@
 const { User, Unit } = require("../database/database");
-const orderFuc = require("../utils/toolsFunction");
+const { orderFuc } = require("../utils/toolsFunction");
 const { Op } = require("sequelize");
 
 const createUser = async (nameUser, emailUser, user, password, idArea) => {
