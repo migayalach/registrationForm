@@ -11,13 +11,12 @@ const {
 } = require("../controllers/userController");
 
 const postUser = async (request, response) => {
-  const { nameUser, emailUser, user, password, idArea } = request.body;
+  const { nameUser, emailUser, user, idArea } = request.body;
   try {
     const userCreate = await createUser(
       nameUser,
       emailUser,
       user,
-      password,
       idArea
     );
     response
