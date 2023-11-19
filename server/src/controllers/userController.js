@@ -69,7 +69,6 @@ const getAllUser = async () => {
       nameUser,
       emailUser,
       user,
-      password,
       UnitIdUnit,
       Unit: { nameUnit },
     }) => ({
@@ -77,7 +76,6 @@ const getAllUser = async () => {
       nameUser,
       emailUser,
       user,
-      password,
       UnitIdUnit,
       nameUnit,
     })
@@ -134,7 +132,7 @@ const updateUser = async (
       nameUser,
       emailUser,
       user,
-      password,
+      password: await hashedPassword(password),
       UnitIdUnit: idArea,
     },
     { where: { idUser } }
