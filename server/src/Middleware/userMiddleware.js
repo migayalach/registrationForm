@@ -4,7 +4,7 @@ const minLengthUser = 4;
 const maxLengthUser = 15;
 
 const validateUserData = (request, response, next) => {
-  const { nameUser, emailUser, user, password, idArea } = request.body;
+  const { nameUser, emailUser, user, idArea } = request.body;
   const minLength = 4;
   try {
     if (!nameUser) throw Error(`Por favor ingrese un nombre`);
@@ -25,7 +25,6 @@ const validateUserData = (request, response, next) => {
       throw Error(
         `Este es un nombre muy largo para poder considerarse un nombre de usuario`
       );
-    if (!password.length) throw Error(`La contraseña no puede estar vacio`);
     if (!idArea) throw Error(`Se necesita una área`);
     if (!Number.isInteger(+idArea)) throw Error(`Revise el área existe`);
     return next();
