@@ -60,7 +60,7 @@ const validateUserDataPut = (request, response, next) => {
       throw Error(
         `Este es un nombre muy largo para poder considerarse un nombre de usuario`
       );
-    if (!password.length) throw Error(`La contraseña no puede estar vacio`);
+    if (!password) throw Error(`La contraseña no puede estar vacio`);
     if (!idArea) throw Error(`Se necesita una área`);
     if (!Number.isInteger(+idArea)) throw Error(`Revise el área existe`);
     return next();
