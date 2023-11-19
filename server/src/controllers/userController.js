@@ -1,8 +1,13 @@
 const { User, Unit } = require("../database/database");
 const { orderFuc } = require("../utils/toolsFunction");
 const { Op } = require("sequelize");
+const bcrypt = require("bcrypt");
 
-const createUser = async (nameUser, emailUser, user, password, idArea) => {
+// Hashear la contraseña antes de almacenarla
+const hashedPassword = async (password) => await bcrypt.hash(password, 10);
+
+const createUser = async (nameUser, emailUser, user, idArea) => {
+  console.log(nameUser, emailUser, user, idArea);
   const existArea = await Unit.findOne({
     where: {
       idUnit: idArea,
@@ -22,7 +27,7 @@ const createUser = async (nameUser, emailUser, user, password, idArea) => {
     nameUser,
     emailUser,
     user,
-    password,
+    password: await hashedPassword(`${emailUser}2023`),
     UnitIdUnit: idArea,
   });
 
@@ -32,7 +37,6 @@ const createUser = async (nameUser, emailUser, user, password, idArea) => {
     nameUser: dataClear.nameUser,
     emailUser: dataClear.emailUser,
     user: dataClear.user,
-    password: dataClear.password,
     UnitIdUnit: dataClear.idArea,
     nameUnit,
   };
