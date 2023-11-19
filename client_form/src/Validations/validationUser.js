@@ -1,12 +1,4 @@
-import {
-  nameRegex,
-  emailRegex,
-  passwordRegexMay_AZ,
-  passwordRegexMin_az,
-  passwordRegexDigits,
-  passwordRegexSpecialCaracter,
-  passwordRegexLength,
-} from "../Utils/regex";
+import { nameRegex, emailRegex } from "../Utils/regex";
 
 export const validationUser = (userData) => {
   const errors = {};
@@ -62,33 +54,6 @@ export const validationUser = (userData) => {
 
     if (userData.user.length > maxLengthUser) {
       errors.user = `El nombre no puede tener más de ${maxLengthUser} caracteres`;
-    }
-  }
-
-  // password
-  if (!userData.password) {
-    errors.password = "La contraseña no puede estar vacía";
-  } else {
-    if (!passwordRegexMay_AZ.test(userData.password)) {
-      errors.password = "Debe contener al menos una letra mayúscula (A-Z)";
-    }
-
-    if (!passwordRegexMin_az.test(userData.password)) {
-      errors.password = "Debe contener al menos una letra minúscula (a-z)";
-    }
-
-    if (!passwordRegexDigits.test(userData.password)) {
-      errors.password = "Debe contener al menos un dígito (0-9)";
-    }
-
-    if (!passwordRegexSpecialCaracter.test(userData.password)) {
-      errors.password =
-        "Debe contener al menos uno de los siguientes caracteres especiales: @, #, $, %, ^, &, +, =, !, _ ";
-    }
-
-    if (!passwordRegexLength.test(userData.password)) {
-      errors.password =
-        "La longitud mínima de la contraseña debe ser de 8 caracteres.";
     }
   }
 

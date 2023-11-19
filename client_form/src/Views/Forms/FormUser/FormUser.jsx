@@ -4,18 +4,21 @@ import { ButtonAccept } from "../../../Components/ButtonAccept";
 // HOOK'S
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 // REDUX
 import { getAllArea, postUser, editUser } from "../../../Redux/actions";
 
 // JAVASCRIP
 import { validationUser } from "../../../Validations/validationUser";
+import { validationPassword } from "../../../Validations/validationPassword";
 
 // STYLESHEET'S
 import "./form-user.css";
 
 const FormUser = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const selectorArea = useSelector((state) => state.area);
   const selectorAux = useSelector((state) => state.aux);
   const selUserData = useSelector((state) => state.auxUser);
@@ -24,18 +27,17 @@ const FormUser = () => {
   const resulData = area.find((index) => index === userArea);
 
   const [errors, setErrors] = useState({});
+  const [error, setError] = useState({});
 
   let initialnameUser = "";
   let initialemailUser = "";
   let initialuser = "";
-  let initialpassword = "";
   let initialidArea = "";
 
   if (selectorAux.length > 0) {
     initialnameUser = selectorAux[0]?.nameUser;
     initialemailUser = selectorAux[0]?.emailUser;
     initialuser = selectorAux[0]?.user;
-    initialpassword = selectorAux[0]?.password;
     initialidArea = selectorAux[0]?.UnitIdUnit;
   }
 
@@ -43,7 +45,7 @@ const FormUser = () => {
     nameUser: initialnameUser,
     emailUser: initialemailUser,
     user: initialuser,
-    password: initialpassword,
+    password: "",
     idArea: initialidArea,
   });
 
@@ -55,6 +57,12 @@ const FormUser = () => {
     setErrors(
       validationUser({ ...userData, [event.target.name]: event.target.value })
     );
+    location.pathname !== "/user" &&
+      setError(
+        validationPassword({
+          [event.target.name]: event.target.value,
+        })
+      );
   };
 
   const handleAccept = (event) => {
@@ -62,6 +70,7 @@ const FormUser = () => {
     selectorAux.length
       ? dispatch(editUser({ ...userData, idUser: selectorAux[0]?.idUser }))
       : dispatch(postUser(userData));
+    setError((userData.password = ""));
   };
 
   useEffect(() => {
@@ -73,16 +82,9 @@ const FormUser = () => {
       nameUser: initialnameUser,
       emailUser: initialemailUser,
       user: initialuser,
-      password: initialpassword,
       idArea: initialidArea,
     });
-  }, [
-    initialnameUser,
-    initialemailUser,
-    initialuser,
-    initialpassword,
-    initialidArea,
-  ]);
+  }, [initialnameUser, initialemailUser, initialuser, initialidArea]);
 
   return (
     <form>
@@ -114,14 +116,18 @@ const FormUser = () => {
       />
       {errors.user && <p className="error">{errors.user}</p>}
 
-      <label htmlFor="password">Contraseña: </label>
-      <input
-        type="text"
-        value={userData.password}
-        name="password"
-        onChange={handleChange}
-      />
-      {errors.password && <p className="error">{errors.password}</p>}
+      {location.pathname !== "/user" && (
+        <>
+          <label htmlFor="password">Contraseña: </label>
+          <input
+            type="text"
+            value={userData.password}
+            name="password"
+            onChange={handleChange}
+          />
+          {error.password && <p className="error">{error.password}</p>}
+        </>
+      )}
 
       <label htmlFor="area">Area</label>
       <select
@@ -139,7 +145,7 @@ const FormUser = () => {
       </select>
       {errors.idArea && <p className="error">{errors.idArea}</p>}
 
-      {Object.keys(errors).length < 1 && (
+      {Object.keys(errors).length < 1 && Object.keys(error).length < 1 && (
         <ButtonAccept label={"Aceptar"} onClickAccept={handleAccept} />
       )}
     </form>
