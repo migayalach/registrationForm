@@ -50,7 +50,7 @@ const List = ({
 
   return (
     <>
-      <table className={styles.table}>
+      <table>
         <tbody>
           <tr>
             <td className={styles.smallCell}>{index}</td>
