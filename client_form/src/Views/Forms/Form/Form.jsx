@@ -60,6 +60,7 @@ const Form = () => {
 
   return (
     <>
+      <h3>Formulario de registro</h3>
       <h4>Seleccione un estado:</h4>
       <SelectState handleData={handleData} />
       <h4>Seleccione un proceso:</h4>

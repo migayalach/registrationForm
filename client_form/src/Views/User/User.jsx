@@ -1,10 +1,10 @@
 // COMPONET'S
-import FormUser from "../Forms/FormUser/FormUser";
 import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
+import Modal from "../../Components/Modal/modal";
 
 // HOOK'S
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
@@ -23,6 +23,15 @@ const User = () => {
   const selectorUser = useSelector((state) => state.user);
   const selectorFilter = useSelector((state) => state.filter);
   const selectStateUser = useSelector((state) => state.errors || state.success);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getAllUser());
@@ -42,7 +51,12 @@ const User = () => {
 
   return (
     <>
-      <FormUser />
+      <div className="buttonContainer">
+        <button onClick={openModal} className="buttonCrear">
+          Crear
+        </button>
+        <Modal isOpen={isModalOpen} onClose={closeModal} flagComponent="user" />
+      </div>
       <hr />
       <Filter />
       <hr />

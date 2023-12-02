@@ -1,10 +1,10 @@
 // COMPONET'S
 import FilterForm from "../../Components/FilterForm/FilterForm";
-import Form from "../Forms/Form/Form";
 import Lists from "../../Components/Lists";
+import Modal from "../../Components/Modal/modal";
 
 // HOOK'S
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // REDUX
@@ -22,6 +22,15 @@ const FormView = () => {
   const dispatch = useDispatch();
   const selecForm = useSelector((state) => state.form);
   const selecStateForm = useSelector((state) => state.errors || state.success);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getAllForm());
@@ -44,7 +53,12 @@ const FormView = () => {
 
   return (
     <>
-      <Form />
+      <div className="buttonContainer">
+        <button onClick={openModal} className="buttonCrear">
+          Crear
+        </button>
+        <Modal isOpen={isModalOpen} onClose={closeModal} flagComponent="form" />
+      </div>
       <FilterForm />
       <Lists items={selecForm} text={"formularios"} flag={"form"} />
       <ToastContainer

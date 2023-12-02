@@ -1,10 +1,10 @@
 // COMPONET'S
-import FormCredential from "../Forms/FormCredential/FormCredential";
 import Filter from "../../Components/Filter/Filter";
 import Lists from "../../Components/Lists";
+import Modal from "../../Components/Modal/modal";
 
 // HOOK'S
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
@@ -25,6 +25,15 @@ const Credential = () => {
   const selectStateCredential = useSelector(
     (state) => state.errors || state.success
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getAllCredential());
@@ -42,7 +51,16 @@ const Credential = () => {
 
   return (
     <>
-      <FormCredential />
+      <div className="buttonContainer">
+        <button onClick={openModal} className="buttonCrear">
+          Crear
+        </button>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          flagComponent="credential"
+        />
+      </div>
       <hr />
       <Filter />
       <hr />

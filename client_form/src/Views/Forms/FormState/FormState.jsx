@@ -49,6 +49,7 @@ const FormState = () => {
   return (
     <form>
       <div>
+        <h5>Crear un nuevo estado</h5>
         <label htmlFor="nombre">Nombre: </label>
         <input
           type="text"

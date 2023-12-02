@@ -1,9 +1,9 @@
 // COMPONET'S
-import FormEquipment from "../Forms/FormEquipment/FormEquipment";
 import Lists from "../../Components/Lists";
+import Modal from "../../Components/Modal/modal";
 
 // HOOK'S
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // REDUX
@@ -21,6 +21,15 @@ const Equipment = () => {
   const dispatch = useDispatch();
   const selectorEquipment = useSelector((state) => state.equipment);
   const stateEquipment = useSelector((state) => state.errors || state.success);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getAllEquipment());
@@ -38,7 +47,16 @@ const Equipment = () => {
 
   return (
     <>
-      <FormEquipment />
+      <div className="buttonContainer">
+        <button onClick={openModal} className="buttonCrear">
+          Crear
+        </button>
+      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        flagComponent="equipment"
+      />
       <hr />
       <Lists items={selectorEquipment} text={"Equipo"} flag={"equipment"} />
       <ToastContainer

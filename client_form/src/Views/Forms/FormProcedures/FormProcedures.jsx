@@ -54,6 +54,7 @@ const FormProcedures = () => {
 
   return (
     <form className="form-component">
+      <p>Crear un nuevo procedimiento</p>
       <label htmlFor="nombre">Nombre: </label>
       <input
         type="text"

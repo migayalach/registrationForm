@@ -1,9 +1,9 @@
 // COMPONET'S
-import FormArea from "../Forms/FormArea/FormArea";
 import Lists from "../../Components/Lists";
+import Modal from "../../Components/Modal/modal";
 
 // HOOK'S
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // JAVASCRIP
@@ -23,6 +23,15 @@ const Area = () => {
   const dispatch = useDispatch();
   const selectorArea = useSelector((state) => state.area);
   const stateResponse = useSelector((state) => state.errors || state.success);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getAllArea());
@@ -40,7 +49,12 @@ const Area = () => {
 
   return (
     <>
-      <FormArea />
+      <div className="buttonContainer">
+        <button onClick={openModal} className="buttonCrear">
+          Crear
+        </button>
+        <Modal isOpen={isModalOpen} onClose={closeModal} flagComponent="area" />
+      </div>
       <hr />
       <Lists items={clearName(selectorArea)} text={"Área"} flag={"area"} />
       <ToastContainer

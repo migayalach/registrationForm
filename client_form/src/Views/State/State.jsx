@@ -1,5 +1,6 @@
 // COMPONET'S
 import Lists from "../../Components/Lists";
+import Modal from "../../Components/Modal/modal";
 
 // HOOK'S
 import React, { useEffect, useState } from "react";
@@ -12,7 +13,6 @@ import { getAllState } from "../../Redux/actions";
 import { swalMessage, toastSuccess } from "../../Utils/messageAler";
 
 // LIBRARY
-import Modal from "./modal";
 import { ToastContainer } from "react-toastify";
 
 // STYLESHEET'S
@@ -23,6 +23,14 @@ const State = () => {
   const selectorState = useSelector((state) => state.stateForm);
   const selectState = useSelector((state) => state.errors || state.success);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getAllState());
@@ -38,14 +46,6 @@ const State = () => {
     }
   }, [selectState]);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <div>
       <h3>Crear Formulario:</h3>
@@ -53,7 +53,11 @@ const State = () => {
         <button onClick={openModal} className={styles.buttonCrear}>
           Crear
         </button>
-        <Modal isOpen={isModalOpen} onClose={closeModal} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          flagComponent="state"
+        />
       </div>
       <hr />
       <h2>ESTADOS</h2>

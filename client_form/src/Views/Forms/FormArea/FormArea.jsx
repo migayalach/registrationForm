@@ -50,8 +50,8 @@ const FormArea = () => {
 
   return (
     <form className="form-component">
+      <p>Crear una nueva área</p>
       <label htmlFor="nombre">Nombre: </label>
-
       <input
         type="text"
         value={userData.name}

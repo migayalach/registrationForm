@@ -75,7 +75,7 @@ const FormCredential = () => {
 
   return (
     <form>
-      <h1>FormUser</h1>
+      <h1>Crear una nueva credencial</h1>
       <label htmlFor="name">Nombre: </label>
       <input
         type="text"

@@ -88,7 +88,7 @@ const FormUser = () => {
 
   return (
     <form>
-      <h1>FormUser</h1>
+      <h1>Usuario</h1>
       <label htmlFor="nameUser">Nombre: </label>
       <input
         type="text"
