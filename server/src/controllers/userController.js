@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const hashedPassword = async (password) => await bcrypt.hash(password, 10);
 
 const createUser = async (nameUser, emailUser, user, idArea) => {
-  console.log(nameUser, emailUser, user, idArea);
   const existArea = await Unit.findOne({
     where: {
       idUnit: idArea,
