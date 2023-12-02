@@ -21,6 +21,13 @@ const getLoginData = async (emailUser, password) => {
           unit: user.Unit.nameUnit,
           credential: "UTIC",
         };
+      } else if (!user.Credential) {
+        return {
+          access: true,
+          idUser: user.idUser,
+          name: user.nameUser,
+          unit: user.Unit.nameUnit,
+        };
       } else {
         return {
           access: true,
